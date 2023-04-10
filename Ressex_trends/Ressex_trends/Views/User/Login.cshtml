@@ -1,0 +1,78 @@
+﻿@model Ressex_trends.Models.LoginModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="chartset"  charset="utf-8" />
+    <meta name="edge"  http-equiv="X-UA-Compatible"  content="IE=edge" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+
+        .centerlook {
+            padding-left: 400px;
+            font-weight: bold;
+            width: 1000px;
+        }
+
+        .error {
+            padding-left: 400px;
+            font-weight: bold;
+            width: 1000px;
+            color: red;
+        }
+
+        .loginbtn {
+            padding-left: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm())
+        {
+            <div class="bs-example">
+
+                <div class="form-group centerlook">
+                    <h1> Login </h1>
+                </div>
+                <div class="form-group centerlook">
+                    <label>Emailid: </label>
+                    @Html.EditorFor(model => model.email_id)*  
+                    @Html.ValidationMessageFor(model => model.email_id)
+                </div>
+                <div class="form-group centerlook">
+                    <label>Password:</label>
+                    @Html.EditorFor(model => model.password) *  
+                    @Html.ValidationMessageFor(model => model.password)
+
+                </div>
+                <div class="form-group error">
+                    @if (@ViewBag.Failedcount != null)
+                    {
+                        <label> Failed Attempt count is: @ViewBag.Failedcount</label>
+                    }
+
+                    @if (@ViewBag.NotValidUser != null)
+                    {
+                        <label> @ViewBag.NotValidUser</label>
+                    }
+                </div>
+                <div class="loginbtn">
+                    <input type="submit" value="Login" class="btn btn-primary" />
+                </div>
+            </div>
+        }
+    </div>
+</body>
+</html>
+
