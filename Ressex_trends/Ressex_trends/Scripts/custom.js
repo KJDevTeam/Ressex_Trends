@@ -169,17 +169,17 @@ $(".textEllipsisPop").popover({
         }, 200);
     });
 
-$(function () {
-    $("#sortResizable").sortable({
-        containment: ".tab-incontent",
-        handle: '.handle'
-    });
-    $("#sortResizable").disableSelection();
-    $(".colResize").resizable({
-        containment: ".removeMl"
-    });
+//$(function () {
+//    $(".sortResizable").sortable({
+//        containment: ".tab-incontent",
+//        handle: '.handle'
+//    });
+//    $(".sortResizable").disableSelection();
+//    $(".colResize").resizable({
+//        containment: ".removeMl"
+//    });
 
-});
+//});
 
 $(document).ready(function () {
     // Select2

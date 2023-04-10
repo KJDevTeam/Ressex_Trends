@@ -140,12 +140,12 @@
                         <a class="mr-20px" href="#"><img src="images/avatar.svg" alt="" class="avatarImg"></a>
                         <div class="d-flex flex-column">
                             <div class="d-flex align-items-center mb-1">
-                                <span class="text16px">Welcome, Mr. Ronak Jain</span>
+                                <span class="text16px" id="UserName"></span>
                                 <span class="ml-2"><img src="images/chevron-down.svg" alt="" class="toggleIcon"></span>
                             </div>
                             <div>
-                                <span class="mr-3">10/09/2022</span>
-                                <span class="mr-3">12:45 PM</span>
+                                <span class="mr-3" id="CurretDate"></span>
+                                <span class="mr-3" id="Currenttime"></span>
                             </div>
                         </div>
                     </div>
@@ -159,10 +159,10 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="dropdown-item">
-                                    <img src="images/icon-logout.svg" alt=""
-                                         class="mr-2">Logout
-                                </a>
+
+                                <button class="border-0 bg-transparent dropdown-item btn-block logoutBtn mr-4" onclick="logout()">
+                                    <img src="images/icon-logout.svg" alt="" class="mr-2"> Logout
+                                </button>
                             </li>
                         </ul>
                     </div>
@@ -281,15 +281,74 @@
         </footer>
     </div>
 
-   
+
 
     @Scripts.Render("~/bundles/jquery")
 
 
-    <script src="~/Scripts/Global/jquery.slim.min.js"></script>
+    @*<script src="~/Scripts/Global/jquery.slim.min.js"></script>*@
+    <script src="~/Scripts/jquery-3.6.1.min.js"></script>
+
     <script src="~/Scripts/Global/popper.min.js"></script>
     <script src="~/bootstrap4/js/bootstrap.min.js"></script>
-    <script src="~/Scripts/Global/custom.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+    <script src="~/Scripts/Global/utility.js"></script>
+    <script src="~/Scripts/Global/Common.js"></script>
+    <script src="~/Scripts/Global/idleTimeCounter.js"></script>
+    <script src="~/Scripts/Global/store.min.js"></script>
+
+    <script src="~/Scripts/custom.js"></script>
+    @*<script src="~/Scripts/jquery-3.6.1.min.js"></script>*@
+    @*<script src="~/Scripts/jquery-ui-1.13.0.js"></script>*@
+    @*<script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>*@
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/slick.min.js"></script>
+
     @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            $(document).idleTimeout();
+            var userdetails = utility.getCookie('user_details');
+            if (userdetails != "" || userdetails != undefined || userdetails != null) {
+                var finaldata = JSON.parse(userdetails);
+                $("#UserName").text("Welcome, " + finaldata.data.user_name);
+                $("#CurretDate").text(moment().format("DD-MM-YYYY"));
+                $("#Currenttime").text(moment().format("hh:mm  A"));
+
+            }
+            else {
+                //All Cookies Clear
+                document.cookie.split(';').forEach(function (c) {
+                    document.cookie = c.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+                });
+                //Local Storage Clear
+                localStorage.clear();
+                var loginurl = utility.FrontEndAPIURL('');
+                window.location.href = loginurl;
+
+            }
+
+        });
+
+        function logout() {
+            //All Cookies Clear
+            document.cookie.split(';').forEach(function (c) {
+                document.cookie = c.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+            });
+            //Local Storage Clear
+            localStorage.clear();
+            var loginurl = utility.FrontEndAPIURL('');
+            window.location.href = loginurl;
+
+        }
+        $('.print-btn').click(function () {
+            window.print();
+        });
+    </script>
 </body>
 </html>

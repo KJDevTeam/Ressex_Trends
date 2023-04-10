@@ -7,32 +7,39 @@
     
     return {
         init: function () {
-           
-            $('#selectedProjectType').text('Residential');
-          /*  $('#projecType').val('Residential');*/
-            var _filterSelected = localStorage.getItem('filterSelected');
-            //if (_filterSelected != "") {
-            //    localStorage.removeItem('filterSelected');
-            //}
-           var APIkey = utility.ServiceAPIURL("/IGR/Filligrdropdown");
-           var rsp= utility.ajaxselect(APIkey, " ", "Get", false);
+            
+            var APIkey = utility.ServiceAPIURL("Dashboard/PriceIndexList");
+           var rsp= utility.ajaxselect(APIkey, " ", "Post", false);
             console.log(rsp);
             maindata = rsp.data;
-            FilterViewModule.init(maindata);
-            $(".dropdown-menu li a").click(function () {
-                $("#options").text($(this).text());
-                // $("#projecType").text($(this).text());
-                // var x = document.getElementById("options").value;
-                var value = $(this).text();
-                projectType = value;
-                $('#selectedProjectType').text(value);
-                $('#SelectedProject').text('');
+
+           // FilterViewModule.init(maindata);
+
+          //  $('#selectedProjectType').text('Residential');
+          ///*  $('#projecType').val('Residential');*/
+          //  var _filterSelected = localStorage.getItem('filterSelected');
+          //  //if (_filterSelected != "") {
+          //  //    localStorage.removeItem('filterSelected');
+          //  //}
+          // var APIkey = utility.ServiceAPIURL("/IGR/Filligrdropdown");
+          // var rsp= utility.ajaxselect(APIkey, " ", "Get", false);
+          //  console.log(rsp);
+          //  maindata = rsp.data;
+          //  FilterViewModule.init(maindata);
+          //  $(".dropdown-menu li a").click(function () {
+          //      $("#options").text($(this).text());
+          //      // $("#projecType").text($(this).text());
+          //      // var x = document.getElementById("options").value;
+          //      var value = $(this).text();
+          //      projectType = value;
+          //      $('#selectedProjectType').text(value);
+          //      $('#SelectedProject').text('');
                 
-               /* $('#projecType').val(value);*/
-                DashboardModule.AutocompleteSearch(projectType);
-               /* document.getElementById("projecType").value = value;*/
-            });   
-            DashboardModule.AutocompleteSearch(projectType);
+          //     /* $('#projecType').val(value);*/
+          //      DashboardModule.AutocompleteSearch(projectType);
+          //     /* document.getElementById("projecType").value = value;*/
+          //  });   
+          //  DashboardModule.AutocompleteSearch(projectType);
         },
         AutocompleteSearch: function (projectTypetoLoad) {
            $("#SelectedProject").autocomplete({
