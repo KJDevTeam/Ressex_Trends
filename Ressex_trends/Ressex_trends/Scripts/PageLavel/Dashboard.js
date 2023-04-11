@@ -4,7 +4,7 @@
     var TalukId = 0;
     var maindata = [];
     var keepCityList = [];
-    var cityIndex = 1;
+    var cityindex = 1;
     var projectType = "Residential";
     
     return {
@@ -85,8 +85,8 @@
             var cityListlength = results.length / 10;
             var cityCounter = Math.ceil(cityListlength);
 
-            if (cityindex <citycounter) {
-                var arrcount = cityIndex * 10;
+            if (cityindex < cityCounter) {
+                var arrcount = cityindex * 10;
                 var arr_toload;
                 if (arrcount <= results.length) {
                     arr_toload = results.slice(0, arrcount)
@@ -96,7 +96,7 @@
                 }
                     
                 var st = ''
-                $.each(newarr, function (index, items) {
+                $.each(arr_toload, function (index, items) {
                     st += '<div class="col-custom-5">\
         <a href="#" class="cityCard">\
             <div class="cityCardBody">\
