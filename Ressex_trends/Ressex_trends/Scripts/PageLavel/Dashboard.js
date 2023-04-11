@@ -1,10 +1,12 @@
-﻿var DashboardModule = function () {
+﻿var cityindex = 1;
+var keepCityList = [];
+var DashboardModule = function () {
     var stateId = 0;
     var DistrictId = 0;
     var TalukId = 0;
     var maindata = [];
-    var keepCityList = [];
-    var cityindex = 1;
+   
+    
     var projectType = "Residential";
     
     return {
@@ -15,7 +17,8 @@
             var rsp = utility.ajaxselect(APIkey, payload, "Post", false);
             console.log(rsp);
             keepCityList = rsp.data;
-
+            var projectTitle = rsp.data[0].h1;
+            layoutModule.init(projectTitle);
             DashboardModule.cityload(rsp.data);
 
            // FilterViewModule.init(maindata);
@@ -85,14 +88,22 @@
             var cityListlength = results.length / 10;
             var cityCounter = Math.ceil(cityListlength);
 
-            if (cityindex < cityCounter) {
+            if (cityindex <= cityCounter) {
                 var arrcount = cityindex * 10;
+
+                //for (i= (arrcount-9); i < results.length+1; i++) {
+                //    if (i == arrcount) {
+                //        break;
+                //    }
+
+                //}
                 var arr_toload;
                 if (arrcount <= results.length) {
                     arr_toload = results.slice(0, arrcount)
                 }
                 else {
-                    arr_toload = results.slice(0, results.length)
+                    arr_toload = results.slice(0, results.length);
+                    $('#viewmore').hide();
                 }
                     
                 var st = ''
@@ -115,6 +126,11 @@
     }
 }();
 
+function viewmoreClick() {
+    cityindex++;
+    $("#CityList").empty();
+    DashboardModule.cityload(keepCityList);
+}
 function DateFlagChanged(date) {
     common.dtpicker(date, "#fromDateID", "#toDateID");
 }

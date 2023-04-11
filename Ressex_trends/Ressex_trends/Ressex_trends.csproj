@@ -233,6 +233,7 @@
     <Content Include="Scripts\jquery-ui-1.13.0.js" />
     <Content Include="Scripts\jquery-ui-1.13.0.min.js" />
     <Content Include="Scripts\PageLavel\Dashboard.js" />
+    <Content Include="Scripts\PageLavel\layout.js" />
     <Content Include="Scripts\PartialViewJs\Trends.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\slick.min.js" />
