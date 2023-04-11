@@ -123,58 +123,20 @@ common.CheckIsPaid = function () {
     }
     
 }
-common.Payload = function (lookup, reg_id, project_id, project_type,filterValues)
+common.Payload = function (lookup)
 {
-    var keywords_object = {
-        "FULL_NAME": filterValues.SelectedFname == "" ? "0" : filterValues.SelectedFname,
-        "PAN_NO": filterValues.SelectedPan == "" ? "0" : filterValues.SelectedPan,
-        "CTS_NO": filterValues.SelectedCts == "" ? "0" : filterValues.SelectedCts,
-        "BLDG_NAME": filterValues.SelectedBuildingNmame == "" ? "0" : filterValues.SelectedBuildingNmame,
-        "ADDRESS_KEYWORDS": filterValues.SelectedPAddress == "" ? "0" : filterValues.SelectedPAddress,
-        "PARTY_TYPE": filterValues.Selectedpartytype == "" ? "0" : filterValues.Selectedpartytype,
-        "ANY_KEYWORD_SEARCH": "0"
-    };
-
-    var output_specification = {
-        ROW_LIMIT: (filterValues.Row_Limit == "" || filterValues.Row_Limit == undefined) ? "0" : filterValues.Row_Limit,
-        SORT_BY: (filterValues.Output_Spec == "" || filterValues.Output_Spec == undefined) ? "Registration_Date" : filterValues.Output_Spec,
-    };
-    var xx = utility.getCookie("user_details");
+    /*var xx = utility.getCookie("user_details");*/
 
     //if (xx!="" || xx != undefined || xx != null) {
     //    var clientid = JSON.parse(xx).data.client_id;
     //    var userid = JSON.parse(xx).data.user_id;
-    var usedcredentials = common.CheckIsPaid();
-    var clientid = usedcredentials.client_id;
-    var userid = usedcredentials.user_id;
+    //var usedcredentials = common.CheckIsPaid();
+    //var clientid = usedcredentials.client_id;
+    //var userid = usedcredentials.user_id;
         return APIPayload = {
             "lookup": "" + lookup + "",
-            "reg_id_pk": "" + reg_id + "",
-            "project_id": "" + project_id + "",
-            "project_type": "" + project_type + "",
-            "rr_village_id_list": "" + filterValues.SelectedddlVillage + "",
-            "rr_village_name_list": "0",
-            "property_type_1_id": "" + filterValues.Selectedproperty_type_1 + "",
-            "property_type_2_id": "" + filterValues.Selectedproperty_type_2 + "",
-            "model_id": "" + filterValues.SelectedmodelType + "",
-            "market_id": "" + filterValues.SelectedmarketType + "",
-            //"property_type_1_id": "[" + filterValues.Selectedproperty_type_1 + "]",
-            //"property_type_2_id": "[" + filterValues.Selectedproperty_type_2 + "]",
-            //"model_id": "[" + filterValues.SelectedmodelType + "]",
-            //"market_id": "[" + filterValues.SelectedmarketType + "]",
-            "from_date": "" + filterValues.SelectedfromDateID + "",
-            "to_date": "" + filterValues.SelectedtoDateID + "",
-            "low_val": "" + filterValues.Selectedlowval + "",
-            "high_val": "" + filterValues.Selectedhighval + "",
-            "low_area": "" + filterValues.Selectedlowarea + "",
-            "high_area": "" + filterValues.Selectedhigharea + "",
-            "state_id_list": "" + filterValues.SelectedddlState + "",
-            "district_id_list": "" + filterValues.SelectedddlDistrict + "",
-            "taluka_id_list": "" + filterValues.SelectedddlTaluka + "",
-            "keywords": JSON.stringify(keywords_object),
-            "output_spec": JSON.stringify(output_specification),
-            "client_id": clientid ? clientid : "0",
-            "user_id": userid ? userid : "0"
+            "json_str": "{}",
+            
         };
     //}
     //else {

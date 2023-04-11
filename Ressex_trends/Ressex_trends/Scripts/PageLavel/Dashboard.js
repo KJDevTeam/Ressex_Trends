@@ -3,15 +3,20 @@
     var DistrictId = 0;
     var TalukId = 0;
     var maindata = [];
+    var keepCityList = [];
+    var cityIndex = 1;
     var projectType = "Residential";
     
     return {
         init: function () {
             
             var APIkey = utility.ServiceAPIURL("Dashboard/PriceIndexList");
-           var rsp= utility.ajaxselect(APIkey, " ", "Post", false);
+            var payload = common.Payload("city_list_image");
+            var rsp = utility.ajaxselect(APIkey, payload, "Post", false);
             console.log(rsp);
-            maindata = rsp.data;
+            keepCityList = rsp.data;
+
+            DashboardModule.cityload(rsp.data);
 
            // FilterViewModule.init(maindata);
 
@@ -75,6 +80,37 @@
                 },
                 
             });
+        },
+        cityload: function (results) {
+            var cityListlength = results.length / 10;
+            var cityCounter = Math.ceil(cityListlength);
+
+            if (cityindex <citycounter) {
+                var arrcount = cityIndex * 10;
+                var arr_toload;
+                if (arrcount <= results.length) {
+                    arr_toload = results.slice(0, arrcount)
+                }
+                else {
+                    arr_toload = results.slice(0, results.length)
+                }
+                    
+                var st = ''
+                $.each(newarr, function (index, items) {
+                    st += '<div class="col-custom-5">\
+        <a href="#" class="cityCard">\
+            <div class="cityCardBody">\
+                <img src="images/Chennai.png" alt="">\
+                    <h5>'+ items.region_or_city + '</h5>\
+                    <p>'+ items.state + '</p>\
+                    </div>\
+                </a>\
+            </div>';
+                });
+                $("#CityList").append(st);
+
+            }
+           
         }
     }
 }();
