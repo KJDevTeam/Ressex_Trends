@@ -663,9 +663,9 @@ utility.bindline = function (Controlid, lbl, dt, hovervals, ticks, responsive, c
         meta.destroy();
     }
      var ctx = document.getElementById(Controlid).getContext("2d");
-    var gradient = ctx.createLinearGradient(0, 0, 1, 500);
-    gradient.addColorStop(0,'rgb(120, 117, 192)');
-    gradient.addColorStop(1,'rgb(242, 139, 139)');
+    //var gradient = ctx.createLinearGradient(0, 0, 1, 500);
+    //gradient.addColorStop(0,'rgb(120, 117, 192)');
+    //gradient.addColorStop(1,'rgb(242, 139, 139)');
     var config = {
         type: 'line',
         data: {
@@ -673,11 +673,11 @@ utility.bindline = function (Controlid, lbl, dt, hovervals, ticks, responsive, c
             // dataPoints: hovervals,
             //tooltipItems: hovervals,
             datasets: [{
-               /* label: 'data',*/
+               /* label: 'data',
                 borderColor: gradient, //'rgba(255,0,0)',
-                backgroundColor: gradient,
+                backgroundColor: gradient,*/
                 data: dt,
-                fill: true,
+                //fill: true,
             }],
 
         },

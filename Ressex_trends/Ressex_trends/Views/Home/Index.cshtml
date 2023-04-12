@@ -58,12 +58,12 @@
                 <h3>Ressex - India's Composite House Price Index</h3>
                 <div class="d-flex justify-content-center align-items-center">
                     <div class="d-flex">
-                        <label>Rate in Dec'22</label>
-                        <span class="color-red">Rs 7,945/ sq.ft</span>
+                        <label id="qtrTxt"></label>
+                        <span class="color-red" id="qtrprice">Rs 7,945/ sq.ft</span>
                     </div>
                     <div class="d-flex">
                         <label>YoY Change</label>
-                        <span class="color-red">10%</span>
+                        <span class="color-red" id="yoy"></span>
                     </div>
                     <div class="d-flex">
                         <div class="dropdown ml-0">
@@ -102,13 +102,15 @@
                 </ul>
             </div>
             <div class="tab-content p-0">
-                <div class="tab-pane active" id="price" role="tabpanel">
-                    Chart 1
-                </div>
-                <div class="tab-pane" id="index" role="tabpanel">
-                    Chart 2
-                </div>
+            <div class="tab-pane active" id="price" role="tabpanel">
+                <canvas id="priceLinechart" height="300"></canvas>
             </div>
+            <div class="tab-pane" id="index" role="tabpanel">
+                <canvas id="indexLinechart" height="300"></canvas>
+            </div>
+        </div>
+          
+            
             <div class="mx-auto chartDesc">
                 These are the average prices of approximately 30,000+ Real Estate residential projects located across
                 India, reflecting the movement of property prices in the Indian market over the past 13+ years. The

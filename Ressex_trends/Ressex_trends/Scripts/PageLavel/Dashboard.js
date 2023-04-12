@@ -20,7 +20,7 @@ var DashboardModule = function () {
             var projectTitle = rsp.data[0].h1;
             layoutModule.init(projectTitle);
             DashboardModule.cityload(rsp.data);
-
+            DashboardModule.Bindlinechart();
            // FilterViewModule.init(maindata);
 
           //  $('#selectedProjectType').text('Residential');
@@ -122,6 +122,42 @@ var DashboardModule = function () {
 
             }
            
+        },
+        Bindlinechart: function () {
+            var APIkey = utility.ServiceAPIURL("Dashboard/PriceIndex");
+            var payload = common.Payload("country");
+            var LineData = utility.ajaxselect(APIkey, payload, "Post", false);
+            console.log(LineData.data);
+            var lbl = [];
+            var lbl_idnx = [];
+            var Linedt = [];
+            var Linedt_idnx = [];
+            var hovervals = [];
+            var colour = [];
+            var axistxt = [];
+            var axistxt_indx = [];
+            $.map(LineData.data, function (value, index) {
+                lbl.push(value.dos_month_year);
+                lbl_idnx.push(value.all_india_price_index);
+                Linedt.push(value.saleable_rate_psf);
+                Linedt_idnx.push(value.dos_month_year);
+                hovervals.push(value.saleable_rate_psf);
+            });
+            ticks = {
+                min: 0,
+                max: 6,
+                stepSize: 1
+            };
+            colour = LineData.data[0].country_color;
+            axistxt.push({ "X": 'Quater', "Y": 'Saleable Rate in ₹/sfqt' });
+            axistxt_indx.push({ "X": 'Quater', "Y": 'Price Index' });
+            titletxt = 'Transaction';
+            responsive = true;
+            var Linedatasource = utility.bindline("priceLinechart", lbl, Linedt, hovervals, ticks, true, colour, axistxt, titletxt)
+            var Linedatasource1 = utility.bindline("indexLinechart", lbl_idnx, Linedt_idnx, hovervals, ticks, true, colour, axistxt_indx, titletxt)
+            $("#qtrTxt").text(LineData.data[0].current_qtr_text);
+            $("#qtrprice").text(LineData.data[0].current_rate_text);
+            $("#Yoy").text(LineData.data[0].cagr_last_1yr_pct);
         }
     }
 }();
