@@ -16,7 +16,13 @@ namespace Ressex_trends.Controllers
         {
             return View();
         }
-        
+       
+        [Route("SearchPartialView", Name = "SearchPartialView")]
+        public ActionResult _Searchview()
+        {
+
+            return PartialView();
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

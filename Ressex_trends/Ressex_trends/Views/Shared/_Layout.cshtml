@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @*@Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")*@
+        @Scripts.Render("~/bundles/modernizr")*@
     <meta name="description" content="">
     <title>Ressex | Dashboard</title>
     <!-- <link rel="shortcut icon" href="images/favicon.ico"> -->
@@ -15,7 +15,8 @@
           rel="stylesheet">
     <link rel="stylesheet" href="~/bootstrap4/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/Content/style.css">
-    
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
 </head>
 <body>
     <div class="header-wrapper pb-5">
@@ -174,49 +175,9 @@
             <h5>Real Estate Current Rates, Trends, Indexes &amp; Valuation</h5>
         </div>
     </div>
-    <div class="headerSearch mx-auto">
-        <div class="d-flex align-items-center">
-            <div class="searchGroup d-flex align-items-center flex-1 mr-2">
-                <div class="projectsSearchBox flex-1 ">
-                    <div class="form-group inputWithIcon iconLeft mb-0">
-                        <span class="searchIconInside"></span>
-                        <input type="text" class="form-control border-0"
-                               placeholder="Search any Project, Pincode, Location or City in India">
-                    </div>
-                </div>
-                <div class="filterDropdown border-left">
-                    <div class="dropdown">
-                        <button class="btn btn-white dropdown-toggle hasIcon w-100 text-left" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                            Residential
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="#" class="dropdown-item">
-                                    <img src="images/icon-home.svg" alt=""
-                                         class="mr-2">Residential
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="dropdown-item">
-                                    <img src="images/icon-office.svg" alt=""
-                                         class="mr-2">Commercial
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="dropdown-item">
-                                    <img src="images/icon-store.svg" alt=""
-                                         class="mr-2">Retail
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <button class="btn btn-red">Search</button>
-        </div>
-    </div>
 
+
+    @Html.Action("_Searchview", "Home")
 
     <div class="mainbodyWrap d-flex flex-column flex-1">
         @RenderBody()
@@ -301,17 +262,21 @@
     <script src="~/Scripts/Global/Common.js"></script>
     <script src="~/Scripts/Global/idleTimeCounter.js"></script>
     <script src="~/Scripts/Global/store.min.js"></script>
-
+    <script src="~/Scripts/PartialViewJs/SearchView.js"></script>
     <script src="~/Scripts/custom.js"></script>
     @*<script src="~/Scripts/jquery-3.6.1.min.js"></script>*@
     @*<script src="~/Scripts/jquery-ui-1.13.0.js"></script>*@
     @*<script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>*@
+
+    <script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>
     <script src="~/Scripts/popper.min.js"></script>
     <script src="~/Scripts/slick.min.js"></script>
 
     @RenderSection("scripts", required: false)
     <script>
         $(document).ready(function () {
+            SearchModule.init();
+
             $(document).idleTimeout();
             var userdetails = utility.getCookie('user_details');
             if (userdetails != "" || userdetails != undefined || userdetails != null) {
