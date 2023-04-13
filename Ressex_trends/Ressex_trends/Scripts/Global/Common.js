@@ -425,20 +425,24 @@ common.GetQueryString = function () {
     }
 };
 
-common.GetProjectTypeandProjectID = function (queryStringARR) {
-    if (queryStringARR.length > 2) {
-        ProjectID = queryStringARR[1];
-        ProjectType = queryStringARR[2];
+common.GetTrendsTypePayload = function (queryStringARR) {
+    var trendsType = queryStringARR[1];
+
+    switch (trendsType) {
+        case 'Project':
+            break;
+        case 'Pincode':
+            break;
+        case 'Location':
+            break;
+        case 'City':
+            break;
+        default:
+            break;
     }
-    else if (queryStringARR.length == 2) {
-        ProjectID = "0";
-        ProjectType = "1";
-    }
-    else {
-        ProjectID = "0";
-        ProjectType = "1";
-    }
-    return { "ProjectID": ProjectID, "ProjectType": ProjectType}
+
+    
+    return { "TrendsType": trendsType, "Id": queryStringARR[3]}
 };
 
 

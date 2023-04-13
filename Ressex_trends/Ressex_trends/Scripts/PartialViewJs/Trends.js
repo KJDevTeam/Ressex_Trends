@@ -1,4 +1,6 @@
-﻿var TotalData = '';
+﻿
+
+var TotalData = '';
 var TotalData1 = '';
 var Bardatasource = '';
 var UserType = '';
@@ -8,65 +10,44 @@ var TrendsModule = function () {
         init: function () {
            
             var QueryStringARR = common.GetQueryString();
-            var result = common.GetProjectTypeandProjectID(QueryStringARR);
+            var result = common.GetTrendsTypePayload(QueryStringARR);
 
             var userdetails = common.CheckIsPaid();
             UserType = userdetails.UserType;
             if (UserType != "Paid") {
 
-                //Transaction Distribution
-                $("#TransactionGraphTable").hide();
-                $("#TransactionRadio").hide();
-                $("#Transactionloginmask").show();
-
-                //Property Type Distribution
-                $("#PropertyTypeDistributionGraphTable").hide();
-                $("#PropertyTypeDistributionRadio").hide();
-                $("#PropertyTypeDistributionloginmask").show();
-
-
-
             }
             else {
 
-                //Login Mask Hide
-                $("#Transactionloginmask").hide();
-                $("#PropertyTypeDistributionloginmask").hide();
-
-
-                //No Data available Mask Hide
-                $("#TransactionNodatamask").hide();
-                $("#PropertyTypeDistributionNodatamask").hide();
+               
 
             }
+            var jsonstr = {
+                "id": result.Id,
+            }
 
-
-
-
-            filterValues = common.IsFilterSelcted();
-            var Payload = common.Payload("GET_TRANSACTION_TREND", "0", result.ProjectID, "1", filterValues)
-            var APIkey = utility.ServiceAPIURL("/IGR/GetIGR");
+            var Payload = {
+                "lookup": "Project",
+                "json_str": JSON.stringify(jsonstr)
+            }
+            var APIkey = utility.ServiceAPIURL("Dashboard/PriceIndex");
             var Data = utility.ajaxselect(APIkey, Payload, "Post", false);
-            var Payload1 = common.Payload("GET_CARPET_PRICE_TREND", "0", result.ProjectID, "1", filterValues)
-            var Data1 = utility.ajaxselect(APIkey, Payload1, "Post", false);
+            
             TotalData = Data;
-            TotalData1 = Data1;
-            console.log("TotalData: ")
-            console.log(TotalData);
-            console.log("TotalData1: ")
-            console.log(TotalData1);
-            if (Data.status == "OK") {
-                TrendsModule.TransuctionBarChat(TotalData);
-            }
-            else {
-                TrendsModule.TransuctionBarChat();
-            }
-            if (Data1.status == "OK") {
-                TrendsModule.lineareaChat(TotalData1);
-            }
-            else {
-                TrendsModule.lineareaChat();
-            }
+            console.log(Data);
+            
+            //if (Data.status == "OK") {
+            //    TrendsModule.TransuctionBarChat(TotalData);
+            //}
+            //else {
+            //    TrendsModule.TransuctionBarChat();
+            //}
+            //if (Data1.status == "OK") {
+            //    TrendsModule.lineareaChat(TotalData1);
+            //}
+            //else {
+            //    TrendsModule.lineareaChat();
+            //}
 
            //$("#TranBarColoumn").attr("width", $("#TranchartView").width() - 30 + 'px');
             
@@ -745,126 +726,5 @@ var TrendsModule = function () {
         }
     }
 }();
-$("input[name=carpetAlert]").click(function () {
-    if ($("input[name=Property]:checked").val() == "0") {
-        TrendsModule.lineareaChat(TotalData1, 'radioDaily');
-    } else if ($("input[name=Property]:checked").val() == "1") {
-        TrendsModule.lineareaChat(TotalData1, 'radioMonthly');
-    }
-    else if ($("input[name=Property]:checked").val() == "2") {
-        TrendsModule.lineareaChat(TotalData1, 'radioQuaterly');
-    }
-    else if ($("input[name=Property]:checked").val() == "3") {
-        TrendsModule.lineareaChat(TotalData1, 'radioYearly');
-    }
-});
-$('#radioDaily').click(function () {
-    TrendsModule.lineareaChat(TotalData1, 'radioDaily');
 
-});
-$('#radioMonthly').click(function () {
-    TrendsModule.lineareaChat(TotalData1, 'radioMonthly');
-});
-$('#radioQuaterly').click(function () {
-    TrendsModule.lineareaChat(TotalData1, 'radioQuaterly');
-});
-$('#radioYearly').click(function () {
-    TrendsModule.lineareaChat(TotalData1, 'radioYearly');
-});
-$('#TranDaily').click(function () {
-    TrendsModule.TransuctionBarChat(TotalData, 'TranDaily');
-});
-$('#TranMonthly').click(function () {
-    TrendsModule.TransuctionBarChat(TotalData, 'TranMonthly');
-});
-$('#TranQuaterly').click(function () {
-    TrendsModule.TransuctionBarChat(TotalData, 'TranQuaterly');
-});
-$('#TranYearly').click(function () {
-    TrendsModule.TransuctionBarChat(TotalData, 'TranYearly');
-});
-
-$("input[name=TranAlert]").click(function () {
-    TrendsModule.TransuctionBarChat(TotalData);
-});
-//$("input[name=carpetAlert]").click(function () {
-//    TrendsModule.lineareaChat(TotalData1);
-//});
-$("#TransactionDownload").click(function () {
-
-    const radioButtons = document.querySelectorAll('input[name="Transuction"]');
-
-    let selectedSize;
-    for (const radioButton of radioButtons) {
-        if (radioButton.checked) {
-            selectedSize = radioButton.id;
-            break;
-        }
-    }
-    switch (selectedSize) {
-
-        case "TranDaily":
-            TrendsModule.TransactionDailyCsvExport(TotalData.data.daily_transaction_trend);
-            break;
-        case "TranMonthly":
-            TrendsModule.TransactionMonthlyCsvExport(TotalData.data.monthly_transaction_trend);
-            break;
-        case "TranQuaterly":
-            TrendsModule.TransactionQuaterlyCsvExport(TotalData.data.quarterly_transaction_trend);
-            break;
-        case "TranYearly":
-            TrendsModule.TransactionYearlyCsvExport(TotalData.data.yearly_transaction_trend);
-            break;
-        default:
-            TrendsModule.TransactionDailyCsvExport(TotalData.data.daily_transaction_trend);
-            break;
-
-
-
-    }
-
-
-    console.log(selectedSize);
-
-
-});
-
-$("#PropertyTypeDistributionDownload").click(function () {
-
-    const radioButtons = document.querySelectorAll('input[name="Property"]');
-
-    let selectedSize;
-    for (const radioButton of radioButtons) {
-        if (radioButton.checked) {
-            selectedSize = radioButton.id;
-            break;
-        }
-    }
-    switch (selectedSize) {
-
-        case "radioDaily":
-            TrendsModule.PropertyDailyCsvExport(TotalData1.data.daily_avg_price_trend);
-            break;
-        case "radioMonthly":
-            TrendsModule.PropertyMonthlyCsvExport(TotalData1.data.monthly_avg_price_trend);
-            break;
-        case "radioQuaterly":
-            TrendsModule.PropertyQuaterlyCsvExport(TotalData1.data.quarterly_avg_price_trend);
-            break;
-        case "radioYearly":
-            TrendsModule.PropertyYearlyCsvExport(TotalData1.data.yearly_avg_price_trend);
-            break;
-        default:
-            TrendsModule.PropertyDailyCsvExport(TotalData1.data.daily_avg_price_trend);
-            break;
-
-
-
-    }
-
-
-    console.log(selectedSize);
-
-
-});
 

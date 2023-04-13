@@ -52,16 +52,8 @@ var SearchModule = function () {
                 },
                 select: function (event, ui) {
 
-                    /* document.getElementById("projecID").value = ui.item.id;*/
-                    /* var projectType = document.getElementById("projecType").value;*/
-                    var projectTypeID = common.getProjectTypeID(projectType);
-
-                    /* var formatterProjectType = projectType.toLowerCase().substring(0, 3);*/
-                    var ProjectId = ui.item.id;
-
-                    // localStorage.setItem('filterSelected', JSON.stringify(filterModel));
-                    var url = '' + ProjectId + '/' + projectTypeID + '';
-                    var routingurl = utility.FrontEndAPIURL(url);
+                   
+                    var routingurl = utility.FrontEndAPIURL('Trend/Project/'+ui.item.id+'/ProjectText');
                     window.location.href = routingurl;
                 },
 
