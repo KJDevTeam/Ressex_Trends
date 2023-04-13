@@ -94,3 +94,9 @@ $(".dropdown-menu li a").click(function () {
    
 });
 
+$("#Search").click(function () {
+
+    var routingurl = utility.FrontEndAPIURL('Trend/Project/0/1');
+    window.location.href = routingurl;
+
+});

@@ -9,6 +9,8 @@ $text-color-3:#ADB8D9;
 $text-color-4: #000000;
 $text-color-5: #192447;
 $text-color-6: #E31E24;
+$text-color-7: #636774;
+$text-color-8: #6B6F81;
 $color-white: #fff;
 $color-black: #000000;
 
@@ -80,6 +82,9 @@ ul, ol{
 .ml-20px{
     margin-left: 20px !important;
 }
+.pb-100{
+  padding-bottom: 100px !important;
+}
 h3{
     font-size: 1.5rem;
 }
@@ -87,7 +92,13 @@ p:last-child{
   margin-bottom: 0;
 }
 .color-red{
-    color: $text-color-6;
+    color: $text-color-6 !important;
+}
+.text-style2{
+  color: $text-color-7;
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 30px;
 }
 
 // Bootstrap override
@@ -101,8 +112,6 @@ p:last-child{
         max-width: 1469px;
     }
 }
-
-
 .btn{
     min-height: 40px;
   }
@@ -162,13 +171,50 @@ p:last-child{
         font-weight: 400;
     }
     .btn-red, .btn-red:hover{
-      background: #E31E24;
+      background: $text-color-6;
       border-radius: 10px;
-      color: #fff;  
+      color: $color-white;  
       font-size: 1rem;
       font-weight: 500;
     }
+    .btn.btn-outline-primary {
+      border-color: $text-color-2;
+      color: $text-color-2;
+      min-height: 30px;
+      &:hover{
+        border-color: $text-color-2;
+        color: $color-white;
+        background: $text-color-2;
+      } 
+    }
+    .btn.btn-outline-primary:not(:disabled):not(.disabled).active{
+      background: rgba(174, 183, 216, 0.5);
+      border-color: $text-color-2;
+      color: $text-color-2;
+    }
+    .btn-outline-primary:not(:disabled):not(.disabled).active:focus, .btn-outline-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-outline-primary.dropdown-toggle:focus{
+      box-shadow: 0 0 2px 2px #e8595b8f;
+    }
+    .btn-outline-primary:not(:disabled):not(.disabled).active, .btn-outline-primary:not(:disabled):not(.disabled):active, .show>.btn-outline-primary.dropdown-toggle{
+      border-color: $text-color-2;
+        color: $color-white;
+        background: $text-color-2;
+    }
 
+// Date Picker overried
+.daterangepicker td.active, .daterangepicker td.active:hover{
+  background-color: $text-color-6;
+}
+.btn.cancelBtn{
+  border-color: $text-color-6;
+  min-height: auto;
+  color: $text-color-2;
+}
+.btn.applyBtn{
+  background-color: $text-color-6;
+  min-height: auto;
+  border-color: $text-color-6;
+}
 /* Dropdown */
 .dropdown-menu{
     padding: 0;
@@ -238,7 +284,7 @@ p:last-child{
   margin-top: 1.9em;
 }
 .dropdownHeading{
-  color: #fff;
+  color: $color-white;
   background: rgb(76,110,217);
   background: linear-gradient(90deg, #4c6ed9 -27.05%, #e8595b 124.92%);
   padding: .3rem .75rem;
@@ -279,7 +325,7 @@ p:last-child{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     padding: 7px 0;
-    background: #fff;
+    background: $color-white;
 }
 .projectsSearchBox .inputWithIcon .form-control{
     border-radius: 10px 0 0 10px;
@@ -298,7 +344,7 @@ p:last-child{
 }
 
 .btn-white, .projectsSearchBox .inputWithIcon .form-control{
-  background: #FFFFFF;
+  background: $color-white;
   min-height: 50px;
 }
 .projectsSearchBox .inputWithIcon .searchIconInside{
@@ -470,7 +516,7 @@ section .header h3{
     }
     .dropdown-item {
         padding: 0.5rem 1rem;
-        font-size: 1rem;
+        font-size: 0.875rem;
     }
 }
 .tabsCustom a{
@@ -491,7 +537,7 @@ section .header h3{
   font-weight: 500;
   font-size: 1.125rem;
   line-height: 27px;
-  color: #636774;
+  color: $text-color-7;
   margin-top: 35px;
   b{
     font-weight: 700;
@@ -510,14 +556,14 @@ section .header h3{
   margin: 0 auto;
   margin-bottom: 30px;
   display: block;
-  color: #192447;
+  color: $text-color-5;
 }
 .cityCard:hover{
   text-decoration: none;
-  color: #192447;
+  color: $text-color-5;
 }
 .cityCardBody{
-  background: #FFFFFF;
+  background: $color-white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   text-align: center;
@@ -530,7 +576,7 @@ section .header h3{
 .cityCardBody{
   img{
     background: #D9D9D9;
-    border: 0px solid #000000;
+    border: 0px solid $color-black;
     width: 120px;
     height: 120px;
     border-radius: 120px;
@@ -541,7 +587,7 @@ section .header h3{
     font-weight: $font-weight-400;
     font-size: .75rem;
     line-height: 18px;
-    color: #6B6F81;
+    color: $text-color-8;
   }
 }
 @media (min-width: 1500px){
@@ -640,7 +686,214 @@ section .header h3{
     font-size: 13px;
   }
 }
-  
+
+.innerSectionHeader{
+  margin-top: 50px;
+  .header{
+    label{
+      margin-bottom: 0;
+      margin-right: 20px;
+      font-size: 1.25rem;
+      font-weight: 400;
+    }
+    span, .dropdown-toggle, .dropdown-toggle:hover{
+      font-weight: 400;
+      font-size: 1.25rem;
+      color: $text-color-5;
+      text-decoration: none;
+    }
+    .dropdown-menu{
+      border-radius: 10px;
+    }
+    .dropdown-menu a{
+      font-size: 0.875rem;
+      padding: 0.5rem 1rem;
+      font-weight: 500;
+    }
+    .border-h{
+      height: 3px;
+      width: 100%;
+      background: rgb(176,179,211);
+      background: linear-gradient(90deg, rgba(176,179,211,1) 0%, rgba(230,103,107,1) 100%);
+      margin: 12px 0;
+    }
+  }
+}
+
+.formStyle1{
+  padding: 28px 0 70px 0;
+  .cardSize{
+    min-width: 270px;
+  }
+  .card:not(:last-child){
+    margin-right: 30px;
+  }
+ 
+  .card{     
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: 0;
+    .card-header{
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 27px;
+      color: $text-color-5;
+      background: linear-gradient(0deg, #B3B0CE, #B3B0CE);
+      border: 0;
+      padding: 12px 16px;
+    }
+    .card-body{
+      padding: 12px 16px;
+      .icon{
+        height: 32px;
+      }
+    }
+    .form-control{
+      border: 0;
+      font-weight: 500;
+      color: $text-color-7;
+      font-size: 18px;
+      padding: 0 0.75rem;
+      height: auto;
+    }
+    .form-control:focus{
+      box-shadow: none;
+    }
+  }
+}
+.trendIndex{
+  .row{
+    margin-left: -6px;
+    margin-right: -6px;
+  }
+}
+.chartLeft, .chartRight{
+  padding-left: 6px;
+  padding-right: 6px;
+}
+.chartInnerWrap{
+  background: #FFFFFF;
+  border: 1px solid #C4C1C1;
+  box-shadow: 0px 8px 5px rgba(0, 0, 0, 0.25);
+  padding: 24px;
+  .btn{
+    z-index: 1;
+  }
+}
+.chartRight{
+  flex: 0 0 300px;
+  max-width: 300px;
+}
+
+.checkBtmSpace:not(:last-child){
+  margin-bottom: 35px;
+}
+.cityNameCol {
+  flex: 0 0 100px;
+  width: 100px;
+  color: $text-color-8;
+}
+// custom checkbox
+.custom-control-label, .cityNameCol{
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+.custom-control-label::before{
+  width: 18px;
+  height: 18px;
+  margin-top: -4px;
+  border:2px solid #D9D9D9;
+}
+.custom-control-label::after {
+  top: 0.2rem;
+  left: -1.6rem;
+  width: 1.35rem;
+  height: 1.35rem;
+  margin-top: -4px;
+}
+.custom-checkbox .custom-control-label::before{
+  border-radius: 0;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px $text-color-8;
+}
+.custom-control-input:checked~.custom-control-label::before{
+  color: #000;
+  border-color: #D9D9D9;
+  background-color: #FFFFFF;
+}
+.custom-checkbox .custom-control-input:checked~.custom-control-label::after {
+  background-image: url(../images/tick-icon.svg);
+}
+.custom-control-input:focus~.custom-control-label::before{
+  box-shadow: 0px 4px 4px $text-color-8;
+  border-color: #D9D9D9;
+}
+.custom-control-input:focus:not(:checked)~.custom-control-label::before{
+  border-color: #D9D9D9;
+}
+
+.light-purple .custom-control-label::before, 
+.light-purple .custom-control-input:focus~.custom-control-label::before,
+.light-purple .custom-control-input:checked ~ .custom-control-label::before,
+.light-purple .custom-control-input:not(:disabled):active~.custom-control-label::before {
+  background-color: #fff;
+  box-shadow: 0px 4px 4px #C186F0;
+  border-color: #B771EE;
+}
+.light-purple .custom-control-input:focus:not(:checked)~.custom-control-label::before{
+  border-color: #B771EE;
+}
+
+.light-green .custom-control-label::before, 
+.light-green .custom-control-input:focus~.custom-control-label::before,
+.light-green .custom-control-input:checked ~ .custom-control-label::before,
+.light-green .custom-control-input:not(:disabled):active~.custom-control-label::before {
+  background-color: #fff;
+  box-shadow: 0px 4px 4px #57F4DD;
+  border-color: #24DEC3;
+}
+.light-green .custom-control-input:focus:not(:checked)~.custom-control-label::before{
+  border-color: #24DEC3;
+}
+
+.light-red .custom-control-label::before, 
+.light-red .custom-control-input:focus~.custom-control-label::before,
+.light-red .custom-control-input:checked ~ .custom-control-label::before,
+.light-red .custom-control-input:not(:disabled):active~.custom-control-label::before {
+  background-color: #fff;
+  box-shadow: 0px 4px 4px #F17579;
+  border-color: #E6676C;
+}
+.light-red .custom-control-input:focus:not(:checked)~.custom-control-label::before{
+  border-color: #E6676C;
+}
+
+.light-yellow .custom-control-label::before, 
+.light-yellow .custom-control-input:focus~.custom-control-label::before,
+.light-yellow .custom-control-input:checked ~ .custom-control-label::before,
+.light-yellow .custom-control-input:not(:disabled):active~.custom-control-label::before {
+  background-color: #fff;
+  box-shadow: 0px 4px 4px #FBD13C;
+  border-color: #FFD233;
+}
+.light-yellow .custom-control-input:focus:not(:checked)~.custom-control-label::before{
+  border-color: #FFD233;
+}
+
+.light-blue .custom-control-label::before, 
+.light-blue .custom-control-input:focus~.custom-control-label::before,
+.light-blue .custom-control-input:checked ~ .custom-control-label::before,
+.light-blue .custom-control-input:not(:disabled):active~.custom-control-label::before {
+  background-color: #fff;
+  box-shadow: 0px 4px 4px #899CE2;
+  border-color: #778DDE;
+}
+.light-blue .custom-control-input:focus:not(:checked)~.custom-control-label::before{
+  border-color: #778DDE;
+}
+
+
+
  /* Footer */
  footer {
   font-family: $font-inter;

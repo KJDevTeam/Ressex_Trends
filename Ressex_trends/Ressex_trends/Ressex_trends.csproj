@@ -123,6 +123,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TrendController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -192,6 +193,8 @@
     <Content Include="images\back-arrow.svg" />
     <Content Include="images\Bangalore.png" />
     <Content Include="images\building-icon.svg" />
+    <Content Include="images\calendar-icon.svg" />
+    <Content Include="images\chart-ss.jpg" />
     <Content Include="images\Chennai.png" />
     <Content Include="images\chevron-down.svg" />
     <Content Include="images\chevron-left.svg" />
@@ -248,7 +251,9 @@
     <Content Include="images\Pune.png" />
     <Content Include="images\Remr.png" />
     <Content Include="images\Ressex.png" />
+    <Content Include="images\rupees-icon.svg" />
     <Content Include="images\Stress-Testing.png" />
+    <Content Include="images\tick-icon.svg" />
     <Content Include="images\translate.svg" />
     <Content Include="images\twitter.svg" />
     <Content Include="images\youtube.svg" />
@@ -300,6 +305,8 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Logout.cshtml" />
     <Content Include="Views\Home\_Searchview.cshtml" />
+    <Content Include="Views\Trend\Pincode.cshtml" />
+    <Content Include="Views\Trend\Project.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
