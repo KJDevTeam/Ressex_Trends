@@ -1,5 +1,6 @@
 ﻿var cityindex = 1;
 var keepCityList = [];
+var LineData = [];
 var DashboardModule = function () {
     var stateId = 0;
     var DistrictId = 0;
@@ -126,7 +127,7 @@ var DashboardModule = function () {
         Bindlinechart: function () {
             var APIkey = utility.ServiceAPIURL("Dashboard/PriceIndex");
             var payload = common.Payload("country");
-            var LineData = utility.ajaxselect(APIkey, payload, "Post", false);
+            LineData = utility.ajaxselect(APIkey, payload, "Post", false);
             console.log(LineData.data);
             var lbl = [];
             var lbl_idnx = [];
@@ -138,9 +139,9 @@ var DashboardModule = function () {
             var axistxt_indx = [];
             $.map(LineData.data, function (value, index) {
                 lbl.push(value.dos_month_year);
-                lbl_idnx.push(value.all_india_price_index);
+                lbl_idnx.push(value.dos_month_year);
                 Linedt.push(value.saleable_rate_psf);
-                Linedt_idnx.push(value.dos_month_year);
+                Linedt_idnx.push(value.all_india_price_index);
                 hovervals.push(value.saleable_rate_psf);
             });
             ticks = {
@@ -158,10 +159,46 @@ var DashboardModule = function () {
             $("#qtrTxt").text(LineData.data[0].current_qtr_text);
             $("#qtrprice").text(LineData.data[0].current_rate_text);
             $("#Yoy").text(LineData.data[0].cagr_last_1yr_pct);
-        }
+         
+        },
+        TransactionDailyCsvExport: function (TotalData) {
+            //////CSV structure//////
+            var arr = TotalData;
+            var item = arr.length > 0 ? arr : [];
+            var itemsFormatted = [];
+            var blank = {
+                col1: "",
+                col2: "",
+                col3: "",
+
+            };
+            var header = {
+                col1: "quarter",
+                col2: "saleable_rate_in_Rs/sfqt",
+                col3: "all_india_price_index"
+
+            };
+            var items = arr.length > 0 ? arr : [];
+
+            items.forEach((subitem) => {
+                var details = {
+                    col1: subitem.dos_month_year,     //.replace(/,/g, "|"),
+                    col2: subitem.saleable_rate_psf,
+                    col3: subitem.all_india_price_index,
+
+                }
+                itemsFormatted.push(details);
+
+            });
+            var fileTitle = "Trends";
+
+            utility.exportCSVFile(header, itemsFormatted, fileTitle)
+        },
     }
 }();
-
+$("#TrandsDownload").click(function () {
+    DashboardModule.TransactionDailyCsvExport(LineData.data);
+});
 function viewmoreClick() {
     cityindex++;
     $("#CityList").empty();
