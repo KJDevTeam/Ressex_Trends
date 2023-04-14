@@ -196,7 +196,7 @@ var DashboardModule = function () {
         },
     }
 }();
-$("#TrandsDownload").click(function () {
+$("#TrendsDownload").click(function () {
     DashboardModule.TransactionDailyCsvExport(LineData.data);
 });
 function viewmoreClick() {
