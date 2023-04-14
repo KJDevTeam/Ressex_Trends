@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="img-card card1">
-                            <img src="~/images/image1.png" alt="">
+                            <img src="images/image1.png" alt="">
                             <div>
                                 <h4>Top 10 Projects in India</h4>
                                 <p>Considering the Most Significant Price Growth in the Last Year in Real Estate market</p>
@@ -25,7 +25,7 @@
                     </div>
                     <div class="col-sm-3">
                         <div class="img-card card2">
-                            <img src="~/images/image3.png" alt="">
+                            <img src="images/image3.png" alt="">
                             <div class="text-white">
                                 <h4>Top 10 Pincodes in India</h4>
                                 <p>Considering the Most Significant Price Growth in the Last Year in Real Estate market</p>
@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-sm-3">
                         <div class="img-card card2">
-                            <img src="~/images/image2.png" alt="">
+                            <img src="images/image2.png" alt="">
                             <div class="text-white">
                                 <h4>Top 10 Locations in India</h4>
                                 <p>Considering the Most Significant Price Growth in the Last Year in Real Estate market</p>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="col-sm-3">
                         <div class="img-card card1">
-                            <img src="~/images/image4.png" alt="">
+                            <img src="images/image4.png" alt="">
                             <div>
                                 <h4>Top 10 Cities in India</h4>
                                 <p>Considering the Most Significant Price Growth in the Last Year in Real Estate market</p>
@@ -59,12 +59,12 @@
                     <h3>Ressex - India's Composite House Price Index</h3>
                     <div class="d-flex justify-content-center align-items-center">
                         <div class="d-flex">
-                            <label>Rate in Dec'22</label>
-                            <span class="color-red">Rs 7,945/ sq.ft</span>
+                            <label id="qtrTxt"></label>
+                            <span class="color-red" id="qtrprice">Rs 7,945/ sq.ft</span>
                         </div>
                         <div class="d-flex">
                             <label>YoY Change</label>
-                            <span class="color-red">10%</span>
+                            <span class="color-red" id="yoy"></span>
                         </div>
                         <div class="d-flex">
                             <div class="dropdown ml-0">
@@ -104,12 +104,14 @@
                 </div>
                 <div class="tab-content p-0">
                     <div class="tab-pane active" id="price" role="tabpanel">
-                        Chart 1
+                        <canvas id="priceLinechart" height="300"></canvas>
                     </div>
                     <div class="tab-pane" id="index" role="tabpanel">
-                        Chart 2
+                        <canvas id="indexLinechart" height="300"></canvas>
                     </div>
                 </div>
+
+
                 <div class="mx-auto chartDesc">
                     These are the average prices of approximately 30,000+ Real Estate residential projects located across
                     India, reflecting the movement of property prices in the Indian market over the past 13+ years. The
@@ -223,7 +225,7 @@
         <section class="cocumentation-sec">
             <div class="bodyContainer">
                 <div class="header text-center">
-                    <h3><img src="~/images/document-icon.svg" alt=""> Documentation</h3>
+                    <h3><img src="images/document-icon.svg" alt=""> Documentation</h3>
                 </div>
                 <p>
                     At Liases Foras, we aim to provide you with accurate and up-to-date data to give you a clear
@@ -240,7 +242,7 @@
                     your property which is primarily based on the price indexation of that project or locality.
                 </p>
                 <p class="text-center">
-                    <img src="~/images/diagram.svg" class="diagramImg" alt="">
+                    <img src="images/diagram.svg" class="diagramImg" alt="">
                 </p>
 
 
@@ -250,7 +252,7 @@
         <section class="explore-sec pb-5">
             <div class="bodyContainer">
                 <div class="header text-center">
-                    <h3><img src="~/images/explore-icon.svg" alt=""> Explore our other products!</h3>
+                    <h3><img src="images/explore-icon.svg" alt=""> Explore our other products!</h3>
                     <p>Explore and understand more detail version</p>
                 </div>
                 <div class="exploreInnerWrap mx-auto">
@@ -258,7 +260,7 @@
                         <div class="otherProdCol">
                             <div class="prodCardSml">
                                 <div class="prodLogo">
-                                    <img src="~/images/Ressex.png" alt="Ressex">
+                                    <img src="images/Ressex.png" alt="Ressex">
                                 </div>
                                 <p>Ressex</p>
                             </div>
@@ -266,7 +268,7 @@
                         <div class="otherProdCol">
                             <div class="prodCardSml">
                                 <div class="prodLogo">
-                                    <img src="~/images/Property-Science.png" alt="Property Science">
+                                    <img src="images/Property-Science.png" alt="Property Science">
                                 </div>
                                 <p>Property Science</p>
                             </div>
@@ -274,7 +276,7 @@
                         <div class="otherProdCol">
                             <div class="prodCardSml">
                                 <div class="prodLogo">
-                                    <img src="~/images/dfs.png" alt="Desktop Fesibility Solution">
+                                    <img src="images/dfs.png" alt="Desktop Fesibility Solution">
                                 </div>
                                 <p>Desktop Fesibility Solution</p>
                             </div>
@@ -282,7 +284,7 @@
                         <div class="otherProdCol">
                             <div class="prodCardSml">
                                 <div class="prodLogo">
-                                    <img src="~/images/Remr.png" alt="Real Estate Market Report">
+                                    <img src="images/Remr.png" alt="Real Estate Market Report">
                                 </div>
                                 <p>Real Estate Market Report</p>
                             </div>
@@ -290,7 +292,7 @@
                         <div class="otherProdCol">
                             <div class="prodCardSml">
                                 <div class="prodLogo">
-                                    <img src="~/images/Desktop-Valuation.png" alt="Desktop Valuation">
+                                    <img src="images/Desktop-Valuation.png" alt="Desktop Valuation">
                                 </div>
                                 <p>Desktop Valuation</p>
                             </div>
@@ -298,7 +300,7 @@
                         <div class="otherProdCol">
                             <div class="prodCardSml">
                                 <div class="prodLogo">
-                                    <img src="~/images/Stress-Testing.png" alt="Stress Testing">
+                                    <img src="images/Stress-Testing.png" alt="Stress Testing">
                                 </div>
                                 <p>Stress Testing</p>
                             </div>
@@ -306,7 +308,7 @@
                         <div class="otherProdCol">
                             <div class="prodCardSml">
                                 <div class="prodLogo">
-                                    <img src="~/images/Property-Search.png" alt="Property Search">
+                                    <img src="images/Property-Search.png" alt="Property Search">
                                 </div>
                                 <p>Property Search</p>
                             </div>
@@ -314,7 +316,7 @@
                         <div class="otherProdCol">
                             <div class="prodCardSml">
                                 <div class="prodLogo">
-                                    <img src="~/images/Developers-Ratings.png" alt="Developers Ratings">
+                                    <img src="images/Developers-Ratings.png" alt="Developers Ratings">
                                 </div>
                                 <p>Developers Ratings</p>
                             </div>
@@ -322,289 +324,17 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <section>
-        <div class="chartBody secGradient">
-            <div class="header text-center">
-                <h3>Ressex - India's Composite House Price Index</h3>
-                <div class="d-flex justify-content-center align-items-center">
-                    <div class="d-flex">
-                        <label id="qtrTxt"></label>
-                        <span class="color-red" id="qtrprice">Rs 7,945/ sq.ft</span>
-                    </div>
-                    <div class="d-flex">
-                        <label>YoY Change</label>
-                        <span class="color-red" id="yoy"></span>
-                    </div>
-                    <div class="d-flex">
-                        <div class="dropdown ml-0">
-                            <a type="button" class="dropdown-toggle uppercase" data-toggle="dropdown">
-                                CAGR 3Y
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">CAGR 1Y</a>
-                                <a class="dropdown-item" href="#">CAGR 2Y</a>
-                                <a class="dropdown-item" href="#">CAGR 3Y</a>
-                                <a class="dropdown-item" href="#">CAGR 4Y</a>
-                                <a class="dropdown-item" href="#">CAGR 5Y</a>
-                                <a class="dropdown-item" href="#">CAGR 6Y</a>
-                                <a class="dropdown-item" href="#">CAGR 7Y</a>
-                                <a class="dropdown-item" href="#">CAGR 8Y</a>
-                                <a class="dropdown-item" href="#">CAGR 9Y</a>
-                                <a class="dropdown-item" href="#">CAGR 10Y</a>
-                            </div>
-                        </div>
-                        <span class="color-red">12%</span>
-                    </div>
-                </div>
-            </div>
+        </section>
 
-            <div class="d-flex justify-content-center p-1 mb-4">
-                <ul class="nav nav-pills tabsCustom">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#price" role="tab">Price</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#index" role="tab">Index</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="javascript:void(0)">Download</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="tab-content p-0">
-            <div class="tab-pane active" id="price" role="tabpanel">
-                <canvas id="priceLinechart" height="300"></canvas>
-            </div>
-            <div class="tab-pane" id="index" role="tabpanel">
-                <canvas id="indexLinechart" height="300"></canvas>
-            </div>
-        </div>
-          
-            
-            <div class="mx-auto chartDesc">
-                These are the average prices of approximately 30,000+ Real Estate residential projects located across
-                India, reflecting the movement of property prices in the Indian market over the past 13+ years. The
-                average property price in India has experienced a <b>3.5%</b> change in the last 1 year.
-            </div>
-
-        </div>
-    </section>
-    <section class="city-sec">
-
-        <div class="header text-center">
-            <h3>Pick a City</h3>
-        </div>
-        <div class="row justify-content-center" id="CityList">
-            @*<div class="col-custom-5">
-                    <a href="#" class="cityCard">
-                        <div class="cityCardBody">
-                            <img src="images/Mumbai.png" alt="">
-                            <h5>Mumbai</h5>
-                            <p>Maharashtra</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-custom-5">
-                    <a href="#" class="cityCard">
-                        <div class="cityCardBody">
-                            <img src="images/Delhi.png" alt="">
-                            <h5>Delhi</h5>
-                            <p>NCT of Delhi</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-custom-5">
-                    <a href="#" class="cityCard">
-                        <div class="cityCardBody">
-                            <img src="images/Bangalore.png" alt="">
-                            <h5>Bangalore</h5>
-                            <p>Karnataka</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-custom-5">
-                    <a href="#" class="cityCard">
-                        <div class="cityCardBody">
-                            <img src="images/Hyderabad.png" alt="">
-                            <h5>Hyderabad</h5>
-                            <p>Telengana</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-custom-5">
-                    <a href="#" class="cityCard">
-                        <div class="cityCardBody">
-                            <img src="images/Kolkata.png" alt="">
-                            <h5>Kolkata</h5>
-                            <p>West Bengal</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-custom-5">
-                    <a href="#" class="cityCard">
-                        <div class="cityCardBody">
-                            <img src="images/Pune.png" alt="">
-                            <h5>Pune</h5>
-                            <p>Maharashtra</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-custom-5">
-                    <a href="#" class="cityCard">
-                        <div class="cityCardBody">
-                            <img src="images/Chennai.png" alt="">
-                            <h5>Chennai</h5>
-                            <p>Tamil Nadu</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-custom-5">
-                    <a href="#" class="cityCard">
-                        <div class="cityCardBody">
-                            <img src="images/Nagpur.png" alt="">
-                            <h5>Nagpur</h5>
-                            <p>Maharashtra</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-custom-5">
-                    <a href="#" class="cityCard">
-                        <div class="cityCardBody">
-                            <img src="images/Jaipur.png" alt="">
-                            <h5>Jaipur</h5>
-                            <p>Rajasthan</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-custom-5">
-                    <a href="#" class="cityCard">
-                        <div class="cityCardBody">
-                            <img src="images/Coimbatore.png" alt="">
-                            <h5>Coimbatore</h5>
-                            <p>Tamil Nadu</p>
-                        </div>
-                    </a>
-                </div>*@
-
-        </div>
-        <div class="text-center">
-            <button class="btn btn-red rounded-0" onclick="viewmoreClick()" id="viewmore">View more</button>
-        </div>
-    </section>
-    <section class="cocumentation-sec">
-        <div class="bodyContainer">
-            <div class="header text-center">
-                <h3><img src="images/document-icon.svg" alt=""> Documentation</h3>
-            </div>
-            <p>
-                At Liases Foras, we aim to provide you with accurate and up-to-date data to give you a clear
-                understanding of the market through our service. Our service allows you to search for properties
-                across India and receive information on current rates and historical price changes based on
-                indexation. We also provide detailed comparisons between the price trend of individual properties and
-                the surrounding area, such as the pincode, location or city. The property rates of a pincode,
-                location, or city are calculated as the average of the saleable rates of all the individual projects
-                available in that locality.
-            </p>
-            <p>
-                Additionally, we assist you in identifying the areas with the highest or lowest current property rates
-                and growth rates in recent years. We also offer a service to provide you with the current valuation of
-                your property which is primarily based on the price indexation of that project or locality.
-            </p>
-            <p class="text-center">
-                <img src="images/diagram.svg" class="diagramImg" alt="">
-            </p>
-
-
-        </div>
-    </section>
-
-    <section class="explore-sec pb-5">
-        <div class="bodyContainer">
-            <div class="header text-center">
-                <h3><img src="images/explore-icon.svg" alt=""> Explore our other products!</h3>
-                <p>Explore and understand more detail version</p>
-            </div>
-            <div class="exploreInnerWrap mx-auto">
-                <div class="row justify-content-center">
-                    <div class="otherProdCol">
-                        <div class="prodCardSml">
-                            <div class="prodLogo">
-                                <img src="images/Ressex.png" alt="Ressex">
-                            </div>
-                            <p>Ressex</p>
-                        </div>
-                    </div>
-                    <div class="otherProdCol">
-                        <div class="prodCardSml">
-                            <div class="prodLogo">
-                                <img src="images/Property-Science.png" alt="Property Science">
-                            </div>
-                            <p>Property Science</p>
-                        </div>
-                    </div>
-                    <div class="otherProdCol">
-                        <div class="prodCardSml">
-                            <div class="prodLogo">
-                                <img src="images/dfs.png" alt="Desktop Fesibility Solution">
-                            </div>
-                            <p>Desktop Fesibility Solution</p>
-                        </div>
-                    </div>
-                    <div class="otherProdCol">
-                        <div class="prodCardSml">
-                            <div class="prodLogo">
-                                <img src="images/Remr.png" alt="Real Estate Market Report">
-                            </div>
-                            <p>Real Estate Market Report</p>
-                        </div>
-                    </div>
-                    <div class="otherProdCol">
-                        <div class="prodCardSml">
-                            <div class="prodLogo">
-                                <img src="images/Desktop-Valuation.png" alt="Desktop Valuation">
-                            </div>
-                            <p>Desktop Valuation</p>
-                        </div>
-                    </div>
-                    <div class="otherProdCol">
-                        <div class="prodCardSml">
-                            <div class="prodLogo">
-                                <img src="images/Stress-Testing.png" alt="Stress Testing">
-                            </div>
-                            <p>Stress Testing</p>
-                        </div>
-                    </div>
-                    <div class="otherProdCol">
-                        <div class="prodCardSml">
-                            <div class="prodLogo">
-                                <img src="images/Property-Search.png" alt="Property Search">
-                            </div>
-                            <p>Property Search</p>
-                        </div>
-                    </div>
-                    <div class="otherProdCol">
-                        <div class="prodCardSml">
-                            <div class="prodLogo">
-                                <img src="images/Developers-Ratings.png" alt="Developers Ratings">
-                            </div>
-                            <p>Developers Ratings</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-</div>
-@section scripts{
-    <script src="~/Scripts/PageLavel/Dashboard.js"></script>
-    <script src="~/Scripts/PageLavel/layout.js"></script>
-    <script type="text/javascript" charset="utf-8">
-        $(document).ready(function () {
-            DashboardModule.init();
-            /* $('#overlay').fadeOut();*/
-        });
-    </script>
-}
+    </div>
+    </div>
+    @section scripts{
+        <script src="~/Scripts/PageLavel/Dashboard.js"></script>
+        <script src="~/Scripts/PageLavel/layout.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            $(document).ready(function () {
+                DashboardModule.init();
+                /* $('#overlay').fadeOut();*/
+            });
+        </script>
+    }
