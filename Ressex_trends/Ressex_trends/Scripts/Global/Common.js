@@ -426,7 +426,7 @@ common.GetQueryString = function () {
 };
 
 common.GetTrendsTypePayload = function (queryStringARR) {
-    var trendsType = queryStringARR[1];
+    var trendsType = queryStringARR[2];
 
     switch (trendsType) {
         case 'Project':

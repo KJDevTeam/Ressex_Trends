@@ -11,7 +11,7 @@ var SearchModule = function () {
             $("#SelectedSearch").autocomplete({
                 autoFocus: true,
                 source: function (request, response) {
-                    if (request.term.length > 3) {
+                   if (request.term.length > 3) {
                         var str = 'query=' + request.term + '&type=' + SearchType;
                         var APIkey = utility.ServiceAPIURL("Dashboard/ressex_trend_search?" + str);
                         $.ajax({
@@ -52,9 +52,24 @@ var SearchModule = function () {
                 },
                 select: function (event, ui) {
 
+                    if (searchType == "pincode") {
+                        var routingurl = utility.FrontEndAPIURL('list/pincode/' + ui.item.id + '/ProjectText');
+                        window.location.href = routingurl;
+                    }
+                    else if (searchType == "city") {
+                        var routingurl = utility.FrontEndAPIURL('list/city/' + ui.item.id + '/ProjectText');
+                        window.location.href = routingurl;
+                    }
+                    else if (searchType == "location") {
+                        var routingurl = utility.FrontEndAPIURL('list/location/' + ui.item.id + '/ProjectText');
+                        window.location.href = routingurl;
+                    }
+                    else {
+                        var routingurl = utility.FrontEndAPIURL('Trend/Project/' + ui.item.id + '/ProjectText');
+                        window.location.href = routingurl;
+                    }
                    
-                    var routingurl = utility.FrontEndAPIURL('Trend/Project/'+ui.item.id+'/ProjectText');
-                    window.location.href = routingurl;
+                    
                 },
 
             });
@@ -67,28 +82,49 @@ $(".dropdown-menu li a").click(function () {
 
     $("#options").text($(this).text());
     var value = $(this).text();
+    searchType = value;
     var tempSearchType;
     $('#selectedSearchType').text(value);
     if (value == "Pincode") {
         tempSearchType = "pincode";
+        searchType = tempSearchType;
     }
     else if (value == "Location") {
         tempSearchType = "location";
+        searchType = tempSearchType;
     }
     else if (value == "City") {
         tempSearchType = "city";
+        searchType = tempSearchType;
     }
     else {
         tempSearchType = "project";
+        searchType = tempSearchType;
     }
 
     SearchModule.AutocompleteSearch(tempSearchType)
    
 });
 
-$("#Search").click(function () {
+$('#Search').click(function () {
 
-    var routingurl = utility.FrontEndAPIURL('Trend/Project/0/1');
-    window.location.href = routingurl;
+    if (searchType == "pincode") {
+        var routingurl = utility.FrontEndAPIURL('list/pincode/0/1');
+        window.location.href = routingurl;
+    }
+    else if (searchType == "city") {
+        var routingurl = utility.FrontEndAPIURL('list/city/0/1');
+        window.location.href = routingurl;
+    }
+    else if (searchType == "location") {
+        var routingurl = utility.FrontEndAPIURL('list/location/0/1');
+        window.location.href = routingurl;
+    }
+    else {
+        var routingurl = utility.FrontEndAPIURL('Trend/Project/0/1');
+        window.location.href = routingurl;
+    }
+
+   
 
 });
