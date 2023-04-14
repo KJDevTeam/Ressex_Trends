@@ -92,12 +92,6 @@ var DashboardModule = function () {
             if (cityindex <= cityCounter) {
                 var arrcount = cityindex * 10;
 
-                //for (i= (arrcount-9); i < results.length+1; i++) {
-                //    if (i == arrcount) {
-                //        break;
-                //    }
-
-                //}
                 var arr_toload;
                 if (arrcount <= results.length) {
                     arr_toload = results.slice(0, arrcount)
