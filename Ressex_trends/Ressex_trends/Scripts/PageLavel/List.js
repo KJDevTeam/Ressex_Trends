@@ -23,6 +23,18 @@ var ListModule = function () {
                     "pincode": result.Id,
                 }
             }
+            else if (result.TrendsType == "location") {
+                var jsonstr = {
+                    "location_id": result.Id,
+                }
+            }
+            else if (result.TrendsType == "city") {
+                var jsonstr = {
+                    "city_id": result.Id,
+                }
+            }
+
+
 
 
             var Payload = {

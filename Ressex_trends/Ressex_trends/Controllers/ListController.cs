@@ -9,9 +9,22 @@ namespace Ressex_trends.Controllers
     public class ListController : Controller
     {
         // GET: List
-
         [Route("list/pincode/{id}/{id1}")]
-        public ActionResult Pincode()
+        public ActionResult pincode()
+        {
+            return View();
+        }
+
+        // GET: List
+        [Route("list/location/{id}/{id1}")]
+        public ActionResult location()
+        {
+            return View();
+        }
+
+        // GET: List
+        [Route("list/city/{id}/{id1}")]
+        public ActionResult city()
         {
             return View();
         }

@@ -144,6 +144,7 @@
     <Content Include="bootstrap4\js\bootstrap.bundle.min.js" />
     <Content Include="bootstrap4\js\bootstrap.js" />
     <Content Include="bootstrap4\js\bootstrap.min.js" />
+    <Content Include="Content\extras.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -309,7 +310,9 @@
     <Content Include="Views\Home\_Searchview.cshtml" />
     <Content Include="Views\Trend\Pincode.cshtml" />
     <Content Include="Views\Trend\Project.cshtml" />
-    <Content Include="Views\List\Pincode.cshtml" />
+    <Content Include="Views\List\pincode.cshtml" />
+    <Content Include="Views\List\location.cshtml" />
+    <Content Include="Views\List\city.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

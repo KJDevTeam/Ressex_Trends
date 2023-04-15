@@ -9,9 +9,8 @@ var SearchModule = function () {
         },
         AutocompleteSearch: function (SearchType) {
             $("#SelectedSearch").autocomplete({
-                autoFocus: true,
+                minLength:3,
                 source: function (request, response) {
-                   if (request.term.length > 3) {
                         var str = 'query=' + request.term + '&type=' + SearchType;
                         var APIkey = utility.ServiceAPIURL("Dashboard/ressex_trend_search?" + str);
                         $.ajax({
@@ -42,14 +41,30 @@ var SearchModule = function () {
                                 xhr.setRequestHeader('Authorization', 'bearer ' + utility.getCookie("access_token"));
                             },
                             success: function (data) {
+
                                 response($.map(data.data.suggestions, function (item) {
-                                    return { id: item.id, label: item.name, value: item.name };
-                                }))
+                                        return { id: item.id, label: item.name, value: item.name };
+                                }))                         
                             },
                         })
-                    }
+                    
                     
                 },
+                //create: function () {
+                //    $(this).data('ui-autocomplete')._renderItem = function (ul, item) {
+                //        let value = item.value;
+                //        let listItem;
+                //        if (item.disabled) {
+                //            listItem = $('<li class="ui-state-disabled"><div>' + value + '</div></li>')
+                //                .appendTo(ul);
+                //        } else {
+                //            listItem = $("<li>")
+                //                .append('<div>' + value + '</div>')
+                //                .appendTo(ul);
+                //        }
+                //        return listItem;
+                //    }
+                //},
                 select: function (event, ui) {
 
                     if (searchType == "pincode") {
