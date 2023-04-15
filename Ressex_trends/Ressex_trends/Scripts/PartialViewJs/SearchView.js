@@ -9,7 +9,8 @@ var SearchModule = function () {
         },
         AutocompleteSearch: function (SearchType) {
             $("#SelectedSearch").autocomplete({
-                minLength:3,
+                minLength: 3,
+                delay:500,
                 source: function (request, response) {
                         var str = 'query=' + request.term + '&type=' + SearchType;
                         var APIkey = utility.ServiceAPIURL("Dashboard/ressex_trend_search?" + str);

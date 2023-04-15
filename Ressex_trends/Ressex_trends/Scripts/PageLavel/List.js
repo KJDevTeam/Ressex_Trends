@@ -53,6 +53,56 @@ var ListModule = function () {
 
 
         },
+        ListLoadnameSort: function () {
+            var QueryStringARR = common.GetQueryString();
+            var result = common.GetTrendsTypePayload(QueryStringARR);
+
+            var userdetails = common.CheckIsPaid();
+            UserType = userdetails.UserType;
+            if (UserType != "Paid") {
+
+            }
+            else {
+
+
+
+            }
+
+            if (result.TrendsType == "pincode") {
+                var jsonstr = {
+                    "pincode": result.Id,
+                    "sort_by": "name",
+                    "order_by": "desc"
+                }
+            }
+            else if (result.TrendsType == "location") {
+                var jsonstr = {
+                    "location_id": result.Id,
+                }
+            }
+            else if (result.TrendsType == "city") {
+                var jsonstr = {
+                    "city_id": result.Id,
+                }
+            }
+
+
+
+
+            var Payload = {
+                "lookup": "Project",
+                "json_str": JSON.stringify(jsonstr),
+
+            }
+
+            var APIkey = utility.ServiceAPIURL("Dashboard/PriceIndexList");
+            var Data = utility.ajaxselect(APIkey, Payload, "Post", false);
+
+            TotalData = Data;
+            console.log(Data);
+            keepListData = Data.data
+            ListModule.ListLoad(Data.data);
+        },
         ListLoad: function (List_arr) {
             var Listlength = List_arr.length / 10;
             var ListCounter = Math.ceil(Listlength);
@@ -70,6 +120,7 @@ var ListModule = function () {
                 }
                 var img = utility.FrontEndAPIURL("images");
                 var st = ''
+                $("#List").empty();
                 $.each(arr_toload, function (index, items) {
                     st += '<div class="card mb-3">\
                     <div class="row">\
@@ -86,6 +137,8 @@ var ListModule = function () {
                         </div>\
             </div >';
                 });
+                var paginateText = 'Showing ' + arr_toload.length + ' projects out of ' + keepListData.length;
+                $('#PaginationText').text(paginateText);
                 $("#List").append(st);
             }
 
@@ -97,4 +150,11 @@ function viewmoreListClick() {
     listindex++;
     $("#List").empty();
     ListModule.ListLoad(keepListData);
+    
+}
+
+function NameSortclick() {
+    $('#overlay').fadeIn();
+    ListModule.ListLoadnameSort();
+    $('#overlay').fadeOut();
 }
