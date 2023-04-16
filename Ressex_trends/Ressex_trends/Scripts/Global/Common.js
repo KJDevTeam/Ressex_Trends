@@ -454,6 +454,127 @@ common.DepartmentDDL = function (Controlid) {
    
 };
 
+common.sortingDecider = function (sortby, orderby) {
+
+    //SortBy
+    if (sortby == "name") {
+        var Text = common.orderbyDecider("#NameSortIcon", orderby);
+        $('#nameSortID').text(Text);
+        $('#nameSortID').addClass('text-danger');
+        
+        
+        //Remove Red From Text
+        $('#CurrRateSortID').removeClass('text-danger');
+        $('#yoySortID').removeClass('text-danger');
+        $('#CAGR3YSortID').removeClass('text-danger');
+        $('#CAGR5YSortID').removeClass('text-danger');
+
+        //Remove Icon
+        $('#CurRateSortIcon').removeClass();
+        $('#YoySortIcon').removeClass();
+        $('#cagr3ySortIcon').removeClass();
+        $('#cagr5ySortIcon').removeClass();
+       
+        
+        
+
+
+    }
+    else if (sortby == "current_rate") {
+        
+        var Text = common.orderbyDecider("#CurRateSortIcon", orderby);
+        $('#CurrRateSortID').text(Text);
+        $('#CurrRateSortID').addClass('text-danger');
+
+        $('#nameSortID').removeClass('text-danger');
+        $('#yoySortID').removeClass('text-danger');
+        $('#CAGR3YSortID').removeClass('text-danger');
+        $('#CAGR5YSortID').removeClass('text-danger');
+
+        //Remove Icon
+        $('#NameSortIcon').removeClass();
+        $('#YoySortIcon').removeClass();
+        $('#cagr3ySortIcon').removeClass();
+        $('#cagr5ySortIcon').removeClass();
+    }
+    else if (sortby == "cagr_last_1yr") {
+        
+        var Text = common.orderbyDecider("#YoySortIcon", orderby);
+        $('#YoySortIcon').text(Text);
+        $('#yoySortID').addClass('text-danger');
+
+        //Remove Red from Text
+        $('#nameSortID').removeClass('text-danger');
+        $('#CurrRateSortID').removeClass('text-danger');
+        $('#CAGR3YSortID').removeClass('text-danger');
+        $('#CAGR5YSortID').removeClass('text-danger');
+
+        //Remove Icon from Text
+        $('#NameSortIcon').removeClass();
+        $('#CurRateSortIcon').removeClass();
+        $('#cagr3ySortIcon').removeClass();
+        $('#cagr5ySortIcon').removeClass();
+
+    }
+    else if (sortby == "cagr_last_3yr") {
+        
+        var Text = common.orderbyDecider("#cagr3ySortIcon", orderby);
+        $('#CAGR3YSortID').text(Text);
+        $('#CAGR3YSortID').addClass('text-danger');
+
+        $('#nameSortID').removeClass('text-danger');
+        $('#CurrRateSortID').removeClass('text-danger');
+        $('#yoySortID').removeClass('text-danger');
+        $('#CAGR5YSortID').removeClass('text-danger');
+
+
+        //Remove Icon from Text
+        $('#NameSortIcon').removeClass();
+        $('#CurRateSortIcon').removeClass();
+        $('#YoySortIcon').removeClass();
+        $('#cagr5ySortIcon').removeClass();
+    }
+    else if (sortby == "cagr_last_5yr") {
+        
+        var Text = common.orderbyDecider("#cagr5ySortIcon", orderby);
+        $('#CAGR5YSortID').text(Text);
+        $('#CAGR5YSortID').addClass('text-danger');
+
+        $('#nameSortID').removeClass('text-danger');
+        $('#CurrRateSortID').removeClass('text-danger');
+        $('#yoySortID').removeClass('text-danger');
+        $('#CAGR3YSortID').removeClass('text-danger');
+
+
+        //Remove Icon from Text
+        $('#NameSortIcon').removeClass();
+        $('#CurRateSortIcon').removeClass();
+        $('#YoySortIcon').removeClass();
+        $('#cagr3ySortIcon').removeClass();
+    }
+
+    
+    
+};
+
+common.orderbyDecider = function (IconID, orderby) {
+
+    //OrderBy
+
+   
+
+    if (orderby == "Desc") {
+        $(IconID).addClass("fa fa-arrow-down text-danger");
+
+      
+    }
+    else {
+        $(IconID).addClass("fa fa-arrow-up text-danger");
+        
+    }
+    
+
+}
 
 common.IsFilterSelcted = function () {
     //Default Model
