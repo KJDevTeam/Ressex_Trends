@@ -18,101 +18,29 @@ var ListModule = function () {
 
             }
             common.sortingDecider(sortBy, OrderBy);
-
-            if (result.TrendsType == "pincode") {
-                var jsonstr = {
-                    "pincode": result.Id,
-                    "sort_by": sortBy,
-                    "order_by": OrderBy
-                }
-            }
-            else if (result.TrendsType == "location") {
-                var jsonstr = {
-                    "location_id": result.Id,
-                    "sort_by": sortBy,
-                    "order_by": OrderBy
-                }
-            }
-            else if (result.TrendsType == "city") {
-                var jsonstr = {
-                    "city_id": result.Id,
-                    "sort_by": sortBy,
-                    "order_by": OrderBy
-                }
-            }
-
-
-
-
-            var Payload = {
-                "lookup": "Project",
-                "json_str": JSON.stringify(jsonstr)
-            }
+            var result = common.PincodePayload("pincode", QueryStringARR, "pincode",QueryStringARR[3],sortBy,OrderBy);           
 
             var APIkey = utility.ServiceAPIURL("Dashboard/PriceIndexList");
-            var Data = utility.ajaxselect(APIkey, Payload, "Post", false);
+            var Data = utility.ajaxselect(APIkey, result, "Post", false);
 
             TotalData = Data;
             console.log(Data);
             keepListData = Data.data;
 
-            //Project Heading
-           
-            $('#projectlistHeading').text(keepListData[0].projects_in_pincode);
-            ListModule.ListLoad(Data.data);
+            //Project Heading Decider
 
-
-
-        },
-        ListLoadnameSort: function () {
-            var QueryStringARR = common.GetQueryString();
-            var result = common.GetTrendsTypePayload(QueryStringARR);
-
-            var userdetails = common.CheckIsPaid();
-            UserType = userdetails.UserType;
-            if (UserType != "Paid") {
-
+            if (QueryStringARR[3] == 0) {
+                $('#projectlistHeading').text(keepListData[0].pincodes_in_india);
             }
             else {
-
-
-
+                $('#projectlistHeading').text(keepListData[0].pincode_input);
             }
-
-            if (result.TrendsType == "pincode") {
-                var jsonstr = {
-                    "pincode": result.Id,
-                    "sort_by": "name",
-                    "order_by": "desc"
-                }
-            }
-            else if (result.TrendsType == "location") {
-                var jsonstr = {
-                    "location_id": result.Id,
-                }
-            }
-            else if (result.TrendsType == "city") {
-                var jsonstr = {
-                    "city_id": result.Id,
-                }
-            }
-
-
-
-
-            var Payload = {
-                "lookup": "Project",
-                "json_str": JSON.stringify(jsonstr),
-
-            }
-
-            var APIkey = utility.ServiceAPIURL("Dashboard/PriceIndexList");
-            var Data = utility.ajaxselect(APIkey, Payload, "Post", false);
-
-            TotalData = Data;
-            console.log(Data);
-            keepListData = Data.data
+           
+            
             ListModule.ListLoad(Data.data);
+
+
+
         },
         ListLoad: function (List_arr) {
             var Listlength = List_arr.length / 10;
@@ -141,7 +69,7 @@ var ListModule = function () {
                     </div>\
                                 <div class="col-2">\
                                     <div class="card-body">\
-                                        <h5 class="card-title">'+ items.name + '</h5>\
+                                        <h5 class="card-title">'+ items.pincode + '</h5>\
                                         <p class="card-text">'+ items.region_city+'</p>\
                                     </div>\
                                 </div>\
@@ -171,8 +99,7 @@ var ListModule = function () {
                                 </div>\
                                 <div class="col-2">\
                                     <div class="card-body">\
-                                        <span class="card-title">Project Status</span>\
-                                        <p class="card-text">'+ items.project_status +'</p>\
+                                        <button class="btn text-danger">View Projects</button>\
                                     </div>\
                                 </div>\
                                 <div class="col-1">\

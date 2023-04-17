@@ -69,19 +69,19 @@ var SearchModule = function () {
                 select: function (event, ui) {
 
                     if (searchType == "pincode") {
-                        var routingurl = utility.FrontEndAPIURL('list/pincode/' + ui.item.id + '/ProjectText');
+                        var routingurl = utility.FrontEndAPIURL('list/pincode/' + ui.item.id + '/0/0');
                         window.location.href = routingurl;
                     }
                     else if (searchType == "city") {
-                        var routingurl = utility.FrontEndAPIURL('list/city/' + ui.item.id + '/ProjectText');
+                        var routingurl = utility.FrontEndAPIURL('list/city/0/0/' + ui.item.id );
                         window.location.href = routingurl;
                     }
                     else if (searchType == "location") {
-                        var routingurl = utility.FrontEndAPIURL('list/location/' + ui.item.id + '/ProjectText');
+                        var routingurl = utility.FrontEndAPIURL('list/location/0/' + ui.item.id + '/0');
                         window.location.href = routingurl;
                     }
                     else {
-                        var routingurl = utility.FrontEndAPIURL('Trend/Project/' + ui.item.id + '/ProjectText');
+                        var routingurl = utility.FrontEndAPIURL('Trend/Project/' + ui.item.id + '/0');
                         window.location.href = routingurl;
                     }
                    
@@ -125,7 +125,7 @@ $(".dropdown-menu li a").click(function () {
 $('#Search').click(function () {
 
     if (searchType == "pincode") {
-        var routingurl = utility.FrontEndAPIURL('list/pincode/0/1');
+        var routingurl = utility.FrontEndAPIURL('list/pincode/0/0/1');
         window.location.href = routingurl;
     }
     else if (searchType == "city") {

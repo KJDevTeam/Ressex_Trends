@@ -123,285 +123,43 @@ common.CheckIsPaid = function () {
     }
     
 }
-common.Payload = function (lookup)
+common.PincodePayload = function (lookup, QueryStringarr, jsonStrType, jsonStrValue, sortBy, OrderBy)
 {
-    /*var xx = utility.getCookie("user_details");*/
-
-    //if (xx!="" || xx != undefined || xx != null) {
-    //    var clientid = JSON.parse(xx).data.client_id;
-    //    var userid = JSON.parse(xx).data.user_id;
-    //var usedcredentials = common.CheckIsPaid();
-    //var clientid = usedcredentials.client_id;
-    //var userid = usedcredentials.user_id;
-        return APIPayload = {
-            "lookup": "" + lookup + "",
-            "json_str": "{}",
-            
-        };
-    //}
-    //else {
-    //    //All Cookies Clear
-    //    document.cookie.split(';').forEach(function (c) {
-    //        document.cookie = c.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
-    //    });
-    //    //Local Storage Clear
-    //    localStorage.clear();
-    //    var loginurl = utility.FrontEndAPIURL('');
-    //    window.location.href = loginurl;
-        
-    //}
-};
-common.LocationPayload = function (lookup, Id) {
-        switch (lookup) {
-            case "FETCH_STATE":
-                var statePayload =
-                {
-                    "operation_type": "FETCH_STATE",
-                    "state_id": "" + Id + "",
-                    "district_id": "0",
-                    "taluka_id": "0"
-                };
-                return statePayload;
-            case "FETCH_DISTRICT":
-                var DistPayload =
-                {
-                    "operation_type": "FETCH_DISTRICT",
-                    "state_id": "" + Id + "",
-                    "district_id": "0",
-                    "taluka_id": "0"
-                };
-                return DistPayload;
-            case "FETCH_TALUKA":
-                var TalukaPayload =
-                {
-                    "operation_type": "FETCH_TALUKA",
-                    "state_id": "0",
-                    "district_id": "" + Id + "",
-                    "taluka_id": "0"
-                };
-                return TalukaPayload;
-            case "FETCH_VILLAGE":
-                var VillagePayload =
-                {
-                    "operation_type": "FETCH_VILLAGE",
-                    "state_id": "0",
-                    "district_id": "0",
-                    "taluka_id": "" + Id + ""
-                };
-                return VillagePayload;
-            default:
-            // code block
+    var jsonstr = {};
+    if (QueryStringarr[3] == 0) {
+        jsonstr = {
+            "sort_by": sortBy,
+            "order_by": OrderBy
         }
+
+    }
+    else {
+        jsonstr = {
+            [jsonStrType]: "" + jsonStrValue + "",
+            "sort_by": sortBy,
+            "order_by": OrderBy
+        }
+    }
+
+   
+        
+    return APIPayload = {
+        "lookup": "" + lookup + "",
+        "json_str": JSON.stringify(jsonstr)
     };
-common.SelectedDropdown = function (controlId, selectedItem) {
-
-    $(controlId).filter(function () {
-        return this.value == selectedItem;
-    }).attr('selected', true);
+    
 };
-common.SelectedPersonalFCount = function () {
-    ///Personal Details
-    Fname = $('#Fname').val();
-    Pan = $('#Pan').val();
-    partytype = $('#partytype').val();
-    var i = 0;
-    if (Fname != "") {
-        i++;
-    }
-    if (Pan != "") {
-        i++;
-    }
-    if (partytype != "0") {
 
-        i++;
-    }
+common.Payload = function (lookup) {
+    return APIPayload = {
+        "lookup": "" + lookup + "",
+        "json_str": "{}",
 
-    return i;
-   
-}
-common.SelectedPropertyFCount = function () {
-   ///Property Details
-    BuildingNmame = $('#BuildingNmame').val();
-    PAddress = $('#PAddress').val();
-    Cts = $('#Cts').val();
-    var i = 0;
-    if (BuildingNmame != "") {
-        i++;
-    }
-    if (PAddress != "") {
-        i++;
-    }
-    if (Cts != "") {
-
-        i++;
-    }
-
-    return i;
-
-}
-common.SelectedLocationFCount = function () {
-    ///Location Details
-    ddlState = $('#ddlState').val();
-    ddlDistrict = $('#ddlDistrict').val();
-    ddlTaluka = $('#ddlTaluka').val();
-    ddlVillage = $('#ddlVillage').val();
-    var i = 0;
-    if (ddlState != "0") {
-        i++;
-    }
-    if (ddlDistrict != "0") {
-        i++;
-    }
-    if (ddlTaluka != "0") {
-
-        i++;
-    }
-    if (ddlVillage != "0") {
-
-        i++;
-    }
-
-    return i;
-
-}
-common.SelectedPropertytypeFCount = function () {
-    ///PropertyType
-    property_type_1 = $('#property_type_1').val();
-    property_type_2 = $('#property_type_2').val();
-    var i = 0;
-    if (property_type_1 != "0") {
-        i++;
-    }
-    if (property_type_2 != "0") {
-        i++;
-    }
+    };
     
-
-    return i;
-
-}
-common.SelectedTransactionFCount = function () {
-    ///Transaction Type
-    modelType = $('#modelType').val();
-    marketType = $('#marketType').val();
-    var i = 0;
-    if (modelType != "0") {
-        i++;
-    }
-    if (marketType != "0") {
-        i++;
-    }
-   
-
-    return i;
-
-}
-common.SelectedDateRangeFCount = function () {
-    ////Date Range
-    fromDateID = $('#fromDateID').val();
-    toDateID = $('#toDateID').val();
-    var i = 0;
-    if (fromDateID !="Min Date" && toDateID =="Max Date") {
-        i++;
-    }
-    if (fromDateID == "Min Date" && toDateID != "Max Date") {
-        i++;
-    }
-    if (fromDateID != "Min Date" && toDateID != "Max Date") {
-        i++;
-    }
-
-    return i;
-
-}
-common.SelectedOtherFCount = function () {
-    ///Other Details
-    lowval = $('#MinCost').val();
-    highval = $('#MaxCost').val();
-    lowarea = $('#MinSqft').val();
-    higharea = $('#MaxSqft').val();
-    var i = 0;
-
-    if (lowval != "0" && highval == "9999999999") {
-        i++;
-    }
-    if (lowval == "0" && highval != "9999999999") {
-        i++;
-    }
-    if (lowval != "0" && highval != "9999999999") {
-        i++;
-    }
-    if (lowarea != "0" && higharea =="999999") {
-        i++;
-    }
-    if (lowarea == "0" && higharea != "999999") {
-        i++;
-    }
-    if (lowarea != "0" && higharea != "999999") {
-        i++;
-    }
-
-    return i;
-
-}
-common.SelectedFilterCount = function () {
-
-    var personalFcount = common.SelectedPersonalFCount();
-    if (personalFcount > 0) {
-        $('#PersonalFCount').show();
-        $('#PersonalFCount').text(""+personalFcount+"");
-    }
-
-    var propertyFcount = common.SelectedPropertyFCount();
-    if (propertyFcount > 0) {
-        $('#PropertyFCount').show();
-        $('#PropertyFCount').text("" + propertyFcount + "");
-    }
-
-    var locationFcount = common.SelectedLocationFCount();
-    if (locationFcount > 0) {
-        $('#LocationFCount').show();
-        $('#LocationFCount').text("" + locationFcount + "");
-    }
-
-    var propertytypeFcount = common.SelectedPropertytypeFCount();
-    if (propertytypeFcount > 0) {
-        $('#PropertyTypeFCount').show();
-        $('#PropertyTypeFCount').text("" + propertytypeFcount + "");
-    }
-
-    var transactionFcount = common.SelectedTransactionFCount();
-    if (transactionFcount > 0) {
-        $('#TransactionFCount').show();
-        $('#TransactionFCount').text("" + transactionFcount + "");
-    }
-
-    var daterangeFcount = common.SelectedDateRangeFCount();
-    if (daterangeFcount > 0) {
-        $('#DateRangeFCount').show();
-        $('#DateRangeFCount').text("" + daterangeFcount + "");
-    }
-
-    var otherFcount = common.SelectedOtherFCount();
-    if (otherFcount > 0) {
-        $('#OtherFCount').show();
-        $('#OtherFCount').text("" + otherFcount + "");
-    }
-
-    
-
-   
-
-    
-
-    
-
-   
+};
 
 
-
-
-}
 
 
 common.SelectedInput = function (controlId, selectedItem) {
@@ -446,13 +204,7 @@ common.GetTrendsTypePayload = function (queryStringARR) {
 };
 
 
-common.DepartmentDDL = function (Controlid) {
-    var urlToHandler = utility.ServiceAPIURL("APIkey");
-    var jsonData;
-    jsonData = 'iTOKEN=' + Userdata[0].token;
-    var totaldata = utility.ajaxselect(urlToHandler, jsonData, "GET", false);
-   
-};
+
 
 common.sortingDecider = function (sortby, orderby) {
 

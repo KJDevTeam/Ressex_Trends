@@ -9,7 +9,7 @@ namespace Ressex_trends.Controllers
     public class ListController : Controller
     {
         // GET: List
-        [Route("list/pincode/{id}/{id1}")]
+        [Route("list/pincode/{id}/{id1}/{id2}")]
         public ActionResult pincode()
         {
             return View();
