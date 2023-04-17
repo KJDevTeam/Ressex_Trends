@@ -54,7 +54,11 @@ var ListModule = function () {
 
             TotalData = Data;
             console.log(Data);
-            keepListData = Data.data
+            keepListData = Data.data;
+
+            //Project Heading
+           
+            $('#projectlistHeading').text(keepListData[0].projects_in_pincode);
             ListModule.ListLoad(Data.data);
 
 
@@ -193,8 +197,9 @@ var ListModule = function () {
             //            </div>\
             //</div >';
                 });
-                var paginateText = 'Showing ' + arr_toload.length + ' projects out of ' + keepListData.length;
-                $('#PaginationText').text(paginateText);
+                var paginateText = 'Showing <b>' + arr_toload.length + '</b> projects out of <b>' + keepListData.length+'</b>';
+                $('#PaginationText').empty();
+                $('#PaginationText').append(paginateText);
                 $("#List").append(st);
             }
 

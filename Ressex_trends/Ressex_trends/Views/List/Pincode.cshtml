@@ -6,9 +6,10 @@
     <div class="mainbodyWrap d-flex flex-column flex-1">
         <div class="container flex-1">
             <div class="innerSectionHeader d-flex">
-                <a href="#" class="mr-2 pt-2"><img src="~/images/chevron-left.svg" alt=""></a>
+                <a href="@Url.Action("Index","Home")" class="mr-2 pt-2"><img src="~/images/chevron-left.svg" alt=""></a>
                 <div class="header flex-1">
-                    <h3>Evergreen Shine, Mulund</h3>
+                    <span id="projectlistHeading" class="h3 font-weight-bold"></span>
+                    <span> | </span>
                     <span id="PaginationText"></span>
                     <div class="d-flex justify-content-end">
                         <div class="d-flex mr-3">
