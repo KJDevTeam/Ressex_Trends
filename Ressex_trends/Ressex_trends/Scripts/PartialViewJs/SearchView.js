@@ -1,4 +1,5 @@
 ﻿var searchType = "project";
+var tempSearchType;
 var SearchModule = function () {
    
     return {
@@ -52,7 +53,8 @@ var SearchModule = function () {
                 },
                 select: function (event, ui) {
 
-                   
+                    var searchName = searchType;
+                    utility.setCookie('SearchName', searchName, 1000);
                     var routingurl = utility.FrontEndAPIURL('Trend/Project/'+ui.item.id+'/ProjectText');
                     window.location.href = routingurl;
                 },
@@ -67,19 +69,24 @@ $(".dropdown-menu li a").click(function () {
 
     $("#options").text($(this).text());
     var value = $(this).text();
-    var tempSearchType;
+   
     $('#selectedSearchType').text(value);
+ 
     if (value == "Pincode") {
-        tempSearchType = "pincode";
+       // tempSearchType = "pincode";
+        searchType = "pincode";
     }
     else if (value == "Location") {
-        tempSearchType = "location";
+       // tempSearchType = "location";
+        searchType = "location";
     }
     else if (value == "City") {
-        tempSearchType = "city";
+       // tempSearchType = "city";
+        searchType = "city";
     }
     else {
-        tempSearchType = "project";
+       // tempSearchType = "project";
+        searchType = "project";
     }
 
     SearchModule.AutocompleteSearch(tempSearchType)
