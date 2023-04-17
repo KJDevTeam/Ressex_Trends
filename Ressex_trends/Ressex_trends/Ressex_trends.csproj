@@ -282,7 +282,8 @@
     <Content Include="Scripts\jquery-ui-1.13.0.min.js" />
     <Content Include="Scripts\PageLavel\Dashboard.js" />
     <Content Include="Scripts\PageLavel\layout.js" />
-    <Content Include="Scripts\PageLavel\List.js" />
+    <Content Include="Scripts\PageLavel\PincodeList.js" />
+    <Content Include="Scripts\PageLavel\ProjectList.js" />
     <Content Include="Scripts\PartialViewJs\SearchView.js" />
     <Content Include="Scripts\PartialViewJs\Trends.js" />
     <Content Include="Scripts\popper.min.js" />
@@ -313,6 +314,7 @@
     <Content Include="Views\List\pincode.cshtml" />
     <Content Include="Views\List\location.cshtml" />
     <Content Include="Views\List\city.cshtml" />
+    <Content Include="Views\List\project.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

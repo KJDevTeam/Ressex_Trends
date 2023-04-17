@@ -16,15 +16,22 @@ namespace Ressex_trends.Controllers
         }
 
         // GET: List
-        [Route("list/location/{id}/{id1}")]
+        [Route("list/location/{id}/{id1}/{id2}")]
         public ActionResult location()
         {
             return View();
         }
 
         // GET: List
-        [Route("list/city/{id}/{id1}")]
+        [Route("list/city/{id}/{id1}/{id2}")]
         public ActionResult city()
+        {
+            return View();
+        }
+
+        // GET: List
+        [Route("list/city/{id}/{id1}/{id2}")]
+        public ActionResult project()
         {
             return View();
         }
