@@ -129,15 +129,15 @@ $('#Search').click(function () {
         window.location.href = routingurl;
     }
     else if (searchType == "city") {
-        var routingurl = utility.FrontEndAPIURL('list/city/0/1');
+        var routingurl = utility.FrontEndAPIURL('list/city/0/0/0');
         window.location.href = routingurl;
     }
     else if (searchType == "location") {
-        var routingurl = utility.FrontEndAPIURL('list/location/0/1');
+        var routingurl = utility.FrontEndAPIURL('list/location/0/0/0');
         window.location.href = routingurl;
     }
     else {
-        var routingurl = utility.FrontEndAPIURL('Trend/Project/0/1');
+        var routingurl = utility.FrontEndAPIURL('list/project/0/0/0');
         window.location.href = routingurl;
     }
 

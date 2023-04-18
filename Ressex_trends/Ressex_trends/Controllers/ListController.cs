@@ -30,7 +30,7 @@ namespace Ressex_trends.Controllers
         }
 
         // GET: List
-        [Route("list/city/{id}/{id1}/{id2}")]
+        [Route("list/project/{id}/{id1}/{id2}")]
         public ActionResult project()
         {
             return View();
