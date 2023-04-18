@@ -1,5 +1,5 @@
-﻿
-
+﻿var RspData;
+var result;
 var TotalData = '';
 var TotalData1 = '';
 var Bardatasource = '';
@@ -10,7 +10,7 @@ var TrendsModule = function () {
         init: function () {
            
             var QueryStringARR = common.GetQueryString();
-            var result = common.GetTrendsTypePayload(QueryStringARR);
+            result = common.GetTrendsTypePayload(QueryStringARR);
 
             var userdetails = common.CheckIsPaid();
             UserType = userdetails.UserType;
@@ -31,10 +31,16 @@ var TrendsModule = function () {
                 "json_str": JSON.stringify(jsonstr)
             }
             var APIkey = utility.ServiceAPIURL("Dashboard/PriceIndex");
-            var Data = utility.ajaxselect(APIkey, Payload, "Post", false);
+            RspData = utility.ajaxselect(APIkey, Payload, "Post", false);
             
-            TotalData = Data;
-            console.log(Data);
+            TotalData = RspData;
+            console.log(RspData);
+            $("#screenName").text(RspData.data[0].screen_name);
+            $("#qtrText").text(RspData.data[0].current_qtr_text);
+            $("#rateTxt").text(RspData.data[0].current_rate_in_txt);
+            $("#cagrPct").text(RspData.data[0].cagr_last_1yr_pct);
+            common.dtpicker_cal("#fromDateID");
+            /*moment().startOf('year');*/
             
             //if (Data.status == "OK") {
             //    TrendsModule.TransuctionBarChat(TotalData);
@@ -428,7 +434,65 @@ var TrendsModule = function () {
 
             }
         },
+        getvaluation: function (SName) {
+            switch (SName) {
+                case "project":
+                    var jsonstr = {
+                        "id": result.Id,
+                        "pin_input": RspData.data[0].pincode,
+                        "orig_value_rs": $("#Orgvalue").val(),
+                        "orig_date": $("#fromDateID").val()
+                    }
+                    var Payload = {
+                        "lookup": "project_valuation",
+                        "json_str": JSON.stringify(jsonstr)
+                    }
+                    break;
+                    //return Payload;
+                case "location":
+                    var jsonstr = {
+                        "id": result.locationid,
+                        "orig_value_rs": $("#Orgvalue").val(),
+                        "orig_date": $("#fromDateID").val()
+                    }
+                    var Payload = {
+                        "lookup": "location_valuation",
+                        "json_str": JSON.stringify(jsonstr)
+                    }
+                        break;
+                    //return Payload;
+                case "pincode":
+                    var jsonstr = {
+                        "id": result.pincode,
+                        "orig_value_rs": $("#Orgvalue").val(),
+                        "orig_date": $("#fromDateID").val()
+                    }
+                    var Payload = {
+                        "lookup": "pincode_valuation",
+                        "json_str": JSON.stringify(jsonstr)
+                    }
+                    break;
+                    //return Payload;
+              
+                case "city":
+                    var jsonstr = {
+                        "id": result.city_id,
+                        "orig_value_rs": $("#Orgvalue").val(),
+                        "orig_date": $("#fromDateID").val()
+                    }
+                    var Payload = {
+                        "lookup": "city_valuation",
+                        "json_str": JSON.stringify(jsonstr)
+                    }
+                    //return Payload;
+                    break;
+            }
+           
+            var APIkey = utility.ServiceAPIURL("Dashboard/price_index_trend");
+            var retData = utility.ajaxselect(APIkey, Payload, "Post", false);
+            console.log(retData);
 
+        },
         //CarpetTableLoad: function (dt) {
         //    var st = '';
         //    $("#Carpetdata").empty();
@@ -727,4 +791,9 @@ var TrendsModule = function () {
     }
 }();
 
+$("#getValuation").click(function () {
+   // var SearchName = Cookies.get('SearchName');
+    var SName = utility.getCookie('SearchName');
+    TrendsModule.getvaluation(SName);
+});
 

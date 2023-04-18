@@ -10,16 +10,16 @@
         <div class="innerSectionHeader d-flex">
             <a href="#" class="mr-2 pt-2"><img src="~/images/chevron-left.svg" alt=""></a>
             <div class="header flex-1">
-                <h3>Evergreen Shine, Mulund</h3>
+                <h3 id="screenName"></h3>
                 <div class="border-h"></div>
                 <div class="d-flex align-items-center">
                     <div class="d-flex mr-3">
-                        <label>Rate in Dec'22</label>
-                        <span class="color-red">Rs 7,945/ sq.ft</span>
+                        <label id="qtrText"></label>
+                        <span class="color-red" id="rateTxt"></span>
                     </div>
                     <div class="d-flex mr-3">
                         <label>YoY Change</label>
-                        <span class="color-red">10%</span>
+                        <span class="color-red"id="cagrPct"></span>
                     </div>
                     <div class="d-flex mr-3">
                         <div class="dropdown ml-0">
@@ -59,22 +59,22 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <span><img src="~/images/calendar-icon.svg" alt="" class="icon"></span>
-                                <input type="text" class="form-control flex-1" placeholder="Date" name="originationDate" value="" />
+                                <input type="text" class="form-control flex-1" id="fromDateID" placeholder="Date" name="originationDate" value="" />
                             </div>
                         </div>
                     </div>
                     <div class="card cardSize rounded-0">
                         <div class="card-header rounded-0">
-                            Origination Date
+                            Origination Value
                         </div>
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <span><img src="~/images/rupees-icon.svg" alt="" class="icon"></span>
-                                <input type="text" class="form-control flex-1" placeholder="Value" value="" />
+                                <input type="text" class="form-control flex-1" id="Orgvalue" placeholder="Value" value="" />
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn-red text-center cardSize border-0 rounded-0 p-0">
+                    <button type="button" id="getValuation"class="btn-red text-center cardSize border-0 rounded-0 p-0">
                         Get Current<br>Valuation
                     </button>
                 </div>

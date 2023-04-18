@@ -1,4 +1,5 @@
 ﻿var searchType = "project";
+var tempSearchType;
 var SearchModule = function () {
    
     return {
@@ -81,10 +82,13 @@ var SearchModule = function () {
                         window.location.href = routingurl;
                     }
                     else {
-                        var routingurl = utility.FrontEndAPIURL('Trend/Project/' + ui.item.id + '/0');
-                        window.location.href = routingurl;
+                    var searchName = searchType;
+                    utility.setCookie('SearchName', searchName, 1000);
+                    var routingurl = utility.FrontEndAPIURL('Trend/Project/'+ui.item.id+'/ProjectText');
+                    window.location.href = routingurl;
                     }
                    
+                    
                     
                 },
 
@@ -100,22 +104,24 @@ $(".dropdown-menu li a").click(function () {
     var value = $(this).text();
     searchType = value;
     var tempSearchType;
+   
     $('#selectedSearchType').text(value);
+ 
     if (value == "Pincode") {
-        tempSearchType = "pincode";
-        searchType = tempSearchType;
+       // tempSearchType = "pincode";
+        searchType = "pincode";
     }
     else if (value == "Location") {
-        tempSearchType = "location";
-        searchType = tempSearchType;
+       // tempSearchType = "location";
+        searchType = "location";
     }
     else if (value == "City") {
-        tempSearchType = "city";
-        searchType = tempSearchType;
+       // tempSearchType = "city";
+        searchType = "city";
     }
     else {
-        tempSearchType = "project";
-        searchType = tempSearchType;
+       // tempSearchType = "project";
+        searchType = "project";
     }
 
     SearchModule.AutocompleteSearch(tempSearchType)

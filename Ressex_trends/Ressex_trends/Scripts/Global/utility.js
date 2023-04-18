@@ -756,3 +756,115 @@ utility.bindline = function (Controlid, lbl, dt, hovervals, ticks, responsive, c
     lineChart = new Chart(Controlid, config);
     return lineChart;
 }
+
+utility.bindmultilinedinamic = function (Controlid, dataCritical, responsive, axistxt, label, ticks) {
+
+    var chartOptions =
+    {
+        responsive: responsive,
+        //bezierCurve: true,
+        //point: { display: false },
+        plugins: {
+            datalabels: {
+                display: false,
+            },
+        },
+        //title: {
+        //    display: true,
+        //    text:'da' //titletxt
+        //},
+        legend: {
+            display: true,
+            position: 'top',
+            labels: {
+                boxWidth: 100,
+                fontColor: 'black'
+            }
+        },
+        //tooltips: {
+        //        mode: 'nearest',
+        //        intersect: false,
+        //        callbacks: {
+        //            label: function (tooltipItems, data) {
+        //                if (data.datasets[tooltipItems.datasetIndex].y != undefined) {
+        //                    return 'Grade: ' + data.datasets[tooltipItems.datasetIndex].y[tooltipItems.index];
+        //                }
+        //                else {
+        //                    return data[tooltipItems.index]
+        //                }
+
+        //            }
+        //        }
+        //    },
+        hover: {
+            mode: 'nearest',
+            intersect: true
+
+        },
+        //scales: {
+        //    xAxes: [{
+        //        display: true,
+        //        scaleLabel: {
+        //            display: true,
+        //            labelString: axistxt[0].X
+        //        }
+        //    }],
+        //    yAxes: [{
+        //        ticks: ticks,
+        //        display: true,
+        //        scaleLabel: {
+        //            display: true,
+        //            labelString: axistxt[0].Y
+        //        },
+        //    }]
+        //},
+        //events: ['click']
+        scales: {
+            y: {
+                title: {
+                    display: true,
+                    text: axistxt[0].Y
+                }
+            },
+            x: {
+                title: {
+                    display: true,
+                    text: axistxt[0].X
+                }
+            }
+        },
+    }
+
+
+
+    var MultilineData = {
+        labels: label,
+        datasets: dataCritical
+    };
+
+    var lineChart = new Chart(Controlid, {
+        type: 'line',
+        data: MultilineData,
+        options: chartOptions,
+        plugins: {
+            afterDraw: function (chart) {
+                if (chart.data.labels.length === 0) {
+                    // No data is present
+                    var ctx = chart.chart.ctx;
+                    var width = chart.chart.width;
+                    var height = chart.chart.height
+                    chart.clear();
+
+                    ctx.save();
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.font = "30px normal 'Helvetica Nueue'";
+                    ctx.fillText('No data to display', width / 2, height / 2);
+                    ctx.restore();
+                }
+            }
+        }
+    });
+
+    return lineChart;
+}

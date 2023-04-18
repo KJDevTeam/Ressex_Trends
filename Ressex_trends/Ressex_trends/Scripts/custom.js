@@ -1,8 +1,8 @@
 
-// daterangepicker
-$(function () {
-    $('input[name="originationDate"]').daterangepicker({
-        singleDatePicker: true,
-        showDropdowns: true,
-    });
-});
+//// daterangepicker
+//$(function () {
+//    $('input[name="originationDate"]').daterangepicker({
+//        singleDatePicker: true,
+//        showDropdowns: true,
+//    });
+//});
