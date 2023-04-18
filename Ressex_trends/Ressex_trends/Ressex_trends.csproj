@@ -282,8 +282,8 @@
     <Content Include="Scripts\jquery-ui-1.13.0.min.js" />
     <Content Include="Scripts\PageLavel\Dashboard.js" />
     <Content Include="Scripts\PageLavel\layout.js" />
-    <Content Include="Scripts\PageLavel\PincodeList.js" />
-    <Content Include="Scripts\PageLavel\ProjectList.js" />
+    <Content Include="Scripts\PageLavel\List\PincodeList.js" />
+    <Content Include="Scripts\PageLavel\List\ProjectList.js" />
     <Content Include="Scripts\PartialViewJs\SearchView.js" />
     <Content Include="Scripts\PartialViewJs\Trends.js" />
     <Content Include="Scripts\popper.min.js" />
