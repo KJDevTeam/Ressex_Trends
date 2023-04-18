@@ -102,7 +102,7 @@ $(".dropdown-menu li a").click(function () {
 
     $("#options").text($(this).text());
     var value = $(this).text();
-    searchType = value;
+    /*searchType = value;*/
     var tempSearchType;
    
     $('#selectedSearchType').text(value);
@@ -124,7 +124,7 @@ $(".dropdown-menu li a").click(function () {
         searchType = "project";
     }
 
-    SearchModule.AutocompleteSearch(tempSearchType)
+    SearchModule.AutocompleteSearch(searchType);
    
 });
 
