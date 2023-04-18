@@ -125,7 +125,7 @@ $(".dropdown-menu li a").click(function () {
 $('#Search').click(function () {
 
     if (searchType == "pincode") {
-        var routingurl = utility.FrontEndAPIURL('list/pincode/0/0/1');
+        var routingurl = utility.FrontEndAPIURL('list/pincode/0/0/0');
         window.location.href = routingurl;
     }
     else if (searchType == "city") {

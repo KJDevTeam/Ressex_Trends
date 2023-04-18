@@ -282,6 +282,8 @@
     <Content Include="Scripts\jquery-ui-1.13.0.min.js" />
     <Content Include="Scripts\PageLavel\Dashboard.js" />
     <Content Include="Scripts\PageLavel\layout.js" />
+    <Content Include="Scripts\PageLavel\List\CityList.js" />
+    <Content Include="Scripts\PageLavel\List\LocationList.js" />
     <Content Include="Scripts\PageLavel\List\PincodeList.js" />
     <Content Include="Scripts\PageLavel\List\ProjectList.js" />
     <Content Include="Scripts\PartialViewJs\SearchView.js" />

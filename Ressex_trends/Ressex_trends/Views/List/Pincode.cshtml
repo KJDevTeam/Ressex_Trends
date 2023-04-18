@@ -146,7 +146,7 @@
 
         </div>
         <div class="text-center">
-            <button class="btn btn-red rounded-0" onclick="PincodeViewmoreListClick()" id="viewmoreList">View more</button>
+            <button class="btn btn-red rounded-0" onclick="PincodeViewmoreListClick()" id="PincodeviewmoreList">View more</button>
         </div>
     </div>
 </section>
@@ -159,8 +159,20 @@
     <script src="~/Scripts/PageLavel/List/PincodeList.js"></script>
     <script type="text/javascript" charset="utf-8">
         $(document).ready(function () {
-            PincodeListModule.init("name", "asc");
+            var selectedFilter;
+            var _filterSelected = localStorage.getItem('ShortcutFilter');
+
+            if (_filterSelected != null) {
+                selectedFilter = JSON.parse(_filterSelected);
+            }
+            if (selectedFilter != null) {
+                PincodeListModule.init(selectedFilter.sortby, selectedFilter.orderby);
+            }
+            else {
+                PincodeListModule.init("name", "asc");
+            }
             $('#overlay').fadeOut();
+
 
         });
     </script>

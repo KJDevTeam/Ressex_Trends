@@ -1,6 +1,6 @@
 ﻿var listindex = 1;
-var keepProjectListData = [];
-var ProjectListModule = function () {
+var keepCityListData = [];
+var CityListModule = function () {
     return {
         init: function (sortBy, OrderBy) {
 
@@ -20,27 +20,27 @@ var ProjectListModule = function () {
 
 
             }
-            ProjectListModule.sortingDecider(sortBy, OrderBy);
-            var result = ProjectListModule.ProjectPayload("project", QueryStringARR,sortBy, OrderBy);
+            CityListModule.sortingDecider(sortBy, OrderBy);
+            var result = CityListModule.CityPayload("City", QueryStringARR,sortBy, OrderBy);
 
             var APIkey = utility.ServiceAPIURL("Dashboard/PriceIndexList");
             var Data = utility.ajaxselect(APIkey, result, "Post", false);
 
             TotalData = Data;
             console.log(Data);
-            keepProjectListData = Data.data;
+            keepCityListData = Data.data;
 
             //Project Heading Decider
 
-            if (QueryStringARR[3] == 0) {
-                $('#ProjectlistHeading').text(keepProjectListData[0].projects_in_india);
+            if (QueryStringARR[5] == 0) {
+                $('#CitylistHeading').text(keepCityListData[0].cities_in_india);
             }
             else {
-                $('#ProjectlistHeading').text(keepProjectListData[0].pincode_input);
+                $('#CitylistHeading').text(keepCityListData[0].city_search);
             }
 
 
-            ProjectListModule.ListLoad(Data.data);
+            CityListModule.ListLoad(Data.data);
 
 
 
@@ -58,11 +58,11 @@ var ProjectListModule = function () {
                 }
                 else {
                     arr_toload = List_arr.slice(0, List_arr.length);
-                    $('#ProjectviewmoreList').hide();
+                    $('#CityviewmoreList').hide();
                 }
                 var img = utility.FrontEndAPIURL("images");
                 var st = ''
-                $("#ProjectList").empty();
+                $("#CityList").empty();
                 $.each(arr_toload, function (index, items) {
 
                     st += '<div class="card my-3">\
@@ -72,8 +72,8 @@ var ProjectListModule = function () {
                     </div>\
                                 <div class="col-2">\
                                     <div class="card-body">\
-                                        <h5 class="card-title">'+ items.name + '</h5>\
-                                        <p class="card-text">'+ items.region_city + '</p>\
+                                        <h5 class="card-title">'+ items.city_search + '</h5>\
+                                        <p class="card-text">'+ items.state + '</p>\
                                     </div>\
                                 </div>\
                                 <div class="col-2">\
@@ -102,8 +102,7 @@ var ProjectListModule = function () {
                                 </div>\
                                 <div class="col-2">\
                                     <div class="card-body">\
-                                        <span class="card-title">Project Status</span>\
-                                        <p class="card-text">'+ items.project_status + '</p>\
+                                        <button class="btn text-danger">View Projects</button>\
                                     </div>\
                                 </div>\
                                 <div class="col-1">\
@@ -128,10 +127,10 @@ var ProjectListModule = function () {
                     //            </div>\
                     //</div >';
                 });
-                var paginateText = 'Showing <b>' + arr_toload.length + '</b> projects out of <b>' + keepProjectListData.length + '</b>';
-                $('#ProjectPaginationText').empty();
-                $('#ProjectPaginationText').append(paginateText);
-                $("#ProjectList").append(st);
+                var paginateText = 'Showing <b>' + arr_toload.length + '</b> cities out of <b>' + keepCityListData.length + '</b>';
+                $('#CityPaginationText').empty();
+                $('#CityPaginationText').append(paginateText);
+                $("#CityList").append(st);
             }
 
         },
@@ -139,22 +138,22 @@ var ProjectListModule = function () {
 
             //SortBy
             if (sortby == "name") {
-                var Text = ProjectListModule.orderbyDecider("#ProjectNameSortIcon", orderby);
-                $('#ProjectnameSortID').text(Text);
-                $('#ProjectnameSortID').addClass('text-danger');
+                var Text = CityListModule.orderbyDecider("#CityNameSortIcon", orderby);
+                $('#CitynameSortID').text(Text);
+                $('#CitynameSortID').addClass('text-danger');
 
 
                 //Remove Red From Text
-                $('#ProjectCurrRateSortID').removeClass('text-danger');
-                $('#ProjectyoySortID').removeClass('text-danger');
-                $('#ProjectCAGR3YSortID').removeClass('text-danger');
-                $('#ProjectCAGR5YSortID').removeClass('text-danger');
+                $('#CityCurrRateSortID').removeClass('text-danger');
+                $('#CityyoySortID').removeClass('text-danger');
+                $('#CityCAGR3YSortID').removeClass('text-danger');
+                $('#CityCAGR5YSortID').removeClass('text-danger');
 
                 //Remove Icon
-                $('#ProjectCurRateSortIcon').removeClass();
-                $('#ProjectYoySortIcon').removeClass();
-                $('#Projectcagr3ySortIcon').removeClass();
-                $('#Projectcagr5ySortIcon').removeClass();
+                $('#CityCurRateSortIcon').removeClass();
+                $('#CityYoySortIcon').removeClass();
+                $('#Citycagr3ySortIcon').removeClass();
+                $('#Citycagr5ySortIcon').removeClass();
 
 
 
@@ -163,75 +162,75 @@ var ProjectListModule = function () {
             }
             else if (sortby == "current_rate") {
 
-                var Text = ProjectListModule.orderbyDecider("#ProjectCurRateSortIcon", orderby);
-                $('#ProjectCurrRateSortID').text(Text);
-                $('#ProjectCurrRateSortID').addClass('text-danger');
+                var Text = CityListModule.orderbyDecider("#CityCurRateSortIcon", orderby);
+                $('#CityCurrRateSortID').text(Text);
+                $('#CityCurrRateSortID').addClass('text-danger');
 
-                $('#ProjectnameSortID').removeClass('text-danger');
-                $('#ProjectyoySortID').removeClass('text-danger');
-                $('#ProjectCAGR3YSortID').removeClass('text-danger');
-                $('#ProjectCAGR5YSortID').removeClass('text-danger');
+                $('#CitynameSortID').removeClass('text-danger');
+                $('#CityyoySortID').removeClass('text-danger');
+                $('#CityCAGR3YSortID').removeClass('text-danger');
+                $('#CityCAGR5YSortID').removeClass('text-danger');
 
                 //Remove Icon
-                $('#ProjectNameSortIcon').removeClass();
-                $('#ProjectYoySortIcon').removeClass();
-                $('#Projectcagr3ySortIcon').removeClass();
-                $('#Projectcagr5ySortIcon').removeClass();
+                $('#CityNameSortIcon').removeClass();
+                $('#CityYoySortIcon').removeClass();
+                $('#Citycagr3ySortIcon').removeClass();
+                $('#Citycagr5ySortIcon').removeClass();
             }
             else if (sortby == "cagr_last_1yr") {
 
-                var Text = ProjectListModule.orderbyDecider("#ProjectYoySortIcon", orderby);
-                $('#ProjectYoySortIcon').text(Text);
-                $('#ProjectyoySortID').addClass('text-danger');
+                var Text = CityListModule.orderbyDecider("#CityYoySortIcon", orderby);
+                $('#CityYoySortIcon').text(Text);
+                $('#CityyoySortID').addClass('text-danger');
 
                 //Remove Red from Text
-                $('#ProjectnameSortID').removeClass('text-danger');
-                $('#ProjectCurrRateSortID').removeClass('text-danger');
-                $('#ProjectCAGR3YSortID').removeClass('text-danger');
-                $('#ProjectCAGR5YSortID').removeClass('text-danger');
+                $('#CitynameSortID').removeClass('text-danger');
+                $('#CityCurrRateSortID').removeClass('text-danger');
+                $('#CityCAGR3YSortID').removeClass('text-danger');
+                $('#CityCAGR5YSortID').removeClass('text-danger');
 
                 //Remove Icon from Text
-                $('#ProjectNameSortIcon').removeClass();
-                $('#ProjectCurRateSortIcon').removeClass();
-                $('#Projectcagr3ySortIcon').removeClass();
-                $('#Projectcagr5ySortIcon').removeClass();
+                $('#CityNameSortIcon').removeClass();
+                $('#CityCurRateSortIcon').removeClass();
+                $('#Citycagr3ySortIcon').removeClass();
+                $('#Citycagr5ySortIcon').removeClass();
 
             }
             else if (sortby == "cagr_last_3yr") {
 
-                var Text = ProjectListModule.orderbyDecider("#Projectcagr3ySortIcon", orderby);
-                $('#ProjectCAGR3YSortID').text(Text);
-                $('#ProjectCAGR3YSortID').addClass('text-danger');
+                var Text = CityListModule.orderbyDecider("#Citycagr3ySortIcon", orderby);
+                $('#CityCAGR3YSortID').text(Text);
+                $('#CityCAGR3YSortID').addClass('text-danger');
 
-                $('#ProjectnameSortID').removeClass('text-danger');
-                $('#ProjectCurrRateSortID').removeClass('text-danger');
-                $('#ProjectyoySortID').removeClass('text-danger');
-                $('#ProjectCAGR5YSortID').removeClass('text-danger');
+                $('#CitynameSortID').removeClass('text-danger');
+                $('#CityCurrRateSortID').removeClass('text-danger');
+                $('#CityyoySortID').removeClass('text-danger');
+                $('#CityCAGR5YSortID').removeClass('text-danger');
 
 
                 //Remove Icon from Text
-                $('#ProjectNameSortIcon').removeClass();
-                $('#ProjectCurRateSortIcon').removeClass();
-                $('#ProjectYoySortIcon').removeClass();
-                $('#Projectcagr5ySortIcon').removeClass();
+                $('#CityNameSortIcon').removeClass();
+                $('#CityCurRateSortIcon').removeClass();
+                $('#CityYoySortIcon').removeClass();
+                $('#Citycagr5ySortIcon').removeClass();
             }
             else if (sortby == "cagr_last_5yr") {
 
-                var Text = ProjectListModule.orderbyDecider("#Projectcagr5ySortIcon", orderby);
-                $('#ProjectCAGR5YSortID').text(Text);
-                $('#ProjectCAGR5YSortID').addClass('text-danger');
+                var Text = CityListModule.orderbyDecider("#Citycagr5ySortIcon", orderby);
+                $('#CityCAGR5YSortID').text(Text);
+                $('#CityCAGR5YSortID').addClass('text-danger');
 
-                $('#ProjectnameSortID').removeClass('text-danger');
-                $('#ProjectCurrRateSortID').removeClass('text-danger');
-                $('#ProjectyoySortID').removeClass('text-danger');
-                $('#ProjectCAGR3YSortID').removeClass('text-danger');
+                $('#CitynameSortID').removeClass('text-danger');
+                $('#CityCurrRateSortID').removeClass('text-danger');
+                $('#CityyoySortID').removeClass('text-danger');
+                $('#CityCAGR3YSortID').removeClass('text-danger');
 
 
                 //Remove Icon from Text
-                $('#ProjectNameSortIcon').removeClass();
-                $('#ProjectCurRateSortIcon').removeClass();
-                $('#ProjectYoySortIcon').removeClass();
-                $('#Projectcagr3ySortIcon').removeClass();
+                $('#CityNameSortIcon').removeClass();
+                $('#CityCurRateSortIcon').removeClass();
+                $('#CityYoySortIcon').removeClass();
+                $('#Citycagr3ySortIcon').removeClass();
             }
 
 
@@ -255,7 +254,7 @@ var ProjectListModule = function () {
 
 
         },
-        ProjectPayload: function (lookup, QueryStringarr, sortBy, OrderBy) {
+        CityPayload: function (lookup, QueryStringarr, sortBy, OrderBy) {
             var jsonstr = {};
             if (QueryStringarr[3] == 0 && QueryStringarr[4] == 0 && QueryStringarr[5] == 0) {
                 jsonstr = {
@@ -264,27 +263,13 @@ var ProjectListModule = function () {
                 }
 
             }
-            else if (QueryStringarr[3] != 0 && QueryStringarr[4] == 0 && QueryStringarr[5] == 0) {
-                jsonstr = {
-                    "pincode": "" + QueryStringarr[3] + "",
-                    "sort_by": sortBy,
-                    "order_by": OrderBy
-                }
-            }
-            else if (QueryStringarr[3] == 0 && QueryStringarr[4] != 0 && QueryStringarr[5] == 0) {
-                jsonstr = {
-                    "location_id": "" + QueryStringarr[4] + "",
-                    "sort_by": sortBy,
-                    "order_by": OrderBy
-                }
-            }
             else if (QueryStringarr[3] == 0 && QueryStringarr[4] == 0 && QueryStringarr[5] != 0) {
                 jsonstr = {
                     "city_id": "" + QueryStringarr[5] + "",
                     "sort_by": sortBy,
                     "order_by": OrderBy
                 }
-            }
+            }           
             else {
                 jsonstr = {
                     "sort_by": sortBy,
@@ -304,113 +289,113 @@ var ProjectListModule = function () {
     }
 }();
 
-function ProjectViewmoreListClick() {
+function CityViewmoreListClick() {
     listindex++;
-    $("#ProjectList").empty();
-    ProjectListModule.ListLoad(keepProjectListData);
+    $("#CityList").empty();
+    CityListModule.ListLoad(keepCityListData);
 
 }
 
-function ProjectNameSortclick() {
+function CityNameSortclick() {
     $('#overlay').fadeIn();
-    ProjectListModule.init("name", "asc");
+    CityListModule.init("name", "asc");
     $('#overlay').fadeOut();
 }
-function ProjectCurRateSortclick() {
+function CityCurRateSortclick() {
     $('#overlay').fadeIn();
-    ProjectListModule.init("current_rate", "asc");
+    CityListModule.init("current_rate", "asc");
     $('#overlay').fadeOut();
 }
-function ProjectYoySortclick() {
+function CityYoySortclick() {
     $('#overlay').fadeIn();
-    ProjectListModule.init("cagr_last_1yr", "asc");
+    CityListModule.init("cagr_last_1yr", "asc");
     $('#overlay').fadeOut();
 }
-function Projectcagr3ySortclick() {
+function Citycagr3ySortclick() {
     $('#overlay').fadeIn();
-    ProjectListModule.init("cagr_last_3yr", "asc");
+    CityListModule.init("cagr_last_3yr", "asc");
     $('#overlay').fadeOut();
 }
-function Projectcagr5ySortclick() {
+function Citycagr5ySortclick() {
     $('#overlay').fadeIn();
-    ProjectListModule.init("cagr_last_5yr", "asc");
+    CityListModule.init("cagr_last_5yr", "asc");
     $('#overlay').fadeOut();
 }
 
-function ProjectNamesortIconClick(event) {
+function CityNamesortIconClick(event) {
     $('#overlay').fadeIn();
     if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
-        ProjectListModule.init("name", "desc");
-        $('#ProjectNameSortIcon').removeClass();
-        $('#ProjectNameSortIcon').addClass("fa fa-arrow-down text-danger");
+        CityListModule.init("name", "desc");
+        $('#CityNameSortIcon').removeClass();
+        $('#CityNameSortIcon').addClass("fa fa-arrow-down text-danger");
         //$('#').removeClass();
         //$('#CurRateSortIcon').removeClass();
         //$('#YoySortIcon').removeClass();
         //$('#cagr3ySortIcon').removeClass();
     }
     else {
-        ProjectListModule.init("name", "asc");
-        $('#ProjectNameSortIcon').removeClass();
-        $('#ProjectNameSortIcon').addClass("fa fa-arrow-up text-danger");
+        CityListModule.init("name", "asc");
+        $('#CityNameSortIcon').removeClass();
+        $('#CityNameSortIcon').addClass("fa fa-arrow-up text-danger");
     }
     $('#overlay').fadeOut();
 }
-function ProjectCurRateIconClick(event) {
+function CityCurRateIconClick(event) {
     $('#overlay').fadeIn();
     if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
-        ProjectListModule.init("current_rate", "desc");
-        $('#ProjectCurRateSortIcon').removeClass();
-        $('#ProjectCurRateSortIcon').addClass("fa fa-arrow-down text-danger");
+        CityListModule.init("current_rate", "desc");
+        $('#CityCurRateSortIcon').removeClass();
+        $('#CityCurRateSortIcon').addClass("fa fa-arrow-down text-danger");
 
     }
     else {
-        ProjectListModule.init("current_rate", "asc");
-        $('#ProjectCurRateSortIcon').removeClass();
-        $('#ProjectCurRateSortIcon').addClass("fa fa-arrow-up text-danger");
+        CityListModule.init("current_rate", "asc");
+        $('#CityCurRateSortIcon').removeClass();
+        $('#CityCurRateSortIcon').addClass("fa fa-arrow-up text-danger");
     }
     $('#overlay').fadeOut();
 }
-function ProjectyoyIconClick(event) {
+function CityyoyIconClick(event) {
     $('#overlay').fadeIn();
     if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
-        ProjectListModule.init("cagr_last_1yr", "desc");
-        $('#ProjectYoySortIcon').removeClass();
-        $('#ProjectYoySortIcon').addClass("fa fa-arrow-down text-danger");
+        CityListModule.init("cagr_last_1yr", "desc");
+        $('#CityYoySortIcon').removeClass();
+        $('#CityYoySortIcon').addClass("fa fa-arrow-down text-danger");
     }
     else {
-        ProjectListModule.init("cagr_last_1yr", "asc");
-        $('#ProjectYoySortIcon').removeClass();
-        $('#ProjectYoySortIcon').addClass("fa fa-arrow-up text-danger");
+        CityListModule.init("cagr_last_1yr", "asc");
+        $('#CityYoySortIcon').removeClass();
+        $('#CityYoySortIcon').addClass("fa fa-arrow-up text-danger");
     }
     $('#overlay').fadeOut();
 }
-function Projectcagr3yIconClick(event) {
+function Citycagr3yIconClick(event) {
     $('#overlay').fadeIn();
     if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
-        ProjectListModule.init("cagr_last_3yr", "desc");
-        $('#Projectcagr3ySortIcon').removeClass();
-        $('#Projectcagr3ySortIcon').addClass("fa fa-arrow-down text-danger");
+        CityListModule.init("cagr_last_3yr", "desc");
+        $('#Citycagr3ySortIcon').removeClass();
+        $('#Citycagr3ySortIcon').addClass("fa fa-arrow-down text-danger");
 
     }
     else {
-        ProjectListModule.init("cagr_last_3yr", "asc");
-        $('#Projectcagr3ySortIcon').removeClass();
-        $('#Projectcagr3ySortIcon').addClass("fa fa-arrow-up text-danger");
+        CityListModule.init("cagr_last_3yr", "asc");
+        $('#Citycagr3ySortIcon').removeClass();
+        $('#Citycagr3ySortIcon').addClass("fa fa-arrow-up text-danger");
     }
     $('#overlay').fadeOut();
 }
-function Projectcagr5yIconClick(event) {
+function Citycagr5yIconClick(event) {
     $('#overlay').fadeIn();
     if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
-        ProjectListModule.init("cagr_last_5yr", "desc");
-        $('#Projectcagr5ySortIcon').removeClass();
-        $('#Projectcagr5ySortIcon').addClass("fa fa-arrow-down text-danger");
+        CityListModule.init("cagr_last_5yr", "desc");
+        $('#Citycagr5ySortIcon').removeClass();
+        $('#Citycagr5ySortIcon').addClass("fa fa-arrow-down text-danger");
 
     }
     else {
-        ProjectListModule.init("cagr_last_5yr", "asc");
-        $('#Projectcagr5ySortIcon').removeClass();
-        $('#Projectcagr5ySortIcon').addClass("fa fa-arrow-up text-danger");
+        CityListModule.init("cagr_last_5yr", "asc");
+        $('#Citycagr5ySortIcon').removeClass();
+        $('#Citycagr5ySortIcon').addClass("fa fa-arrow-up text-danger");
     }
     $('#overlay').fadeOut();
 }

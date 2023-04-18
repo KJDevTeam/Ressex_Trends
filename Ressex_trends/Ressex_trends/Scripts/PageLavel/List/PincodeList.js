@@ -1,8 +1,11 @@
 ﻿var listindex = 1;
 var keepPincodeListData = [];
-var ProjectListModule = function () {
+var PincodeListModule = function () {
     return {
         init: function (sortBy,OrderBy) {
+
+            //Local Storage Clear
+            localStorage.clear();
 
             var QueryStringARR = common.GetQueryString();
             var result = common.GetTrendsTypePayload(QueryStringARR);
@@ -17,8 +20,8 @@ var ProjectListModule = function () {
 
 
             }
-            ProjectListModule.sortingDecider(sortBy, OrderBy);
-            var result = common.PincodePayload("pincode", QueryStringARR, "pincode",QueryStringARR[3],sortBy,OrderBy);           
+            PincodeListModule.sortingDecider(sortBy, OrderBy);
+            var result = PincodeListModule.PincodePayload("pincode", QueryStringARR,sortBy,OrderBy);
 
             var APIkey = utility.ServiceAPIURL("Dashboard/PriceIndexList");
             var Data = utility.ajaxselect(APIkey, result, "Post", false);
@@ -37,7 +40,7 @@ var ProjectListModule = function () {
             }
            
             
-            ProjectListModule.ListLoad(Data.data);
+            PincodeListModule.ListLoad(Data.data);
 
 
 
@@ -135,7 +138,7 @@ var ProjectListModule = function () {
 
                 //SortBy
                 if (sortby == "name") {
-                    var Text = ProjectListModule.orderbyDecider("#PincodeNameSortIcon", orderby);
+                    var Text = PincodeListModule.orderbyDecider("#PincodeNameSortIcon", orderby);
                     $('#PincodenameSortID').text(Text);
                     $('#PincodenameSortID').addClass('text-danger');
 
@@ -159,7 +162,7 @@ var ProjectListModule = function () {
                 }
                 else if (sortby == "current_rate") {
 
-                    var Text = ProjectListModule.orderbyDecider("#PincodeCurRateSortIcon", orderby);
+                    var Text = PincodeListModule.orderbyDecider("#PincodeCurRateSortIcon", orderby);
                     $('#PincodeCurrRateSortID').text(Text);
                     $('#PincodeCurrRateSortID').addClass('text-danger');
 
@@ -176,7 +179,7 @@ var ProjectListModule = function () {
                 }
                 else if (sortby == "cagr_last_1yr") {
 
-                    var Text = ProjectListModule.orderbyDecider("#PincodeYoySortIcon", orderby);
+                    var Text = PincodeListModule.orderbyDecider("#PincodeYoySortIcon", orderby);
                     $('#PincodeYoySortIcon').text(Text);
                     $('#PincodeyoySortID').addClass('text-danger');
 
@@ -195,7 +198,7 @@ var ProjectListModule = function () {
                 }
                 else if (sortby == "cagr_last_3yr") {
 
-                    var Text = ProjectListModule.orderbyDecider("#Pincodecagr3ySortIcon", orderby);
+                    var Text = PincodeListModule.orderbyDecider("#Pincodecagr3ySortIcon", orderby);
                     $('#PincodeCAGR3YSortID').text(Text);
                     $('#PincodeCAGR3YSortID').addClass('text-danger');
 
@@ -213,7 +216,7 @@ var ProjectListModule = function () {
                 }
                 else if (sortby == "cagr_last_5yr") {
 
-                    var Text = ProjectListModule.orderbyDecider("#Pincodecagr5ySortIcon", orderby);
+                    var Text = PincodeListModule.orderbyDecider("#Pincodecagr5ySortIcon", orderby);
                     $('#PincodeCAGR5YSortID').text(Text);
                     $('#PincodeCAGR5YSortID').addClass('text-danger');
 
@@ -239,7 +242,7 @@ var ProjectListModule = function () {
 
 
 
-            if (orderby == "Desc") {
+            if (orderby == "desc") {
                 $(IconID).addClass("fa fa-arrow-down text-danger");
 
 
@@ -250,6 +253,46 @@ var ProjectListModule = function () {
             }
 
 
+        },
+        PincodePayload: function (lookup, QueryStringarr, sortBy, OrderBy) {
+            var jsonstr = {};
+            if (QueryStringarr[3] == 0 && QueryStringarr[4] == 0 && QueryStringarr[5] == 0) {
+                jsonstr = {
+                    "sort_by": sortBy,
+                    "order_by": OrderBy
+                }
+
+            }
+            else if (QueryStringarr[3] != 0 && QueryStringarr[4] == 0 && QueryStringarr[5] == 0) {
+                jsonstr = {
+                    "pincode": "" + QueryStringarr[3] + "",
+                    "sort_by": sortBy,
+                    "order_by": OrderBy
+                }
+            }
+
+            else if (QueryStringarr[3] == 0 && QueryStringarr[4] == 0 && QueryStringarr[5] != 0) {
+                jsonstr = {
+                    "city_id": "" + QueryStringarr[5] + "",
+                    "sort_by": sortBy,
+                    "order_by": OrderBy
+                }
+            }
+            else {
+                jsonstr = {
+                    "sort_by": sortBy,
+                    "order_by": OrderBy
+                }
+            }
+
+
+
+
+            return APIPayload = {
+                "lookup": "" + lookup + "",
+                "json_str": JSON.stringify(jsonstr)
+            };
+
         }
     }
 }();
@@ -257,40 +300,40 @@ var ProjectListModule = function () {
 function PincodeViewmoreListClick() {
     listindex++;
     $("#PincodeList").empty();
-    ProjectListModule.ListLoad(keepPincodeListData);
+    PincodeListModule.ListLoad(keepPincodeListData);
     
 }
 
 function PincodeNameSortclick() {
     $('#overlay').fadeIn();
-    ProjectListModule.init("name","asc");
+    PincodeListModule.init("name","asc");
     $('#overlay').fadeOut();
 }
 function PincodeCurRateSortclick() {
     $('#overlay').fadeIn();
-    ProjectListModule.init("current_rate", "asc");
+    PincodeListModule.init("current_rate", "asc");
     $('#overlay').fadeOut();
 }
 function PincodeYoySortclick() {
     $('#overlay').fadeIn();
-    ProjectListModule.init("cagr_last_1yr", "asc");
+    PincodeListModule.init("cagr_last_1yr", "asc");
     $('#overlay').fadeOut();
 }
 function Pincodecagr3ySortclick() {
     $('#overlay').fadeIn();
-    ProjectListModule.init("cagr_last_3yr", "asc");
+    PincodeListModule.init("cagr_last_3yr", "asc");
     $('#overlay').fadeOut();
 }
 function Pincodecagr5ySortclick() {
     $('#overlay').fadeIn();
-    ProjectListModule.init("cagr_last_5yr", "asc");
+    PincodeListModule.init("cagr_last_5yr", "asc");
     $('#overlay').fadeOut();
 }
 
 function PincodeNamesortIconClick(event) {
     $('#overlay').fadeIn();
     if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
-        ProjectListModule.init("name", "desc");
+        PincodeListModule.init("name", "desc");
         $('#PincodeNameSortIcon').removeClass();
         $('#PincodeNameSortIcon').addClass("fa fa-arrow-down text-danger");
         //$('#').removeClass();
@@ -299,7 +342,7 @@ function PincodeNamesortIconClick(event) {
         //$('#cagr3ySortIcon').removeClass();
     }
     else {
-        ProjectListModule.init("name", "asc");
+        PincodeListModule.init("name", "asc");
         $('#PincodeNameSortIcon').removeClass();
         $('#PincodeNameSortIcon').addClass("fa fa-arrow-up text-danger");
     }
@@ -308,13 +351,13 @@ function PincodeNamesortIconClick(event) {
 function PincodeCurRateIconClick(event) {
     $('#overlay').fadeIn();
     if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
-        ProjectListModule.init("current_rate", "desc");
+        PincodeListModule.init("current_rate", "desc");
         $('#PincodeCurRateSortIcon').removeClass();
         $('#PincodeCurRateSortIcon').addClass("fa fa-arrow-down text-danger");
         
     }
     else {
-        ProjectListModule.init("current_rate", "asc");
+        PincodeListModule.init("current_rate", "asc");
         $('#PincodeCurRateSortIcon').removeClass();
         $('#PincodeCurRateSortIcon').addClass("fa fa-arrow-up text-danger");
     }
@@ -323,12 +366,12 @@ function PincodeCurRateIconClick(event) {
 function PincodeyoyIconClick(event) {
     $('#overlay').fadeIn();
     if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
-        ProjectListModule.init("cagr_last_1yr", "desc");
+        PincodeListModule.init("cagr_last_1yr", "desc");
         $('#PincodeYoySortIcon').removeClass();
         $('#PincodeYoySortIcon').addClass("fa fa-arrow-down text-danger");
     }
     else {
-        ProjectListModule.init("cagr_last_1yr", "asc");
+        PincodeListModule.init("cagr_last_1yr", "asc");
         $('#PincodeYoySortIcon').removeClass();
         $('#PincodeYoySortIcon').addClass("fa fa-arrow-up text-danger");
     }
@@ -337,13 +380,13 @@ function PincodeyoyIconClick(event) {
 function Pincodecagr3yIconClick(event) {
     $('#overlay').fadeIn();
     if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
-        ProjectListModule.init("cagr_last_3yr", "desc");
+        PincodeListModule.init("cagr_last_3yr", "desc");
         $('#Pincodecagr3ySortIcon').removeClass();
         $('#Pincodecagr3ySortIcon').addClass("fa fa-arrow-down text-danger");
         
     }
     else {
-        ProjectListModule.init("cagr_last_3yr", "asc");
+        PincodeListModule.init("cagr_last_3yr", "asc");
         $('#Pincodecagr3ySortIcon').removeClass();
         $('#Pincodecagr3ySortIcon').addClass("fa fa-arrow-up text-danger");
     }
@@ -352,13 +395,13 @@ function Pincodecagr3yIconClick(event) {
 function Pincodecagr5yIconClick(event) {
     $('#overlay').fadeIn();
     if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
-        ProjectListModule.init("cagr_last_5yr", "desc");
+        PincodeListModule.init("cagr_last_5yr", "desc");
         $('#Pincodecagr5ySortIcon').removeClass();
         $('#Pincodecagr5ySortIcon').addClass("fa fa-arrow-down text-danger");
        
     }
     else {
-        ProjectListModule.init("cagr_last_5yr", "asc");
+        PincodeListModule.init("cagr_last_5yr", "asc");
         $('#Pincodecagr5ySortIcon').removeClass();
         $('#Pincodecagr5ySortIcon').addClass("fa fa-arrow-up text-danger");
     }

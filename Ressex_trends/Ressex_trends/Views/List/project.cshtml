@@ -61,7 +61,19 @@
     <script src="~/Scripts/PageLavel/List/ProjectList.js"></script>
     <script type="text/javascript" charset="utf-8">
         $(document).ready(function () {
-            ProjectListModule.init("name", "asc");
+            var selectedFilter;
+            var _filterSelected = localStorage.getItem('ShortcutFilter');
+
+            if (_filterSelected != null) {
+                selectedFilter = JSON.parse(_filterSelected);
+            }
+            if (selectedFilter != null) {
+                ProjectListModule.init(selectedFilter.sortby, selectedFilter.orderby);
+            }
+            else {
+                ProjectListModule.init("name", "asc");
+            }
+            
             $('#overlay').fadeOut();
 
         });

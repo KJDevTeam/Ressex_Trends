@@ -205,89 +205,57 @@ function DateFlagChanged(date) {
     //    alert("The text has been changed.");
     //});
 
-function RouteToTransaction(id) {
-    console.log('Route' + id);
-    var url = '' + id + '';
-    let formDate = moment().format("DD/MM/YYYY");
-    let toDate = moment().format("DD/MM/YYYY");
+function ShortcutRouting(id) {
+    var filterconfig;
+    var routingurl;
     switch (id) {
+        
+        case "top10Projects":
+            filterconfig = {
+                "sortby": "cagr_last_1yr",
+                "orderby": "desc"
+            };
+            localStorage.setItem('ShortcutFilter', JSON.stringify(filterconfig));
+            routingurl = "list/project/0/0/0";
 
-        case "residential-sale-deals":
-            toDate = moment().format("DD/MM/YYYY");
-            formDate = moment().subtract(3, 'months').format("DD/MM/YYYY");
-
-            //Clear Existing Filter
-            localStorage.removeItem('filterSelected');
-            common.ShortcutMenuFlterBinding(1, 1, formDate, toDate, "100", "Rent_Agreement_Value");
 
             break;
-        case "residential-lease-rental-deals":
-
-            toDate = moment().format("DD/MM/YYYY");
-            formDate = moment().subtract(3, 'months').format("DD/MM/YYYY");
-
-            //Clear Existing Filter
-            localStorage.removeItem('filterSelected');
-
-            common.ShortcutMenuFlterBinding(1, 2, formDate, toDate, "100", "Rent_Agreement_Value");
+        case "top10Pincodes":
+            filterconfig = {
+                "sortby": "cagr_last_1yr",
+                "orderby": "desc"
+            };
+            localStorage.setItem('ShortcutFilter', JSON.stringify(filterconfig));
+            routingurl = "list/pincode/0/0/0";
             break;
-        case "residential-land-sale-deals":
-            toDate = moment().format("DD/MM/YYYY");
-            formDate = moment().subtract(3, 'months').format("DD/MM/YYYY");
-
-            //Clear Existing Filter
-            localStorage.removeItem('filterSelected');
-
-            common.ShortcutMenuFlterBinding(3, 1, formDate, toDate, "100", "Rent_Agreement_Value");
+        case "top10Locations":
+            filterconfig = {
+                "sortby": "cagr_last_1yr",
+                "orderby": "desc"
+            };
+            localStorage.setItem('ShortcutFilter', JSON.stringify(filterconfig));
+            routingurl = "list/location/0/0/0";
             break;
-        case "commercial-sale-deals":
-            toDate = moment().format("DD/MM/YYYY");
-            formDate = moment().subtract(3, 'months').format("DD/MM/YYYY");
-
-            //Clear Existing Filter
-            localStorage.removeItem('filterSelected');
-
-            common.ShortcutMenuFlterBinding(2, 1, formDate, toDate, "100", "Rent_Agreement_Value");
-            break;
-        case "commercial-lease-rental-deals":
-            toDate = moment().format("DD/MM/YYYY");
-            formDate = moment().subtract(3, 'months').format("DD/MM/YYYY");
-
-            //Clear Existing Filter
-            localStorage.removeItem('filterSelected');
-
-            common.ShortcutMenuFlterBinding(2, 2, formDate, toDate, "100", "Rent_Agreement_Value");
-            break;
-        case "mortgages":
-            toDate = moment().format("DD/MM/YYYY");
-            formDate = moment().subtract(3, 'months').format("DD/MM/YYYY");
-
-            //Clear Existing Filter
-            localStorage.removeItem('filterSelected');
-
-            common.ShortcutMenuFlterBinding(0, 3, formDate, toDate, "100", "Rent_Agreement_Value");
-            break;
+        case "top10Cities":
+            filterconfig = {
+                "sortby": "cagr_last_1yr",
+                "orderby": "desc"
+            };
+            localStorage.setItem('ShortcutFilter', JSON.stringify(filterconfig));
+            routingurl = "list/city/0/0/0";
+            break;       
         default:
-
-            toDate = moment().format("DD/MM/YYYY");
-            formDate = moment().subtract(3, 'months').format("DD/MM/YYYY");
-
-            //Clear Existing Filter
-            localStorage.removeItem('filterSelected');
-
-            common.ShortcutMenuFlterBinding(0, 0, formDate, toDate, "100", "Rent_Agreement_Value");
+            filterconfig = {
+                "sortby": "cagr_last_1yr",
+                "orderby": "desc"
+            };
+            localStorage.setItem('ShortcutFilter', JSON.stringify(filterconfig));
+            routingurl = "list/project/0/0/0";
             break;
     }
 
-    filterdetails = common.IsFilterSelcted();
-    var routingurl = utility.FrontEndAPIURL(url);
-    window.location.href = routingurl;
+    
+    var resultroutingurl = utility.FrontEndAPIURL(routingurl);
+    window.location.href = resultroutingurl;
 }
-//$("#SelectedProject").on("input", function (a) {
-//    if ($("#SelectedProject").val().length>3) {
-//        /*alert("The text has been changed.");*/
-//        DashboardModule.AutocompleteSearch($("#SelectedProject").val());
-//    }
-//    // Print entered value in a div box
-   
-//});
+
