@@ -24,7 +24,7 @@ var LocationListModule = function () {
             var result = LocationListModule.LocationPayload("location", QueryStringARR,sortBy, OrderBy);
 
             var APIkey = utility.ServiceAPIURL("Dashboard/PriceIndexList");
-            var Data = utility.ajaxselect(APIkey, result, "Post", false);
+            var Data = utility.ajaxselect(APIkey, result.payload, "Post", false);
 
             TotalData = Data;
             console.log(Data);
@@ -32,11 +32,17 @@ var LocationListModule = function () {
 
             //Project Heading Decider
 
-            if (QueryStringARR[4] == 0) {
+            if (result.Category == "AllLocations") {
                 $('#LocationlistHeading').text(keepLocationListData[0].locations_in_india);
             }
-            else {
+            else if (result.Category == "LocationinLocation") {
                 $('#LocationlistHeading').text(keepLocationListData[0].location_input);
+            }
+            else if (result.Category == "LocationsinCity") {
+                $('#LocationlistHeading').text(keepLocationListData[0].locations_in_city);
+            }
+            else {
+                $('#LocationlistHeading').text(keepLocationListData[0].locations_in_india);
             }
 
 
@@ -102,7 +108,7 @@ var LocationListModule = function () {
                                 </div>\
                                 <div class="col-2">\
                                     <div class="card-body">\
-                                        <button class="btn text-danger">View Projects</button>\
+                                        <button class="btn text-danger" onClick="ProjectBylocation('+ items.locationid +')">View Projects</button>\
                                     </div>\
                                 </div>\
                                 <div class="col-1">\
@@ -256,14 +262,17 @@ var LocationListModule = function () {
         },
         LocationPayload:function (lookup, QueryStringarr,sortBy, OrderBy) {
             var jsonstr = {};
+            var Category;
             if (QueryStringarr[3] == 0 && QueryStringarr[4] == 0 && QueryStringarr[5] == 0) {
+                Category = "AllLocations";
                 jsonstr = {
                     "sort_by": sortBy,
                     "order_by": OrderBy
-                }
+                };
 
             }
             else if (QueryStringarr[3] == 0 && QueryStringarr[4] != 0 && QueryStringarr[5] == 0) {
+                Category = "LocationinLocation";
                 jsonstr = {
                     "location_id": "" + QueryStringarr[4] + "",
                     "sort_by": sortBy,
@@ -272,6 +281,7 @@ var LocationListModule = function () {
             }
 
             else if (QueryStringarr[3] == 0 && QueryStringarr[4] == 0 && QueryStringarr[5] != 0) {
+                Category = "LocationsinCity";
                 jsonstr = {
                     "city_id": "" + QueryStringarr[5] + "",
                     "sort_by": sortBy,
@@ -279,6 +289,7 @@ var LocationListModule = function () {
                 }
             }
             else {
+                Category = "AllLocations";
                 jsonstr = {
                     "sort_by": sortBy,
                     "order_by": OrderBy
@@ -288,10 +299,15 @@ var LocationListModule = function () {
 
 
 
-            return APIPayload = {
+            APIPayload = {
                 "lookup": "" + lookup + "",
                 "json_str": JSON.stringify(jsonstr)
             };
+
+            return Results = {
+                "Category": "" + Category + "",
+                "payload": APIPayload,
+            }
 
         }
     }
@@ -407,6 +423,12 @@ function Locationcagr5yIconClick(event) {
     }
     $('#overlay').fadeOut();
 }
+
+function ProjectBylocation(id) {
+    var resultroutingurl = utility.FrontEndAPIURL('list/project/0/' + id + '/0');
+    window.location.href = resultroutingurl;
+}
+
 
 
 

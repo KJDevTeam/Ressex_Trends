@@ -442,6 +442,20 @@ function Projectcagr5yIconClick(event) {
     $('#overlay').fadeOut();
 }
 
+$("input[name=ProjectsRadio]").click(function () {
+    if (this.value == "locations") {
+        var resultroutingurl = utility.FrontEndAPIURL('list/location/0/0/' + keepProjectListData[0].region_or_city_id_pi_input);
+        window.location.href = resultroutingurl;
+    }
+    else if (this.value == "pincodes") {
+        var resultroutingurl = utility.FrontEndAPIURL('list/pincode/0/0/' + keepProjectListData[0].region_or_city_id_pi_input);
+        window.location.href = resultroutingurl;
+    }
+    else {
+
+    }
+});
+
 
 
 

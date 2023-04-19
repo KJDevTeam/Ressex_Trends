@@ -24,7 +24,7 @@ var PincodeListModule = function () {
             var result = PincodeListModule.PincodePayload("pincode", QueryStringARR,sortBy,OrderBy);
 
             var APIkey = utility.ServiceAPIURL("Dashboard/PriceIndexList");
-            var Data = utility.ajaxselect(APIkey, result, "Post", false);
+            var Data = utility.ajaxselect(APIkey, result.payload, "Post", false);
 
             TotalData = Data;
             console.log(Data);
@@ -32,11 +32,17 @@ var PincodeListModule = function () {
 
             //Project Heading Decider
 
-            if (QueryStringARR[3] == 0) {
+            if (result.Category == "AllPincodes") {
                 $('#PincodelistHeading').text(keepPincodeListData[0].pincodes_in_india);
             }
-            else {
+            else if (result.Category == "PincodeinPincode") {
                 $('#PincodelistHeading').text(keepPincodeListData[0].pincode_input);
+            }
+            else if (result.Category == "PincodesinCity") {
+                $('#PincodelistHeading').text(keepPincodeListData[0].pincodes_in_city);
+            }
+            else {
+                $('#PincodelistHeading').text(keepPincodeListData[0].pincodes_in_india);
             }
            
             
@@ -102,7 +108,7 @@ var PincodeListModule = function () {
                                 </div>\
                                 <div class="col-2">\
                                     <div class="card-body">\
-                                        <button class="btn text-danger">View Projects</button>\
+                                        <button class="btn text-danger" onClick="ProjectByPincode('+ items.pincode+')">View Projects</button>\
                                     </div>\
                                 </div>\
                                 <div class="col-1">\
@@ -256,14 +262,17 @@ var PincodeListModule = function () {
         },
         PincodePayload: function (lookup, QueryStringarr, sortBy, OrderBy) {
             var jsonstr = {};
+            var Category;
             if (QueryStringarr[3] == 0 && QueryStringarr[4] == 0 && QueryStringarr[5] == 0) {
+                Category = "AllPincodes";
                 jsonstr = {
                     "sort_by": sortBy,
                     "order_by": OrderBy
-                }
+                };
 
             }
             else if (QueryStringarr[3] != 0 && QueryStringarr[4] == 0 && QueryStringarr[5] == 0) {
+                Category = "PincodeinPincode";
                 jsonstr = {
                     "pincode": "" + QueryStringarr[3] + "",
                     "sort_by": sortBy,
@@ -272,6 +281,7 @@ var PincodeListModule = function () {
             }
 
             else if (QueryStringarr[3] == 0 && QueryStringarr[4] == 0 && QueryStringarr[5] != 0) {
+                Category = "PincodesinCity";
                 jsonstr = {
                     "city_id": "" + QueryStringarr[5] + "",
                     "sort_by": sortBy,
@@ -279,6 +289,7 @@ var PincodeListModule = function () {
                 }
             }
             else {
+                Category = "AllPincodes";
                 jsonstr = {
                     "sort_by": sortBy,
                     "order_by": OrderBy
@@ -288,10 +299,15 @@ var PincodeListModule = function () {
 
 
 
-            return APIPayload = {
+            APIPayload = {
                 "lookup": "" + lookup + "",
                 "json_str": JSON.stringify(jsonstr)
             };
+
+            return Results = {
+                "Category": "" + Category + "",
+                "payload": APIPayload,
+            }
 
         }
     }
@@ -408,6 +424,10 @@ function Pincodecagr5yIconClick(event) {
     $('#overlay').fadeOut();
 }
 
+function ProjectByPincode(id) {
+    var resultroutingurl = utility.FrontEndAPIURL('list/project/' + id+'/0/0');
+    window.location.href = resultroutingurl;
+}
 
 
 

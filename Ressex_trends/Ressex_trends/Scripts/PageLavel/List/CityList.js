@@ -24,7 +24,7 @@ var CityListModule = function () {
             var result = CityListModule.CityPayload("City", QueryStringARR,sortBy, OrderBy);
 
             var APIkey = utility.ServiceAPIURL("Dashboard/PriceIndexList");
-            var Data = utility.ajaxselect(APIkey, result, "Post", false);
+            var Data = utility.ajaxselect(APIkey, result.payload, "Post", false);
 
             TotalData = Data;
             console.log(Data);
@@ -32,11 +32,14 @@ var CityListModule = function () {
 
             //Project Heading Decider
 
-            if (QueryStringARR[5] == 0) {
+            if (result.Category == "AllCities") {
                 $('#CitylistHeading').text(keepCityListData[0].cities_in_india);
             }
-            else {
+            else if (result.Category == "CityinCity") {
                 $('#CitylistHeading').text(keepCityListData[0].city_search);
+            }
+            else {
+                $('#CitylistHeading').text(keepPincodeListData[0].cities_in_india);
             }
 
 
@@ -102,7 +105,7 @@ var CityListModule = function () {
                                 </div>\
                                 <div class="col-2">\
                                     <div class="card-body">\
-                                        <button class="btn text-danger">View Projects</button>\
+                                        <button class="btn text-danger" onClick="ProjectByCity('+ items.region_or_city_id +')">View Projects</button>\
                                     </div>\
                                 </div>\
                                 <div class="col-1">\
@@ -256,7 +259,9 @@ var CityListModule = function () {
         },
         CityPayload: function (lookup, QueryStringarr, sortBy, OrderBy) {
             var jsonstr = {};
+            var Category;
             if (QueryStringarr[3] == 0 && QueryStringarr[4] == 0 && QueryStringarr[5] == 0) {
+                Category = "AllCities";
                 jsonstr = {
                     "sort_by": sortBy,
                     "order_by": OrderBy
@@ -264,6 +269,7 @@ var CityListModule = function () {
 
             }
             else if (QueryStringarr[3] == 0 && QueryStringarr[4] == 0 && QueryStringarr[5] != 0) {
+                Category = "CityinCity";
                 jsonstr = {
                     "city_id": "" + QueryStringarr[5] + "",
                     "sort_by": sortBy,
@@ -271,19 +277,22 @@ var CityListModule = function () {
                 }
             }           
             else {
+                Category = "AllCities";
                 jsonstr = {
                     "sort_by": sortBy,
                     "order_by": OrderBy
                 }
             }
 
-
-
-
-            return APIPayload = {
+            APIPayload = {
                 "lookup": "" + lookup + "",
                 "json_str": JSON.stringify(jsonstr)
             };
+
+            return Results = {
+                "Category": "" + Category + "",
+                "payload": APIPayload,
+            }
 
         }
     }
@@ -399,6 +408,12 @@ function Citycagr5yIconClick(event) {
     }
     $('#overlay').fadeOut();
 }
+
+function ProjectByCity(id) {
+    var resultroutingurl = utility.FrontEndAPIURL('list/project/0/0/' + id);
+    window.location.href = resultroutingurl;
+}
+
 
 
 
