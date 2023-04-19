@@ -104,7 +104,7 @@ var DashboardModule = function () {
                 var st = ''
                 $.each(arr_toload, function (index, items) {
                     st += '<div class="col-custom-5">\
-        <a href="#" class="cityCard">\
+        <a onclick="CityCLick('+ items.region_or_city_id+')" href="javascript:void(0)" class="cityCard">\
             <div class="cityCardBody">\
                 <img src="images/Chennai.png" alt="">\
                     <h5>'+ items.region_or_city + '</h5>\
@@ -258,4 +258,11 @@ function ShortcutRouting(id) {
     var resultroutingurl = utility.FrontEndAPIURL(routingurl);
     window.location.href = resultroutingurl;
 }
+
+function CityCLick(cityID) {
+
+    var resultroutingurl = utility.FrontEndAPIURL('list/project/0/0/'+ cityID);
+    window.location.href = resultroutingurl;
+}
+
 

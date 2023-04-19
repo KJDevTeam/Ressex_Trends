@@ -24,23 +24,39 @@ var ProjectListModule = function () {
             var result = ProjectListModule.ProjectPayload("project", QueryStringARR,sortBy, OrderBy);
 
             var APIkey = utility.ServiceAPIURL("Dashboard/PriceIndexList");
-            var Data = utility.ajaxselect(APIkey, result, "Post", false);
+            var Data = utility.ajaxselect(APIkey, result.payload, "Post", false);
 
             TotalData = Data;
             console.log(Data);
-            keepProjectListData = Data.data;
 
-            //Project Heading Decider
+            if (Data.status == 'OK') {
+                keepProjectListData = Data.data;
 
-            if (QueryStringARR[3] == 0) {
-                $('#ProjectlistHeading').text(keepProjectListData[0].projects_in_india);
+                //Project Heading Decider
+
+                if (result.Category == "AllProjects") {
+                    $('#ProjectlistHeading').text(keepProjectListData[0].projects_in_india);
+                }
+                else if (result.Category == "ProjectsInPincode") {
+                    $('#ProjectlistHeading').text(keepProjectListData[0].projects_in_pincode);
+                }
+                else if (result.Category == "ProjectsInLocation") {
+                    $('#ProjectlistHeading').text(keepProjectListData[0].projects_in_location);
+                }
+                else if (result.Category == "ProjectsInCity") {
+                    $('#ProjectlistHeading').text(keepProjectListData[0].projects_in_city);
+                }
+                else {
+                    $('#ProjectlistHeading').text(keepProjectListData[0].projects_in_india);
+                }
+                ProjectListModule.ListLoad(Data.data);
             }
             else {
-                $('#ProjectlistHeading').text(keepProjectListData[0].pincode_input);
+                $('#projectSortandFilter').remove();
+                $('#ProjectviewmoreList').hide();
+                $("#ProjectList").empty();
+                $("#ProjectList").append("<span>No Data found</span>");
             }
-
-
-            ProjectListModule.ListLoad(Data.data);
 
 
 
@@ -257,7 +273,9 @@ var ProjectListModule = function () {
         },
         ProjectPayload: function (lookup, QueryStringarr, sortBy, OrderBy) {
             var jsonstr = {};
+            var Category;
             if (QueryStringarr[3] == 0 && QueryStringarr[4] == 0 && QueryStringarr[5] == 0) {
+                Category = "AllProjects";
                 jsonstr = {
                     "sort_by": sortBy,
                     "order_by": OrderBy
@@ -265,6 +283,7 @@ var ProjectListModule = function () {
 
             }
             else if (QueryStringarr[3] != 0 && QueryStringarr[4] == 0 && QueryStringarr[5] == 0) {
+                Category = "ProjectsInPincode";
                 jsonstr = {
                     "pincode": "" + QueryStringarr[3] + "",
                     "sort_by": sortBy,
@@ -272,13 +291,15 @@ var ProjectListModule = function () {
                 }
             }
             else if (QueryStringarr[3] == 0 && QueryStringarr[4] != 0 && QueryStringarr[5] == 0) {
+                Category = "ProjectsInLocation";
                 jsonstr = {
                     "location_id": "" + QueryStringarr[4] + "",
                     "sort_by": sortBy,
                     "order_by": OrderBy
-                }
+                };
             }
             else if (QueryStringarr[3] == 0 && QueryStringarr[4] == 0 && QueryStringarr[5] != 0) {
+                Category = "ProjectsInCity";
                 jsonstr = {
                     "city_id": "" + QueryStringarr[5] + "",
                     "sort_by": sortBy,
@@ -286,6 +307,7 @@ var ProjectListModule = function () {
                 }
             }
             else {
+                Category = "AllProjects";
                 jsonstr = {
                     "sort_by": sortBy,
                     "order_by": OrderBy
@@ -295,10 +317,15 @@ var ProjectListModule = function () {
 
 
 
-            return APIPayload = {
+            APIPayload = {
                 "lookup": "" + lookup + "",
                 "json_str": JSON.stringify(jsonstr)
             };
+
+            return Results = {
+                "Category": "" + Category+"",
+                "payload": APIPayload,
+            }
 
         }
     }
