@@ -2,64 +2,75 @@
 @{
     ViewBag.Title = "Project List";
 }
-<section>
-    <div class="mainbodyWrap d-flex flex-column flex-1">
-        <div class="container flex-1">
-            <div class="innerSectionHeader d-flex" id="ProjectSortandFilter">
-                <a href="@Url.Action("Index","Home")" class="mr-2 pt-2"><img src="~/images/chevron-left.svg" alt=""></a>
-                <div class="header flex-1">
-                    <span id="ProjectlistHeading" class="h3 font-weight-bold"></span>
-                    <span> | </span>
-                    <span id="ProjectPaginationText"></span>
-                    <div class="flex-1">
-                        <div class="d-flex justify-content-end mb-3">
-                            <label class="radio-inline"><input type="radio" name="ProjectsRadio" value="projects" checked>Projects</label>
-                            <label class="radio-inline"><input type="radio" name="ProjectsRadio" value="locations">Locations</label>
-                            <label class="radio-inline"><input type="radio" name="ProjectsRadio" value="pincodes">Pincodes</label>
+
+<div class="mainbodyWrap d-flex flex-column flex-1">
+    <div class="container flex-1">
+        <div class="innerSectionHeader searchPageHeader d-flex" id="ProjectSortandFilter">
+            <a href="@Url.Action("Index","Home")" class="mr-2 pt-2"><img src="~/images/chevron-left.svg" alt=""></a>
+            <div class="header flex-1 d-flex flex-column">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <h3 class="mb-0" id="ProjectlistHeading"></h3>
+                        <div class="ml-3 pl-2 text20px font-w-400 searchInfo" id="ProjectPaginationText">
                         </div>
                     </div>
-                    <div class="border-h"></div>
-                    <div class="d-flex justify-content-end">
-                        <div class="d-flex mr-3">
-                            <label class="mr-1" onclick="ProjectNameSortclick()" id="ProjectnameSortID">Name</label><i class="" id="ProjectNameSortIcon" onclick="ProjectNamesortIconClick(event)"></i>
-                            @*<span class="color-red">Rs 7,945/ sq.ft</span>*@
-                        </div>
-                        <div class="d-flex mr-3">
-                            <label class="mr-1" onclick="ProjectCurRateSortclick()" id="ProjectCurrRateSortID">Current Rate</label><i class="" id="ProjectCurRateSortIcon" onclick="ProjectCurRateIconClick(event)"></i>
-                            @*<span class="color-red">10%</span>*@
-                        </div>
-                        <div class="d-flex mr-3">
-                            <label class="mr-1" onclick="ProjectYoySortclick()" id="ProjectyoySortID">YoY Change(%)</label><i class="" id="ProjectYoySortIcon" onclick="ProjectyoyIconClick(event)"></i>
-                            @*<span class="color-red">10%</span>*@
-                        </div>
-                        <div class="d-flex mr-3">
-                            <label class="mr-1" onclick="Projectcagr3ySortclick()" id="ProjectCAGR3YSortID">CAGR (3Y)</label><i class="" id="Projectcagr3ySortIcon" onclick="Projectcagr3yIconClick(event)"></i>
-                            @*<span class="color-red">10%</span>*@
-                        </div>
-                        <div class="d-flex mr-3">
-                            <label class="mr-1" onclick="Projectcagr5ySortclick()" id="ProjectCAGR5YSortID">CAGR (5Y)</label><i class="" id="Projectcagr5ySortIcon" onclick="Projectcagr5yIconClick(event)"></i>
-                            @*<span class="color-red">10%</span>*@
-                        </div>
 
+                    <div class="d-flex align-items-center">
+                        <div class="custom-control custom-radio ">
+                            <input type="radio" class="custom-control-input" id="projects" value="projects" name="projects-search" checked="">
+                            <label class="custom-control-label pointer" for="projects">Projects</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" id="locations" value="locations" name="projects-search">
+                            <label class="custom-control-label pointer" for="locations">Locations</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" id="pincodes" value="pincodes" name="projects-search">
+                            <label class="custom-control-label pointer mr-0" for="pincodes">Pincodes</label>
+                        </div>
                     </div>
-
-
                 </div>
+                <div class="border-h"></div>
+                <div class="d-flex align-items-center justify-content-end">
+                    <div class="mr-1 sortBy">Sort by :</div>
+                    <div class="d-flex mr-3" id="ProjectnameSortID">
+                        <a href="javascript:void(0)" class="pr-0" onclick="ProjectNameSortclick()" >Name</a>
+                        <a href="javascript:void(0)" class="" onclick="ProjectNamesortIconClick(event)" id="ProjectNameSortIcon"></a>
+                    </div>
+                    <div class="d-flex mr-3" id="ProjectCurrRateSortID">
+                        <a href="javascript:void(0)" class="pr-0" onclick="ProjectCurRateSortclick()">Current Rate</a>
+                        <a href="javascript:void(0)" class="" id="ProjectCurRateSortIcon" onclick="ProjectCurRateIconClick(event)"></a>
+                    </div>
+                    <div class="d-flex mr-3" id="ProjectyoySortID">
+                        <a href="javascript:void(0)" class="pr-0" onclick="ProjectYoySortclick()" >YoY Change(%)</a>
+                        <a href="javascript:void(0)" class="" id="ProjectYoySortIcon" onclick="ProjectyoyIconClick(event)"></a>
+                    </div>
+                    <div class="d-flex mr-3" id="ProjectCAGR3YSortID">
+                        <a href="javascript:void(0)" class="pr-0" onclick="Projectcagr3ySortclick()">CAGR (3Y)</a>
+                        <a href="javascript:void(0)" class="" id="Projectcagr3ySortIcon" onclick="Projectcagr3yIconClick(event)"></a>
+
+                    </div>
+                    <div class="d-flex mr-0" id="ProjectCAGR5YSortID">
+                        <a href="javascript:void(0)" class="pr-0" onclick="Projectcagr5ySortclick()">CAGR (5Y)</a>
+                        <a href="javascript:void(0)" class="" id="Projectcagr5ySortIcon" onclick="Projectcagr5yIconClick(event)"></a>
+                    </div>
+                </div>
+
             </div>
+        </div>
+
+        <section class="searchResultSec">
 
             <div id="ProjectList">
 
             </div>
-
-
-
-
-        </div>
-        <div class="text-center">
-            <button class="btn btn-red rounded-0" onclick="ProjectViewmoreListClick()" id="ProjectviewmoreList">View more</button>
-        </div>
+            <div class="text-center mt-5">
+                <button class="btn btn-red rounded-0 viewMoreBtn" onclick="ProjectViewmoreListClick()" id="ProjectviewmoreList">View more</button>
+            </div>
+        </section>
     </div>
-</section>
+</div>
+
 
 
 
@@ -81,7 +92,7 @@
             else {
                 ProjectListModule.init("name", "asc");
             }
-            
+
             $('#overlay').fadeOut();
 
         });

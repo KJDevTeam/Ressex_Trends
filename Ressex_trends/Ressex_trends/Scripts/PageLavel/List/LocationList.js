@@ -58,12 +58,7 @@ var LocationListModule = function () {
                 $('#LocationviewmoreList').hide();
                 $("#LocationList").empty();
                 $("#LocationList").append('<div class="d-flex align-items-center justify-content-center" style="height: 250px;"><h5>No Data found</h5></div>');
-
-
             }
-            }
-
-
         },
         ListLoad: function (List_arr) {
             var Listlength = List_arr.length / 10;

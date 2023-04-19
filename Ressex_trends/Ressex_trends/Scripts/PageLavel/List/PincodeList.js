@@ -60,7 +60,7 @@ var PincodeListModule = function () {
 
 
             }
-        }
+        
 
     },
         ListLoad: function (List_arr) {

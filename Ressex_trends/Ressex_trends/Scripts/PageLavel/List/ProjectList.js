@@ -83,69 +83,38 @@ var ProjectListModule = function () {
                 var st = ''
                 $("#ProjectList").empty();
                 $.each(arr_toload, function (index, items) {
-
-                    st += '<div class="card my-3">\
-                        <div class="row no-gutters">\
-                            <div class="col-1">\
-                                <img class="card-img rounded-circle" src="'+ img + '/Bangalore.png">\
-                    </div>\
-                                <div class="col-2">\
-                                    <div class="card-body">\
-                                        <h5 class="card-title">'+ items.name + '</h5>\
-                                        <p class="card-text">'+ items.region_city + '</p>\
+                   st+='<div class="searchResultCard d-flex align-items-center">\
+                        <div class="mediaBlk rounded-circle mr-5"><img src="'+ img + '/search-img-1.png" alt="" class="rounded-circle"></div>\
+                            <div class="d-flex justify-content-between flex-1">\
+                                    <div class="searchCol">\
+                                        <label class="name">'+ items.name + '</label>\
+                                        <div class="location">'+ items.region_city + '</div>\
                                     </div>\
-                                </div>\
-                                <div class="col-2">\
-                                    <div class="card-body">\
-                                        <span class="card-title">'+ items.current_qtr + '</span>\
-                                        <p class="card-text">'+ items.saleable_rate_psf + '</p>\
+                                    <div class="searchCol">\
+                                        <label>'+ items.current_qtr + '</label>\
+                                        <div>'+ items.saleable_rate_psf + '</div>\
                                     </div>\
-                                </div>\
-                                <div class="col-2">\
-                                    <div class="card-body">\
-                                        <span class="card-title">YoY Change</span>\
-                                        <p class="card-text">'+ items.cagr_last_1yr_pct + '</p>\
+                                    <div class="searchCol">\
+                                        <label>YoY Change (%)</label>\
+                                        <div class="d-flex align-items-center">'+ items.cagr_last_1yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div>\
                                     </div>\
-                                </div>\
-                                <div class="col-1">\
-                                    <div class="card-body">\
-                                        <span class="card-title">CAGR 3Y</span>\
-                                        <p class="card-text">'+ items.cagr_last_3yr_pct + '</p>\
+                                    <div class="searchCol">\
+                                        <label>CAGR (3Y)</label>\
+                                        <div class="d-flex align-items-center">'+ items.cagr_last_3yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div>\
                                     </div>\
-                                </div>\
-                                <div class="col-1">\
-                                    <div class="card-body">\
-                                        <span class="card-title">CAGR 5Y</span>\
-                                        <p class="card-text">'+ items.cagr_last_5yr_pct + '</p>\
+                                    <div class="searchCol">\
+                                            <label>CAGR (5Y)</label>\
+                                            <div>'+ items.cagr_last_5yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div>\
                                     </div>\
-                                </div>\
-                                <div class="col-2">\
-                                    <div class="card-body">\
-                                        <span class="card-title">Project Status</span>\
-                                        <p class="card-text">'+ items.project_status + '</p>\
+                                    <div class="searchCol">\
+                                            <label>Project Status</label>\
+                                            <div>'+ items.project_status + '</div>\
                                     </div>\
-                                </div>\
-                                <div class="col-1">\
-                                    <div class="card-body">\
-                                        <button class="btn text-danger">View trends</button>\
-                                    </div>\
-                                </div>\
-                            </div>\
-            </div>';
-                    //        st += '<div class="card mb-3">\
-                    //        <div class="row">\
-                    //            <div class="col-1">\
-                    //                <img class="card-img" src="'+ img + '/Bangalore.png" style="height:100px;width:100px">\
-                    //        </div>\
-                    //                <div class="col-11">\
-                    //                    <div class="card-body">\
-                    //                        <h5 class="card-title">'+ items.name + '</h5>\
-                    //                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>\
-                    //                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>\
-                    //                    </div>\
-                    //                </div>\
-                    //            </div>\
-                    //</div >';
+                               </div>\
+                               <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
+                                  <a href="#">View<br>Trends</a>\
+                               </div>\
+                           </div>';
                 });
                 var paginateText = 'Showing <b>' + arr_toload.length + '</b> projects out of <b>' + keepProjectListData.length + '</b>';
                 $('#ProjectPaginationText').empty();
@@ -159,15 +128,15 @@ var ProjectListModule = function () {
             //SortBy
             if (sortby == "name") {
                 var Text = ProjectListModule.orderbyDecider("#ProjectNameSortIcon", orderby);
-                $('#ProjectnameSortID').text(Text);
-                $('#ProjectnameSortID').addClass('text-danger');
+                /*$('#ProjectnameSortID').text(Text);*/
+                $('#ProjectnameSortID').addClass('sortBy');
 
 
                 //Remove Red From Text
-                $('#ProjectCurrRateSortID').removeClass('text-danger');
-                $('#ProjectyoySortID').removeClass('text-danger');
-                $('#ProjectCAGR3YSortID').removeClass('text-danger');
-                $('#ProjectCAGR5YSortID').removeClass('text-danger');
+                $('#ProjectCurrRateSortID').removeClass('sortBy');
+                $('#ProjectyoySortID').removeClass('sortBy');
+                $('#ProjectCAGR3YSortID').removeClass('sortBy');
+                $('#ProjectCAGR5YSortID').removeClass('sortBy');
 
                 //Remove Icon
                 $('#ProjectCurRateSortIcon').removeClass();
@@ -183,13 +152,13 @@ var ProjectListModule = function () {
             else if (sortby == "current_rate") {
 
                 var Text = ProjectListModule.orderbyDecider("#ProjectCurRateSortIcon", orderby);
-                $('#ProjectCurrRateSortID').text(Text);
-                $('#ProjectCurrRateSortID').addClass('text-danger');
+               /* $('#ProjectCurrRateSortID').text(Text);*/
+                $('#ProjectCurrRateSortID').addClass('sortBy');
 
-                $('#ProjectnameSortID').removeClass('text-danger');
-                $('#ProjectyoySortID').removeClass('text-danger');
-                $('#ProjectCAGR3YSortID').removeClass('text-danger');
-                $('#ProjectCAGR5YSortID').removeClass('text-danger');
+                $('#ProjectnameSortID').removeClass('sortBy');
+                $('#ProjectyoySortID').removeClass('sortBy');
+                $('#ProjectCAGR3YSortID').removeClass('sortBy');
+                $('#ProjectCAGR5YSortID').removeClass('sortBy');
 
                 //Remove Icon
                 $('#ProjectNameSortIcon').removeClass();
@@ -201,13 +170,13 @@ var ProjectListModule = function () {
 
                 var Text = ProjectListModule.orderbyDecider("#ProjectYoySortIcon", orderby);
                 $('#ProjectYoySortIcon').text(Text);
-                $('#ProjectyoySortID').addClass('text-danger');
+                $('#ProjectyoySortID').addClass('sortBy');
 
                 //Remove Red from Text
-                $('#ProjectnameSortID').removeClass('text-danger');
-                $('#ProjectCurrRateSortID').removeClass('text-danger');
-                $('#ProjectCAGR3YSortID').removeClass('text-danger');
-                $('#ProjectCAGR5YSortID').removeClass('text-danger');
+                $('#ProjectnameSortID').removeClass('sortBy');
+                $('#ProjectCurrRateSortID').removeClass('sortBy');
+                $('#ProjectCAGR3YSortID').removeClass('sortBy');
+                $('#ProjectCAGR5YSortID').removeClass('sortBy');
 
                 //Remove Icon from Text
                 $('#ProjectNameSortIcon').removeClass();
@@ -220,12 +189,12 @@ var ProjectListModule = function () {
 
                 var Text = ProjectListModule.orderbyDecider("#Projectcagr3ySortIcon", orderby);
                 $('#ProjectCAGR3YSortID').text(Text);
-                $('#ProjectCAGR3YSortID').addClass('text-danger');
+                $('#ProjectCAGR3YSortID').addClass('sortBy');
 
-                $('#ProjectnameSortID').removeClass('text-danger');
-                $('#ProjectCurrRateSortID').removeClass('text-danger');
-                $('#ProjectyoySortID').removeClass('text-danger');
-                $('#ProjectCAGR5YSortID').removeClass('text-danger');
+                $('#ProjectnameSortID').removeClass('sortBy');
+                $('#ProjectCurrRateSortID').removeClass('sortBy');
+                $('#ProjectyoySortID').removeClass('sortBy');
+                $('#ProjectCAGR5YSortID').removeClass('sortBy');
 
 
                 //Remove Icon from Text
@@ -238,12 +207,12 @@ var ProjectListModule = function () {
 
                 var Text = ProjectListModule.orderbyDecider("#Projectcagr5ySortIcon", orderby);
                 $('#ProjectCAGR5YSortID').text(Text);
-                $('#ProjectCAGR5YSortID').addClass('text-danger');
+                $('#ProjectCAGR5YSortID').addClass('sortBy');
 
-                $('#ProjectnameSortID').removeClass('text-danger');
-                $('#ProjectCurrRateSortID').removeClass('text-danger');
-                $('#ProjectyoySortID').removeClass('text-danger');
-                $('#ProjectCAGR3YSortID').removeClass('text-danger');
+                $('#ProjectnameSortID').removeClass('sortBy');
+                $('#ProjectCurrRateSortID').removeClass('sortBy');
+                $('#ProjectyoySortID').removeClass('sortBy');
+                $('#ProjectCAGR3YSortID').removeClass('sortBy');
 
 
                 //Remove Icon from Text
@@ -259,16 +228,13 @@ var ProjectListModule = function () {
         orderbyDecider: function (IconID, orderby) {
 
             //OrderBy
-
-
-
             if (orderby == "desc") {
-                $(IconID).addClass("fa fa-arrow-down text-danger");
+                $(IconID).addClass("desc");
 
 
             }
             else {
-                $(IconID).addClass("fa fa-arrow-up text-danger");
+                $(IconID).addClass("asc");
 
             }
 
@@ -369,83 +335,80 @@ function Projectcagr5ySortclick() {
 
 function ProjectNamesortIconClick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
+    if (event.currentTarget.className == "asc") {
         ProjectListModule.init("name", "desc");
         $('#ProjectNameSortIcon').removeClass();
-        $('#ProjectNameSortIcon').addClass("fa fa-arrow-down text-danger");
-        //$('#').removeClass();
-        //$('#CurRateSortIcon').removeClass();
-        //$('#YoySortIcon').removeClass();
-        //$('#cagr3ySortIcon').removeClass();
+        $('#ProjectNameSortIcon').addClass("desc");
+        
     }
     else {
         ProjectListModule.init("name", "asc");
         $('#ProjectNameSortIcon').removeClass();
-        $('#ProjectNameSortIcon').addClass("fa fa-arrow-up text-danger");
+        $('#ProjectNameSortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
 function ProjectCurRateIconClick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
+    if (event.currentTarget.className == "asc") {
         ProjectListModule.init("current_rate", "desc");
         $('#ProjectCurRateSortIcon').removeClass();
-        $('#ProjectCurRateSortIcon').addClass("fa fa-arrow-down text-danger");
+        $('#ProjectCurRateSortIcon').addClass("desc");
 
     }
     else {
         ProjectListModule.init("current_rate", "asc");
         $('#ProjectCurRateSortIcon').removeClass();
-        $('#ProjectCurRateSortIcon').addClass("fa fa-arrow-up text-danger");
+        $('#ProjectCurRateSortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
 function ProjectyoyIconClick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
+    if (event.currentTarget.className == "asc") {
         ProjectListModule.init("cagr_last_1yr", "desc");
         $('#ProjectYoySortIcon').removeClass();
-        $('#ProjectYoySortIcon').addClass("fa fa-arrow-down text-danger");
+        $('#ProjectYoySortIcon').addClass("desc");
     }
     else {
         ProjectListModule.init("cagr_last_1yr", "asc");
         $('#ProjectYoySortIcon').removeClass();
-        $('#ProjectYoySortIcon').addClass("fa fa-arrow-up text-danger");
+        $('#ProjectYoySortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
 function Projectcagr3yIconClick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
+    if (event.currentTarget.className == "asc") {
         ProjectListModule.init("cagr_last_3yr", "desc");
         $('#Projectcagr3ySortIcon').removeClass();
-        $('#Projectcagr3ySortIcon').addClass("fa fa-arrow-down text-danger");
+        $('#Projectcagr3ySortIcon').addClass("desc");
 
     }
     else {
         ProjectListModule.init("cagr_last_3yr", "asc");
         $('#Projectcagr3ySortIcon').removeClass();
-        $('#Projectcagr3ySortIcon').addClass("fa fa-arrow-up text-danger");
+        $('#Projectcagr3ySortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
 function Projectcagr5yIconClick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
+    if (event.currentTarget.className == "asc") {
         ProjectListModule.init("cagr_last_5yr", "desc");
         $('#Projectcagr5ySortIcon').removeClass();
-        $('#Projectcagr5ySortIcon').addClass("fa fa-arrow-down text-danger");
+        $('#Projectcagr5ySortIcon').addClass("desc");
 
     }
     else {
         ProjectListModule.init("cagr_last_5yr", "asc");
         $('#Projectcagr5ySortIcon').removeClass();
-        $('#Projectcagr5ySortIcon').addClass("fa fa-arrow-up text-danger");
+        $('#Projectcagr5ySortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
 
-$("input[name=ProjectsRadio]").click(function () {
+$("input[name=projects-search]").click(function () {
     if (this.value == "locations") {
         var resultroutingurl = utility.FrontEndAPIURL('list/location/0/0/' + keepProjectListData[0].region_or_city_id_pi_input);
         window.location.href = resultroutingurl;
