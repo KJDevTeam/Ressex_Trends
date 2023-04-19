@@ -52,10 +52,12 @@ var ProjectListModule = function () {
                 ProjectListModule.ListLoad(Data.data);
             }
             else {
-                $('#projectSortandFilter').remove();
+                $('#ProjectSortandFilter').remove();
                 $('#ProjectviewmoreList').hide();
                 $("#ProjectList").empty();
-                $("#ProjectList").append("<span>No Data found</span>");
+                $("#ProjectList").append('<div class="d-flex align-items-center justify-content-center" style="height: 250px;"><h5>No Data found</h5></div>');
+                
+                   
             }
 
 

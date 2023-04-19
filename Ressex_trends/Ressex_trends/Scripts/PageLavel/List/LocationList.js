@@ -28,26 +28,39 @@ var LocationListModule = function () {
 
             TotalData = Data;
             console.log(Data);
-            keepLocationListData = Data.data;
 
-            //Project Heading Decider
+            if (Data.status == 'OK') {
 
-            if (result.Category == "AllLocations") {
-                $('#LocationlistHeading').text(keepLocationListData[0].locations_in_india);
-            }
-            else if (result.Category == "LocationinLocation") {
-                $('#LocationlistHeading').text(keepLocationListData[0].location_input);
-            }
-            else if (result.Category == "LocationsinCity") {
-                $('#LocationlistHeading').text(keepLocationListData[0].locations_in_city);
+
+                keepLocationListData = Data.data;
+
+                //Project Heading Decider
+
+                if (result.Category == "AllLocations") {
+                    $('#LocationlistHeading').text(keepLocationListData[0].locations_in_india);
+                }
+                else if (result.Category == "LocationinLocation") {
+                    $('#LocationlistHeading').text(keepLocationListData[0].location_input);
+                }
+                else if (result.Category == "LocationsinCity") {
+                    $('#LocationlistHeading').text(keepLocationListData[0].locations_in_city);
+                }
+                else {
+                    $('#LocationlistHeading').text(keepLocationListData[0].locations_in_india);
+                }
+
+
+                LocationListModule.ListLoad(Data.data);
             }
             else {
-                $('#LocationlistHeading').text(keepLocationListData[0].locations_in_india);
+                $('#LocationSortandFilter').remove();
+                $('#LocationviewmoreList').hide();
+                $("#LocationList").empty();
+                $("#LocationList").append('<div class="d-flex align-items-center justify-content-center" style="height: 250px;"><h5>No Data found</h5></div>');
+
+
             }
-
-
-            LocationListModule.ListLoad(Data.data);
-
+            }
 
 
         },

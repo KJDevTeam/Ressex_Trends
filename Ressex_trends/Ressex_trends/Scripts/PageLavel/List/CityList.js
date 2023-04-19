@@ -28,23 +28,36 @@ var CityListModule = function () {
 
             TotalData = Data;
             console.log(Data);
-            keepCityListData = Data.data;
+            if (Data.status == 'OK') {
 
-            //Project Heading Decider
 
-            if (result.Category == "AllCities") {
-                $('#CitylistHeading').text(keepCityListData[0].cities_in_india);
-            }
-            else if (result.Category == "CityinCity") {
-                $('#CitylistHeading').text(keepCityListData[0].city_search);
+
+                keepCityListData = Data.data;
+
+                //Project Heading Decider
+
+                if (result.Category == "AllCities") {
+                    $('#CitylistHeading').text(keepCityListData[0].cities_in_india);
+                }
+                else if (result.Category == "CityinCity") {
+                    $('#CitylistHeading').text(keepCityListData[0].city_search);
+                }
+                else {
+                    $('#CitylistHeading').text(keepPincodeListData[0].cities_in_india);
+                }
+
+
+                CityListModule.ListLoad(Data.data);
             }
             else {
-                $('#CitylistHeading').text(keepPincodeListData[0].cities_in_india);
+                $('#CitySortandFilter').remove();
+                $('#CityviewmoreList').hide();
+                $("#CityList").empty();
+                $("#CityList").append('<div class="d-flex align-items-center justify-content-center" style="height: 250px;"><h5>No Data found</h5></div>');
+
+
             }
-
-
-            CityListModule.ListLoad(Data.data);
-
+            }
 
 
         },
