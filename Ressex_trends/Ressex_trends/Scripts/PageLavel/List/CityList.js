@@ -82,67 +82,37 @@ var CityListModule = function () {
                 $("#CityList").empty();
                 $.each(arr_toload, function (index, items) {
 
-                    st += '<div class="card my-3">\
-                        <div class="row no-gutters">\
-                            <div class="col-1">\
-                                <img class="card-img rounded-circle" src="'+ img + '/Bangalore.png">\
-                    </div>\
-                                <div class="col-2">\
-                                    <div class="card-body">\
-                                        <h5 class="card-title">'+ items.city_search + '</h5>\
-                                        <p class="card-text">'+ items.state + '</p>\
+                    st += '<div class="searchResultCard d-flex align-items-center">\
+                        <div class="mediaBlk rounded-circle mr-5"><img src="'+ img + '/search-img-1.png" alt="" class="rounded-circle"></div>\
+                            <div class="d-flex justify-content-between flex-1">\
+                                    <div class="searchCol">\
+                                        <label class="name">'+ items.city_search + '</label>\
+                                        <div class="location">'+ items.state + '</div>\
                                     </div>\
-                                </div>\
-                                <div class="col-2">\
-                                    <div class="card-body">\
-                                        <span class="card-title">'+ items.current_qtr + '</span>\
-                                        <p class="card-text">'+ items.saleable_rate_psf + '</p>\
+                                    <div class="searchCol">\
+                                        <label>'+ items.current_qtr + '</label>\
+                                        <div>'+ items.saleable_rate_psf + '</div>\
                                     </div>\
-                                </div>\
-                                <div class="col-2">\
-                                    <div class="card-body">\
-                                        <span class="card-title">YoY Change</span>\
-                                        <p class="card-text">'+ items.cagr_last_1yr_pct + '</p>\
+                                    <div class="searchCol">\
+                                        <label>YoY Change (%)</label>\
+                                        <div class="d-flex align-items-center">'+ items.cagr_last_1yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div>\
                                     </div>\
-                                </div>\
-                                <div class="col-1">\
-                                    <div class="card-body">\
-                                        <span class="card-title">CAGR 3Y</span>\
-                                        <p class="card-text">'+ items.cagr_last_3yr_pct + '</p>\
+                                    <div class="searchCol">\
+                                        <label>CAGR (3Y)</label>\
+                                        <div class="d-flex align-items-center">'+ items.cagr_last_3yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div>\
                                     </div>\
-                                </div>\
-                                <div class="col-1">\
-                                    <div class="card-body">\
-                                        <span class="card-title">CAGR 5Y</span>\
-                                        <p class="card-text">'+ items.cagr_last_5yr_pct + '</p>\
+                                    <div class="searchCol">\
+                                            <label>CAGR (5Y)</label>\
+                                            <div>'+ items.cagr_last_5yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div>\
                                     </div>\
-                                </div>\
-                                <div class="col-2">\
-                                    <div class="card-body">\
-                                        <button class="btn text-danger" onClick="ProjectByCity('+ items.region_or_city_id +')">View Projects</button>\
-                                    </div>\
-                                </div>\
-                                <div class="col-1">\
-                                    <div class="card-body">\
-                                        <button class="btn text-danger">View trends</button>\
-                                    </div>\
-                                </div>\
-                            </div>\
-            </div>';
-                    //        st += '<div class="card mb-3">\
-                    //        <div class="row">\
-                    //            <div class="col-1">\
-                    //                <img class="card-img" src="'+ img + '/Bangalore.png" style="height:100px;width:100px">\
-                    //        </div>\
-                    //                <div class="col-11">\
-                    //                    <div class="card-body">\
-                    //                        <h5 class="card-title">'+ items.name + '</h5>\
-                    //                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>\
-                    //                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>\
-                    //                    </div>\
-                    //                </div>\
-                    //            </div>\
-                    //</div >';
+                               </div>\
+                               <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
+                                  <a href="#" onClick="ProjectByCity('+ items.region_or_city_id + ')">View<br>Projects</a>\
+                               </div>\
+                               <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
+                                  <a href="#">View<br>Trends</a>\
+                               </div>\
+                           </div>';
                 });
                 var paginateText = 'Showing <b>' + arr_toload.length + '</b> cities out of <b>' + keepCityListData.length + '</b>';
                 $('#CityPaginationText').empty();
@@ -156,15 +126,14 @@ var CityListModule = function () {
             //SortBy
             if (sortby == "name") {
                 var Text = CityListModule.orderbyDecider("#CityNameSortIcon", orderby);
-                $('#CitynameSortID').text(Text);
-                $('#CitynameSortID').addClass('text-danger');
+                $('#CitynameSortID').addClass('sortBy');
 
 
                 //Remove Red From Text
-                $('#CityCurrRateSortID').removeClass('text-danger');
-                $('#CityyoySortID').removeClass('text-danger');
-                $('#CityCAGR3YSortID').removeClass('text-danger');
-                $('#CityCAGR5YSortID').removeClass('text-danger');
+                $('#CityCurrRateSortID').removeClass('sortBy');
+                $('#CityyoySortID').removeClass('sortBy');
+                $('#CityCAGR3YSortID').removeClass('sortBy');
+                $('#CityCAGR5YSortID').removeClass('sortBy');
 
                 //Remove Icon
                 $('#CityCurRateSortIcon').removeClass();
@@ -180,13 +149,12 @@ var CityListModule = function () {
             else if (sortby == "current_rate") {
 
                 var Text = CityListModule.orderbyDecider("#CityCurRateSortIcon", orderby);
-                $('#CityCurrRateSortID').text(Text);
-                $('#CityCurrRateSortID').addClass('text-danger');
+                $('#CityCurrRateSortID').addClass('sortBy');
 
-                $('#CitynameSortID').removeClass('text-danger');
-                $('#CityyoySortID').removeClass('text-danger');
-                $('#CityCAGR3YSortID').removeClass('text-danger');
-                $('#CityCAGR5YSortID').removeClass('text-danger');
+                $('#CitynameSortID').removeClass('sortBy');
+                $('#CityyoySortID').removeClass('sortBy');
+                $('#CityCAGR3YSortID').removeClass('sortBy');
+                $('#CityCAGR5YSortID').removeClass('sortBy');
 
                 //Remove Icon
                 $('#CityNameSortIcon').removeClass();
@@ -197,14 +165,13 @@ var CityListModule = function () {
             else if (sortby == "cagr_last_1yr") {
 
                 var Text = CityListModule.orderbyDecider("#CityYoySortIcon", orderby);
-                $('#CityYoySortIcon').text(Text);
-                $('#CityyoySortID').addClass('text-danger');
+                $('#CityyoySortID').addClass('sortBy');
 
                 //Remove Red from Text
-                $('#CitynameSortID').removeClass('text-danger');
-                $('#CityCurrRateSortID').removeClass('text-danger');
-                $('#CityCAGR3YSortID').removeClass('text-danger');
-                $('#CityCAGR5YSortID').removeClass('text-danger');
+                $('#CitynameSortID').removeClass('sortBy');
+                $('#CityCurrRateSortID').removeClass('sortBy');
+                $('#CityCAGR3YSortID').removeClass('sortBy');
+                $('#CityCAGR5YSortID').removeClass('sortBy');
 
                 //Remove Icon from Text
                 $('#CityNameSortIcon').removeClass();
@@ -216,13 +183,13 @@ var CityListModule = function () {
             else if (sortby == "cagr_last_3yr") {
 
                 var Text = CityListModule.orderbyDecider("#Citycagr3ySortIcon", orderby);
-                $('#CityCAGR3YSortID').text(Text);
-                $('#CityCAGR3YSortID').addClass('text-danger');
+                
+                $('#CityCAGR3YSortID').addClass('sortBy');
 
-                $('#CitynameSortID').removeClass('text-danger');
-                $('#CityCurrRateSortID').removeClass('text-danger');
-                $('#CityyoySortID').removeClass('text-danger');
-                $('#CityCAGR5YSortID').removeClass('text-danger');
+                $('#CitynameSortID').removeClass('sortBy');
+                $('#CityCurrRateSortID').removeClass('sortBy');
+                $('#CityyoySortID').removeClass('sortBy');
+                $('#CityCAGR5YSortID').removeClass('sortBy');
 
 
                 //Remove Icon from Text
@@ -234,13 +201,13 @@ var CityListModule = function () {
             else if (sortby == "cagr_last_5yr") {
 
                 var Text = CityListModule.orderbyDecider("#Citycagr5ySortIcon", orderby);
-                $('#CityCAGR5YSortID').text(Text);
-                $('#CityCAGR5YSortID').addClass('text-danger');
+                
+                $('#CityCAGR5YSortID').addClass('sortBy');
 
-                $('#CitynameSortID').removeClass('text-danger');
-                $('#CityCurrRateSortID').removeClass('text-danger');
-                $('#CityyoySortID').removeClass('text-danger');
-                $('#CityCAGR3YSortID').removeClass('text-danger');
+                $('#CitynameSortID').removeClass('sortBy');
+                $('#CityCurrRateSortID').removeClass('sortBy');
+                $('#CityyoySortID').removeClass('sortBy');
+                $('#CityCAGR3YSortID').removeClass('sortBy');
 
 
                 //Remove Icon from Text
@@ -256,16 +223,13 @@ var CityListModule = function () {
         orderbyDecider: function (IconID, orderby) {
 
             //OrderBy
-
-
-
             if (orderby == "desc") {
-                $(IconID).addClass("fa fa-arrow-down text-danger");
+                $(IconID).addClass("desc");
 
 
             }
             else {
-                $(IconID).addClass("fa fa-arrow-up text-danger");
+                $(IconID).addClass("asc");
 
             }
 
@@ -347,10 +311,10 @@ function Citycagr5ySortclick() {
 
 function CityNamesortIconClick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
+    if (event.currentTarget.className == "asc") {
         CityListModule.init("name", "desc");
         $('#CityNameSortIcon').removeClass();
-        $('#CityNameSortIcon').addClass("fa fa-arrow-down text-danger");
+        $('#CityNameSortIcon').addClass("desc");
         //$('#').removeClass();
         //$('#CurRateSortIcon').removeClass();
         //$('#YoySortIcon').removeClass();
@@ -359,66 +323,66 @@ function CityNamesortIconClick(event) {
     else {
         CityListModule.init("name", "asc");
         $('#CityNameSortIcon').removeClass();
-        $('#CityNameSortIcon').addClass("fa fa-arrow-up text-danger");
+        $('#CityNameSortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
 function CityCurRateIconClick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
+    if (event.currentTarget.className == "asc") {
         CityListModule.init("current_rate", "desc");
         $('#CityCurRateSortIcon').removeClass();
-        $('#CityCurRateSortIcon').addClass("fa fa-arrow-down text-danger");
+        $('#CityCurRateSortIcon').addClass("desc");
 
     }
     else {
         CityListModule.init("current_rate", "asc");
         $('#CityCurRateSortIcon').removeClass();
-        $('#CityCurRateSortIcon').addClass("fa fa-arrow-up text-danger");
+        $('#CityCurRateSortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
 function CityyoyIconClick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
+    if (event.currentTarget.className == "asc") {
         CityListModule.init("cagr_last_1yr", "desc");
         $('#CityYoySortIcon').removeClass();
-        $('#CityYoySortIcon').addClass("fa fa-arrow-down text-danger");
+        $('#CityYoySortIcon').addClass("desc");
     }
     else {
         CityListModule.init("cagr_last_1yr", "asc");
         $('#CityYoySortIcon').removeClass();
-        $('#CityYoySortIcon').addClass("fa fa-arrow-up text-danger");
+        $('#CityYoySortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
 function Citycagr3yIconClick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
+    if (event.currentTarget.className == "asc") {
         CityListModule.init("cagr_last_3yr", "desc");
         $('#Citycagr3ySortIcon').removeClass();
-        $('#Citycagr3ySortIcon').addClass("fa fa-arrow-down text-danger");
+        $('#Citycagr3ySortIcon').addClass("desc");
 
     }
     else {
         CityListModule.init("cagr_last_3yr", "asc");
         $('#Citycagr3ySortIcon').removeClass();
-        $('#Citycagr3ySortIcon').addClass("fa fa-arrow-up text-danger");
+        $('#Citycagr3ySortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
 function Citycagr5yIconClick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
+    if (event.currentTarget.className == "asc") {
         CityListModule.init("cagr_last_5yr", "desc");
         $('#Citycagr5ySortIcon').removeClass();
-        $('#Citycagr5ySortIcon').addClass("fa fa-arrow-down text-danger");
+        $('#Citycagr5ySortIcon').addClass("desc");
 
     }
     else {
         CityListModule.init("cagr_last_5yr", "asc");
         $('#Citycagr5ySortIcon').removeClass();
-        $('#Citycagr5ySortIcon').addClass("fa fa-arrow-up text-danger");
+        $('#Citycagr5ySortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }

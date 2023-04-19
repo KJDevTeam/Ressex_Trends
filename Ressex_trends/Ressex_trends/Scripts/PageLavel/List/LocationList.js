@@ -79,68 +79,38 @@ var LocationListModule = function () {
                 var st = ''
                 $("#LocationList").empty();
                 $.each(arr_toload, function (index, items) {
-
-                    st += '<div class="card my-3">\
-                        <div class="row no-gutters">\
-                            <div class="col-1">\
-                                <img class="card-img rounded-circle" src="'+ img + '/Bangalore.png">\
-                    </div>\
-                                <div class="col-2">\
-                                    <div class="card-body">\
-                                        <h5 class="card-title">'+ items.location + '</h5>\
-                                        <p class="card-text">'+ items.region_city + '</p>\
+                    st += '<div class="searchResultCard d-flex align-items-center">\
+                        <div class="mediaBlk rounded-circle mr-5"><img src="'+ img + '/search-img-1.png" alt="" class="rounded-circle"></div>\
+                            <div class="d-flex justify-content-between flex-1">\
+                                    <div class="searchCol">\
+                                        <label class="name">'+ items.location + '</label>\
+                                        <div class="location">'+ items.region_city + '</div>\
                                     </div>\
-                                </div>\
-                                <div class="col-2">\
-                                    <div class="card-body">\
-                                        <span class="card-title">'+ items.current_qtr + '</span>\
-                                        <p class="card-text">'+ items.saleable_rate_psf + '</p>\
+                                    <div class="searchCol">\
+                                        <label>'+ items.current_qtr + '</label>\
+                                        <div>'+ items.saleable_rate_psf + '</div>\
                                     </div>\
-                                </div>\
-                                <div class="col-2">\
-                                    <div class="card-body">\
-                                        <span class="card-title">YoY Change</span>\
-                                        <p class="card-text">'+ items.cagr_last_1yr_pct + '</p>\
+                                    <div class="searchCol">\
+                                        <label>YoY Change (%)</label>\
+                                        <div class="d-flex align-items-center">'+ items.cagr_last_1yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div>\
                                     </div>\
-                                </div>\
-                                <div class="col-1">\
-                                    <div class="card-body">\
-                                        <span class="card-title">CAGR 3Y</span>\
-                                        <p class="card-text">'+ items.cagr_last_3yr_pct + '</p>\
+                                    <div class="searchCol">\
+                                        <label>CAGR (3Y)</label>\
+                                        <div class="d-flex align-items-center">'+ items.cagr_last_3yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div>\
                                     </div>\
-                                </div>\
-                                <div class="col-1">\
-                                    <div class="card-body">\
-                                        <span class="card-title">CAGR 5Y</span>\
-                                        <p class="card-text">'+ items.cagr_last_5yr_pct + '</p>\
+                                    <div class="searchCol">\
+                                            <label>CAGR (5Y)</label>\
+                                            <div>'+ items.cagr_last_5yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div>\
                                     </div>\
-                                </div>\
-                                <div class="col-2">\
-                                    <div class="card-body">\
-                                        <button class="btn text-danger" onClick="ProjectBylocation('+ items.locationid +')">View Projects</button>\
-                                    </div>\
-                                </div>\
-                                <div class="col-1">\
-                                    <div class="card-body">\
-                                        <button class="btn text-danger">View trends</button>\
-                                    </div>\
-                                </div>\
-                            </div>\
-            </div>';
-                    //        st += '<div class="card mb-3">\
-                    //        <div class="row">\
-                    //            <div class="col-1">\
-                    //                <img class="card-img" src="'+ img + '/Bangalore.png" style="height:100px;width:100px">\
-                    //        </div>\
-                    //                <div class="col-11">\
-                    //                    <div class="card-body">\
-                    //                        <h5 class="card-title">'+ items.name + '</h5>\
-                    //                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>\
-                    //                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>\
-                    //                    </div>\
-                    //                </div>\
-                    //            </div>\
-                    //</div >';
+                               </div>\
+                               <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
+                                  <a href="#" onClick="ProjectBylocation('+ items.locationid + ')">View<br>Projects</a>\
+                               </div>\
+                               <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
+                                  <a href="#">View<br>Trends</a>\
+                               </div>\
+                           </div>';
+                   
                 });
                 var paginateText = 'Showing <b>' + arr_toload.length + '</b> locations out of <b>' + keepLocationListData.length + '</b>';
                 $('#LocationPaginationText').empty();
@@ -154,15 +124,15 @@ var LocationListModule = function () {
             //SortBy
             if (sortby == "name") {
                 var Text = LocationListModule.orderbyDecider("#LocationNameSortIcon", orderby);
-                $('#LocationnameSortID').text(Text);
-                $('#LocationnameSortID').addClass('text-danger');
+               
+                $('#LocationnameSortID').addClass('sortBy');
 
 
                 //Remove Red From Text
-                $('#LocationCurrRateSortID').removeClass('text-danger');
-                $('#LocationyoySortID').removeClass('text-danger');
-                $('#LocationCAGR3YSortID').removeClass('text-danger');
-                $('#LocationCAGR5YSortID').removeClass('text-danger');
+                $('#LocationCurrRateSortID').removeClass('sortBy');
+                $('#LocationyoySortID').removeClass('sortBy');
+                $('#LocationCAGR3YSortID').removeClass('sortBy');
+                $('#LocationCAGR5YSortID').removeClass('sortBy');
 
                 //Remove Icon
                 $('#LocationCurRateSortIcon').removeClass();
@@ -178,13 +148,13 @@ var LocationListModule = function () {
             else if (sortby == "current_rate") {
 
                 var Text = LocationListModule.orderbyDecider("#LocationCurRateSortIcon", orderby);
-                $('#LocationCurrRateSortID').text(Text);
-                $('#LocationCurrRateSortID').addClass('text-danger');
+               
+                $('#LocationCurrRateSortID').addClass('sortBy');
 
-                $('#LocationnameSortID').removeClass('text-danger');
-                $('#LocationyoySortID').removeClass('text-danger');
-                $('#LocationCAGR3YSortID').removeClass('text-danger');
-                $('#LocationCAGR5YSortID').removeClass('text-danger');
+                $('#LocationnameSortID').removeClass('sortBy');
+                $('#LocationyoySortID').removeClass('sortBy');
+                $('#LocationCAGR3YSortID').removeClass('sortBy');
+                $('#LocationCAGR5YSortID').removeClass('sortBy');
 
                 //Remove Icon
                 $('#LocationNameSortIcon').removeClass();
@@ -195,14 +165,14 @@ var LocationListModule = function () {
             else if (sortby == "cagr_last_1yr") {
 
                 var Text = LocationListModule.orderbyDecider("#LocationYoySortIcon", orderby);
-                $('#LocationYoySortIcon').text(Text);
-                $('#LocationyoySortID').addClass('text-danger');
+               
+                $('#LocationyoySortID').addClass('sortBy');
 
                 //Remove Red from Text
-                $('#LocationnameSortID').removeClass('text-danger');
-                $('#LocationCurrRateSortID').removeClass('text-danger');
-                $('#LocationCAGR3YSortID').removeClass('text-danger');
-                $('#LocationCAGR5YSortID').removeClass('text-danger');
+                $('#LocationnameSortID').removeClass('sortBy');
+                $('#LocationCurrRateSortID').removeClass('sortBy');
+                $('#LocationCAGR3YSortID').removeClass('sortBy');
+                $('#LocationCAGR5YSortID').removeClass('sortBy');
 
                 //Remove Icon from Text
                 $('#LocationNameSortIcon').removeClass();
@@ -214,13 +184,13 @@ var LocationListModule = function () {
             else if (sortby == "cagr_last_3yr") {
 
                 var Text = LocationListModule.orderbyDecider("#Locationcagr3ySortIcon", orderby);
-                $('#LocationCAGR3YSortID').text(Text);
-                $('#LocationCAGR3YSortID').addClass('text-danger');
+              
+                $('#LocationCAGR3YSortID').addClass('sortBy');
 
-                $('#LocationnameSortID').removeClass('text-danger');
-                $('#LocationCurrRateSortID').removeClass('text-danger');
-                $('#LocationyoySortID').removeClass('text-danger');
-                $('#LocationCAGR5YSortID').removeClass('text-danger');
+                $('#LocationnameSortID').removeClass('sortBy');
+                $('#LocationCurrRateSortID').removeClass('sortBy');
+                $('#LocationyoySortID').removeClass('sortBy');
+                $('#LocationCAGR5YSortID').removeClass('sortBy');
 
 
                 //Remove Icon from Text
@@ -232,13 +202,13 @@ var LocationListModule = function () {
             else if (sortby == "cagr_last_5yr") {
 
                 var Text = LocationListModule.orderbyDecider("#Locationcagr5ySortIcon", orderby);
-                $('#LocationCAGR5YSortID').text(Text);
-                $('#LocationCAGR5YSortID').addClass('text-danger');
+              
+                $('#LocationCAGR5YSortID').addClass('sortBy');
 
-                $('#LocationnameSortID').removeClass('text-danger');
-                $('#LocationCurrRateSortID').removeClass('text-danger');
-                $('#LocationyoySortID').removeClass('text-danger');
-                $('#LocationCAGR3YSortID').removeClass('text-danger');
+                $('#LocationnameSortID').removeClass('sortBy');
+                $('#LocationCurrRateSortID').removeClass('sortBy');
+                $('#LocationyoySortID').removeClass('sortBy');
+                $('#LocationCAGR3YSortID').removeClass('sortBy');
 
 
                 //Remove Icon from Text
@@ -254,16 +224,13 @@ var LocationListModule = function () {
         orderbyDecider: function (IconID, orderby) {
 
             //OrderBy
-
-
-
             if (orderby == "desc") {
-                $(IconID).addClass("fa fa-arrow-down text-danger");
+                $(IconID).addClass("desc");
 
 
             }
             else {
-                $(IconID).addClass("fa fa-arrow-up text-danger");
+                $(IconID).addClass("asc");
 
             }
 
@@ -357,78 +324,75 @@ function Locationcagr5ySortclick() {
 
 function LocationNamesortIconClick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
+    if (event.currentTarget.className == "asc") {
         LocationListModule.init("name", "desc");
         $('#LocationNameSortIcon').removeClass();
-        $('#LocationNameSortIcon').addClass("fa fa-arrow-down text-danger");
-        //$('#').removeClass();
-        //$('#CurRateSortIcon').removeClass();
-        //$('#YoySortIcon').removeClass();
-        //$('#cagr3ySortIcon').removeClass();
+        $('#LocationNameSortIcon').addClass("desc");
+        
     }
     else {
         LocationListModule.init("name", "asc");
         $('#LocationNameSortIcon').removeClass();
-        $('#LocationNameSortIcon').addClass("fa fa-arrow-up text-danger");
+        $('#LocationNameSortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
 function LocationCurRateIconClick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
+    if (event.currentTarget.className == "asc") {
         LocationListModule.init("current_rate", "desc");
         $('#LocationCurRateSortIcon').removeClass();
-        $('#LocationCurRateSortIcon').addClass("fa fa-arrow-down text-danger");
+        $('#LocationCurRateSortIcon').addClass("desc");
 
     }
     else {
         LocationListModule.init("current_rate", "asc");
         $('#LocationCurRateSortIcon').removeClass();
-        $('#LocationCurRateSortIcon').addClass("fa fa-arrow-up text-danger");
+        $('#LocationCurRateSortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
 function LocationyoyIconClick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
+    if (event.currentTarget.className == "asc") {
         LocationListModule.init("cagr_last_1yr", "desc");
         $('#LocationYoySortIcon').removeClass();
-        $('#LocationYoySortIcon').addClass("fa fa-arrow-down text-danger");
+        $('#LocationYoySortIcon').addClass("desc");
     }
     else {
         LocationListModule.init("cagr_last_1yr", "asc");
         $('#LocationYoySortIcon').removeClass();
-        $('#LocationYoySortIcon').addClass("fa fa-arrow-up text-danger");
+        $('#LocationYoySortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
 function Locationcagr3yIconClick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
+    if (event.currentTarget.className == "asc") {
         LocationListModule.init("cagr_last_3yr", "desc");
         $('#Locationcagr3ySortIcon').removeClass();
-        $('#Locationcagr3ySortIcon').addClass("fa fa-arrow-down text-danger");
+        $('#Locationcagr3ySortIcon').addClass("desc");
 
     }
     else {
         LocationListModule.init("cagr_last_3yr", "asc");
         $('#Locationcagr3ySortIcon').removeClass();
-        $('#Locationcagr3ySortIcon').addClass("fa fa-arrow-up text-danger");
+        $('#Locationcagr3ySortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
 function Locationcagr5yIconClick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
+    if (event.currentTarget.className == "asc") {
         LocationListModule.init("cagr_last_5yr", "desc");
         $('#Locationcagr5ySortIcon').removeClass();
-        $('#Locationcagr5ySortIcon').addClass("fa fa-arrow-down text-danger");
+        $('#Locationcagr5ySortIcon').addClass("desc");
 
     }
     else {
         LocationListModule.init("cagr_last_5yr", "asc");
         $('#Locationcagr5ySortIcon').removeClass();
-        $('#Locationcagr5ySortIcon').addClass("fa fa-arrow-up text-danger");
+        $('#Locationcagr5ySortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }

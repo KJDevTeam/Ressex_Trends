@@ -2,155 +2,75 @@
 @{
     ViewBag.Title = "City List";
 }
-<section>
-    <div class="mainbodyWrap d-flex flex-column flex-1">
-        <div class="container flex-1">
-            <div class="innerSectionHeader d-flex" id="CitySortandFilter">
-                <a href="@Url.Action("Index","Home")" class="mr-2 pt-2"><img src="~/images/chevron-left.svg" alt=""></a>
-                <div class="header flex-1">
-                    <span id="CitylistHeading" class="h3 font-weight-bold"></span>
-                    <span> | </span>
-                    <span id="CityPaginationText"></span>
 
-                    <div class="border-h"></div>
-                    <div class="d-flex justify-content-end">
-                        <div class="d-flex mr-3">
-                            <label class="mr-1" onclick="CityNameSortclick()" id="CitynameSortID">Name</label><i class="" id="CityNameSortIcon" onclick="CityNamesortIconClick(event)"></i>
-                            @*<span class="color-red">Rs 7,945/ sq.ft</span>*@
+<div class="mainbodyWrap d-flex flex-column flex-1">
+    <div class="container flex-1">
+        <div class="innerSectionHeader searchPageHeader d-flex" id="CitySortandFilter">
+            <a href="@Url.Action("Index","Home")" class="mr-2 pt-2"><img src="~/images/chevron-left.svg" alt=""></a>
+            <div class="header flex-1 d-flex flex-column">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <h3 class="mb-0" id="CitylistHeading"></h3>
+                        <div class="ml-3 pl-2 text20px font-w-400 searchInfo" id="CityPaginationText">
                         </div>
-                        <div class="d-flex mr-3">
-                            <label class="mr-1" onclick="CityCurRateSortclick()" id="CityCurrRateSortID">Current Rate</label><i class="" id="CityCurRateSortIcon" onclick="CityCurRateIconClick(event)"></i>
-                            @*<span class="color-red">10%</span>*@
-                        </div>
-                        <div class="d-flex mr-3">
-                            <label class="mr-1" onclick="CityYoySortclick()" id="CityyoySortID">YoY Change(%)</label><i class="" id="CityYoySortIcon" onclick="CityyoyIconClick(event)"></i>
-                            @*<span class="color-red">10%</span>*@
-                        </div>
-                        <div class="d-flex mr-3">
-                            <label class="mr-1" onclick="Citycagr3ySortclick()" id="CityCAGR3YSortID">CAGR (3Y)</label><i class="" id="Citycagr3ySortIcon" onclick="Citycagr3yIconClick(event)"></i>
-                            @*<span class="color-red">10%</span>*@
-                        </div>
-                        <div class="d-flex mr-3">
-                            <label class="mr-1" onclick="Citycagr5ySortclick()" id="CityCAGR5YSortID">CAGR (5Y)</label><i class="" id="Citycagr5ySortIcon" onclick="Citycagr5yIconClick(event)"></i>
-                            @*<span class="color-red">10%</span>*@
-                        </div>
-
                     </div>
 
+                    @*<div class="d-flex align-items-center">
+                            <div class="custom-control custom-radio ">
+                                <input type="radio" class="custom-control-input" id="Pincodes" value="projects" name="projects-search" checked="">
+                                <label class="custom-control-label pointer" for="projects">Projects</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="locations" value="locations" name="projects-search">
+                                <label class="custom-control-label pointer" for="locations">Locations</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="pincodes" value="pincodes" name="projects-search">
+                                <label class="custom-control-label pointer mr-0" for="pincodes">Pincodes</label>
+                            </div>
+                        </div>*@
                 </div>
-            </div>
-            @*<div class="card my-3">
-                    <div class="row no-gutters">
-                        <div class="col-1">
-                            <img class="card-img rounded-circle" src="~/images/Bangalore.png">
-                        </div>
-                        <div class="col-2">
-                            <div class="card-body">
-                                <h5 class="card-title">Name</h5>
-                                <p class="card-text">Kandivali (West) Mumbai</p>
-
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="card-body">
-                                <span class="card-title">Rate in Dec'22</span>
-                                <p class="card-text">Rs 12000 Sq/ft</p>
-
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="card-body">
-                                <span class="card-title">YOY Change</span>
-                                <p class="card-text">Rs 12000 Sq/ft</p>
-
-                            </div>
-                        </div>
-                        <div class="col-1">
-                            <div class="card-body">
-                                <span class="card-title">CAGR 3Y</span>
-                                <p class="card-text">10</p>
-
-                            </div>
-                        </div>
-                        <div class="col-1">
-                            <div class="card-body">
-                                <span class="card-title">CAGR 5Y</span>
-                                <p class="card-text">Rs 12000 Sq/ft</p>
-
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="card-body">
-                                <span class="card-title">Project Status</span>
-                                <p class="card-text">Rs 12000 Sq/ft</p>
-
-                            </div>
-                        </div>
-                        <div class="col-1">
-                            <div class="card-body">
-                                <button>View trends</button>
-
-                            </div>
-                        </div>
+                <div class="border-h"></div>
+                <div class="d-flex align-items-center justify-content-end">
+                    <div class="mr-1 sortBy">Sort by :</div>
+                    <div class="d-flex mr-3" id="CitynameSortID">
+                        <a href="javascript:void(0)" class="pr-0" onclick="CityNameSortclick()">Name</a>
+                        <a href="javascript:void(0)" class="" onclick="CityNamesortIconClick(event)" id="CityNameSortIcon"></a>
                     </div>
-                </div>*@
+                    <div class="d-flex mr-3" id="CityCurrRateSortID">
+                        <a href="javascript:void(0)" class="pr-0" onclick="CityCurRateSortclick()">Current Rate</a>
+                        <a href="javascript:void(0)" class="" id="CityCurRateSortIcon" onclick="CityCurRateIconClick(event)"></a>
+                    </div>
+                    <div class="d-flex mr-3" id="CityyoySortID">
+                        <a href="javascript:void(0)" class="pr-0" onclick="CityYoySortclick()">YoY Change(%)</a>
+                        <a href="javascript:void(0)" class="" id="CityYoySortIcon" onclick="CityyoyIconClick(event)"></a>
+                    </div>
+                    <div class="d-flex mr-3" id="CityCAGR3YSortID">
+                        <a href="javascript:void(0)" class="pr-0" onclick="Citycagr3ySortclick()">CAGR (3Y)</a>
+                        <a href="javascript:void(0)" class="" id="Citycagr3ySortIcon" onclick="Citycagr3yIconClick(event)"></a>
+
+                    </div>
+                    <div class="d-flex mr-0" id="CityCAGR5YSortID">
+                        <a href="javascript:void(0)" class="pr-0" onclick="Citycagr5ySortclick()">CAGR (5Y)</a>
+                        <a href="javascript:void(0)" class="" id="Citycagr5ySortIcon" onclick="Citycagr5yIconClick(event)"></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <section class="searchResultSec">
 
             <div id="CityList">
-                @*<div class="card mb-3">
-                        <div class="row">
-                            <div class="col-1">
-                                <img class="card-img" src="~/images/Bangalore.png" style="height:100px;width:100px">
-                            </div>
-                            <div class="col-11">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-3">
-                        <div class="row">
-                            <div class="col-1">
 
-                                <img class="card-img" src="~/images/Bangalore.png" style="height:100px;width:100px">
-                            </div>
-                            <div class="col-11">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-3">
-                        <div class="row">
-                            <div class="col-1">
-
-                                <img class="card-img" src="~/images/Bangalore.png" style="height:100px;width:100px">
-                            </div>
-                            <div class="col-11">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>*@
             </div>
-
-
-
-
-        </div>
-        <div class="text-center">
-            <button class="btn btn-red rounded-0" onclick="CityViewmoreListClick()" id="CityviewmoreList">View more</button>
-        </div>
+            <div class="text-center mt-5">
+                <button class="btn btn-red rounded-0 viewMoreBtn" onclick="CityViewmoreListClick()" id="CityviewmoreList">View more</button>
+            </div>
+        </section>
     </div>
-</section>
+</div>
+
 
 
 
@@ -172,8 +92,8 @@
             else {
                 CityListModule.init("name", "asc");
             }
-            $('#overlay').fadeOut();
 
+            $('#overlay').fadeOut();
 
         });
     </script>

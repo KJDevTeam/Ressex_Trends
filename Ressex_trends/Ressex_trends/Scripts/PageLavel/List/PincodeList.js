@@ -82,68 +82,37 @@ var PincodeListModule = function () {
                 var st = ''
                 $("#PincodeList").empty();
                 $.each(arr_toload, function (index, items) {
-
-                    st += '<div class="card my-3">\
-                        <div class="row no-gutters">\
-                            <div class="col-1">\
-                                <img class="card-img rounded-circle" src="'+ img + '/Bangalore.png">\
-                    </div>\
-                                <div class="col-2">\
-                                    <div class="card-body">\
-                                        <h5 class="card-title">'+ items.pincode + '</h5>\
-                                        <p class="card-text">'+ items.region_city + '</p>\
+                    st += '<div class="searchResultCard d-flex align-items-center">\
+                        <div class="mediaBlk rounded-circle mr-5"><img src="'+ img + '/search-img-1.png" alt="" class="rounded-circle"></div>\
+                            <div class="d-flex justify-content-between flex-1">\
+                                    <div class="searchCol">\
+                                        <label class="name">'+ items.pincode + '</label>\
+                                        <div class="location">'+ items.region_city + '</div>\
                                     </div>\
-                                </div>\
-                                <div class="col-2">\
-                                    <div class="card-body">\
-                                        <span class="card-title">'+ items.current_qtr + '</span>\
-                                        <p class="card-text">'+ items.saleable_rate_psf + '</p>\
+                                    <div class="searchCol">\
+                                        <label>'+ items.current_qtr + '</label>\
+                                        <div>'+ items.saleable_rate_psf + '</div>\
                                     </div>\
-                                </div>\
-                                <div class="col-2">\
-                                    <div class="card-body">\
-                                        <span class="card-title">YoY Change</span>\
-                                        <p class="card-text">'+ items.cagr_last_1yr_pct + '</p>\
+                                    <div class="searchCol">\
+                                        <label>YoY Change (%)</label>\
+                                        <div class="d-flex align-items-center">'+ items.cagr_last_1yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div>\
                                     </div>\
-                                </div>\
-                                <div class="col-1">\
-                                    <div class="card-body">\
-                                        <span class="card-title">CAGR 3Y</span>\
-                                        <p class="card-text">'+ items.cagr_last_3yr_pct + '</p>\
+                                    <div class="searchCol">\
+                                        <label>CAGR (3Y)</label>\
+                                        <div class="d-flex align-items-center">'+ items.cagr_last_3yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div>\
                                     </div>\
-                                </div>\
-                                <div class="col-1">\
-                                    <div class="card-body">\
-                                        <span class="card-title">CAGR 5Y</span>\
-                                        <p class="card-text">'+ items.cagr_last_5yr_pct + '</p>\
+                                    <div class="searchCol">\
+                                            <label>CAGR (5Y)</label>\
+                                            <div>'+ items.cagr_last_5yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div>\
                                     </div>\
-                                </div>\
-                                <div class="col-2">\
-                                    <div class="card-body">\
-                                        <button class="btn text-danger" onClick="ProjectByPincode('+ items.pincode + ')">View Projects</button>\
-                                    </div>\
-                                </div>\
-                                <div class="col-1">\
-                                    <div class="card-body">\
-                                        <button class="btn text-danger">View trends</button>\
-                                    </div>\
-                                </div>\
-                            </div>\
-            </div>';
-                    //        st += '<div class="card mb-3">\
-                    //        <div class="row">\
-                    //            <div class="col-1">\
-                    //                <img class="card-img" src="'+ img + '/Bangalore.png" style="height:100px;width:100px">\
-                    //        </div>\
-                    //                <div class="col-11">\
-                    //                    <div class="card-body">\
-                    //                        <h5 class="card-title">'+ items.name + '</h5>\
-                    //                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>\
-                    //                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>\
-                    //                    </div>\
-                    //                </div>\
-                    //            </div>\
-                    //</div >';
+                               </div>\
+                               <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
+                                  <a href="#" onClick="ProjectByPincode('+ items.pincode + ')">View<br>Projects</a>\
+                               </div>\
+                               <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
+                                  <a href="#">View<br>Trends</a>\
+                               </div>\
+                           </div>';
                 });
                 var paginateText = 'Showing <b>' + arr_toload.length + '</b> pincodes out of <b>' + keepPincodeListData.length + '</b>';
                 $('#PincodePaginationText').empty();
@@ -157,15 +126,15 @@ var PincodeListModule = function () {
         //SortBy
         if (sortby == "name") {
             var Text = PincodeListModule.orderbyDecider("#PincodeNameSortIcon", orderby);
-            $('#PincodenameSortID').text(Text);
-            $('#PincodenameSortID').addClass('text-danger');
+           
+            $('#PincodenameSortID').addClass('sortBy');
 
 
             //Remove Red From Text
-            $('#PincodeCurrRateSortID').removeClass('text-danger');
-            $('#PincodeyoySortID').removeClass('text-danger');
-            $('#PincodeCAGR3YSortID').removeClass('text-danger');
-            $('#PincodeCAGR5YSortID').removeClass('text-danger');
+            $('#PincodeCurrRateSortID').removeClass('sortBy');
+            $('#PincodeyoySortID').removeClass('sortBy');
+            $('#PincodeCAGR3YSortID').removeClass('sortBy');
+            $('#PincodeCAGR5YSortID').removeClass('sortBy');
 
             //Remove Icon
             $('#PincodeCurRateSortIcon').removeClass();
@@ -181,13 +150,13 @@ var PincodeListModule = function () {
         else if (sortby == "current_rate") {
 
             var Text = PincodeListModule.orderbyDecider("#PincodeCurRateSortIcon", orderby);
-            $('#PincodeCurrRateSortID').text(Text);
-            $('#PincodeCurrRateSortID').addClass('text-danger');
+           
+            $('#PincodeCurrRateSortID').addClass('sortBy');
 
-            $('#PincodenameSortID').removeClass('text-danger');
-            $('#PincodeyoySortID').removeClass('text-danger');
-            $('#PincodeCAGR3YSortID').removeClass('text-danger');
-            $('#PincodeCAGR5YSortID').removeClass('text-danger');
+            $('#PincodenameSortID').removeClass('sortBy');
+            $('#PincodeyoySortID').removeClass('sortBy');
+            $('#PincodeCAGR3YSortID').removeClass('sortBy');
+            $('#PincodeCAGR5YSortID').removeClass('sortBy');
 
             //Remove Icon
             $('#PincodeNameSortIcon').removeClass();
@@ -198,14 +167,14 @@ var PincodeListModule = function () {
         else if (sortby == "cagr_last_1yr") {
 
             var Text = PincodeListModule.orderbyDecider("#PincodeYoySortIcon", orderby);
-            $('#PincodeYoySortIcon').text(Text);
-            $('#PincodeyoySortID').addClass('text-danger');
+           
+            $('#PincodeyoySortID').addClass('sortBy');
 
             //Remove Red from Text
-            $('#PincodenameSortID').removeClass('text-danger');
-            $('#PincodeCurrRateSortID').removeClass('text-danger');
-            $('#PincodeCAGR3YSortID').removeClass('text-danger');
-            $('#PincodeCAGR5YSortID').removeClass('text-danger');
+            $('#PincodenameSortID').removeClass('sortBy');
+            $('#PincodeCurrRateSortID').removeClass('sortBy');
+            $('#PincodeCAGR3YSortID').removeClass('sortBy');
+            $('#PincodeCAGR5YSortID').removeClass('sortBy');
 
             //Remove Icon from Text
             $('#PincodeNameSortIcon').removeClass();
@@ -217,13 +186,13 @@ var PincodeListModule = function () {
         else if (sortby == "cagr_last_3yr") {
 
             var Text = PincodeListModule.orderbyDecider("#Pincodecagr3ySortIcon", orderby);
-            $('#PincodeCAGR3YSortID').text(Text);
-            $('#PincodeCAGR3YSortID').addClass('text-danger');
+          
+            $('#PincodeCAGR3YSortID').addClass('sortBy');
 
-            $('#PincodenameSortID').removeClass('text-danger');
-            $('#PincodeCurrRateSortID').removeClass('text-danger');
-            $('#PincodeyoySortID').removeClass('text-danger');
-            $('#PincodeCAGR5YSortID').removeClass('text-danger');
+            $('#PincodenameSortID').removeClass('sortBy');
+            $('#PincodeCurrRateSortID').removeClass('sortBy');
+            $('#PincodeyoySortID').removeClass('sortBy');
+            $('#PincodeCAGR5YSortID').removeClass('sortBy');
 
 
             //Remove Icon from Text
@@ -235,13 +204,13 @@ var PincodeListModule = function () {
         else if (sortby == "cagr_last_5yr") {
 
             var Text = PincodeListModule.orderbyDecider("#Pincodecagr5ySortIcon", orderby);
-            $('#PincodeCAGR5YSortID').text(Text);
-            $('#PincodeCAGR5YSortID').addClass('text-danger');
+            
+            $('#PincodeCAGR5YSortID').addClass('sortBy');
 
-            $('#PincodenameSortID').removeClass('text-danger');
-            $('#PincodeCurrRateSortID').removeClass('text-danger');
-            $('#PincodeyoySortID').removeClass('text-danger');
-            $('#PincodeCAGR3YSortID').removeClass('text-danger');
+            $('#PincodenameSortID').removeClass('sortBy');
+            $('#PincodeCurrRateSortID').removeClass('sortBy');
+            $('#PincodeyoySortID').removeClass('sortBy');
+            $('#PincodeCAGR3YSortID').removeClass('sortBy');
 
 
             //Remove Icon from Text
@@ -261,12 +230,12 @@ var PincodeListModule = function () {
 
 
         if (orderby == "desc") {
-            $(IconID).addClass("fa fa-arrow-down text-danger");
+            $(IconID).addClass("desc");
 
 
         }
         else {
-            $(IconID).addClass("fa fa-arrow-up text-danger");
+            $(IconID).addClass("asc");
 
         }
 
@@ -360,10 +329,10 @@ function Pincodecagr5ySortclick() {
 
 function PincodeNamesortIconClick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
+    if (event.currentTarget.className == "asc") {
         PincodeListModule.init("name", "desc");
         $('#PincodeNameSortIcon').removeClass();
-        $('#PincodeNameSortIcon').addClass("fa fa-arrow-down text-danger");
+        $('#PincodeNameSortIcon').addClass("desc");
         //$('#').removeClass();
         //$('#CurRateSortIcon').removeClass();
         //$('#YoySortIcon').removeClass();
@@ -372,66 +341,66 @@ function PincodeNamesortIconClick(event) {
     else {
         PincodeListModule.init("name", "asc");
         $('#PincodeNameSortIcon').removeClass();
-        $('#PincodeNameSortIcon').addClass("fa fa-arrow-up text-danger");
+        $('#PincodeNameSortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
 function PincodeCurRateIconClick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
+    if (event.currentTarget.className == "asc") {
         PincodeListModule.init("current_rate", "desc");
         $('#PincodeCurRateSortIcon').removeClass();
-        $('#PincodeCurRateSortIcon').addClass("fa fa-arrow-down text-danger");
+        $('#PincodeCurRateSortIcon').addClass("desc");
 
     }
     else {
         PincodeListModule.init("current_rate", "asc");
         $('#PincodeCurRateSortIcon').removeClass();
-        $('#PincodeCurRateSortIcon').addClass("fa fa-arrow-up text-danger");
+        $('#PincodeCurRateSortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
 function PincodeyoyIconClick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
+    if (event.currentTarget.className == "asc") {
         PincodeListModule.init("cagr_last_1yr", "desc");
         $('#PincodeYoySortIcon').removeClass();
-        $('#PincodeYoySortIcon').addClass("fa fa-arrow-down text-danger");
+        $('#PincodeYoySortIcon').addClass("desc");
     }
     else {
         PincodeListModule.init("cagr_last_1yr", "asc");
         $('#PincodeYoySortIcon').removeClass();
-        $('#PincodeYoySortIcon').addClass("fa fa-arrow-up text-danger");
+        $('#PincodeYoySortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
 function Pincodecagr3yIconClick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
+    if (event.currentTarget.className == "asc") {
         PincodeListModule.init("cagr_last_3yr", "desc");
         $('#Pincodecagr3ySortIcon').removeClass();
-        $('#Pincodecagr3ySortIcon').addClass("fa fa-arrow-down text-danger");
+        $('#Pincodecagr3ySortIcon').addClass("desc");
 
     }
     else {
         PincodeListModule.init("cagr_last_3yr", "asc");
         $('#Pincodecagr3ySortIcon').removeClass();
-        $('#Pincodecagr3ySortIcon').addClass("fa fa-arrow-up text-danger");
+        $('#Pincodecagr3ySortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
 function Pincodecagr5yIconClick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "fa fa-arrow-up text-danger") {
+    if (event.currentTarget.className == "asc") {
         PincodeListModule.init("cagr_last_5yr", "desc");
         $('#Pincodecagr5ySortIcon').removeClass();
-        $('#Pincodecagr5ySortIcon').addClass("fa fa-arrow-down text-danger");
+        $('#Pincodecagr5ySortIcon').addClass("desc");
 
     }
     else {
         PincodeListModule.init("cagr_last_5yr", "asc");
         $('#Pincodecagr5ySortIcon').removeClass();
-        $('#Pincodecagr5ySortIcon').addClass("fa fa-arrow-up text-danger");
+        $('#Pincodecagr5ySortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
