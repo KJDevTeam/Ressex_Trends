@@ -278,6 +278,7 @@
     <script src="~/Scripts/Global/idleTimeCounter.js"></script>
     <script src="~/Scripts/Global/store.min.js"></script>
     <script src="~/Scripts/PartialViewJs/SearchView.js"></script>
+    <script src="~/Scripts/PageLavel/layout.js"></script>
     <script src="~/Scripts/custom.js"></script>
     @*<script src="~/Scripts/jquery-3.6.1.min.js"></script>*@
     @*<script src="~/Scripts/jquery-ui-1.13.0.js"></script>*@
@@ -291,7 +292,7 @@
     <script>
         $(document).ready(function () {
             SearchModule.init();
-
+            layoutModule.init();
             $(document).idleTimeout();
             var userdetails = utility.getCookie('user_details');
             if (userdetails != "" || userdetails != undefined || userdetails != null) {

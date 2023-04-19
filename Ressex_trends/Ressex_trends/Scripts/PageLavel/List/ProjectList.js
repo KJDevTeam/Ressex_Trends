@@ -5,7 +5,8 @@ var ProjectListModule = function () {
         init: function (sortBy, OrderBy) {
 
             //Local Storage Clear
-            localStorage.clear();
+            //localStorage.clear();
+            localStorage.removeItem('ShortcutFilter');
 
             var QueryStringARR = common.GetQueryString();
             var result = common.GetTrendsTypePayload(QueryStringARR);

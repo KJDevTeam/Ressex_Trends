@@ -2,8 +2,14 @@
 
 
     return {
-        init: function (data) {
-            $('#ProjectHeading').text(data);
+        init: function () {
+            var _ProjectTitle = localStorage.getItem('ProjectTitle');
+
+            if (_ProjectTitle != null) {
+                $('#ProjectHeading').text(_ProjectTitle);
+            }
+            
+            
         }
 
 

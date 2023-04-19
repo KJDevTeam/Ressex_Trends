@@ -19,7 +19,8 @@ var DashboardModule = function () {
             console.log(rsp);
             keepCityList = rsp.data;
             var projectTitle = rsp.data[0].h1;
-            layoutModule.init(projectTitle);
+            localStorage.setItem('ProjectTitle', projectTitle);
+           /* layoutModule.init(projectTitle);*/
             DashboardModule.cityload(rsp.data);
             DashboardModule.Bindlinechart();
            // FilterViewModule.init(maindata);
