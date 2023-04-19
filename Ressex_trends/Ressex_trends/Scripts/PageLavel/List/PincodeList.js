@@ -410,5 +410,19 @@ function ProjectByPincode(id) {
     window.location.href = resultroutingurl;
 }
 
+$("input[name=pincodes-search]").click(function () {
+    if (this.value == "locations") {
+        var resultroutingurl = utility.FrontEndAPIURL('list/location/0/0/' + keepPincodeListData[0].region_or_city_id_pi_input);
+        window.location.href = resultroutingurl;
+    }
+    else if (this.value == "projects") {
+        var resultroutingurl = utility.FrontEndAPIURL('list/project/0/0/' + keepPincodeListData[0].region_or_city_id_pi_input);
+        window.location.href = resultroutingurl;
+    }
+    else {
+
+    }
+});
+
 
 

@@ -1,6 +1,7 @@
 ﻿var listindex = 1;
 var keeplocationListData = [];
 var LocationListModule = function () {
+    var TotalData;
     return {
         init: function (sortBy, OrderBy) {
 
@@ -27,27 +28,27 @@ var LocationListModule = function () {
             var APIkey = utility.ServiceAPIURL("Dashboard/PriceIndexList");
             var Data = utility.ajaxselect(APIkey, result.payload, "Post", false);
 
-            TotalData = Data;
+            TotalData = Data.data;
             console.log(Data);
 
             if (Data.status == 'OK') {
 
 
-                keepLocationListData = Data.data;
+                keeplocationListData = Data.data;
 
                 //Project Heading Decider
 
                 if (result.Category == "AllLocations") {
-                    $('#LocationlistHeading').text(keepLocationListData[0].locations_in_india);
+                    $('#LocationlistHeading').text(keeplocationListData[0].locations_in_india);
                 }
                 else if (result.Category == "LocationinLocation") {
-                    $('#LocationlistHeading').text(keepLocationListData[0].location_input);
+                    $('#LocationlistHeading').text(keeplocationListData[0].location_input);
                 }
                 else if (result.Category == "LocationsinCity") {
-                    $('#LocationlistHeading').text(keepLocationListData[0].locations_in_city);
+                    $('#LocationlistHeading').text(keeplocationListData[0].locations_in_city);
                 }
                 else {
-                    $('#LocationlistHeading').text(keepLocationListData[0].locations_in_india);
+                    $('#LocationlistHeading').text(keeplocationListData[0].locations_in_india);
                 }
 
 
@@ -112,7 +113,7 @@ var LocationListModule = function () {
                            </div>';
                    
                 });
-                var paginateText = 'Showing <b>' + arr_toload.length + '</b> locations out of <b>' + keepLocationListData.length + '</b>';
+                var paginateText = 'Showing <b>' + arr_toload.length + '</b> locations out of <b>' + TotalData.length + '</b>';
                 $('#LocationPaginationText').empty();
                 $('#LocationPaginationText').append(paginateText);
                 $("#LocationList").append(st);
@@ -285,15 +286,18 @@ var LocationListModule = function () {
                 "payload": APIPayload,
             }
 
+        },
+        Viewmore: function () {
+            listindex++;
+            $("#LocationList").empty();
+            LocationListModule.ListLoad(TotalData);
         }
     }
 }();
 
 function LocationViewmoreListClick() {
-    listindex++;
-    $("#LocationList").empty();
-    LocationListModule.ListLoad(keepLocationListData);
-
+    
+    LocationListModule.Viewmore();
 }
 
 function LocationNameSortclick() {
@@ -321,7 +325,6 @@ function Locationcagr5ySortclick() {
     LocationListModule.init("cagr_last_5yr", "asc");
     $('#overlay').fadeOut();
 }
-
 function LocationNamesortIconClick(event) {
     $('#overlay').fadeIn();
     if (event.currentTarget.className == "asc") {
@@ -401,6 +404,20 @@ function ProjectBylocation(id) {
     var resultroutingurl = utility.FrontEndAPIURL('list/project/0/' + id + '/0');
     window.location.href = resultroutingurl;
 }
+
+$("input[name=locations-search]").click(function () {
+    if (this.value == "pincodes") {
+        var resultroutingurl = utility.FrontEndAPIURL('list/pincode/0/0/' + keeplocationListData[0].region_or_city_id_pi_input);
+        window.location.href = resultroutingurl;
+    }
+    else if (this.value == "projects") {
+        var resultroutingurl = utility.FrontEndAPIURL('list/project/0/0/' + keeplocationListData[0].region_or_city_id_pi_input);
+        window.location.href = resultroutingurl;
+    }
+    else {
+
+    }
+});
 
 
 
