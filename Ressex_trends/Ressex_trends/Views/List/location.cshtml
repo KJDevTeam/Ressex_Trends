@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Location List";
 }
-
+@Html.Action("_Searchview", "Home")
 <div class="mainbodyWrap d-flex flex-column flex-1">
     <div class="container flex-1">
         <div class="innerSectionHeader searchPageHeader d-flex" id="LocationSortandFilter">
@@ -16,19 +16,19 @@
                     </div>
 
                     <div class="d-flex align-items-center">
-                            <div class="custom-control custom-radio ">
-                                <input type="radio" class="custom-control-input" id="projects" value="projects" name="locations-search">
-                                <label class="custom-control-label pointer" for="projects">Projects</label>
-                            </div>
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" id="locations" value="locations" name="locations-search" checked="">
-                                <label class="custom-control-label pointer" for="locations">Locations</label>
-                            </div>
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" id="pincodes" value="pincodes" name="locations-search">
-                                <label class="custom-control-label pointer mr-0" for="pincodes">Pincodes</label>
-                            </div>
+                        <div class="custom-control custom-radio ">
+                            <input type="radio" class="custom-control-input" id="projects" value="projects" name="locations-search">
+                            <label class="custom-control-label pointer" for="projects">Projects</label>
                         </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" id="locations" value="locations" name="locations-search" checked="">
+                            <label class="custom-control-label pointer" for="locations">Locations</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" id="pincodes" value="pincodes" name="locations-search">
+                            <label class="custom-control-label pointer mr-0" for="pincodes">Pincodes</label>
+                        </div>
+                    </div>
                 </div>
                 <div class="border-h"></div>
                 <div class="d-flex align-items-center justify-content-end">

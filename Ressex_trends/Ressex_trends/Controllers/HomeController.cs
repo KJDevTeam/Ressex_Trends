@@ -23,6 +23,14 @@ namespace Ressex_trends.Controllers
 
             return PartialView();
         }
-      
+
+        [Route("Methodology", Name = "Methodology")]
+        public ActionResult document()
+        {
+            return View();
+        }
+
+       
+
     }
 }

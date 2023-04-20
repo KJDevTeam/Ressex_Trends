@@ -1,8 +1,10 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+
+@Html.Action("_Searchview", "Home")
 <div class="mainbodyWrap d-flex flex-column flex-1">
-   
+
     <div class="container flex-1">
         <section class="pt90">
             <div class="body-wrapper">
@@ -25,7 +27,7 @@
                                 </div>
                             </div>
                         </a>
-                       
+
                     </div>
                     <div class="col-sm-3">
                         <a onclick="ShortcutRouting('top10Pincodes')" href="javascript:void(0)">
@@ -36,7 +38,7 @@
                                     <p>Considering the Most Significant Price Growth in the Last Year in Real Estate market</p>
                                 </div>
                             </div>
-                         </a>
+                        </a>
                     </div>
                     <div class="col-sm-3">
                         <a onclick="ShortcutRouting('top10Locations')" href="javascript:void(0)">
@@ -338,13 +340,13 @@
 
     </div>
 </div>
-    @section scripts{
-        <script src="~/Scripts/PageLavel/Dashboard.js"></script>
-        <script src="~/Scripts/PageLavel/layout.js"></script>
-        <script type="text/javascript" charset="utf-8">
-            $(document).ready(function () {
-                DashboardModule.init();
-                 $('#overlay').fadeOut();
-            });
-        </script>
-    }
+@section scripts{
+    <script src="~/Scripts/PageLavel/Dashboard.js"></script>
+    <script src="~/Scripts/PageLavel/layout.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function () {
+            DashboardModule.init();
+            $('#overlay').fadeOut();
+        });
+    </script>
+}

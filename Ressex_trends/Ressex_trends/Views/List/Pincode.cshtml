@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Pincode List";
 }
-
+@Html.Action("_Searchview", "Home")
 <div class="mainbodyWrap d-flex flex-column flex-1">
     <div class="container flex-1">
         <div class="innerSectionHeader searchPageHeader d-flex" id="PincodeSortandFilter">
@@ -17,7 +17,7 @@
 
                     <div class="d-flex align-items-center">
                         <div class="custom-control custom-radio ">
-                            <input type="radio" class="custom-control-input" id="projects" value="projects" name="pincodes-search" >
+                            <input type="radio" class="custom-control-input" id="projects" value="projects" name="pincodes-search">
                             <label class="custom-control-label pointer" for="projects">Projects</label>
                         </div>
                         <div class="custom-control custom-radio">

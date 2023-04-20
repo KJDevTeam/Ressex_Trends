@@ -1,0 +1,190 @@
+﻿
+@{
+    ViewBag.Title = "document";
+}
+
+<div class="headerSearch mx-auto headerMenuSticky">
+    <div class="d-flex align-items-center">
+        <ul class="linkTabs">
+            <li><a href="#methodology">Methodology</a></li>
+            <li><a href="#flowChart">Flow Chart</a></li>
+            <li><a href="#processFlow">Process Flow</a></li>
+        </ul>
+    </div>
+</div>
+<div class="mainbodyWrap d-flex flex-column flex-1">
+    <div class="container flex-1">
+
+        <div class="innerSectionHeader searchPageHeader d-flex pt-70" id="methodology">
+            <div class="header flex-1 d-flex flex-column">
+                <h3 class="mb-0 font-w-500 font-size-26px">Methodology :-</h3>
+                <div class="border-h"></div>
+
+            </div>
+        </div>
+        <section class="bdyContent">
+            <p>
+                The data we used, has been taken by our survey team from time to time. Generally, the survey is done every 3 months for a particular project from its launch.
+            </p>
+            <p>
+                We created separate Indices for Project, Pincode, Suburb, City and All India. Suppose, if there are 5 different values of Saleable Rate per sq ft available in a quarter for a project, we took average of them. Similarly, Pincode, Suburb, City and All India price Indices were made by taking averages of all the values available in that quarter.
+            </p>
+            <p>
+                Suppose, if we are making City Price Index for ‘MMR’ city, then for each quarter, we took average of all the values (of Saleable Rate of those projects which fall in MMR city) available in that quarter. If data or Saleable Rate was not available for some quarters for a project or pincode or suburb or city, we used linear interpolation or derived the values from next upper level index.
+            </p>
+            <p>
+                For an example, there is a project named ‘Sai Enclave’ in Goregaon West, Western Suburb, MMR – 400104. Here, Project name is Sai Enclave, Pincode is 400104, suburb is Western Suburb and city is MMR. Let’s assume, the project was launched in April 2015 i.e. in quarter 15-16 Q1 and completed in 20-21 Q4. We collected the data for all the quarters except 19-20 Q2, 19-20 Q3 or somehow the data is missing for these two quarters. These missing values were filled using linear interpolation which uses a linear equation method based on the most adjacent available values. Hence, if the data is missing somewhere in the middle, those values were filled using interpolation.
+            </p>
+        </section>
+        <div class="innerSectionHeader searchPageHeader d-flex mt-0">
+            <div class="header flex-1 d-flex flex-column">
+                <h3 class="mb-0 font-w-500 font-size-26px">Methodology :-</h3>
+                <div class="border-h"></div>
+
+            </div>
+        </div>
+        <section class="bdyContent">
+            <p>
+                survey team utilizes the Repeat Sales methodology to gather data which is collected periodically. Typically, we conduct a survey every quarter for a particular project after its launch.
+            </p>
+            <p>
+                Repeat sales methodology is a technique used to evaluate changes in the value of a property over time by analyzing the sale prices of the same property at different points in time. By tracking the change in the sale price of the same property over time, this methodology aims to identify the price appreciation or depreciation of the property. Repeat sales methodology is often used by real estate professionals and researchers to estimate price indexes and to monitor trends in the housing market.
+            </p>
+            <p>
+                We have developed separate indexesfor different levels, including Project, Pincode, Suburb, Location, Region, City, and All India. In a given quarter, if there are five distinct values of Saleable Rates available for a project, we calculate their average. Similarly, for Pincode, Suburb, Location, City, and All India price indexes, we calculate the average of the saleable rates of all the available projects in that particular area.
+            </p>
+            <p>
+                To calculate City Price Index for "Greater Mumbai Region", we calculate the average of Saleable Rate values of all the projects falling within the Greater Mumbai Region in a given quarter. In instances where data is not available for a project, pincode, suburb, or city in some quarters, we employ either linear interpolation or derive the values from the next upper level index.
+            </p>
+            <p>
+                As an example, let us consider the project named "Sai Enclave" located in Goregaon West, Western Suburb, MMR – 400104. The project was launched in April 2015, i.e., in quarter 15-16 Q1 and completed in 20-21 Q2. We have data for Saleable Rates for all quarters except for 19-20 Q2 and 19- 20 Q3. To fill in the missing data for these two quarters, we used linear interpolation. Hence, if the data is missing somewhere in the middle, those values were filled using this method.
+            </p>
+            <p>
+                Linear interpolation is a mathematical technique used to estimate a value between two known data points. It involves drawing a straight line between two data points on a graph and then using this line to estimate the value of a data point located between them. This technique is commonly used to fill in missing values or to estimate the value of a function at a point where it has not been directly measured.
+            </p>
+            <p>
+                The starting or ending missing values are derived from the next upper level index. In the above example, project was completed in 20-21 Q2 and the valuation needs to be done until the present which is 22-23 Q3. These values are derived from the corresponding Pincode Price Index, which is the next upper level of Project Price Index.
+            </p>
+            <p>
+                We will understand this with more precision through the following example:
+            </p>
+            <p>
+                Let's consider that we have the saleable rates of the aforementioned project for consecutive quarters, as follows:
+            </p>
+
+        </section>
+        <section class="bdyContent">
+            <div class="pb-70">
+                <img src="images/report-1.png" alt="" class="w-100">
+            </div>
+            <p class="pb-70">
+                In this data, there are some null values in between and at the end as well. After applying interpolation, it looks like:
+            </p>
+            <div class="pb-70">
+                <img src="images/report-1.png" alt="" class="w-100">
+            </div>
+            <p class="pb-70">
+                Now, the ending missing value in the above example was derived from next upper level index which is the corresponding Pincode Price Index. The formula we used to derive this value is:
+            </p>
+            <div class="pb-70 text-center color-red  font-w-600">Sx = (Iy/Iy-1) * Sx-1</div>
+            <ul class="pb-50 color-red font-w-700">
+                <li>Where, Sx = Saleable Rate of Project in current quarter</li>
+                <li>Sx-1 = Saleable Rate of Project in previous quarter</li>
+                <li>Iy = Pincode Price Index in current quarter </li>
+                <li>Iy-1 = Pincode Price Index in previous quarter</li>
+            </ul>
+            <p>
+                This is the methodology we used to create all the price Indices and in addition, we added a tag to all the index values whether those are actual values or interpolated or derived from upper level index values.
+            </p>
+        </section>
+        <section class="bdyContent pb-70">
+            <div class="pb-50">
+                <a href="javascript:void(0)" class="color-red  font-w-500 font-size-26px underline">Price Trend and calculation of current property value:-</a>
+            </div>
+            <p>When a user searches for a property using the search bar, the price trend of that property is shown as a result. Moreover, we also determine the property's current value using inputs provided by the user. The Flow Chart and Process Flow Table below provide a detailed understanding of how these results are presented.</p>
+        </section>
+
+        <div class="innerSectionHeader searchPageHeader d-flex mt-0 pb-50" id="flowChart">
+            <div class="header flex-1 d-flex flex-column">
+                <h3 class="mb-0 font-w-500 font-size-26px">Flow Chart :-</h3>
+                <div class="border-h"></div>
+            </div>
+        </div>
+        <section class="bdyContent pb-70">
+            <p>
+                The flow chart below depicts a process of showing the results based on the availability of information in our database. A user inputs a project name in the search bar, which generates results from two sources: our database, called LF Database, and Google. If the project is present in the LF Database, it matches the corresponding PROJECT_ID stored in our database and provides results based on the following flow chart. However, if the data is not available in our database, it uses Google to locate the coordinates of the project and then identifies the pincode. It then checks for availability as per the flow chart below and presents the results accordingly.
+            </p>
+            <p>
+                In the below flow chart, Yes/No is based on the question "Is the information available in our database?"
+            </p>
+            <div class="pt-70 text-center">
+                <img src="images/flow-chart.jpg" alt="" class="w-100 flow-chart-img">
+            </div>
+        </section>
+
+        <div class="innerSectionHeader searchPageHeader d-flex mt-0 pb-50" id="processFlow">
+            <div class="header flex-1 d-flex flex-column">
+                <h3 class="mb-0 font-w-500 font-size-26px">Process Flow :-</h3>
+                <div class="border-h"></div>
+            </div>
+        </div>
+        <section class="bdyContent pb-150">
+            <div class="pb-50">
+                <table class="table table-bordered processFlowTbl">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </thead>
+                </table>
+            </div>
+            <p>
+                In the first row of the table, if a project name is searched and it is found in our LF database, the system checks for the availability of the Project Price Index. If it is available, the system displays all the relevant Price Indexes (Project, Pincode, Suburb, Region, and City), and the best result for property valuation is determined using the Project Price Index.
+            </p>
+            <p>
+                In the second row, if the project name is searched and found in our LF database, but the Project Price Index is not available, the system checks for the availability of the corresponding Pincode Price Index. If the Pincode Price Index is available, the system displays the Pincode, Suburb, Region, and City Price Indexes, and the best property valuation is determined based on the Pincode Price Index.
+            </p>
+            <p>
+                In the 7th row, if the project name is searched through Google, the system collects the coordinates of the project to find the pincode. Then, it checks the availability of the corresponding Pincode Price Index. If it is available, the system displays the Pincode, Suburb, Region and City Price Indexes and the best property valuation is determined using the Pincode Price Index.
+            </p>
+            <p>
+                The table shows all the different combinations of availability and the results obtained from them. This is how the system displays the price trend and calculates the current property value.
+            </p>
+
+        </section>
+    </div>
+</div>
+
+<a href="javascript:void(0)" id='toTop'>Top</a>
+
+
+@section scripts{
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function () {
+
+            $('#overlay').fadeOut();
+
+        });
+    </script>
+
+
+
+}
+
