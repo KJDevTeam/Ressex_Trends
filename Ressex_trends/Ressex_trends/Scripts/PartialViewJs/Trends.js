@@ -18,14 +18,10 @@ var TrendsModule = function () {
 
             }
             else {
-
-               
-
             }
             var jsonstr = {
                 "id": result.Id,
             }
-
             var Payload = {
                 "lookup": "Project",
                 "json_str": JSON.stringify(jsonstr)
@@ -40,6 +36,7 @@ var TrendsModule = function () {
             $("#rateTxt").text(RspData.data[0].current_rate_in_txt);
             $("#cagrPct").text(RspData.data[0].cagr_last_1yr_pct);
             common.dtpicker_cal("#fromDateID");
+            TrendsModule.Multilinegraph();
             /*moment().startOf('year');*/
             
             //if (Data.status == "OK") {
@@ -199,240 +196,35 @@ var TrendsModule = function () {
         //    }
         //    $("#Trandata").append(st);
         //},
-        lineareaChat: function (TotalData1, att) {
-            var lbl = [];
-            var Linedt = [];
-            var ticks = [];
+        Multilinegraph: function () {
+           /* chartClear();*/
+            var label = [];
             var axistxt = [];
-            var hovervals = [];
-            var colour = [];
-
-
-            console.log(LineData);
-            switch (att) {
-                case 'radioDaily':
-                    if ($("input[name=carpetAlert]:checked").val() == "0" &&
-                        $("input[name=Property]:checked").val() == "0") {
-                        var LineData = TotalData1 != undefined ? TotalData1.data.daily_avg_price_trend : [];
-                        $("#PriceRsSqftHeading").text("Price(Rs / Sqft) Trend(Usable Record:" + LineData.length + ")");
-                       
-                        var st = '';
-                        $("#Carpetdata").empty();
-                        for (i = 0; i < LineData.length; i++)
-                        {
-                            var sl = i + 1;
-                            st += '<tr>\
-                                   <td class="text-center">'+ sl + '</td>\
-                                   <td>'+ LineData[i].registration_date + '</td>\
-                                   <td>'+ LineData[i].avg_carpet_price_psf + '</td>\
-                                   <td class="text-center">'+ LineData[i].transaction_count + '</td>\
-                                   </tr>';
-                        }
-                        $("#Carpetdata").append(st);
-                    }
-                    else {
-                        var LineData = TotalData1.data.daily_median_price_trend;
-                        ifmedian = true;
-                       /* TrendsModule.CarpetTableLoad(LineData, ifmedian);*/
-                        $("#PriceRsSqftHeading").text("Price(Rs / Sqft) Trend(Usable Record:" + LineData.length + ")");
-                        var st = '';
-                        $("#Carpetdata").empty();
-                        for (i = 0; i < LineData.length; i++) {
-                            var sl = i + 1;
-                            st += '<tr>\
-                                   <td class="text-center">'+ sl + '</td>\
-                                   <td>'+ LineData[i].registration_date + '</td>\
-                                   <td>'+ LineData[i].median_carpet_price_psf + '</td>\
-                                   <td class="text-center">'+ LineData[i].transaction_count + '</td>\
-                                   </tr>';
-                        }
-                        $("#Carpetdata").append(st);
-                    }
-                    $.map(LineData, function (value, index) {
-                        lbl.push(value.registration_date);
-                        Linedt.push(value.transaction_count);
-                        hovervals.push(value.transaction_count);
-                    });
-
-                    break;
-                case 'radioMonthly':
-                    if ($("input[name=carpetAlert]:checked").val() == "0" &&
-                        $("input[name=Property]:checked").val() == "1") {
-                        var LineData = TotalData1 !=undefined?TotalData1.data.monthly_avg_price_trend:[];
-                        $("#PriceRsSqftHeading").text("Price(Rs / Sqft) Trend(Usable Record:" + LineData.length + ")");
-                        var st = '';
-                        $("#Carpetdata").empty();
-                        for (i = 0; i < LineData.length; i++) {
-                            var sl = i + 1;
-                            st += '<tr>\
-                                   <td class="text-center">'+ sl + '</td>\
-                                   <td>'+ LineData[i].registration_month + '</td>\
-                                   <td>'+ LineData[i].avg_carpet_price_psf + '</td>\
-                                   <td class="text-center">'+ LineData[i].transaction_count + '</td>\
-                                   </tr>';
-                        }
-                        $("#Carpetdata").append(st);
-
-                    }
-                    else {
-                        var LineData = TotalData1.data.monthly_median_price_trend;
-                        $("#PriceRsSqftHeading").text("Price(Rs / Sqft) Trend(Usable Record:" + LineData.length + ")");
-                        var st = '';
-                        $("#Carpetdata").empty();
-                        for (i = 0; i < LineData.length; i++) {
-                            var sl = i + 1;
-                            st += '<tr>\
-                                   <td class="text-center">'+ sl + '</td>\
-                                   <td>'+ LineData[i].registration_month + '</td>\
-                                   <td>'+ LineData[i].median_carpet_price_psf + '</td>\
-                                   <td class="text-center">'+ LineData[i].transaction_count + '</td>\
-                                   </tr>';
-                        }
-                        $("#Carpetdata").append(st);
-                    }
-                    $.map(LineData, function (value, index) {
-                        lbl.push(value.registration_month);
-                        Linedt.push(value.transaction_count);
-                        hovervals.push(value.transaction_count);
-                    });
-                    break;
-                case 'radioQuaterly':
-                    if ($("input[name=carpetAlert]:checked").val() == "0" &&
-                        $("input[name=Property]:checked").val() == "2") {
-                        var LineData = TotalData1 !=undefined?TotalData1.data.quarterly_avg_price_trend:[];
-                        $("#PriceRsSqftHeading").text("Price(Rs / Sqft) Trend(Usable Record:" + LineData.length + ")");
-                        var st = '';
-                        $("#Carpetdata").empty();
-                        for (i = 0; i < LineData.length; i++) {
-                            var sl = i + 1;
-                            st += '<tr>\
-                                   <td class="text-center">'+ sl + '</td>\
-                                   <td>'+ LineData[i].dos_month_year + '</td>\
-                                   <td>'+ LineData[i].avg_carpet_price_psf + '</td>\
-                                   <td class="text-center">'+ LineData[i].transaction_count + '</td>\
-                                   </tr>';
-                        }
-                        $("#Carpetdata").append(st);
-                    }
-                    else {
-                        var LineData = TotalData1.data.quarterly_median_price_trend;
-                        $("#PriceRsSqftHeading").text("Price(Rs / Sqft) Trend(Usable Record:" + LineData.length + ")");
-                        var st = '';
-                        $("#Carpetdata").empty();
-                        for (i = 0; i < LineData.length; i++) {
-                            var sl = i + 1;
-                            st += '<tr>\
-                                   <td class="text-center">'+ sl + '</td>\
-                                   <td>'+ LineData[i].dos_month_year + '</td>\
-                                   <td>'+ LineData[i].median_carpet_price_psf + '</td>\
-                                   <td class="text-center">'+ LineData[i].transaction_count + '</td>\
-                                   </tr>';
-                        }
-                        $("#Carpetdata").append(st);
-                    }
-                    $.map(LineData, function (value, index) {
-                        lbl.push(value.dos_month_year);
-                        Linedt.push(value.transaction_count);
-                        hovervals.push(value.transaction_count);
-                    });
-                    break;
-                case 'radioYearly':
-                    if ($("input[name=carpetAlert]:checked").val() == "0" &&
-                        $("input[name=Property]:checked").val() == "3") {
-                        var LineData = TotalData1 !=undefined?TotalData1.data.yearly_avg_price_trend:[];
-                        $("#PriceRsSqftHeading").text("Price(Rs / Sqft) Trend(Usable Record:" + LineData.length + ")");
-                        var st = '';
-                        $("#Carpetdata").empty();
-                        for (i = 0; i < LineData.length; i++) {
-                            var sl = i + 1;
-                            st += '<tr>\
-                                   <td class="text-center">'+ sl + '</td>\
-                                   <td>'+ LineData[i].fy_year + '</td>\
-                                   <td>'+ LineData[i].avg_carpet_price_psf + '</td>\
-                                   <td class="text-center">'+ LineData[i].transaction_count + '</td>\
-                                   </tr>';
-                        }
-                        $("#Carpetdata").append(st);
-                    }
-                    else {
-                        var LineData = TotalData1.data.yearly_median_price_trend;
-                        $("#PriceRsSqftHeading").text("Price(Rs / Sqft) Trend(Usable Record:" + LineData.length + ")");
-                        var st = '';
-                        $("#Carpetdata").empty();
-                        for (i = 0; i < LineData.length; i++) {
-                            var sl = i + 1;
-                            st += '<tr>\
-                                   <td class="text-center">'+ sl + '</td>\
-                                   <td>'+ LineData[i].fy_year + '</td>\
-                                   <td>'+ LineData[i].avg_carpet_price_psf + '</td>\
-                                   <td class="text-center">'+ LineData[i].median_carpet_price_psf + '</td>\
-                                   </tr>';
-                        }
-                        $("#Carpetdata").append(st);
-                    }
-                    $.map(LineData, function (value, index) {
-                        lbl.push(value.fy_year);
-                        Linedt.push(value.transaction_count);
-                        hovervals.push(value.transaction_count);
-                    });
-                    break;
-                default:
-                    var LineData = TotalData1 !=undefined?TotalData1.data.daily_avg_price_trend:[];
-                    $("#PriceRsSqftHeading").text("Price(Rs / Sqft) Trend(Usable Record:" + LineData.length + ")");
-                    var st = '';
-                    $("#Carpetdata").empty();
-                    for (i = 0; i < LineData.length; i++) {
-                        var sl = i + 1;
-                        st += '<tr>\
-                                   <td class="text-center">'+ sl + '</td>\
-                                   <td>'+ LineData[i].registration_date + '</td>\
-                                   <td>'+ LineData[i].avg_carpet_price_psf + '</td>\
-                                   <td class="text-center">'+ LineData[i].transaction_count + '</td>\
-                                   </tr>';
-                    }
-                    $("#Carpetdata").append(st);
-
-                    $.map(LineData, function (value, index) {
-                        lbl.push(value.registration_date);
-                        Linedt.push(value.transaction_count);
-                        hovervals.push(value.transaction_count);
-                    });
-            }
-
-            if (Linedt.length > 0 && UserType == "Paid") {
-                $("#PropertyTypeDistributionGraphTable").show();
-                $("#PropertyTypeDistributionNodatamask").hide();
-                var hovervals = [];
-                varcolour = [];
-                ticks = {
-                    min: 0,
-                    max: 6,
-                    stepSize: 1
-                };
-                colour = 'red'
-                axistxt.push({ "X": 'Registration Date', "Y": 'Transaction Count' });
-                titletxt = 'Transaction';
-                var Linedatasource = utility.bindline("LineAreachart", lbl, Linedt, hovervals, ticks, true, colour, axistxt, titletxt)
-                // var resp= utility.arraykeyvalue(TotalData1.data.daily_avg_price_trend)
-                //    TrendsModule.CarpetTableLoad(TotalData1.data.daily_avg_price_trend);
-            }
-            else {
-                if (UserType == "Paid") {
-                    $("#PropertyTypeDistributionGraphTable").hide();
-                    $("#PropertyTypeDistributionloginmask").hide();
-                    $("#PropertyTypeDistributionDownload").hide();
-                    $("#PropertyTypeDistributionRadio").hide();
-                    $("#PropertyTypeDistributionNodatamask").show();
-                }
-                else {
-                    $("#PropertyTypeDistributionGraphTable").hide();
-                    $("#PropertyTypeDistributionloginmask").show();
-                    $("#PropertyTypeDistributionDownload").show();
-                    $("#PropertyTypeDistributionRadio").hide();
-                    $("#PropertyTypeDistributionNodatamask").hide();
-                }
-
-            }
+            ticks = {
+                min: 0,
+                max: 6,
+                stepSize: 1
+            };
+            responsive = false;
+            var totaldataset = [];
+            data= [0, 59, 75, 20, 20, 55, 40],
+                data.forEach(function (item) {
+                totaldataset.push({
+                    "label": "lbl",
+                    "data": item,  //OsgroupbyDate
+                    "fill": false,
+                    "borderColor": "blue", //randomcolour(),
+                    "backgroundColor": "red"
+                });
+                    label.push(item+"h");
+            });
+            
+                axistxt.push({ "X": 'Quater', "Y": 'Saleable Rate in ₹/sqft' });
+          
+            //  label = OsgroupbyDate;
+            var Linedatasource = utility.bindmultilinedinamic("scanline", totaldataset, false, axistxt, label, ticks);
+           
+           
         },
         getvaluation: function (SName) {
             switch (SName) {
