@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @*@Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")*@
+        @Scripts.Render("~/bundles/modernizr")*@
     <meta name="description" content="">
     <title>Ressex | Dashboard</title>
     <!-- <link rel="shortcut icon" href="images/favicon.ico"> -->
@@ -15,28 +15,31 @@
           rel="stylesheet">
     <link rel="stylesheet" href="~/bootstrap4/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/Content/style.css">
-    
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/extras.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
     <div class="header-wrapper pb-5">
         <nav class="navbar justify-content-between bg-transparent px-20 py-2 headerNavbar w-100">
             <div class="d-flex pr-3">
-                <a class="navbar-brand mr-auto" href="#"><img src="images/logo.png" alt="Ressex"></a>
+                <a class="navbar-brand mr-auto" href="#"><img src="~/images/logo.png" alt="Ressex"></a>
                 <div class="d-flex flex-column small font-w-600 ml-3">
                     <div class="d-flex align-items-end">
                         <span class="mr-1 line-height-1">POWERED BY:</span>
-                        <img src="images/lf-logo-header.svg" class="lf-logo-header" alt="">
+                        <img src="~/images/lf-logo-header.svg" class="lf-logo-header" alt="">
                     </div>
                     <div>Independant Non- broking Real Estate Research Company</div>
                 </div>
             </div>
             <div class="d-flex align-items-center h-100">
                 <div class="d-flex align-items-center mr-4 h-100">
-                    <a class="mr-4" href="#"><img src="images/translate.svg" alt=""></a>
+                    <a class="mr-4" href="#"><img src="~/images/translate.svg" alt=""></a>
                     <div class="btn-group mr-4">
                         <a class="dropdown-toggle noToggleIcon" href="javascript:void(0)" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            <img src="images/hamburger-icon.svg" alt="">
+                            <img src="~/images/hamburger-icon.svg" alt="">
                         </a>
                         <div class="dropdown-menu mainMenuDropdown">
                             <div class="dropdownHeading font-w-600">
@@ -45,43 +48,43 @@
                             <ul class="dropdown-menu-inner px-2">
                                 <li>
                                     <a href="#" class="dropdown-item">
-                                        <img src="images/icon-line-chart.svg" alt=""
+                                        <img src="~/images/icon-line-chart.svg" alt=""
                                              class="mr-2">Lender Dashboard
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="dropdown-item">
-                                        <img src="images/icon-map-marker.svg" alt=""
+                                        <img src="~/images/icon-map-marker.svg" alt=""
                                              class="mr-2">Region
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="dropdown-item">
-                                        <img src="images/icon-user.svg" alt=""
+                                        <img src="~/images/icon-user.svg" alt=""
                                              class="mr-2">Developer
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="dropdown-item">
-                                        <img src="images/icon-document.svg" alt=""
+                                        <img src="~/images/icon-document.svg" alt=""
                                              class="mr-2">Project
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="dropdown-item">
-                                        <img src="images/icon-pie-chart.svg" alt=""
+                                        <img src="~/images/icon-pie-chart.svg" alt=""
                                              class="mr-2">Ressex Trends
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="dropdown-item">
-                                        <img src="images/icon-pie-chart.svg" alt=""
+                                        <img src="~/images/icon-pie-chart.svg" alt=""
                                              class="mr-2">Ressex Registery
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="dropdown-item">
-                                        <img src="images/icon-pie-chart.svg" alt=""
+                                        <img src="~/images/icon-pie-chart.svg" alt=""
                                              class="mr-2">RERA Project List
                                     </a>
                                 </li>
@@ -90,13 +93,13 @@
                             <ul class="dropdown-menu-inner px-2">
                                 <li>
                                     <a href="#" class="dropdown-item">
-                                        <img src="images/icon-building.svg" alt=""
+                                        <img src="~/images/icon-building.svg" alt=""
                                              class="mr-2">Micro Market
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="dropdown-item">
-                                        <img src="images/icon-line-chart.svg" alt=""
+                                        <img src="~/images/icon-line-chart.svg" alt=""
                                              class="mr-2">Project
                                     </a>
                                 </li>
@@ -105,13 +108,13 @@
                             <ul class="dropdown-menu-inner px-2">
                                 <li>
                                     <a href="#" class="dropdown-item">
-                                        <img src="images/icon-download.svg" alt=""
+                                        <img src="~/images/icon-download.svg" alt=""
                                              class="mr-2">Downloads
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="dropdown-item">
-                                        <img src="images/icon-users.svg" alt="" class="mr-2">User
+                                        <img src="~/images/icon-users.svg" alt="" class="mr-2">User
                                         Activity
                                     </a>
                                 </li>
@@ -120,13 +123,13 @@
                             <ul class="dropdown-menu-inner px-2">
                                 <li>
                                     <a href="#" class="dropdown-item">
-                                        <img src="images/icon-exclamation-circle.svg" alt=""
+                                        <img src="~/images/icon-exclamation-circle.svg" alt=""
                                              class="mr-2">Ticket Status
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="dropdown-item">
-                                        <img src="images/icon-ticket.svg" alt="" class="mr-2">New
+                                        <img src="~/images/icon-ticket.svg" alt="" class="mr-2">New
                                         Ticket
                                     </a>
                                 </li>
@@ -137,15 +140,15 @@
                 <div class="btn-group">
                     <div class="d-flex align-items-center pointer dropdown-toggle noToggleIcon" data-toggle="dropdown"
                          aria-haspopup="true" aria-expanded="false">
-                        <a class="mr-20px" href="#"><img src="images/avatar.svg" alt="" class="avatarImg"></a>
+                        <a class="mr-20px" href="#"><img src="~/images/avatar.svg" alt="" class="avatarImg"></a>
                         <div class="d-flex flex-column">
                             <div class="d-flex align-items-center mb-1">
-                                <span class="text16px">Welcome, Mr. Ronak Jain</span>
-                                <span class="ml-2"><img src="images/chevron-down.svg" alt="" class="toggleIcon"></span>
+                                <span class="text16px" id="UserName"></span>
+                                <span class="ml-2"><img src="~/images/chevron-down.svg" alt="" class="toggleIcon"></span>
                             </div>
                             <div>
-                                <span class="mr-3">10/09/2022</span>
-                                <span class="mr-3">12:45 PM</span>
+                                <span class="mr-3" id="CurretDate"></span>
+                                <span class="mr-3" id="Currenttime"></span>
                             </div>
                         </div>
                     </div>
@@ -154,15 +157,15 @@
                         <ul class="dropdown-menu-inner px-2">
                             <li>
                                 <a href="#" class="dropdown-item">
-                                    <img src="images/icon-change-password.svg" alt=""
+                                    <img src="~/images/icon-change-password.svg" alt=""
                                          class="mr-2">Change Password
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="dropdown-item">
-                                    <img src="images/icon-logout.svg" alt=""
-                                         class="mr-2">Logout
-                                </a>
+
+                                <button class="border-0 bg-transparent dropdown-item btn-block logoutBtn mr-4" onclick="logout()">
+                                    <img src="~/images/icon-logout.svg" alt="" class="mr-2"> Logout
+                                </button>
                             </li>
                         </ul>
                     </div>
@@ -170,126 +173,159 @@
             </div>
         </nav>
         <div class="headerTitleWrap px-20 text-center text-white">
-            <h2 class="headerTitle">Property Price Trends </h2>
+            <h2 class="headerTitle" id="ProjectHeading"></h2>
             <h5>Real Estate Current Rates, Trends, Indexes &amp; Valuation</h5>
         </div>
     </div>
-    <div class="headerSearch mx-auto">
-        <div class="d-flex align-items-center">
-            <div class="searchGroup d-flex align-items-center flex-1 mr-2">
-                <div class="projectsSearchBox flex-1 ">
-                    <div class="form-group inputWithIcon iconLeft mb-0">
-                        <span class="searchIconInside"></span>
-                        <input type="text" class="form-control border-0"
-                               placeholder="Search any Project, Pincode, Location or City in India">
+
+    <div id="overlay">
+        <div class="spinner"></div>
+        <br />
+        Loading...
+    </div>
+
+    @RenderBody()
+
+    <footer>
+        <div class="footer-top bg-white footerTopSpace">
+            <div class="container mx-auto">
+                <div class="row no-gutters">
+                    <div class="col-sm-6 pr-5">
+                        <div class="d-flex align-items-end footerLogoWrap">
+                            <img src="~/images/lf-logo.svg" alt="" class="footerLogo">
+                            <span class="py-1 ml-2 pl-2">
+                                Independant Non- broking<br>Real Estate Research Company
+                            </span>
+                        </div>
+                        <p class="my-3 text-justify text16px font-w-300">
+                            Found in 1998, only non-broking rela estate research company in India, Data and science form the core of our services, which range from providing market intelligence and risk advisory to lender and mortgage companies to providing development advice, best use and valuation to developers, funds , banks, and corporations.
+                        </p>
+                        <div class="d-flex align-items-center footerSocials">
+                            <span class="mr-3 socialsIcons font-w-500">Follow Us:</span>
+                            <div class=" d-flex align-items-center">
+                                <a href="https://twitter.com/LiasesForas" class="mr-3"><img src="~/images/twitter.svg" alt=""></a>
+                                <a href="https://www.instagram.com/liasesforas/" class="mr-3"><img src="~/images/instagram.svg" alt=""></a>
+                                <a href="https://www.facebook.com/liasesforasrealestateresearch/" class="mr-3"><img src="~/images/fb.svg" alt=""></a>
+                                <a href="https://www.linkedin.com/company/liases-foras/" class="mr-3"><img src="~/images/in.svg" alt=""></a>
+                                <a href="https://www.youtube.com/channel/UCVAC-erUJ35As0zJ8aI0Cyw"><img src="~/images/youtube.svg" alt=""></a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="filterDropdown border-left">
-                    <div class="dropdown">
-                        <button class="btn btn-white dropdown-toggle hasIcon w-100 text-left" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                            Residential
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="#" class="dropdown-item">
-                                    <img src="images/icon-home.svg" alt=""
-                                         class="mr-2">Residential
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="dropdown-item">
-                                    <img src="images/icon-office.svg" alt=""
-                                         class="mr-2">Commercial
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="dropdown-item">
-                                    <img src="images/icon-store.svg" alt=""
-                                         class="mr-2">Retail
-                                </a>
-                            </li>
+                    <div class="col-sm-4 pr-4">
+                        <div class="text-justify font-w-300 d-flex flex-column justify-content-between h-100">
+                            <h3 class="font-w-500 mb-5">Contact Us </h3>
+                            <p class="mb-4 text-justify text16px">
+                                <span class="color-red font-w-500">Address:</span> Reg office: S-6 Pinnacle Business Park, Mahakali Caves Road, Near Ahura Center, MIDC Andheri East, Mumbai 400093
+                            </p>
+                            <p class="mb-4 text16px">
+                                <span class="color-red font-w-500">Email Id:</span> contact@liasesforas.com
+                            </p>
+                            <p class="text16px mb-0">
+                                <span class="color-red font-w-500">Contact:</span> +91 9833344500
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 pt-2 pl-4">
+
+                        <ul class="d-flex flex-column justify-content-between h-100">
+                            <li><a href="https://dashboard.liasesforas.com/" class="mr-3">Home</a></li>
+                            <li><a href="https://www.liasesforas.com/about-us.aspx" class="mr-3">About Us </a></li>
+                            <li><a href="https://www.liasesforas.com/glossary.aspx" class="mr-3">How it Works?</a></li>
+                            <li><a href="https://www.liasesforas.com/contactus.aspx" class="mr-3">Pricing</a></li>
+                            <li><a href="https://www.liasesforas.com/faqs.aspx" class="mr-3">FAQ's</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <button class="btn btn-red">Search</button>
         </div>
-    </div>
-
-
-    <div class="mainbodyWrap d-flex flex-column flex-1">
-        @RenderBody()
-        <hr />
-        <footer>
-            <div class="footer-top bg-white footerTopSpace">
-                <div class="container mx-auto">
-                    <div class="row no-gutters">
-                        <div class="col-sm-6 pr-5">
-                            <div class="d-flex align-items-end footerLogoWrap">
-                                <img src="images/lf-logo.svg" alt="" class="footerLogo">
-                                <span class="py-1 ml-2 pl-2">
-                                    Independant Non- broking<br>Real Estate Research Company
-                                </span>
-                            </div>
-                            <p class="my-3 text-justify text16px font-w-300">
-                                Found in 1998, only non-broking rela estate research company in India, Data and science form the core of our services, which range from providing market intelligence and risk advisory to lender and mortgage companies to providing development advice, best use and valuation to developers, funds , banks, and corporations.
-                            </p>
-                            <div class="d-flex align-items-center footerSocials">
-                                <span class="mr-3 socialsIcons font-w-500">Follow Us:</span>
-                                <div class=" d-flex align-items-center">
-                                    <a href="https://twitter.com/LiasesForas" class="mr-3"><img src="images/twitter.svg" alt=""></a>
-                                    <a href="https://www.instagram.com/liasesforas/" class="mr-3"><img src="images/instagram.svg" alt=""></a>
-                                    <a href="https://www.facebook.com/liasesforasrealestateresearch/" class="mr-3"><img src="images/fb.svg" alt=""></a>
-                                    <a href="https://www.linkedin.com/company/liases-foras/" class="mr-3"><img src="images/in.svg" alt=""></a>
-                                    <a href="https://www.youtube.com/channel/UCVAC-erUJ35As0zJ8aI0Cyw"><img src="images/youtube.svg" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 pr-4">
-                            <div class="text-justify font-w-300 d-flex flex-column justify-content-between h-100">
-                                <h3 class="font-w-500 mb-5">Contact Us </h3>
-                                <p class="mb-4 text-justify text16px">
-                                    <span class="color-red font-w-500">Address:</span> Reg office: S-6 Pinnacle Business Park, Mahakali Caves Road, Near Ahura Center, MIDC Andheri East, Mumbai 400093
-                                </p>
-                                <p class="mb-4 text16px">
-                                    <span class="color-red font-w-500">Email Id:</span> contact@liasesforas.com
-                                </p>
-                                <p class="text16px mb-0">
-                                    <span class="color-red font-w-500">Contact:</span> +91 9833344500
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-sm-2 pt-2 pl-4">
-
-                            <ul class="d-flex flex-column justify-content-between h-100">
-                                <li><a href="https://dashboard.liasesforas.com/" class="mr-3">Home</a></li>
-                                <li><a href="https://www.liasesforas.com/about-us.aspx" class="mr-3">About Us </a></li>
-                                <li><a href="https://www.liasesforas.com/glossary.aspx" class="mr-3">How it Works?</a></li>
-                                <li><a href="https://www.liasesforas.com/contactus.aspx" class="mr-3">Pricing</a></li>
-                                <li><a href="https://www.liasesforas.com/faqs.aspx" class="mr-3">FAQ's</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+        <div class="footer-copyright py-3">
+            <div class="container mx-auto d-flex align-items-center">
+                <img src="~/images/copyright.svg" alt="" class="mr-2"><span class="text-white mr-2">2022 Ressex. All rights reserved</span> <a href="#">Terms and Conditions</a>
             </div>
-            <div class="footer-copyright py-3">
-                <div class="container mx-auto d-flex align-items-center">
-                    <img src="images/copyright.svg" alt="" class="mr-2"><span class="text-white mr-2">2022 Ressex. All rights reserved</span> <a href="#">Terms and Conditions</a>
-                </div>
-            </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
 
-   
+
+
 
     @Scripts.Render("~/bundles/jquery")
 
 
-    <script src="~/Scripts/Global/jquery.slim.min.js"></script>
+    @*<script src="~/Scripts/Global/jquery.slim.min.js"></script>*@
+    <script src="~/Scripts/jquery-3.6.1.min.js"></script>
+
     <script src="~/Scripts/Global/popper.min.js"></script>
     <script src="~/bootstrap4/js/bootstrap.min.js"></script>
-    <script src="~/Scripts/Global/custom.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-treemap@2.0.2/dist/chartjs-chart-treemap.min.js"></script>
+
+    <script src="~/Scripts/slick.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>
+
+    <script src="~/Scripts/Global/utility.js"></script>
+    <script src="~/Scripts/Global/Common.js"></script>
+    <script src="~/Scripts/Global/idleTimeCounter.js"></script>
+    <script src="~/Scripts/Global/store.min.js"></script>
+    <script src="~/Scripts/PartialViewJs/SearchView.js"></script>
+    <script src="~/Scripts/PageLavel/layout.js"></script>
+    <script src="~/Scripts/custom.js"></script>
+    @*<script src="~/Scripts/jquery-3.6.1.min.js"></script>*@
+    @*<script src="~/Scripts/jquery-ui-1.13.0.js"></script>*@
+    @*<script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>*@
+
+    <script src="~/Scripts/jquery-ui-1.13.0.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/slick.min.js"></script>
+
     @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            SearchModule.init();
+            layoutModule.init();
+            $(document).idleTimeout();
+            var userdetails = utility.getCookie('user_details');
+            if (userdetails != "" || userdetails != undefined || userdetails != null) {
+                var finaldata = JSON.parse(userdetails);
+                $("#UserName").text("Welcome, " + finaldata.data.user_name);
+                $("#CurretDate").text(moment().format("DD-MM-YYYY"));
+                $("#Currenttime").text(moment().format("hh:mm  A"));
+
+            }
+            else {
+                //All Cookies Clear
+                document.cookie.split(';').forEach(function (c) {
+                    document.cookie = c.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+                });
+                //Local Storage Clear
+                localStorage.clear();
+                var loginurl = utility.FrontEndAPIURL('');
+                window.location.href = loginurl;
+
+            }
+
+        });
+
+        function logout() {
+            //All Cookies Clear
+            document.cookie.split(';').forEach(function (c) {
+                document.cookie = c.trim().split('=')[0] + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+            });
+            //Local Storage Clear
+            localStorage.clear();
+            var loginurl = utility.FrontEndAPIURL('');
+            window.location.href = loginurl;
+
+        }
+        $('.print-btn').click(function () {
+            window.print();
+        });
+    </script>
 </body>
 </html>

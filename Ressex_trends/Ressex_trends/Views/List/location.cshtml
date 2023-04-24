@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "Location List";
+}
+@Html.Action("_Searchview", "Home")
+<div class="mainbodyWrap d-flex flex-column flex-1">
+    <div class="container flex-1">
+        <div class="innerSectionHeader searchPageHeader d-flex" id="LocationSortandFilter">
+            <a href="@Url.Action("Index","Home")" class="mr-2 pt-2"><img src="~/images/chevron-left.svg" alt=""></a>
+            <div class="header flex-1 d-flex flex-column">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <h3 class="mb-0" id="LocationlistHeading"></h3>
+                        <div class="ml-3 pl-2 text20px font-w-400 searchInfo" id="LocationPaginationText">
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                        <div class="custom-control custom-radio ">
+                            <input type="radio" class="custom-control-input" id="projects" value="projects" name="locations-search">
+                            <label class="custom-control-label pointer" for="projects">Projects</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" id="locations" value="locations" name="locations-search" checked="">
+                            <label class="custom-control-label pointer" for="locations">Locations</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" id="pincodes" value="pincodes" name="locations-search">
+                            <label class="custom-control-label pointer mr-0" for="pincodes">Pincodes</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-h"></div>
+                <div class="d-flex align-items-center justify-content-end">
+                    <div class="mr-1 sortBy">Sort by :</div>
+                    <div class="d-flex mr-3" id="LocationnameSortID">
+                        <a href="javascript:void(0)" class="pr-0" onclick="LocationNameSortclick()">Name</a>
+                        <a href="javascript:void(0)" class="" onclick="LocationNamesortIconClick(event)" id="LocationNameSortIcon"></a>
+                    </div>
+                    <div class="d-flex mr-3" id="LocationCurrRateSortID">
+                        <a href="javascript:void(0)" class="pr-0" onclick="LocationCurRateSortclick()">Current Rate</a>
+                        <a href="javascript:void(0)" class="" id="LocationCurRateSortIcon" onclick="LocationCurRateIconClick(event)"></a>
+                    </div>
+                    <div class="d-flex mr-3" id="LocationyoySortID">
+                        <a href="javascript:void(0)" class="pr-0" onclick="LocationYoySortclick()">YoY Change(%)</a>
+                        <a href="javascript:void(0)" class="" id="LocationYoySortIcon" onclick="LocationyoyIconClick(event)"></a>
+                    </div>
+                    <div class="d-flex mr-3" id="LocationCAGR3YSortID">
+                        <a href="javascript:void(0)" class="pr-0" onclick="Locationcagr3ySortclick()">CAGR (3Y)</a>
+                        <a href="javascript:void(0)" class="" id="Locationcagr3ySortIcon" onclick="Locationcagr3yIconClick(event)"></a>
+
+                    </div>
+                    <div class="d-flex mr-0" id="LocationCAGR5YSortID">
+                        <a href="javascript:void(0)" class="pr-0" onclick="Locationcagr5ySortclick()">CAGR (5Y)</a>
+                        <a href="javascript:void(0)" class="" id="Locationcagr5ySortIcon" onclick="Locationcagr5yIconClick(event)"></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <section class="searchResultSec">
+
+            <div id="LocationList">
+
+            </div>
+            <div class="text-center mt-5">
+                <button class="btn btn-red rounded-0 viewMoreBtn" onclick="LocationViewmoreListClick()" id="LocationviewmoreList">View more</button>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+
+@section scripts{
+
+
+    <script src="~/Scripts/PageLavel/List/LocationList.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function () {
+            var selectedFilter;
+            var _filterSelected = localStorage.getItem('ShortcutFilter');
+
+            if (_filterSelected != null) {
+                selectedFilter = JSON.parse(_filterSelected);
+            }
+            if (selectedFilter != null) {
+                LocationListModule.init(selectedFilter.sortby, selectedFilter.orderby);
+            }
+            else {
+                LocationListModule.init("name", "asc");
+            }
+
+            $('#overlay').fadeOut();
+
+        });
+    </script>
+
+
+
+}
