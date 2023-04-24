@@ -183,19 +183,7 @@ var TrendsModule = function () {
                 }
             }
         },
-        //TranTableLoad: function (dt) {
-        //    var st = '';
-        //    $("#Trandata").empty();
-        //    for (i = 0; i < dt.length; i++) {
-        //        var sl = i + 1;
-        //        st += '<tr>\
-        //            <td class="text-center">'+ sl + '</td>\
-        //            <td>'+ dt[i].registration_date + '</td>\
-        //            <td class="text-center">'+ dt[i].transaction_count + '</td>\
-        //        </tr>';
-        //    }
-        //    $("#Trandata").append(st);
-        //},
+        
         Multilinegraph: function () {
            /* chartClear();*/
             var label = [];
@@ -207,22 +195,95 @@ var TrendsModule = function () {
             };
             responsive = false;
             var totaldataset = [];
-            data= [0, 59, 75, 20, 20, 55, 40],
-                data.forEach(function (item) {
-                totaldataset.push({
-                    "label": "lbl",
-                    "data": item,  //OsgroupbyDate
-                    "fill": false,
-                    "borderColor": "blue", //randomcolour(),
-                    "backgroundColor": "red"
-                });
-                    label.push(item+"h");
+            //data= [0, 59, 75, 20, 20, 55, 40],
+            var projectLine = [];
+            var PincodeLine = [];
+            var SubRegionLine = [];
+            var RegionLine = [];
+            var CityLine = [];
+            var Graphlabels = [];
+            TotalData.data.forEach(function (item) {
+                projectLine.push(item.project_saleable_rate);
+                PincodeLine.push(item.pincode_saleable_rate);
+                SubRegionLine.push(item.subregion_or_suburb_saleable_rate);
+                RegionLine.push(item.region_saleable_rate);
+                CityLine.push(item.city_saleable_rate);
+
+                Graphlabels.push(item.dos_month_year);
+                
+                
+                
+                
+                
+                
+                
+                
             });
+
+            var dataFirst = {
+                label: "Project",
+                data: projectLine,
+                lineTension: 0,
+                fill: false,
+                borderColor: TotalData.data[0].project_color
+            };
+
+            var dataSecond = {
+                label: "Pincode",
+                data: PincodeLine,
+                lineTension: 0,
+                fill: false,
+                borderColor: TotalData.data[0].pincode_color
+            };
+            var dataThird = {
+                label: "Sub Region",
+                data: SubRegionLine,
+                lineTension: 0,
+                fill: false,
+                borderColor: TotalData.data[0].region_color
+            };
+
+            var dataFourth = {
+                label: "Region",
+                data: RegionLine,
+                lineTension: 0,
+                fill: false,
+                borderColor: TotalData.data[0].suburb_color
+            };
+            var dataFifth = {
+                label: "City",
+                data: CityLine,
+                lineTension: 0,
+                fill: false,
+                borderColor: TotalData.data[0].city_color
+            };
+           // label.push(item.dos_month_year);
+           
+            label = Graphlabels;
+               
+           
+            //    TotalData.data.forEach(function (item) {
+            //    totaldataset.push({
+            //        //"label": "lbl",
+            //        "data": item.project_saleable_rate,  //OsgroupbyDate
+            //        "fill": false,
+            //        "borderColor": item.project_color, //randomcolour(),
+            //        "backgroundColor": item.project_color
+            //    });
+            //        label.push(item.dos_month_year);
+            //});
             
+            var totaldataset = [];
+            totaldataset.push(dataFirst);
+            totaldataset.push(dataSecond);
+            totaldataset.push(dataThird);
+            totaldataset.push(dataFourth);
+            totaldataset.push(dataFifth);
+
                 axistxt.push({ "X": 'Quater', "Y": 'Saleable Rate in ₹/sqft' });
           
             //  label = OsgroupbyDate;
-            var Linedatasource = utility.bindmultilinedinamic("scanline", totaldataset, false, axistxt, label, ticks);
+            var Linedatasource = utility.bindmultilinedinamic("scanline", totaldataset, true, axistxt, label, ticks);
            
            
         },
@@ -293,22 +354,7 @@ var TrendsModule = function () {
             }
 
         },
-        //CarpetTableLoad: function (dt) {
-        //    var st = '';
-        //    $("#Carpetdata").empty();
-
-        //    for (i = 0; i < dt.length; i++) {
-        //        var sl = i + 1;
-        //        st += '<tr>\
-        //            <td class="text-center">'+ sl + '</td>\
-        //            <td>'+ dt[i].registration_date + '</td>\
-        //            <td>'+ dt[i].avg_carpet_price_psf + '</td>\
-        //            <td class="text-center">'+ dt[i].transaction_count + '</td>\
-        //        </tr>';
-        //    }
-        //    $("#Carpetdata").append(st);
-        //},
-
+        
         TransactionDailyCsvExport: function (TotalData) {
             //////CSV structure//////
             var arr = TotalData;
@@ -342,252 +388,7 @@ var TrendsModule = function () {
 
             utility.exportCSVFile(header, itemsFormatted, fileTitle)
         },
-        TransactionMonthlyCsvExport: function (TotalData) {
-            //////CSV structure//////
-            var arr = TotalData;
-            var item = arr.length > 0 ? arr : [];
-            var itemsFormatted = [];
-            var blank = {
-                col1: "",
-                col2: "",
-                col3: "",
-
-            };
-            var header = {
-                col1: "Registration Month",
-                col2: "Transaction Count",
-                col3: "Transacted Value RS"
-
-            };
-            var items = arr.length > 0 ? arr : [];
-
-            items.forEach((subitem) => {
-                var details = {
-                    col1: subitem.registration_month,     //.replace(/,/g, "|"),
-                    col2: subitem.transaction_count,
-                    col3: subitem.transacted_value_rs,
-
-                }
-                itemsFormatted.push(details);
-
-            });
-            var fileTitle = "Transaction Trends Monthly";
-
-            utility.exportCSVFile(header, itemsFormatted, fileTitle)
-        },
-        TransactionQuaterlyCsvExport: function (TotalData) {
-            //////CSV structure//////
-            var arr = TotalData;
-            var item = arr.length > 0 ? arr : [];
-            var itemsFormatted = [];
-            var blank = {
-                col1: "",
-                col2: "",
-                col3: "",
-                col4: "",
-
-            };
-            var header = {
-                col1: "Month Year",
-                col2: "Ordering FY Quater",
-                col3: "Transaction Count",
-                col4: "Transacted Value RS"
-
-            };
-            var items = arr.length > 0 ? arr : [];
-
-            items.forEach((subitem) => {
-                var details = {
-                    col1: subitem.dos_month_year,     //.replace(/,/g, "|"),
-                    col2: subitem.ordering_fy_qtr,
-                    col3: subitem.transaction_count,
-                    col4: subitem.transacted_value_rs,
-
-                }
-                itemsFormatted.push(details);
-
-            });
-            var fileTitle = "Transaction Trends Quaterly";
-
-            utility.exportCSVFile(header, itemsFormatted, fileTitle)
-        },
-        TransactionYearlyCsvExport: function (TotalData) {
-            //////CSV structure//////
-            var arr = TotalData;
-            var item = arr.length > 0 ? arr : [];
-            var itemsFormatted = [];
-            var blank = {
-                col1: "",
-                col2: "",
-                col3: "",
-
-            };
-            var header = {
-                col1: "FY Year",
-                col2: "Transaction Count",
-                col3: "Transacted Value RS"
-
-            };
-            var items = arr.length > 0 ? arr : [];
-
-            items.forEach((subitem) => {
-                var details = {
-                    col1: subitem.fy_year,     //.replace(/,/g, "|"),
-                    col2: subitem.transaction_count,
-                    col3: subitem.transacted_value_rs,
-
-                }
-                itemsFormatted.push(details);
-
-            });
-            var fileTitle = "Transaction Trends Yearly";
-
-            utility.exportCSVFile(header, itemsFormatted, fileTitle)
-        },
-        PropertyDailyCsvExport: function (TotalData) {
-            //////CSV structure//////
-            var arr = TotalData;
-            var item = arr.length > 0 ? arr : [];
-            var itemsFormatted = [];
-            var blank = {
-                col1: "",
-                col2: "",
-                col3: "",
-                col4: ""
-
-            };
-            var header = {
-                col1: "Registration Date",
-                col2: "Average Carpet Price",
-                col3: "Transaction Count",
-                col4: "Transacted Value RS"
-
-            };
-            var items = arr.length > 0 ? arr : [];
-
-            items.forEach((subitem) => {
-                var details = {
-                    col1: subitem.registration_date,
-                    col2: subitem.avg_carpet_price_psf,
-                    col3: subitem.transaction_count,
-                    col4: subitem.transacted_value_rs,
-
-                }
-                itemsFormatted.push(details);
-
-            });
-            var fileTitle = "Property Type Distribution Trends Daily";
-
-            utility.exportCSVFile(header, itemsFormatted, fileTitle)
-        },
-        PropertyMonthlyCsvExport: function (TotalData) {
-            //////CSV structure//////
-            var arr = TotalData;
-            var item = arr.length > 0 ? arr : [];
-            var itemsFormatted = [];
-            var blank = {
-                col1: "",
-                col2: "",
-                col3: "",
-
-            };
-            var header = {
-                col1: "Registration Month",
-                col2: "Average Carpet Price",
-                col3: "Transaction Count",
-                col4: "Transacted Value RS"
-
-            };
-            var items = arr.length > 0 ? arr : [];
-
-            items.forEach((subitem) => {
-                var details = {
-                    col1: subitem.registration_month,
-                    col2: subitem.avg_carpet_price_psf,
-                    col3: subitem.transaction_count,
-                    col4: subitem.transacted_value_rs,
-
-                }
-                itemsFormatted.push(details);
-
-            });
-            var fileTitle = "Property Type Distribution Trends Monthly";
-
-            utility.exportCSVFile(header, itemsFormatted, fileTitle)
-        },
-        PropertyQuaterlyCsvExport: function (TotalData) {
-            //////CSV structure//////
-            var arr = TotalData;
-            var item = arr.length > 0 ? arr : [];
-            var itemsFormatted = [];
-            var blank = {
-                col1: "",
-                col2: "",
-                col3: "",
-                col4: "",
-
-            };
-            var header = {
-                col1: "Month Year",
-                col2: "Ordering FY Quater",
-                col3: "Average Carpet Price",
-                col4: "Transaction Count",
-                col5: "Transacted Value RS"
-
-            };
-            var items = arr.length > 0 ? arr : [];
-
-            items.forEach((subitem) => {
-                var details = {
-                    col1: subitem.dos_month_year,     //.replace(/,/g, "|"),
-                    col2: subitem.ordering_fy_qtr,
-                    col3: subitem.avg_carpet_price_psf,
-                    col4: subitem.transaction_count,
-                    col5: subitem.transacted_value_rs,
-
-                }
-                itemsFormatted.push(details);
-
-            });
-            var fileTitle = "Property Type Distribution Trends Quaterly";
-
-            utility.exportCSVFile(header, itemsFormatted, fileTitle)
-        },
-        PropertyYearlyCsvExport: function (TotalData) {
-            //////CSV structure//////
-            var arr = TotalData;
-            var item = arr.length > 0 ? arr : [];
-            var itemsFormatted = [];
-            var blank = {
-                col1: "",
-                col2: "",
-                col3: "",
-
-            };
-            var header = {
-                col1: "FY Year",
-                col2: "Average Carpet Price",
-                col3: "Transaction Count",
-                col4: "Transacted Value RS"
-
-            };
-            var items = arr.length > 0 ? arr : [];
-
-            items.forEach((subitem) => {
-                var details = {
-                    col1: subitem.fy_year,
-                    col2: subitem.avg_carpet_price_psf,
-                    col3: subitem.transaction_count,
-                    col4: subitem.transacted_value_rs,
-
-                }
-                itemsFormatted.push(details);
-
-            });
-            var fileTitle = "Property Type Distribution Trends Yearly";
-
-            utility.exportCSVFile(header, itemsFormatted, fileTitle)
-        }
+     
     }
 }();
 
