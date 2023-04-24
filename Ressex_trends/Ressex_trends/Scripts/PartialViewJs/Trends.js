@@ -8,7 +8,7 @@ var UserType = '';
 var TrendsModule = function () {
     return {
         init: function () {
-           
+            $("#valTxt").text('Just one step away from getting your current property valuation...');
             var QueryStringARR = common.GetQueryString();
             result = common.GetTrendsTypePayload(QueryStringARR);
 
@@ -279,10 +279,18 @@ var TrendsModule = function () {
                     //return Payload;
                     break;
             }
-           
-            var APIkey = utility.ServiceAPIURL("Dashboard/price_index_trend");
+            var APIkey = utility.ServiceAPIURL("Dashboard/PriceIndex");
             var retData = utility.ajaxselect(APIkey, Payload, "Post", false);
             console.log(retData);
+
+            if (retData.status == "OK") {
+                $("#currVal").text(retData.data[0].current_valuation_rs);
+                $("#valTxt").text(retData.data[0].current_value_text_popup);
+            }
+            else {
+                $("#currVal").text('');
+                $("#valTxt").text('');
+            }
 
         },
         //CarpetTableLoad: function (dt) {
@@ -585,7 +593,8 @@ var TrendsModule = function () {
 
 $("#getValuation").click(function () {
    // var SearchName = Cookies.get('SearchName');
-    var SName = utility.getCookie('SearchName');
-    TrendsModule.getvaluation(SName);
+    //var SName = utility.getCookie('SearchName');
+
+    TrendsModule.getvaluation('project');
 });
 
