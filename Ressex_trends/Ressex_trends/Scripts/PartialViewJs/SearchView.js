@@ -11,7 +11,7 @@ var SearchModule = function () {
         AutocompleteSearch: function (SearchType) {
             $("#SelectedSearch").autocomplete({
                 minLength: 3,
-                delay:500,
+                delay:200,
                 source: function (request, response) {
                         var str = 'query=' + request.term + '&type=' + SearchType;
                         var APIkey = utility.ServiceAPIURL("Dashboard/ressex_trend_search?" + str);
@@ -84,7 +84,7 @@ var SearchModule = function () {
                     else {
                     var searchName = searchType;
                     utility.setCookie('SearchName', searchName, 1000);
-                    var routingurl = utility.FrontEndAPIURL('Trend/Project/'+ui.item.id+'/ProjectText');
+                    var routingurl = utility.FrontEndAPIURL('trend/project/'+ui.item.id+'/ProjectText');
                     window.location.href = routingurl;
                     }
                    

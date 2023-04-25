@@ -1,11 +1,12 @@
 ﻿var RspData;
 var result;
-var TotalData = '';
+
 var TotalData1 = '';
 var Bardatasource = '';
 var UserType = '';
 
 var TrendsModule = function () {
+    var TotalData;
     return {
         init: function () {
             $("#valTxt").text('Just one step away from getting your current property valuation...');
@@ -35,155 +36,14 @@ var TrendsModule = function () {
             $("#qtrText").text(RspData.data[0].current_qtr_text);
             $("#rateTxt").text(RspData.data[0].current_rate_in_txt);
             $("#cagrPct").text(RspData.data[0].cagr_last_1yr_pct);
+            $("#CAGRDropDownText").text("CAGR 3Y");
+            $("#calculatedCAGR").text(RspData.data[0].cagr_last_3yr_pct);
+            
             common.dtpicker_cal("#fromDateID");
             TrendsModule.Multilinegraph();
-            /*moment().startOf('year');*/
+           
             
-            //if (Data.status == "OK") {
-            //    TrendsModule.TransuctionBarChat(TotalData);
-            //}
-            //else {
-            //    TrendsModule.TransuctionBarChat();
-            //}
-            //if (Data1.status == "OK") {
-            //    TrendsModule.lineareaChat(TotalData1);
-            //}
-            //else {
-            //    TrendsModule.lineareaChat();
-            //}
-
-           //$("#TranBarColoumn").attr("width", $("#TranchartView").width() - 30 + 'px');
-            
-        },
-        TransuctionBarChat: function (TotalData, att) {
-
-            switch (att) {
-                case 'TranDaily':
-                    var dt = TotalData !=undefined?TotalData.data.daily_transaction_trend:[];
-
-                    var str = '';
-                    $("#Trandata").empty();
-                    for (i = 0; i < dt.length; i++) {
-                        var sln = i + 1;
-                        str += '<tr>\
-                    <td class="text-center">'+ sln + '</td>\
-                    <td>'+ dt[i].registration_date + '</td>\
-                    <td class="text-center">'+ dt[i].transaction_count + '</td>\
-                </tr>';
-                    }
-                    $("#Trandata").append(str);
-
-                    break;
-                case 'TranMonthly':
-                    var dt = TotalData !=undefined?TotalData.data.monthly_transaction_trend:[];
-
-                    var str = '';
-                    $("#Trandata").empty();
-                    for (i = 0; i < dt.length; i++) {
-                        var sln = i + 1;
-                        str += '<tr>\
-                    <td class="text-center">'+ sln + '</td>\
-                    <td>'+ dt[i].registration_month + '</td>\
-                    <td class="text-center">'+ dt[i].transaction_count + '</td>\
-                </tr>';
-                    }
-                    $("#Trandata").append(str);
-                    break;
-                case 'TranQuaterly':
-                    var dt = TotalData !=undefined?TotalData.data.quarterly_transaction_trend:[];
-
-                    var str = '';
-                    $("#Trandata").empty();
-                    for (i = 0; i < dt.length; i++) {
-                        var sln = i + 1;
-                        str += '<tr>\
-                    <td class="text-center">'+ sln + '</td>\
-                    <td>'+ dt[i].dos_month_year + '</td>\
-                    <td class="text-center">'+ dt[i].transaction_count + '</td>\
-                </tr>';
-                    }
-                    $("#Trandata").append(str);
-                    break;
-                case 'TranYearly':
-                    var dt = TotalData !=undefined?TotalData.data.yearly_transaction_trend:[];
-
-                    var str = '';
-                    $("#Trandata").empty();
-                    for (i = 0; i < dt.length; i++) {
-                        var sln = i + 1;
-                        str += '<tr>\
-                    <td class="text-center">'+ sln+ '</td>\
-                    <td>'+ dt[i].fy_year + '</td>\
-                    <td class="text-center">'+ dt[i].transaction_count + '</td>\
-                </tr>';
-                    }
-                    $("#Trandata").append(str);
-                    break;
-                default:
-                    var dt = TotalData !=undefined?TotalData.data.daily_transaction_trend:[];
-                    att = 'TranDaily';
-
-                    var str = '';
-                    $("#Trandata").empty();
-                    for (i = 0; i < dt.length; i++) {
-                        var sln = i + 1;
-                        str += '<tr>\
-                    <td class="text-center">'+ sln + '</td>\
-                    <td>'+ dt[i].registration_date + '</td>\
-                    <td class="text-center">'+ dt[i].transaction_count + '</td>\
-                </tr>';
-                    }
-                    $("#Trandata").append(str);
-            }
-            
-            if (dt.length > 0 && UserType == "Paid") {
-                $("#TransactionNodatamask").hide();
-                $("#TransactionGraphTable").show();
-
-                if ($("input[name=TranAlert]:checked").val() == "0") {
-                    var param = ["transaction_count"];
-                    var Ytext = 'Transaction Count';
-                }
-                else {
-                    var param = ["transacted_value_rs"];
-                    var Ytext = 'Transacted Value';
-                }
-                var Xtext = 'Ragistration Date'
-                Bardatasource = utility.bindColoumnchart("TranBarColoumn", param, dt, Ytext, Xtext, att);
-               
-
-                var canvas = document.getElementById('TranBarColoumn');
-                canvas.onclick = function (evt) {
-                    var activePoint = Bardatasource.getElementsAtXAxis(evt)[0];//getElementAtEvent
-                    var data = activePoint._chart.data;
-                    console.log(data);
-                    var datasetIndex = activePoint._datasetIndex;
-                    var label = data.datasets[datasetIndex].label;
-                    var value = data.datasets[datasetIndex].iddata[activePoint._index];
-
-                };
-               // TrendsModule.TranTableLoad(TotalData.data.daily_transaction_trend);
-            }
-            else {
-
-                if (UserType == "Paid") {
-
-                    $("#TransactionGraphTable").hide();
-                    $("#Transactionloginmask").hide();
-                    $("#TransactionDownload").hide();
-                    $("#TransactionRadio").hide();
-                    $("#TransactionNodatamask").show();
-                }
-                else {
-                    $("#TransactionGraphTable").hide();
-                    $("#Transactionloginmask").show();
-                    $("#TransactionDownload").show();
-                    $("#TransactionRadio").hide();
-                    $("#TransactionNodatamask").hide();
-                }
-            }
-        },
-        
+        },        
         Multilinegraph: function () {
            /* chartClear();*/
             var label = [];
@@ -203,7 +63,13 @@ var TrendsModule = function () {
             var CityLine = [];
             var Graphlabels = [];
             TotalData.data.forEach(function (item) {
-                projectLine.push(item.project_saleable_rate);
+                if (item.project_saleable_rate == 0) {
+                    projectLine.push(null);
+                }
+                else {
+                    projectLine.push(item.project_saleable_rate);
+                }
+                
                 PincodeLine.push(item.pincode_saleable_rate);
                 SubRegionLine.push(item.subregion_or_suburb_saleable_rate);
                 RegionLine.push(item.region_saleable_rate);
@@ -354,7 +220,27 @@ var TrendsModule = function () {
             }
 
         },
-        
+        CAGRCalculation: function (t) {
+            var attributetobeUsed;
+            if (TotalData.data[0].project_line_flag == 1) {
+                attributetobeUsed = "project_saleable_rate";
+            }
+            else if (TotalData.data[0].suburb_line_flag  == 1) {
+                attributetobeUsed = "subregion_or_suburb_saleable_rate";
+            }
+            else if (TotalData.data[0].region_line_flag  == 1) {
+                attributetobeUsed = "region_saleable_rate";
+            }
+            else if (TotalData.data[0].city_line_flag  == 1) {
+                attributetobeUsed = "city_saleable_rate";
+            }
+            else if (TotalData.data[0].pincode_line_flag  == 1) {
+                attributetobeUsed = "pincode_saleable_rate";
+            }
+
+            var formulaCalulator = common.CAGRFormularCalulation(t, (TotalData.data.length-1), TotalData.data, attributetobeUsed);
+            $("#calculatedCAGR").text(formulaCalulator);
+        },        
         TransactionDailyCsvExport: function (TotalData) {
             //////CSV structure//////
             var arr = TotalData;
@@ -397,5 +283,14 @@ $("#getValuation").click(function () {
     //var SName = utility.getCookie('SearchName');
 
     TrendsModule.getvaluation('project');
+});
+
+$('#CAGRListProjectTrends a').on('click', function () {
+    var value = $(this).html();
+    $("#CAGRDropDownText").text(value);
+
+    var temp_t = value.split('Y')[0];
+    var t = Number(temp_t.split(' ')[1]);
+    TrendsModule.CAGRCalculation(t);
 });
 

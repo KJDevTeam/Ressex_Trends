@@ -9,18 +9,29 @@ namespace Ressex_trends.Controllers
     public class TrendController : Controller
     {
         // GET: Trend
-        [Route("Trend/Project/{id}/{id1}")]
-        public ActionResult Project()
+        [Route("trend/project/{id}/{id1}")]
+        public ActionResult project()
         {
             return View();
         }
 
-        [Route("Trend/Pincode/{id}/{id1}")]
-        public ActionResult Pincode()
+        [Route("trend/pincode/{id}/{id1}")]
+        public ActionResult pincode()
         {
             return View();
         }
 
+        [Route("trend/location/{id}/{id1}")]
+        public ActionResult location()
+        {
+            return View();
+        }
+
+        [Route("trend/city/{id}/{id1}")]
+        public ActionResult city()
+        {
+            return View();
+        }
 
     }
 }

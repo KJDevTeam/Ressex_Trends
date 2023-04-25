@@ -206,7 +206,85 @@ common.GetTrendsTypePayload = function (queryStringARR) {
 
 
 
+common.dtpicker_cal = function (Controlid) {
+    if (Controlid == "#fromDateID") {
+        $(Controlid).datepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            defaultDate: moment().format('DD/MM/YYYY'),
+            dateFormat: 'dd/mm/yy',
+            changeYear: true,
+            changeMonth: true,
+            onSelect: function (data, instance) {
+                console.log('Selected Date' + data);
+                var toDateID;
+                let date2;
+                if ($('#toDateID').val() != 'Max Date') {
+                    toDateID = $('#fromDateID').val();
+                    date2 = moment(moment(toDateID, "DD/MM/YYYY"), "DD/MM/YYYY");
+                    var toDateID = $('#toDateID').val();
+                    let date1 = moment(data, "DD/MM/YYYY");
 
+                    if (moment(date2).isAfter(date1) || moment(date1).isSame(date2)) {
+
+                    }
+                    else {
+                        swal("Oops!", "From date should be earlier than To date, you should choose again!", "error");
+
+                    }
+                }
+                else {
+                    $("#toDateID").datepicker("setDate", moment().format('DD/MM/YYYY'));
+                    common.SelectedInput("#toDateID", "Max Date");
+                }
+
+
+
+            }
+
+        });
+    }
+    else {
+        $(Controlid).datepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            defaultDate: moment().format('DD/MM/YYYY'),
+            dateFormat: 'dd/mm/yy',
+            changeYear: true,
+            changeMonth: true,
+            onSelect: function (data, instance) {
+                console.log('Selected Date' + data);
+                var fromDateID;
+                let date2;
+                if ($('#fromDateID').val() != 'Min Date') {
+                    fromDateID = $('#fromDateID').val();
+                    date2 = moment(moment(fromDateID, "DD/MM/YYYY"), "DD/MM/YYYY");
+                    let date1 = moment(data, "DD/MM/YYYY");
+
+                    if (moment(date1).isAfter(date2) || moment(date1).isSame(date2)) {
+
+                    }
+                    else {
+                        swal("Oops!", "From date should be earlier than To date, you should choose again!", "error");
+
+                    }
+                }
+                else {
+                    $("#fromDateID").datepicker("setDate", moment().format('DD/MM/YYYY'));
+
+                    common.SelectedInput("#fromDateID", "Min Date");
+
+                }
+
+
+
+
+            }
+
+        });
+    }
+
+};
 
 common.IsFilterSelcted = function () {
     //Default Model
@@ -275,193 +353,24 @@ common.IsFilterSelcted = function () {
     }
 };
 
-//common.datepick = function () {
-//    $('input[name="fromdate"], input[name="tomdate"]').daterangepicker({
-//        singleDatePicker: true,
-//        showDropdowns: true,
-//    });
-//}
+common.CAGRFormularCalulation = function (t, n,keepData,attr) {
 
-
-common.dtpicker_cal = function (Controlid) {
-    if (Controlid == "#fromDateID") {
-        $(Controlid).datepicker({
-            singleDatePicker: true,
-            showDropdowns: true,
-            defaultDate: moment().format('DD/MM/YYYY'),
-            dateFormat: 'dd/mm/yy',
-            changeYear: true,
-            changeMonth: true,
-            onSelect: function (data, instance) {
-                console.log('Selected Date' + data);
-                var toDateID;
-                let date2;
-                if ($('#toDateID').val() != 'Max Date') {
-                    toDateID = $('#fromDateID').val();
-                    date2 = moment(moment(toDateID, "DD/MM/YYYY"), "DD/MM/YYYY");
-                    var toDateID = $('#toDateID').val();
-                    let date1 = moment(data, "DD/MM/YYYY");
-
-                    if (moment(date2).isAfter(date1) || moment(date1).isSame(date2)) {
-
-                    }
-                    else {
-                        swal("Oops!", "From date should be earlier than To date, you should choose again!", "error");
-
-                    }
-                }
-                else {
-                    $("#toDateID").datepicker("setDate", moment().format('DD/MM/YYYY'));
-                    common.SelectedInput("#toDateID", "Max Date");
-                }
-
-                
-
-            }
-
-        });
+    var powervalue = (1 / t);
+    var numerator = keepData[n][attr];
+    var denomth = (n - (1 + 4 * t))
+    var denominator = keepData[denomth][attr];
+    if (denominator == 0) {
+       
+        return "NA";
     }
     else {
-        $(Controlid).datepicker({
-            singleDatePicker: true,
-            showDropdowns: true,
-            defaultDate: moment().format('DD/MM/YYYY'),
-            dateFormat: 'dd/mm/yy',
-            changeYear: true,
-            changeMonth: true,
-            onSelect: function (data, instance) {
-                console.log('Selected Date' + data);
-                var fromDateID;
-                let date2;
-                if ($('#fromDateID').val() != 'Min Date')
-                {
-                    fromDateID = $('#fromDateID').val();
-                    date2 = moment(moment(fromDateID, "DD/MM/YYYY"), "DD/MM/YYYY");
-                    let date1 = moment(data, "DD/MM/YYYY");
-
-                    if (moment(date1).isAfter(date2) || moment(date1).isSame(date2)) {
-
-                    }
-                    else {
-                        swal("Oops!", "From date should be earlier than To date, you should choose again!", "error");
-
-                    }
-                }
-                else {
-                    $("#fromDateID").datepicker("setDate", moment().format('DD/MM/YYYY'));
-                 
-                    common.SelectedInput("#fromDateID", "Min Date");
-                   
-                }
-                
-                                         
-
-
-            }
-
-        });
+        var result = (Math.pow((numerator / denominator), powervalue) - 1) * 100;
+        return result.toFixed(2)+ " %";
     }
-
+    
 };
 
-common.dtpicker = function (date, Controlid_1, Controlid_2) {
-    var AllFlag = false;
-    switch (date) {
-        case "6M":
-            var dateFrom = moment().subtract(6, 'months').format('DD/MM/YYYY');
-            var dateTo = moment().format('DD/MM/YYYY');
-            break;
-        case "12M":
-            var dateFrom = moment().subtract(12, 'months').format('DD/MM/YYYY');
-            var dateTo = moment().format('DD/MM/YYYY');
-            break;
-        case "3Y":
-            var dateFrom = moment().subtract(3, 'years').format('DD/MM/YYYY');
-            var dateTo = moment().format('DD/MM/YYYY');
-            break;
-        case "5Y":
-            var dateFrom = moment().subtract(5, 'years').format('DD/MM/YYYY');
-            var dateTo = moment().format('DD/MM/YYYY');
-            break;
-        case "All":
-           /* AllFlag = true;*/
-            var dateFrom = moment('2010-01-01').format('DD/MM/YYYY');
-            var dateTo = moment().format('DD/MM/YYYY');
-            //common.SelectedInput("#fromDateID", "Min Date");
-            //common.SelectedInput("#toDateID", "Max Date");
-            //$(Controlid_1).datepicker("refresh");
-            //$(Controlid_2).datepicker("refresh");
-            
-            
-            break;
-        default:
-        // code block
-    }
-    if (!AllFlag) {
-    $(Controlid_1).datepicker("setDate", dateFrom);
-    $(Controlid_2).datepicker("setDate", dateTo);
-    }
-}
-common.Minrange = function (Mincontrolid,Maxcontrolid,IscarpetSize) {
 
-    
-    var values = [];
-    $(Mincontrolid + ' option').each(function () {
-       values.push($(this).attr('value'));
-    });
 
-    var texts = $(Mincontrolid).children('option').map(function (i, e) {
-        return e.innerText;
-    }).get();
 
-    var finalData = [];
-    $.each(values, function (index, value) {
-        console.log(value);
-        finalData.push({ "range_upper_limit": value,"range_upper_limit_text": texts[index]});
-    });
-    /*finalData.shift();*/
-    console.log(finalData);
-    /*finalData.splice(1, 2);*/
-    var tempminvalue=$(Mincontrolid).select2('val');
-    var predicate = (x) => x <= parseInt(tempminvalue);
-    /*var output = finalData.filter(predicate);*/
-    finalData = finalData.filter(x => !predicate(x.range_upper_limit));
-    if (IscarpetSize) {
-        utility.bindSelect(Maxcontrolid, 'range_upper_limit', 'range_upper_limit_text', finalData, true, 999999, true);
-    }
-    else {
-        utility.bindSelect(Maxcontrolid, 'range_upper_limit', 'range_upper_limit_text', finalData, true, 9999999999, true);
-    }
-  
-    
-    //$(Maxcontrolid).children("option").each(function () {
-    //    //var opt = $(this),
-    //    var opt =element
-    //        optVal = parseInt(opt.attr('value'));
-    //    if (optVal <= $(Mincontrolid).val()) {
-    //        opt.attr('disabled', 'disabled');
-    //        opt.attr("hidden", true);
-    //    } else {
-    //        opt.removeAttr('disabled');
-    //        opt.attr("hidden", false);
-    //    }
-    //});
 
-}
-common.Maxrange = function (Mincontrolid, Maxcontrolid, element) {
-
-    //$(Maxcontrolid).on('change', function () {
-    //    $(Mincontrolid).children("option").each(function () {
-    //        var opt = $(this),
-    //            optVal = parseInt(opt.attr('value'));
-
-    //        if (optVal != 0 && optVal >= $(Maxcontrolid).val()) {
-    //            opt.attr('disabled', 'disabled');
-    //            opt.attr("hidden", true);
-    //        } else {
-    //            opt.removeAttr('disabled');
-    //            opt.attr("hidden", false);
-    //        }
-    //    });
-    //});
-}

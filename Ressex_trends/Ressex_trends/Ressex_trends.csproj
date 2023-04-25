@@ -287,7 +287,7 @@
     <Content Include="Scripts\PageLavel\List\PincodeList.js" />
     <Content Include="Scripts\PageLavel\List\ProjectList.js" />
     <Content Include="Scripts\PartialViewJs\SearchView.js" />
-    <Content Include="Scripts\PartialViewJs\Trends.js" />
+    <Content Include="Scripts\PageLavel\Trend\ProjectTrend.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\slick.min.js" />
     <Content Include="Web.config" />
@@ -311,13 +311,15 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Logout.cshtml" />
     <Content Include="Views\Home\_Searchview.cshtml" />
-    <Content Include="Views\Trend\Pincode.cshtml" />
-    <Content Include="Views\Trend\Project.cshtml" />
+    <Content Include="Views\Trend\pincode.cshtml" />
+    <Content Include="Views\Trend\project.cshtml" />
     <Content Include="Views\List\pincode.cshtml" />
     <Content Include="Views\List\location.cshtml" />
     <Content Include="Views\List\city.cshtml" />
     <Content Include="Views\List\project.cshtml" />
     <Content Include="Views\Home\document.cshtml" />
+    <Content Include="Views\Trend\location.cshtml" />
+    <Content Include="Views\Trend\city.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
