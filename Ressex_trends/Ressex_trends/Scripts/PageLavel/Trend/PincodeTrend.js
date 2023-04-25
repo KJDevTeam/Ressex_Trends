@@ -93,10 +93,7 @@ var PincodeTrendsModule = function () {
                     CityLine.push(item.city_saleable_rate);
                 }
                
-                       
-                
-
-                Graphlabels.push(item.dos_month_year);
+               Graphlabels.push(item.dos_month_year);
             });
 
             var dataSecond = {

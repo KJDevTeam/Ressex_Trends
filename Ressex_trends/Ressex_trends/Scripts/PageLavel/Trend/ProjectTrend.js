@@ -63,29 +63,51 @@ var ProjectTrendsModule = function () {
             var CityLine = [];
             var Graphlabels = [];
             TotalData.data.forEach(function (item) {
+                //Project Check
                 if (item.project_saleable_rate == 0) {
                     projectLine.push(null);
                 }
                 else {
                     projectLine.push(item.project_saleable_rate);
                 }
-                
-                PincodeLine.push(item.pincode_saleable_rate);
-                SubRegionLine.push(item.subregion_or_suburb_saleable_rate);
-                RegionLine.push(item.region_saleable_rate);
-                CityLine.push(item.city_saleable_rate);
 
-                Graphlabels.push(item.dos_month_year);
-                
-                
-                
-                
-                
-                
-                
+                //Pincode Check
+                if (item.pincode_saleable_rate == 0) {
+                    PincodeLine.push(null);
+                }
+                else {
+                    PincodeLine.push(item.pincode_saleable_rate);
+                }
+
+                //SubRegion Check
+                if (item.subregion_or_suburb_saleable_rate == 0) {
+                    SubRegionLine.push(null);
+                }
+                else {
+                    SubRegionLine.push(item.subregion_or_suburb_saleable_rate);
+                }
+
+                //Region Check
+                if (item.region_saleable_rate == 0) {
+                    RegionLine.push(null);
+                }
+                else {
+                    RegionLine.push(item.region_saleable_rate);
+                }
+
+
+                //City Check
+                if (item.city_saleable_rate == 0) {
+                    CityLine.push(null);
+                }
+                else {
+                    CityLine.push(item.city_saleable_rate);
+                }        
+              
+
+                Graphlabels.push(item.dos_month_year);          
                 
             });
-
             var dataFirst = {
                 label: "Project",
                 data: projectLine,
