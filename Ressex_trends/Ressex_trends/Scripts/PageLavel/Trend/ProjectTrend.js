@@ -9,7 +9,7 @@ var TrendsModule = function () {
     var TotalData;
     return {
         init: function () {
-            $("#valTxt").text('Just one step away from getting your current property valuation...');
+            $("#valTxtProject").text('Just one step away from getting your current property valuation...');
             var QueryStringARR = common.GetQueryString();
             result = common.GetTrendsTypePayload(QueryStringARR);
 
@@ -32,14 +32,14 @@ var TrendsModule = function () {
             
             TotalData = RspData;
             console.log(RspData);
-            $("#screenName").text(RspData.data[0].screen_name);
-            $("#qtrText").text(RspData.data[0].current_qtr_text);
-            $("#rateTxt").text(RspData.data[0].current_rate_in_txt);
-            $("#cagrPct").text(RspData.data[0].cagr_last_1yr_pct);
-            $("#CAGRDropDownText").text("CAGR 3Y");
-            $("#calculatedCAGR").text(RspData.data[0].cagr_last_3yr_pct);
+            $("#screenNameProject").text(RspData.data[0].screen_name);
+            $("#qtrTextProject").text(RspData.data[0].current_qtr_text);
+            $("#rateTxtProject").text(RspData.data[0].current_rate_in_txt);
+            $("#cagrPctProject").text(RspData.data[0].cagr_last_1yr_pct);
+            $("#CAGRDropDownTextProject").text("CAGR 3Y");
+            $("#calculatedCAGRProject").text(RspData.data[0].cagr_last_3yr_pct);
             
-            common.dtpicker_cal("#fromDateID");
+            common.dtpicker_cal("#fromDateIDProject");
             TrendsModule.Multilinegraph();
            
             
@@ -149,7 +149,7 @@ var TrendsModule = function () {
                 axistxt.push({ "X": 'Quater', "Y": 'Saleable Rate in ₹/sqft' });
           
             //  label = OsgroupbyDate;
-            var Linedatasource = utility.bindmultilinedinamic("scanline", totaldataset, true, axistxt, label, ticks);
+            var Linedatasource = utility.bindmultilinedinamic("scanlineProject", totaldataset, true, axistxt, label, ticks);
            
            
         },
@@ -159,8 +159,8 @@ var TrendsModule = function () {
                     var jsonstr = {
                         "id": result.Id,
                         "pin_input": RspData.data[0].pincode,
-                        "orig_value_rs": $("#Orgvalue").val(),
-                        "orig_date": $("#fromDateID").val()
+                        "orig_value_rs": $("#OrgvalueProject").val(),
+                        "orig_date": $("#fromDateIDProject").val()
                     }
                     var Payload = {
                         "lookup": "project_valuation",
@@ -211,12 +211,12 @@ var TrendsModule = function () {
             console.log(retData);
 
             if (retData.status == "OK") {
-                $("#currVal").text(retData.data[0].current_valuation_rs);
-                $("#valTxt").text(retData.data[0].current_value_text_popup);
+                $("#currValProject").text(retData.data[0].current_valuation_rs);
+                $("#valTxtProject").text(retData.data[0].current_value_text_popup);
             }
             else {
-                $("#currVal").text('');
-                $("#valTxt").text('');
+                $("#currValProject").text('');
+                $("#valTxtProject").text('');
             }
 
         },
@@ -239,7 +239,7 @@ var TrendsModule = function () {
             }
 
             var formulaCalulator = common.CAGRFormularCalulation(t, (TotalData.data.length-1), TotalData.data, attributetobeUsed);
-            $("#calculatedCAGR").text(formulaCalulator);
+            $("#calculatedCAGRProject").text(formulaCalulator);
         },        
         TransactionDailyCsvExport: function (TotalData) {
             //////CSV structure//////
@@ -278,16 +278,16 @@ var TrendsModule = function () {
     }
 }();
 
-$("#getValuation").click(function () {
+$("#getValuationProject").click(function () {
    // var SearchName = Cookies.get('SearchName');
     //var SName = utility.getCookie('SearchName');
 
     TrendsModule.getvaluation('project');
 });
 
-$('#CAGRListProjectTrends a').on('click', function () {
+$('#CAGRListProject a').on('click', function () {
     var value = $(this).html();
-    $("#CAGRDropDownText").text(value);
+    $("#CAGRDropDownTextProject").text(value);
 
     var temp_t = value.split('Y')[0];
     var t = Number(temp_t.split(' ')[1]);

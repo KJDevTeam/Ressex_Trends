@@ -207,82 +207,19 @@ common.GetTrendsTypePayload = function (queryStringARR) {
 
 
 common.dtpicker_cal = function (Controlid) {
-    if (Controlid == "#fromDateID") {
-        $(Controlid).datepicker({
-            singleDatePicker: true,
-            showDropdowns: true,
-            defaultDate: moment().format('DD/MM/YYYY'),
-            dateFormat: 'dd/mm/yy',
-            changeYear: true,
-            changeMonth: true,
-            onSelect: function (data, instance) {
-                console.log('Selected Date' + data);
-                var toDateID;
-                let date2;
-                if ($('#toDateID').val() != 'Max Date') {
-                    toDateID = $('#fromDateID').val();
-                    date2 = moment(moment(toDateID, "DD/MM/YYYY"), "DD/MM/YYYY");
-                    var toDateID = $('#toDateID').val();
-                    let date1 = moment(data, "DD/MM/YYYY");
 
-                    if (moment(date2).isAfter(date1) || moment(date1).isSame(date2)) {
+    $(Controlid).datepicker({
+        singleDatePicker: true,
+        showDropdowns: true,
+        defaultDate: moment().format('DD/MM/YYYY'),
+        dateFormat: 'dd/mm/yy',
+        changeYear: true,
+        changeMonth: true,
+       
 
-                    }
-                    else {
-                        swal("Oops!", "From date should be earlier than To date, you should choose again!", "error");
+    });
 
-                    }
-                }
-                else {
-                    $("#toDateID").datepicker("setDate", moment().format('DD/MM/YYYY'));
-                    common.SelectedInput("#toDateID", "Max Date");
-                }
-
-
-
-            }
-
-        });
-    }
-    else {
-        $(Controlid).datepicker({
-            singleDatePicker: true,
-            showDropdowns: true,
-            defaultDate: moment().format('DD/MM/YYYY'),
-            dateFormat: 'dd/mm/yy',
-            changeYear: true,
-            changeMonth: true,
-            onSelect: function (data, instance) {
-                console.log('Selected Date' + data);
-                var fromDateID;
-                let date2;
-                if ($('#fromDateID').val() != 'Min Date') {
-                    fromDateID = $('#fromDateID').val();
-                    date2 = moment(moment(fromDateID, "DD/MM/YYYY"), "DD/MM/YYYY");
-                    let date1 = moment(data, "DD/MM/YYYY");
-
-                    if (moment(date1).isAfter(date2) || moment(date1).isSame(date2)) {
-
-                    }
-                    else {
-                        swal("Oops!", "From date should be earlier than To date, you should choose again!", "error");
-
-                    }
-                }
-                else {
-                    $("#fromDateID").datepicker("setDate", moment().format('DD/MM/YYYY'));
-
-                    common.SelectedInput("#fromDateID", "Min Date");
-
-                }
-
-
-
-
-            }
-
-        });
-    }
+   
 
 };
 

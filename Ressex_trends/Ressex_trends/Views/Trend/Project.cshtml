@@ -10,22 +10,22 @@
         <div class="innerSectionHeader d-flex">
             <a href="#" class="mr-2 pt-2"><img src="~/images/chevron-left.svg" alt=""></a>
             <div class="header flex-1">
-                <h3 id="screenName"></h3>
+                <h3 id="screenNameProject"></h3>
                 <div class="border-h"></div>
                 <div class="d-flex align-items-center">
                     <div class="d-flex mr-3">
-                        <label id="qtrText"></label>
-                        <span class="color-red" id="rateTxt"></span>
+                        <label id="qtrTextProject"></label>
+                        <span class="color-red" id="rateTxtProject"></span>
                     </div>
                     <div class="d-flex mr-3">
                         <label>YoY Change</label>
-                        <span class="color-red" id="cagrPct"></span>
+                        <span class="color-red" id="cagrPctProject"></span>
                     </div>
                     <div class="d-flex mr-3">
                         <div class="dropdown ml-0">
-                            <a type="button" class="dropdown-toggle uppercase mr-2" id="CAGRDropDownText" data-toggle="dropdown"></a>
+                            <a type="button" class="dropdown-toggle uppercase mr-2" id="CAGRDropDownTextProject" data-toggle="dropdown"></a>
 
-                            <div class="dropdown-menu" id="CAGRListProjectTrends">
+                            <div class="dropdown-menu" id="CAGRListProject">
                                 <a class="dropdown-item" href="javascript:void(0)" value="1">CAGR 1Y</a>
                                 <a class="dropdown-item" href="javascript:void(0)">CAGR 2Y</a>
                                 <a class="dropdown-item" href="javascript:void(0)">CAGR 3Y</a>
@@ -38,7 +38,7 @@
                                 <a class="dropdown-item" href="javascript:void(0)">CAGR 10Y</a>
                             </div>
                         </div>
-                        <span class="color-red" id="calculatedCAGR"></span>
+                        <span class="color-red" id="calculatedCAGRProject"></span>
                     </div>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <span><img src="~/images/calendar-icon.svg" alt="" class="icon"></span>
-                                <input type="text" class="form-control flex-1" id="fromDateID" placeholder="Date" name="originationDate" value="" />
+                                <input type="text" class="form-control flex-1" id="fromDateIDProject" placeholder="Date" name="originationDate" value="" />
                             </div>
                         </div>
                     </div>
@@ -69,16 +69,16 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <span><img src="~/images/rupees-icon.svg" alt="" class="icon"></span>
-                                <input type="text" class="form-control flex-1" id="Orgvalue" placeholder="Value" value="" />
+                                <input type="text" class="form-control flex-1" id="OrgvalueProject" placeholder="Value" value="" />
                             </div>
                         </div>
                     </div>
-                    <button type="button" id="getValuation" class="btn-red text-center cardSize border-0 rounded-0 p-0">
+                    <button type="button" id="getValuationProject" class="btn-red text-center cardSize border-0 rounded-0 p-0">
                         Get Current<br>Valuation
                     </button>
                 </div>
-                <h2 class="text-center text-danger" id="currVal"></h2>
-                <p class="text-style2 text-center" id="valTxt"></p>
+                <h2 class="text-center text-danger" id="currValProject"></h2>
+                <p class="text-style2 text-center" id="valTxtProject"></p>
             </div>
         </section>
 
@@ -100,7 +100,7 @@
                             <button type="button" class="btn btn-outline-primary ml-2">Download</button>
                         </div>
                         <div>
-                            <canvas id="scanline" height="300"></canvas>
+                            <canvas id="scanlineProject" height="300"></canvas>
                         </div>
                     </div>
                 </div>
