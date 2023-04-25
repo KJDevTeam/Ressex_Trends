@@ -5,11 +5,11 @@ var TotalData1 = '';
 var Bardatasource = '';
 var UserType = '';
 
-var PincodeTrendsModule = function () {
+var LocationTrendsModule = function () {
     var TotalData;
     return {
         init: function () {
-            $("#valTxtPincode").text('Just one step away from getting your current property valuation...');
+            $("#valTxtLocation").text('Just one step away from getting your current property valuation...');
             var QueryStringARR = common.GetQueryString();
             result = common.GetTrendsTypePayload(QueryStringARR);
 
@@ -24,7 +24,7 @@ var PincodeTrendsModule = function () {
                 "id": result.Id,
             }
             var Payload = {
-                "lookup": "Pincode",
+                "lookup": "Location",
                 "json_str": JSON.stringify(jsonstr)
             }
             var APIkey = utility.ServiceAPIURL("Dashboard/PriceIndex");
@@ -32,15 +32,15 @@ var PincodeTrendsModule = function () {
 
             TotalData = RspData;
             console.log(RspData);
-            $("#screenNamePincode").text(RspData.data[0].screen_name);
-            $("#qtrTextPincode").text(RspData.data[0].current_qtr_text);
-            $("#rateTxtPincode").text(RspData.data[0].current_rate_in_txt);
-            $("#cagrPctPincode").text(RspData.data[0].cagr_last_1yr_pct);
-            $("#CAGRDropDownTextPincode").text("CAGR 3Y");
-            $("#calculatedCAGRPincode").text(RspData.data[0].cagr_last_3yr_pct);
+            $("#screenNameLocation").text(RspData.data[0].screen_name);
+            $("#qtrTextLocation").text(RspData.data[0].current_qtr_text);
+            $("#rateTxtLocation").text(RspData.data[0].current_rate_in_txt);
+            $("#cagrPctLocation").text(RspData.data[0].cagr_last_1yr_pct);
+            $("#CAGRDropDownTextLocation").text("CAGR 3Y");
+            $("#calculatedCAGRLocation").text(RspData.data[0].cagr_last_3yr_pct);
 
-            common.dtpicker_cal("#fromDateIDPincode");
-            PincodeTrendsModule.Multilinegraph();
+            common.dtpicker_cal("#fromDateIDLocation");
+            LocationTrendsModule.Multilinegraph();
 
 
         },
@@ -54,26 +54,18 @@ var PincodeTrendsModule = function () {
                 stepSize: 1
             };
             responsive = false;
-            var totaldataset = [];      
-            var PincodeLine = [];
-            var SubRegionLine = [];
+            var totaldataset = [];
+            var LocationLine = [];
             var RegionLine = [];
             var CityLine = [];
             var Graphlabels = [];
             TotalData.data.forEach(function (item) {
-                if (item.pincode_saleable_rate == 0) {
-                    PincodeLine.push(null);
+                //Location Check
+                if (item.location_saleable_rate == 0) {
+                    LocationLine.push(null);
                 }
                 else {
-                    PincodeLine.push(item.pincode_saleable_rate);
-                }
-
-                //Sub Region Check
-                if (item.subregion_or_suburb_saleable_rate == 0) {
-                    SubRegionLine.push(null);
-                }
-                else {
-                    SubRegionLine.push(item.subregion_or_suburb_saleable_rate);
+                    LocationLine.push(item.location_saleable_rate);
                 }
 
                 //Region Check
@@ -84,31 +76,24 @@ var PincodeTrendsModule = function () {
                     RegionLine.push(item.region_saleable_rate);
                 }
 
-                //City Check
 
-                if (item.city_saleable_rate == 0) {
+                //City Check
+                if (item.city_saleable_rate== 0) {
                     CityLine.push(null);
                 }
                 else {
                     CityLine.push(item.city_saleable_rate);
                 }
-               
-               Graphlabels.push(item.dos_month_year);
+
+                Graphlabels.push(item.dos_month_year);
             });
 
-            var dataSecond = {
-                label: "Pincode",
-                data: PincodeLine,
-                lineTension: 0,
-                fill: false,
-                borderColor: TotalData.data[0].pincode_color
-            };
             var dataThird = {
-                label: "Sub Region",
-                data: SubRegionLine,
+                label: "Loation",
+                data: LocationLine,
                 lineTension: 0,
                 fill: false,
-                borderColor: TotalData.data[0].region_color
+                borderColor: TotalData.data[0].location_color
             };
 
             var dataFourth = {
@@ -116,7 +101,7 @@ var PincodeTrendsModule = function () {
                 data: RegionLine,
                 lineTension: 0,
                 fill: false,
-                borderColor: TotalData.data[0].suburb_color
+                borderColor: TotalData.data[0].region_color
             };
             var dataFifth = {
                 label: "City",
@@ -124,16 +109,16 @@ var PincodeTrendsModule = function () {
                 lineTension: 0,
                 fill: false,
                 borderColor: TotalData.data[0].city_color
-            };           
+            };
 
             label = Graphlabels;
 
 
-           
+
 
             var totaldataset = [];
 
-            totaldataset.push(dataSecond);
+           
             totaldataset.push(dataThird);
             totaldataset.push(dataFourth);
             totaldataset.push(dataFifth);
@@ -141,42 +126,39 @@ var PincodeTrendsModule = function () {
             axistxt.push({ "X": 'Quater', "Y": 'Saleable Rate in ₹/sqft' });
 
             //  label = OsgroupbyDate;
-            var Linedatasource = utility.bindmultilinedinamic("scanlinePincode", totaldataset, true, axistxt, label, ticks);
+            var Linedatasource = utility.bindmultilinedinamic("scanlineLocation", totaldataset, true, axistxt, label, ticks);
 
 
         },
         getvaluation: function () {
             var jsonstr = {
                 "id": result.Id,
-                "orig_value_rs": $("#OrgvaluePincode").val(),
-                "orig_date": $("#fromDateIDPincode").val()
+                "orig_value_rs": $("#OrgvalueLocation").val(),
+                "orig_date": $("#fromDateIDLocation").val()
             };
             var Payload = {
-                "lookup": "pincode_valuation",
+                "lookup": "location_valuation",
                 "json_str": JSON.stringify(jsonstr)
             };
-            
+
             var APIkey = utility.ServiceAPIURL("Dashboard/PriceIndex");
             var retData = utility.ajaxselect(APIkey, Payload, "Post", false);
             console.log(retData);
 
             if (retData.status == "OK") {
-                $("#currValPincode").text(retData.data[0].current_valuation_rs);
-                $("#valTxtPincode").text(retData.data[0].current_value_text_popup);
+                $("#currValLocation").text(retData.data[0].current_valuation_rs);
+                $("#valTxtLocation").text(retData.data[0].current_value_text_popup);
             }
             else {
-                $("#currValPincode").text('');
-                $("#valTxtPincode").text('');
+                $("#currValLocation").text('');
+                $("#valTxtLocation").text('');
             }
 
         },
         CAGRCalculation: function (t) {
             var attributetobeUsed;
-            if (TotalData.data[0].pincode_line_flag == 1) {
-                attributetobeUsed = "pincode_saleable_rate";
-            }
-            else if (TotalData.data[0].suburb_line_flag == 1) {
-                attributetobeUsed = "subregion_or_suburb_saleable_rate";
+            if (TotalData.data[0].location_line_flag  == 1) {
+                attributetobeUsed = "location_saleable_rate";
             }
             else if (TotalData.data[0].region_line_flag == 1) {
                 attributetobeUsed = "region_saleable_rate";
@@ -184,10 +166,9 @@ var PincodeTrendsModule = function () {
             else if (TotalData.data[0].city_line_flag == 1) {
                 attributetobeUsed = "city_saleable_rate";
             }
-            
 
             var formulaCalulator = common.CAGRFormularCalulation(t, (TotalData.data.length - 1), TotalData.data, attributetobeUsed);
-            $("#calculatedCAGRPincode").text(formulaCalulator);
+            $("#calculatedCAGRLocation").text(formulaCalulator);
         },
         TransactionDailyCsvExport: function (TotalData) {
             //////CSV structure//////
@@ -226,23 +207,22 @@ var PincodeTrendsModule = function () {
     }
 }();
 
-$("#getValuationPincode").click(function () {
+$("#getValuationLocation").click(function () {
     // var SearchName = Cookies.get('SearchName');
     //var SName = utility.getCookie('SearchName');
 
-    PincodeTrendsModule.getvaluation();
+    LocationTrendsModule.getvaluation();
 });
 
-$('#CAGRListPincode a').on('click', function () {
+$('#CAGRListLocation a').on('click', function () {
     var value = $(this).html();
-    $("#CAGRDropDownTextPincode").text(value);
+    $("#CAGRDropDownTextLocation").text(value);
 
     var temp_t = value.split('Y')[0];
     var t = Number(temp_t.split(' ')[1]);
-    PincodeTrendsModule.CAGRCalculation(t);
+    LocationTrendsModule.CAGRCalculation(t);
 });
 
-function goBack() {
+function goBackLocation() {
     window.history.back()
 }
-

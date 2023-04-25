@@ -105,10 +105,10 @@ var LocationListModule = function () {
                                     </div>\
                                </div>\
                                <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
-                                  <a href="#" onClick="ProjectBylocation('+ items.locationid + ')">View<br>Projects</a>\
+                                  <a href="javascript:void(0)" onClick="ProjectBylocation('+ items.locationid + ')">View<br>Projects</a>\
                                </div>\
                                <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
-                                  <a href="#">View<br>Trends</a>\
+                                <a href="javascript:void(0)" onClick="LocationTrendsRoute('+ items.locationid + ')">View<br>Trends</a>\
                                </div>\
                            </div>';
                    
@@ -402,6 +402,11 @@ function Locationcagr5yIconClick(event) {
 
 function ProjectBylocation(id) {
     var resultroutingurl = utility.FrontEndAPIURL('list/project/0/' + id + '/0');
+    window.location.href = resultroutingurl;
+}
+
+function LocationTrendsRoute(id) {
+    var resultroutingurl = utility.FrontEndAPIURL('trend/location/' + id + '/LocationText');
     window.location.href = resultroutingurl;
 }
 

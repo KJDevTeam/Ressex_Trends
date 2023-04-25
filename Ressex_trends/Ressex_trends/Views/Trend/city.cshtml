@@ -1,7 +1,174 @@
 ﻿
 @{
-    ViewBag.Title = "city";
+    ViewBag.Title = "City Trend";
 }
 
-<h2>city</h2>
+@Html.Action("_Searchview", "Home")
+<div class="mainbodyWrap d-flex flex-column flex-1">
+    <div class="container flex-1">
 
+        <div class="innerSectionHeader d-flex">
+            <a href="javascript:void(0)" onclick="goBackCity()" class="mr-2 pt-2"><img src="~/images/chevron-left.svg" alt=""></a>
+            <div class="header flex-1">
+                <h3 id="screenNameCity"></h3>
+                <div class="border-h"></div>
+                <div class="d-flex align-items-center">
+                    <div class="d-flex mr-3">
+                        <label id="qtrTextCity"></label>
+                        <span class="color-red" id="rateTxtCity"></span>
+                    </div>
+                    <div class="d-flex mr-3">
+                        <label>YoY Change</label>
+                        <span class="color-red" id="cagrPctCity"></span>
+                    </div>
+                    <div class="d-flex mr-3">
+                        <div class="dropdown ml-0">
+                            <a type="button" class="dropdown-toggle uppercase mr-2" id="CAGRDropDownTextCity" data-toggle="dropdown"></a>
+
+                            <div class="dropdown-menu" id="CAGRListCity">
+                                <a class="dropdown-item" href="javascript:void(0)" value="1">CAGR 1Y</a>
+                                <a class="dropdown-item" href="javascript:void(0)">CAGR 2Y</a>
+                                <a class="dropdown-item" href="javascript:void(0)">CAGR 3Y</a>
+                                <a class="dropdown-item" href="javascript:void(0)">CAGR 4Y</a>
+                                <a class="dropdown-item" href="javascript:void(0)">CAGR 5Y</a>
+                                <a class="dropdown-item" href="javascript:void(0)">CAGR 6Y</a>
+                                <a class="dropdown-item" href="javascript:void(0)">CAGR 7Y</a>
+                                <a class="dropdown-item" href="javascript:void(0)">CAGR 8Y</a>
+                                <a class="dropdown-item" href="javascript:void(0)">CAGR 9Y</a>
+                                <a class="dropdown-item" href="javascript:void(0)">CAGR 10Y</a>
+                            </div>
+                        </div>
+                        <span class="color-red" id="calculatedCAGRCity"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="mt-5">
+            <div class="chartBody secGradient">
+                <div class="header text-style2">
+                    <p>
+                        To get the current value of this property from its origination date of mortgage, kindly enter the origination date and origination value of the property at that time and click on “Get Current Valuation" button. This calculation is solely based on indexation.
+                    </p>
+                </div>
+                <div class="formStyle1 d-flex justify-content-center">
+                    <div class="card cardSize rounded-0">
+                        <div class="card-header rounded-0">
+                            Origination Date
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <span><img src="~/images/calendar-icon.svg" alt="" class="icon"></span>
+                                <input type="text" class="form-control flex-1" id="fromDateIDCity" placeholder="Date" name="originationDate" value="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card cardSize rounded-0">
+                        <div class="card-header rounded-0">
+                            Origination Value
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <span><img src="~/images/rupees-icon.svg" alt="" class="icon"></span>
+                                <input type="text" class="form-control flex-1" id="OrgvalueCity" placeholder="Value" value="" />
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" id="getValuationCity" class="btn-red text-center cardSize border-0 rounded-0 p-0">
+                        Get Current<br>Valuation
+                    </button>
+                </div>
+                <h2 class="text-center text-danger" id="currValCity"></h2>
+                <p class="text-style2 text-center" id="valTxtCity"></p>
+            </div>
+        </section>
+
+        <div class="innerSectionHeader mt-0 mb-5">
+            <div class="header flex-1">
+                <h3>Price Trend &amp; Index</h3>
+                <div class="border-h"></div>
+            </div>
+        </div>
+
+
+        <section class="trendIndex-sec pb-100">
+            <div class="row justify-content-center">
+                <div class="chartLeft flex-1">
+                    <div class="chartInnerWrap h-100">
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-outline-primary active">Price</button>
+                            <button type="button" class="btn btn-outline-primary ml-2">Index</button>
+                            <button type="button" class="btn btn-outline-primary ml-2">Download</button>
+                        </div>
+                        <div>
+                            <canvas id="scanlineCity" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="chartRight">
+                    <div class="chartInnerWrap chartRightInner h-100 d-flex flex-column justify-content-center">
+                        <div class="d-flex justify-content-between checkBtmSpace">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                <label class="custom-control-label pointer" for="customCheck1">All</label>
+                            </div>
+                            <div class="cityNameCol"></div>
+                        </div>
+                        <div class="d-flex justify-content-between checkBtmSpace">
+                            <div class="custom-control custom-checkbox light-purple">
+                                <input type="checkbox" class="custom-control-input" id="checkProject">
+                                <label class="custom-control-label pointer" for="checkProject">Project</label>
+                            </div>
+                            <div class="cityNameCol">Rustomjee Crown</div>
+                        </div>
+                        <div class="d-flex justify-content-between checkBtmSpace">
+                            <div class="custom-control custom-checkbox light-green">
+                                <input type="checkbox" class="custom-control-input" id="checkLocation">
+                                <label class="custom-control-label pointer" for="checkLocation">Location</label>
+                            </div>
+                            <div class="cityNameCol">Prabhadevi</div>
+                        </div>
+                        <div class="d-flex justify-content-between checkBtmSpace">
+                            <div class="custom-control custom-checkbox light-red">
+                                <input type="checkbox" class="custom-control-input" id="checkPincode">
+                                <label class="custom-control-label pointer" for="checkPincode">Pincode</label>
+                            </div>
+                            <div class="cityNameCol">400025</div>
+                        </div>
+                        <div class="d-flex justify-content-between checkBtmSpace">
+                            <div class="custom-control custom-checkbox light-yellow">
+                                <input type="checkbox" class="custom-control-input" id="checkCity">
+                                <label class="custom-control-label pointer" for="checkCity">City</label>
+                            </div>
+                            <div class="cityNameCol">Mumbai</div>
+                        </div>
+                        <div class="d-flex justify-content-between checkBtmSpace">
+                            <div class="custom-control custom-checkbox light-blue">
+                                <input type="checkbox" class="custom-control-input" id="checkSuburb">
+                                <label class="custom-control-label pointer" for="checkSuburb">Suburb</label>
+                            </div>
+                            <div class="cityNameCol">Island City</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>
+
+@section scripts{
+
+
+    <script src="~/Scripts/PageLavel/Trend/CityTrend.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function () {
+            CityTrendsModule.init();
+            $('#overlay').fadeOut();
+
+        });
+    </script>
+
+
+
+}

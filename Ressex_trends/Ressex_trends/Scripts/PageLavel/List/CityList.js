@@ -107,10 +107,10 @@ var CityListModule = function () {
                                     </div>\
                                </div>\
                                <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
-                                  <a href="#" onClick="ProjectByCity('+ items.region_or_city_id + ')">View<br>Projects</a>\
+                                  <a href="javascript:void(0)" onClick="ProjectByCity('+ items.region_or_city_id + ')">View<br>Projects</a>\
                                </div>\
                                <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
-                                  <a href="#">View<br>Trends</a>\
+                                  <a href="javascript:void(0)" onClick="CityTrendsRoute('+ items.region_or_city_id + ')">View<br>Trends</a>\
                                </div>\
                            </div>';
                 });
@@ -389,6 +389,11 @@ function Citycagr5yIconClick(event) {
 
 function ProjectByCity(id) {
     var resultroutingurl = utility.FrontEndAPIURL('list/project/0/0/' + id);
+    window.location.href = resultroutingurl;
+}
+
+function CityTrendsRoute(id) {
+    var resultroutingurl = utility.FrontEndAPIURL('trend/city/' + id + '/CityText');
     window.location.href = resultroutingurl;
 }
 

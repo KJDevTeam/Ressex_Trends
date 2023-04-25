@@ -187,13 +187,13 @@ common.GetTrendsTypePayload = function (queryStringARR) {
     var trendsType = queryStringARR[2];
 
     switch (trendsType) {
-        case 'Project':
+        case 'project':
             break;
-        case 'Pincode':
+        case 'pincode':
             break;
-        case 'Location':
+        case 'location':
             break;
-        case 'City':
+        case 'city':
             break;
         default:
             break;
