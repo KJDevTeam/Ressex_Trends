@@ -5,7 +5,7 @@ var TotalData1 = '';
 var Bardatasource = '';
 var UserType = '';
 
-var TrendsModule = function () {
+var ProjectTrendsModule = function () {
     var TotalData;
     return {
         init: function () {
@@ -40,7 +40,7 @@ var TrendsModule = function () {
             $("#calculatedCAGRProject").text(RspData.data[0].cagr_last_3yr_pct);
             
             common.dtpicker_cal("#fromDateIDProject");
-            TrendsModule.Multilinegraph();
+            ProjectTrendsModule.Multilinegraph();
            
             
         },        
@@ -282,7 +282,7 @@ $("#getValuationProject").click(function () {
    // var SearchName = Cookies.get('SearchName');
     //var SName = utility.getCookie('SearchName');
 
-    TrendsModule.getvaluation('project');
+    ProjectTrendsModule.getvaluation('project');
 });
 
 $('#CAGRListProject a').on('click', function () {
@@ -291,6 +291,6 @@ $('#CAGRListProject a').on('click', function () {
 
     var temp_t = value.split('Y')[0];
     var t = Number(temp_t.split(' ')[1]);
-    TrendsModule.CAGRCalculation(t);
+    ProjectTrendsModule.CAGRCalculation(t);
 });
 
