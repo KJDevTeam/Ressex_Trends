@@ -107,10 +107,10 @@ var PincodeListModule = function () {
                                     </div>\
                                </div>\
                                <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
-                                  <a href="#" onClick="ProjectByPincode('+ items.pincode + ')">View<br>Projects</a>\
+                                  <a href="javascript:void(0)" onClick="ProjectByPincode('+ items.pincode + ')">View<br>Projects</a>\
                                </div>\
                                <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
-                                  <a href="#">View<br>Trends</a>\
+                                  <a href="javascript:void(0)" onClick="PincodeTrendsRoute('+ items.pincode + ')">View<br>Trends</a>\
                                </div>\
                            </div>';
                 });
@@ -407,6 +407,11 @@ function Pincodecagr5yIconClick(event) {
 
 function ProjectByPincode(id) {
     var resultroutingurl = utility.FrontEndAPIURL('list/project/' + id + '/0/0');
+    window.location.href = resultroutingurl;
+}
+
+function PincodeTrendsRoute(id) {
+    var resultroutingurl = utility.FrontEndAPIURL('trend/pincode/' + id + '/PincodeText');
     window.location.href = resultroutingurl;
 }
 
