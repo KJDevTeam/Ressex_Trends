@@ -34,6 +34,14 @@ var PincodeListModule = function () {
 
                 keepPincodeListData = Data.data;
 
+                //Hiding Radio Button
+                if (keepPincodeListData.length == 1)
+                {
+                    $('#PincodeRadiobuttons').remove();
+                    
+
+                }
+
                 //Project Heading Decider
 
                 if (result.Category == "AllPincodes") {
@@ -301,109 +309,201 @@ function PincodeViewmoreListClick() {
 
 }
 
-function PincodeNameSortclick() {
-    $('#overlay').fadeIn();
-    PincodeListModule.init("name", "asc");
-    $('#overlay').fadeOut();
-}
-function PincodeCurRateSortclick() {
-    $('#overlay').fadeIn();
-    PincodeListModule.init("current_rate", "asc");
-    $('#overlay').fadeOut();
-}
-function PincodeYoySortclick() {
-    $('#overlay').fadeIn();
-    PincodeListModule.init("cagr_last_1yr", "asc");
-    $('#overlay').fadeOut();
-}
-function Pincodecagr3ySortclick() {
-    $('#overlay').fadeIn();
-    PincodeListModule.init("cagr_last_3yr", "asc");
-    $('#overlay').fadeOut();
-}
-function Pincodecagr5ySortclick() {
-    $('#overlay').fadeIn();
-    PincodeListModule.init("cagr_last_5yr", "asc");
-    $('#overlay').fadeOut();
-}
+function PincodeNameSortclick(event) {
 
-function PincodeNamesortIconClick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "asc") {
-        PincodeListModule.init("name", "desc");
-        $('#PincodeNameSortIcon').removeClass();
-        $('#PincodeNameSortIcon').addClass("desc");
-        //$('#').removeClass();
-        //$('#CurRateSortIcon').removeClass();
-        //$('#YoySortIcon').removeClass();
-        //$('#cagr3ySortIcon').removeClass();
+    if ($(PincodeNameSortIcon).hasClass('asc') || $(PincodeNameSortIcon).hasClass('desc')) {
+
+        if ($(PincodeNameSortIcon).hasClass('asc')) {
+            PincodeListModule.init("name", "desc");
+            $('#PincodeNameSortIcon').removeClass();
+            $('#PincodeNameSortIcon').addClass("desc");
+
+        }
+        else {
+            PincodeListModule.init("name", "asc");
+            $('#PincodeNameSortIcon').removeClass();
+            $('#PincodeNameSortIcon').addClass("asc");
+        }
     }
     else {
+
         PincodeListModule.init("name", "asc");
-        $('#PincodeNameSortIcon').removeClass();
-        $('#PincodeNameSortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
-function PincodeCurRateIconClick(event) {
+function PincodeCurRateSortclick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "asc") {
-        PincodeListModule.init("current_rate", "desc");
-        $('#PincodeCurRateSortIcon').removeClass();
-        $('#PincodeCurRateSortIcon').addClass("desc");
+    if ($(PincodeCurRateSortIcon).hasClass('asc') || $(PincodeCurRateSortIcon).hasClass('desc')) {
 
+        if ($(PincodeCurRateSortIcon).hasClass('asc')) {
+            PincodeListModule.init("current_rate", "desc");
+            $('#PincodeCurRateSortIcon').removeClass();
+            $('#PincodeCurRateSortIcon').addClass("desc");
+
+        }
+        else {
+            PincodeListModule.init("current_rate", "asc");
+            $('#PincodeCurRateSortIcon').removeClass();
+            $('#PincodeCurRateSortIcon').addClass("asc");
+        }
     }
     else {
+
         PincodeListModule.init("current_rate", "asc");
-        $('#PincodeCurRateSortIcon').removeClass();
-        $('#PincodeCurRateSortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
-function PincodeyoyIconClick(event) {
+function PincodeYoySortclick(event) {
+
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "asc") {
-        PincodeListModule.init("cagr_last_1yr", "desc");
-        $('#PincodeYoySortIcon').removeClass();
-        $('#PincodeYoySortIcon').addClass("desc");
+    if ($(PincodeYoySortIcon).hasClass('asc') || $(PincodeYoySortIcon).hasClass('desc')) {
+
+        if ($(PincodeYoySortIcon).hasClass('asc')) {
+            PincodeListModule.init("cagr_last_1yr", "desc");
+            $('#PincodeYoySortIcon').removeClass();
+            $('#PincodeYoySortIcon').addClass("desc");
+
+        }
+        else {
+            PincodeListModule.init("cagr_last_1yr", "asc");
+            $('#PincodeYoySortIcon').removeClass();
+            $('#PincodeYoySortIcon').addClass("asc");
+        }
     }
     else {
+
         PincodeListModule.init("cagr_last_1yr", "asc");
-        $('#PincodeYoySortIcon').removeClass();
-        $('#PincodeYoySortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
-}
-function Pincodecagr3yIconClick(event) {
-    $('#overlay').fadeIn();
-    if (event.currentTarget.className == "asc") {
-        PincodeListModule.init("cagr_last_3yr", "desc");
-        $('#Pincodecagr3ySortIcon').removeClass();
-        $('#Pincodecagr3ySortIcon').addClass("desc");
 
+
+}
+function Pincodecagr3ySortclick(event) {
+    $('#overlay').fadeIn();
+    if ($(Pincodecagr3ySortIcon).hasClass('asc') || $(Pincodecagr3ySortIcon).hasClass('desc')) {
+
+        if ($(Pincodecagr3ySortIcon).hasClass('asc')) {
+            PincodeListModule.init("cagr_last_3yr", "desc");
+            $('#Pincodecagr3ySortIcon').removeClass();
+            $('#Pincodecagr3ySortIcon').addClass("desc");
+
+        }
+        else {
+            PincodeListModule.init("cagr_last_3yr", "asc");
+            $('#Pincodecagr3ySortIcon').removeClass();
+            $('#Pincodecagr3ySortIcon').addClass("asc");
+        }
     }
     else {
+
         PincodeListModule.init("cagr_last_3yr", "asc");
-        $('#Pincodecagr3ySortIcon').removeClass();
-        $('#Pincodecagr3ySortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
-}
-function Pincodecagr5yIconClick(event) {
-    $('#overlay').fadeIn();
-    if (event.currentTarget.className == "asc") {
-        PincodeListModule.init("cagr_last_5yr", "desc");
-        $('#Pincodecagr5ySortIcon').removeClass();
-        $('#Pincodecagr5ySortIcon').addClass("desc");
 
+
+
+}
+function Pincodecagr5ySortclick(event) {
+
+    $('#overlay').fadeIn();
+    if ($(Pincodecagr5ySortIcon).hasClass('asc') || $(Pincodecagr5ySortIcon).hasClass('desc')) {
+        if ($(Pincodecagr5ySortIcon).hasClass('asc')) {
+            PincodeListModule.init("cagr_last_5yr", "desc");
+            $('#Pincodecagr5ySortIcon').removeClass();
+            $('#Pincodecagr5ySortIcon').addClass("desc");
+
+        }
+        else {
+            PincodeListModule.init("cagr_last_5yr", "asc");
+            $('#Pincodecagr5ySortIcon').removeClass();
+            $('#Pincodecagr5ySortIcon').addClass("asc");
+        }
     }
     else {
+
         PincodeListModule.init("cagr_last_5yr", "asc");
-        $('#Pincodecagr5ySortIcon').removeClass();
-        $('#Pincodecagr5ySortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
+
+//function PincodeNamesortIconClick(event) {
+//    $('#overlay').fadeIn();
+//    if (event.currentTarget.className == "asc") {
+//        PincodeListModule.init("name", "desc");
+//        $('#PincodeNameSortIcon').removeClass();
+//        $('#PincodeNameSortIcon').addClass("desc");
+//        //$('#').removeClass();
+//        //$('#CurRateSortIcon').removeClass();
+//        //$('#YoySortIcon').removeClass();
+//        //$('#cagr3ySortIcon').removeClass();
+//    }
+//    else {
+//        PincodeListModule.init("name", "asc");
+//        $('#PincodeNameSortIcon').removeClass();
+//        $('#PincodeNameSortIcon').addClass("asc");
+//    }
+//    $('#overlay').fadeOut();
+//}
+//function PincodeCurRateIconClick(event) {
+//    $('#overlay').fadeIn();
+//    if (event.currentTarget.className == "asc") {
+//        PincodeListModule.init("current_rate", "desc");
+//        $('#PincodeCurRateSortIcon').removeClass();
+//        $('#PincodeCurRateSortIcon').addClass("desc");
+
+//    }
+//    else {
+//        PincodeListModule.init("current_rate", "asc");
+//        $('#PincodeCurRateSortIcon').removeClass();
+//        $('#PincodeCurRateSortIcon').addClass("asc");
+//    }
+//    $('#overlay').fadeOut();
+//}
+//function PincodeyoyIconClick(event) {
+//    $('#overlay').fadeIn();
+//    if (event.currentTarget.className == "asc") {
+//        PincodeListModule.init("cagr_last_1yr", "desc");
+//        $('#PincodeYoySortIcon').removeClass();
+//        $('#PincodeYoySortIcon').addClass("desc");
+//    }
+//    else {
+//        PincodeListModule.init("cagr_last_1yr", "asc");
+//        $('#PincodeYoySortIcon').removeClass();
+//        $('#PincodeYoySortIcon').addClass("asc");
+//    }
+//    $('#overlay').fadeOut();
+//}
+//function Pincodecagr3yIconClick(event) {
+//    $('#overlay').fadeIn();
+//    if (event.currentTarget.className == "asc") {
+//        PincodeListModule.init("cagr_last_3yr", "desc");
+//        $('#Pincodecagr3ySortIcon').removeClass();
+//        $('#Pincodecagr3ySortIcon').addClass("desc");
+
+//    }
+//    else {
+//        PincodeListModule.init("cagr_last_3yr", "asc");
+//        $('#Pincodecagr3ySortIcon').removeClass();
+//        $('#Pincodecagr3ySortIcon').addClass("asc");
+//    }
+//    $('#overlay').fadeOut();
+//}
+//function Pincodecagr5yIconClick(event) {
+//    $('#overlay').fadeIn();
+//    if (event.currentTarget.className == "asc") {
+//        PincodeListModule.init("cagr_last_5yr", "desc");
+//        $('#Pincodecagr5ySortIcon').removeClass();
+//        $('#Pincodecagr5ySortIcon').addClass("desc");
+
+//    }
+//    else {
+//        PincodeListModule.init("cagr_last_5yr", "asc");
+//        $('#Pincodecagr5ySortIcon').removeClass();
+//        $('#Pincodecagr5ySortIcon').addClass("asc");
+//    }
+//    $('#overlay').fadeOut();
+//}
 
 function ProjectByPincode(id) {
     var resultroutingurl = utility.FrontEndAPIURL('list/project/' + id + '/0/0');

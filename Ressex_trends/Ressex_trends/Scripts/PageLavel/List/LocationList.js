@@ -36,6 +36,13 @@ var LocationListModule = function () {
 
                 keeplocationListData = Data.data;
 
+                //Hiding Radio Button
+                if (keeplocationListData.length == 1) {
+                    $('#LocationRadiobuttons').remove();
+
+
+                }
+
                 //Project Heading Decider
 
                 if (result.Category == "AllLocations") {
@@ -300,105 +307,199 @@ function LocationViewmoreListClick() {
     LocationListModule.Viewmore();
 }
 
-function LocationNameSortclick() {
+function LocationNameSortclick(event) {
+
     $('#overlay').fadeIn();
-    LocationListModule.init("name", "asc");
-    $('#overlay').fadeOut();
-}
-function LocationCurRateSortclick() {
-    $('#overlay').fadeIn();
-    LocationListModule.init("current_rate", "asc");
-    $('#overlay').fadeOut();
-}
-function LocationYoySortclick() {
-    $('#overlay').fadeIn();
-    LocationListModule.init("cagr_last_1yr", "asc");
-    $('#overlay').fadeOut();
-}
-function Locationcagr3ySortclick() {
-    $('#overlay').fadeIn();
-    LocationListModule.init("cagr_last_3yr", "asc");
-    $('#overlay').fadeOut();
-}
-function Locationcagr5ySortclick() {
-    $('#overlay').fadeIn();
-    LocationListModule.init("cagr_last_5yr", "asc");
-    $('#overlay').fadeOut();
-}
-function LocationNamesortIconClick(event) {
-    $('#overlay').fadeIn();
-    if (event.currentTarget.className == "asc") {
-        LocationListModule.init("name", "desc");
-        $('#LocationNameSortIcon').removeClass();
-        $('#LocationNameSortIcon').addClass("desc");
-        
+    if ($(LocationNameSortIcon).hasClass('asc') || $(LocationNameSortIcon).hasClass('desc')) {
+
+        if ($(LocationNameSortIcon).hasClass('asc')) {
+            LocationListModule.init("name", "desc");
+            $('#LocationNameSortIcon').removeClass();
+            $('#LocationNameSortIcon').addClass("desc");
+
+        }
+        else {
+            LocationListModule.init("name", "asc");
+            $('#LocationNameSortIcon').removeClass();
+            $('#LocationNameSortIcon').addClass("asc");
+        }
     }
     else {
+
         LocationListModule.init("name", "asc");
-        $('#LocationNameSortIcon').removeClass();
-        $('#LocationNameSortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
-function LocationCurRateIconClick(event) {
+function LocationCurRateSortclick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "asc") {
-        LocationListModule.init("current_rate", "desc");
-        $('#LocationCurRateSortIcon').removeClass();
-        $('#LocationCurRateSortIcon').addClass("desc");
+    if ($(LocationCurRateSortIcon).hasClass('asc') || $(LocationCurRateSortIcon).hasClass('desc')) {
 
+        if ($(LocationCurRateSortIcon).hasClass('asc')) {
+            LocationListModule.init("current_rate", "desc");
+            $('#LocationCurRateSortIcon').removeClass();
+            $('#LocationCurRateSortIcon').addClass("desc");
+
+        }
+        else {
+            LocationListModule.init("current_rate", "asc");
+            $('#LocationCurRateSortIcon').removeClass();
+            $('#LocationCurRateSortIcon').addClass("asc");
+        }
     }
     else {
+
         LocationListModule.init("current_rate", "asc");
-        $('#LocationCurRateSortIcon').removeClass();
-        $('#LocationCurRateSortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
-function LocationyoyIconClick(event) {
+function LocationYoySortclick(event) {
+
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "asc") {
-        LocationListModule.init("cagr_last_1yr", "desc");
-        $('#LocationYoySortIcon').removeClass();
-        $('#LocationYoySortIcon').addClass("desc");
+    if ($(LocationYoySortIcon).hasClass('asc') || $(LocationYoySortIcon).hasClass('desc')) {
+
+        if ($(LocationYoySortIcon).hasClass('asc')) {
+            LocationListModule.init("cagr_last_1yr", "desc");
+            $('#LocationYoySortIcon').removeClass();
+            $('#LocationYoySortIcon').addClass("desc");
+
+        }
+        else {
+            LocationListModule.init("cagr_last_1yr", "asc");
+            $('#LocationYoySortIcon').removeClass();
+            $('#LocationYoySortIcon').addClass("asc");
+        }
     }
     else {
+
         LocationListModule.init("cagr_last_1yr", "asc");
-        $('#LocationYoySortIcon').removeClass();
-        $('#LocationYoySortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
-}
-function Locationcagr3yIconClick(event) {
-    $('#overlay').fadeIn();
-    if (event.currentTarget.className == "asc") {
-        LocationListModule.init("cagr_last_3yr", "desc");
-        $('#Locationcagr3ySortIcon').removeClass();
-        $('#Locationcagr3ySortIcon').addClass("desc");
 
+
+}
+function Locationcagr3ySortclick(event) {
+    $('#overlay').fadeIn();
+    if ($(Locationcagr3ySortIcon).hasClass('asc') || $(Locationcagr3ySortIcon).hasClass('desc')) {
+
+        if ($(Locationcagr3ySortIcon).hasClass('asc')) {
+            LocationListModule.init("cagr_last_3yr", "desc");
+            $('#Locationcagr3ySortIcon').removeClass();
+            $('#Locationcagr3ySortIcon').addClass("desc");
+
+        }
+        else {
+            LocationListModule.init("cagr_last_3yr", "asc");
+            $('#Locationcagr3ySortIcon').removeClass();
+            $('#Locationcagr3ySortIcon').addClass("asc");
+        }
     }
     else {
+
         LocationListModule.init("cagr_last_3yr", "asc");
-        $('#Locationcagr3ySortIcon').removeClass();
-        $('#Locationcagr3ySortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
-}
-function Locationcagr5yIconClick(event) {
-    $('#overlay').fadeIn();
-    if (event.currentTarget.className == "asc") {
-        LocationListModule.init("cagr_last_5yr", "desc");
-        $('#Locationcagr5ySortIcon').removeClass();
-        $('#Locationcagr5ySortIcon').addClass("desc");
 
+
+
+}
+function Locationcagr5ySortclick(event) {
+
+    $('#overlay').fadeIn();
+    if ($(Locationcagr5ySortIcon).hasClass('asc') || $(Locationcagr5ySortIcon).hasClass('desc')) {
+        if ($(Locationcagr5ySortIcon).hasClass('asc')) {
+            LocationListModule.init("cagr_last_5yr", "desc");
+            $('#Locationcagr5ySortIcon').removeClass();
+            $('#Locationcagr5ySortIcon').addClass("desc");
+
+        }
+        else {
+            LocationListModule.init("cagr_last_5yr", "asc");
+            $('#Locationcagr5ySortIcon').removeClass();
+            $('#Locationcagr5ySortIcon').addClass("asc");
+        }
     }
     else {
+
         LocationListModule.init("cagr_last_5yr", "asc");
-        $('#Locationcagr5ySortIcon').removeClass();
-        $('#Locationcagr5ySortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
+
+
+//function LocationNamesortIconClick(event) {
+//    $('#overlay').fadeIn();
+//    if (event.currentTarget.className == "asc") {
+//        LocationListModule.init("name", "desc");
+//        $('#LocationNameSortIcon').removeClass();
+//        $('#LocationNameSortIcon').addClass("desc");
+        
+//    }
+//    else {
+//        LocationListModule.init("name", "asc");
+//        $('#LocationNameSortIcon').removeClass();
+//        $('#LocationNameSortIcon').addClass("asc");
+//    }
+//    $('#overlay').fadeOut();
+//}
+//function LocationCurRateIconClick(event) {
+//    $('#overlay').fadeIn();
+//    if (event.currentTarget.className == "asc") {
+//        LocationListModule.init("current_rate", "desc");
+//        $('#LocationCurRateSortIcon').removeClass();
+//        $('#LocationCurRateSortIcon').addClass("desc");
+
+//    }
+//    else {
+//        LocationListModule.init("current_rate", "asc");
+//        $('#LocationCurRateSortIcon').removeClass();
+//        $('#LocationCurRateSortIcon').addClass("asc");
+//    }
+//    $('#overlay').fadeOut();
+//}
+//function LocationyoyIconClick(event) {
+//    $('#overlay').fadeIn();
+//    if (event.currentTarget.className == "asc") {
+//        LocationListModule.init("cagr_last_1yr", "desc");
+//        $('#LocationYoySortIcon').removeClass();
+//        $('#LocationYoySortIcon').addClass("desc");
+//    }
+//    else {
+//        LocationListModule.init("cagr_last_1yr", "asc");
+//        $('#LocationYoySortIcon').removeClass();
+//        $('#LocationYoySortIcon').addClass("asc");
+//    }
+//    $('#overlay').fadeOut();
+//}
+//function Locationcagr3yIconClick(event) {
+//    $('#overlay').fadeIn();
+//    if (event.currentTarget.className == "asc") {
+//        LocationListModule.init("cagr_last_3yr", "desc");
+//        $('#Locationcagr3ySortIcon').removeClass();
+//        $('#Locationcagr3ySortIcon').addClass("desc");
+
+//    }
+//    else {
+//        LocationListModule.init("cagr_last_3yr", "asc");
+//        $('#Locationcagr3ySortIcon').removeClass();
+//        $('#Locationcagr3ySortIcon').addClass("asc");
+//    }
+//    $('#overlay').fadeOut();
+//}
+//function Locationcagr5yIconClick(event) {
+//    $('#overlay').fadeIn();
+//    if (event.currentTarget.className == "asc") {
+//        LocationListModule.init("cagr_last_5yr", "desc");
+//        $('#Locationcagr5ySortIcon').removeClass();
+//        $('#Locationcagr5ySortIcon').addClass("desc");
+
+//    }
+//    else {
+//        LocationListModule.init("cagr_last_5yr", "asc");
+//        $('#Locationcagr5ySortIcon').removeClass();
+//        $('#Locationcagr5ySortIcon').addClass("asc");
+//    }
+//    $('#overlay').fadeOut();
+//}
 
 function ProjectBylocation(id) {
     var resultroutingurl = utility.FrontEndAPIURL('list/project/0/' + id + '/0');

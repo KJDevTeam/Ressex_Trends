@@ -307,106 +307,198 @@ function ProjectViewmoreListClick() {
 
 }
 
-function ProjectNameSortclick() {
-    $('#overlay').fadeIn();
-    ProjectListModule.init("name", "asc");
-    $('#overlay').fadeOut();
-}
-function ProjectCurRateSortclick() {
-    $('#overlay').fadeIn();
-    ProjectListModule.init("current_rate", "asc");
-    $('#overlay').fadeOut();
-}
-function ProjectYoySortclick() {
-    $('#overlay').fadeIn();
-    ProjectListModule.init("cagr_last_1yr", "asc");
-    $('#overlay').fadeOut();
-}
-function Projectcagr3ySortclick() {
-    $('#overlay').fadeIn();
-    ProjectListModule.init("cagr_last_3yr", "asc");
-    $('#overlay').fadeOut();
-}
-function Projectcagr5ySortclick() {
-    $('#overlay').fadeIn();
-    ProjectListModule.init("cagr_last_5yr", "asc");
-    $('#overlay').fadeOut();
-}
+function ProjectNameSortclick(event) {
 
-function ProjectNamesortIconClick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "asc") {
-        ProjectListModule.init("name", "desc");
-        $('#ProjectNameSortIcon').removeClass();
-        $('#ProjectNameSortIcon').addClass("desc");
-        
+    if ($(ProjectNameSortIcon).hasClass('asc') || $(ProjectNameSortIcon).hasClass('desc')) {
+
+        if ($(ProjectNameSortIcon).hasClass('asc')) {
+            ProjectListModule.init("name", "desc");
+            $('#ProjectNameSortIcon').removeClass();
+            $('#ProjectNameSortIcon').addClass("desc");
+
+        }
+        else {
+            ProjectListModule.init("name", "asc");
+            $('#ProjectNameSortIcon').removeClass();
+            $('#ProjectNameSortIcon').addClass("asc");
+        }
     }
     else {
+
         ProjectListModule.init("name", "asc");
-        $('#ProjectNameSortIcon').removeClass();
-        $('#ProjectNameSortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
-function ProjectCurRateIconClick(event) {
+function ProjectCurRateSortclick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "asc") {
-        ProjectListModule.init("current_rate", "desc");
-        $('#ProjectCurRateSortIcon').removeClass();
-        $('#ProjectCurRateSortIcon').addClass("desc");
+    if ($(ProjectCurRateSortIcon).hasClass('asc') || $(ProjectCurRateSortIcon).hasClass('desc')) {
+      
+        if ($(ProjectCurRateSortIcon).hasClass('asc')) {
+            ProjectListModule.init("current_rate", "desc");
+            $('#ProjectCurRateSortIcon').removeClass();
+            $('#ProjectCurRateSortIcon').addClass("desc");
 
+        }
+        else {
+            ProjectListModule.init("current_rate", "asc");
+            $('#ProjectCurRateSortIcon').removeClass();
+            $('#ProjectCurRateSortIcon').addClass("asc");
+        }
     }
     else {
-        ProjectListModule.init("current_rate", "asc");
-        $('#ProjectCurRateSortIcon').removeClass();
-        $('#ProjectCurRateSortIcon').addClass("asc");
+      
+        ProjectListModule.init("current_rate", "asc");       
     }
     $('#overlay').fadeOut();
-}
-function ProjectyoyIconClick(event) {
+}    
+function ProjectYoySortclick(event) {
+
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "asc") {
-        ProjectListModule.init("cagr_last_1yr", "desc");
-        $('#ProjectYoySortIcon').removeClass();
-        $('#ProjectYoySortIcon').addClass("desc");
+    if ($(ProjectYoySortIcon).hasClass('asc') || $(ProjectYoySortIcon).hasClass('desc')) {
+       
+        if ($(ProjectYoySortIcon).hasClass('asc')) {
+            ProjectListModule.init("cagr_last_1yr", "desc");
+            $('#ProjectYoySortIcon').removeClass();
+            $('#ProjectYoySortIcon').addClass("desc");
+
+        }
+        else {
+            ProjectListModule.init("cagr_last_1yr", "asc");
+            $('#ProjectYoySortIcon').removeClass();
+            $('#ProjectYoySortIcon').addClass("asc");
+        }
     }
     else {
+
         ProjectListModule.init("cagr_last_1yr", "asc");
-        $('#ProjectYoySortIcon').removeClass();
-        $('#ProjectYoySortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
-}
-function Projectcagr3yIconClick(event) {
-    $('#overlay').fadeIn();
-    if (event.currentTarget.className == "asc") {
-        ProjectListModule.init("cagr_last_3yr", "desc");
-        $('#Projectcagr3ySortIcon').removeClass();
-        $('#Projectcagr3ySortIcon').addClass("desc");
 
+  
+}
+function Projectcagr3ySortclick(event) {
+    $('#overlay').fadeIn();
+    if ($(Projectcagr3ySortIcon).hasClass('asc') || $(Projectcagr3ySortIcon).hasClass('desc')) {
+      
+        if ($(Projectcagr3ySortIcon).hasClass('asc')) {
+            ProjectListModule.init("cagr_last_3yr", "desc");
+            $('#Projectcagr3ySortIcon').removeClass();
+            $('#Projectcagr3ySortIcon').addClass("desc");
+
+        }
+        else {
+            ProjectListModule.init("cagr_last_3yr", "asc");
+            $('#Projectcagr3ySortIcon').removeClass();
+            $('#Projectcagr3ySortIcon').addClass("asc");
+        }
     }
     else {
+
         ProjectListModule.init("cagr_last_3yr", "asc");
-        $('#Projectcagr3ySortIcon').removeClass();
-        $('#Projectcagr3ySortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
-}
-function Projectcagr5yIconClick(event) {
-    $('#overlay').fadeIn();
-    if (event.currentTarget.className == "asc") {
-        ProjectListModule.init("cagr_last_5yr", "desc");
-        $('#Projectcagr5ySortIcon').removeClass();
-        $('#Projectcagr5ySortIcon').addClass("desc");
 
+
+    
+}
+function Projectcagr5ySortclick(event) {
+
+    $('#overlay').fadeIn();
+    if ($(Projectcagr5ySortIcon).hasClass('asc') || $(Projectcagr5ySortIcon).hasClass('desc')) {
+         if ($(Projectcagr5ySortIcon).hasClass('asc')) {
+            ProjectListModule.init("cagr_last_5yr", "desc");
+            $('#Projectcagr5ySortIcon').removeClass();
+            $('#Projectcagr5ySortIcon').addClass("desc");
+
+        }
+        else {
+            ProjectListModule.init("cagr_last_5yr", "asc");
+            $('#Projectcagr3ySortIcon').removeClass();
+            $('#Projectcagr5ySortIcon').addClass("asc");
+        }
     }
     else {
+
         ProjectListModule.init("cagr_last_5yr", "asc");
-        $('#Projectcagr5ySortIcon').removeClass();
-        $('#Projectcagr5ySortIcon').addClass("asc");
     }
-    $('#overlay').fadeOut();
+    $('#overlay').fadeOut();    
 }
+
+//function ProjectNamesortIconClick(event) {
+//    $('#overlay').fadeIn();
+//    if (event.currentTarget.className == "asc") {
+//        ProjectListModule.init("name", "desc");
+//        $('#ProjectNameSortIcon').removeClass();
+//        $('#ProjectNameSortIcon').addClass("desc");
+        
+//    }
+//    else {
+//        ProjectListModule.init("name", "asc");
+//        $('#ProjectNameSortIcon').removeClass();
+//        $('#ProjectNameSortIcon').addClass("asc");
+//    }
+//    $('#overlay').fadeOut();
+//}
+//function ProjectCurRateIconClick(event) {
+//    $('#overlay').fadeIn();
+//    if (event.currentTarget.className == "asc") {
+//        ProjectListModule.init("current_rate", "desc");
+//        $('#ProjectCurRateSortIcon').removeClass();
+//        $('#ProjectCurRateSortIcon').addClass("desc");
+
+//    }
+//    else {
+//        ProjectListModule.init("current_rate", "asc");
+//        $('#ProjectCurRateSortIcon').removeClass();
+//        $('#ProjectCurRateSortIcon').addClass("asc");
+//    }
+//    $('#overlay').fadeOut();
+//}
+//function ProjectyoyIconClick(event) {
+//    $('#overlay').fadeIn();
+//    if (event.currentTarget.className == "asc") {
+//        ProjectListModule.init("cagr_last_1yr", "desc");
+//        $('#ProjectYoySortIcon').removeClass();
+//        $('#ProjectYoySortIcon').addClass("desc");
+//    }
+//    else {
+//        ProjectListModule.init("cagr_last_1yr", "asc");
+//        $('#ProjectYoySortIcon').removeClass();
+//        $('#ProjectYoySortIcon').addClass("asc");
+//    }
+//    $('#overlay').fadeOut();
+//}
+//function Projectcagr3yIconClick(event) {
+//    $('#overlay').fadeIn();
+//    if (event.currentTarget.className == "asc") {
+//        ProjectListModule.init("cagr_last_3yr", "desc");
+//        $('#Projectcagr3ySortIcon').removeClass();
+//        $('#Projectcagr3ySortIcon').addClass("desc");
+
+//    }
+//    else {
+//        ProjectListModule.init("cagr_last_3yr", "asc");
+//        $('#Projectcagr3ySortIcon').removeClass();
+//        $('#Projectcagr3ySortIcon').addClass("asc");
+//    }
+//    $('#overlay').fadeOut();
+//}
+//function Projectcagr5yIconClick(event) {
+//    $('#overlay').fadeIn();
+//    if (event.currentTarget.className == "asc") {
+//        ProjectListModule.init("cagr_last_5yr", "desc");
+//        $('#Projectcagr5ySortIcon').removeClass();
+//        $('#Projectcagr5ySortIcon').addClass("desc");
+
+//    }
+//    else {
+//        ProjectListModule.init("cagr_last_5yr", "asc");
+//        $('#Projectcagr5ySortIcon').removeClass();
+//        $('#Projectcagr5ySortIcon').addClass("asc");
+//    }
+//    $('#overlay').fadeOut();
+//}
 
 $("input[name=projects-search]").click(function () {
     if (this.value == "locations") {

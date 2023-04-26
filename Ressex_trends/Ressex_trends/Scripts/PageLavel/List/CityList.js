@@ -283,109 +283,201 @@ function CityViewmoreListClick() {
 
 }
 
-function CityNameSortclick() {
-    $('#overlay').fadeIn();
-    CityListModule.init("name", "asc");
-    $('#overlay').fadeOut();
-}
-function CityCurRateSortclick() {
-    $('#overlay').fadeIn();
-    CityListModule.init("current_rate", "asc");
-    $('#overlay').fadeOut();
-}
-function CityYoySortclick() {
-    $('#overlay').fadeIn();
-    CityListModule.init("cagr_last_1yr", "asc");
-    $('#overlay').fadeOut();
-}
-function Citycagr3ySortclick() {
-    $('#overlay').fadeIn();
-    CityListModule.init("cagr_last_3yr", "asc");
-    $('#overlay').fadeOut();
-}
-function Citycagr5ySortclick() {
-    $('#overlay').fadeIn();
-    CityListModule.init("cagr_last_5yr", "asc");
-    $('#overlay').fadeOut();
-}
+function CityNameSortclick(event) {
 
-function CityNamesortIconClick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "asc") {
-        CityListModule.init("name", "desc");
-        $('#CityNameSortIcon').removeClass();
-        $('#CityNameSortIcon').addClass("desc");
-        //$('#').removeClass();
-        //$('#CurRateSortIcon').removeClass();
-        //$('#YoySortIcon').removeClass();
-        //$('#cagr3ySortIcon').removeClass();
+    if ($(CityNameSortIcon).hasClass('asc') || $(CityNameSortIcon).hasClass('desc')) {
+
+        if ($(CityNameSortIcon).hasClass('asc')) {
+            CityListModule.init("name", "desc");
+            $('#CityNameSortIcon').removeClass();
+            $('#CityNameSortIcon').addClass("desc");
+
+        }
+        else {
+            CityListModule.init("name", "asc");
+            $('#CityNameSortIcon').removeClass();
+            $('#CityNameSortIcon').addClass("asc");
+        }
     }
     else {
+
         CityListModule.init("name", "asc");
-        $('#CityNameSortIcon').removeClass();
-        $('#CityNameSortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
-function CityCurRateIconClick(event) {
+function CityCurRateSortclick(event) {
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "asc") {
-        CityListModule.init("current_rate", "desc");
-        $('#CityCurRateSortIcon').removeClass();
-        $('#CityCurRateSortIcon').addClass("desc");
+    if ($(CityCurRateSortIcon).hasClass('asc') || $(CityCurRateSortIcon).hasClass('desc')) {
 
+        if ($(CityCurRateSortIcon).hasClass('asc')) {
+            CityListModule.init("current_rate", "desc");
+            $('#CityCurRateSortIcon').removeClass();
+            $('#CityCurRateSortIcon').addClass("desc");
+
+        }
+        else {
+            CityListModule.init("current_rate", "asc");
+            $('#CityCurRateSortIcon').removeClass();
+            $('#CityCurRateSortIcon').addClass("asc");
+        }
     }
     else {
+
         CityListModule.init("current_rate", "asc");
-        $('#CityCurRateSortIcon').removeClass();
-        $('#CityCurRateSortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
-function CityyoyIconClick(event) {
+function CityYoySortclick(event) {
+
     $('#overlay').fadeIn();
-    if (event.currentTarget.className == "asc") {
-        CityListModule.init("cagr_last_1yr", "desc");
-        $('#CityYoySortIcon').removeClass();
-        $('#CityYoySortIcon').addClass("desc");
+    if ($(CityYoySortIcon).hasClass('asc') || $(CityYoySortIcon).hasClass('desc')) {
+
+        if ($(CityYoySortIcon).hasClass('asc')) {
+            CityListModule.init("cagr_last_1yr", "desc");
+            $('#CityYoySortIcon').removeClass();
+            $('#CityYoySortIcon').addClass("desc");
+
+        }
+        else {
+            CityListModule.init("cagr_last_1yr", "asc");
+            $('#CityYoySortIcon').removeClass();
+            $('#CityYoySortIcon').addClass("asc");
+        }
     }
     else {
+
         CityListModule.init("cagr_last_1yr", "asc");
-        $('#CityYoySortIcon').removeClass();
-        $('#CityYoySortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
-}
-function Citycagr3yIconClick(event) {
-    $('#overlay').fadeIn();
-    if (event.currentTarget.className == "asc") {
-        CityListModule.init("cagr_last_3yr", "desc");
-        $('#Citycagr3ySortIcon').removeClass();
-        $('#Citycagr3ySortIcon').addClass("desc");
 
+
+}
+function Citycagr3ySortclick(event) {
+    $('#overlay').fadeIn();
+    if ($(Citycagr3ySortIcon).hasClass('asc') || $(Citycagr3ySortIcon).hasClass('desc')) {
+
+        if ($(Citycagr3ySortIcon).hasClass('asc')) {
+            CityListModule.init("cagr_last_3yr", "desc");
+            $('#Citycagr3ySortIcon').removeClass();
+            $('#Citycagr3ySortIcon').addClass("desc");
+
+        }
+        else {
+            CityListModule.init("cagr_last_3yr", "asc");
+            $('#Citycagr3ySortIcon').removeClass();
+            $('#Citycagr3ySortIcon').addClass("asc");
+        }
     }
     else {
+
         CityListModule.init("cagr_last_3yr", "asc");
-        $('#Citycagr3ySortIcon').removeClass();
-        $('#Citycagr3ySortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
-}
-function Citycagr5yIconClick(event) {
-    $('#overlay').fadeIn();
-    if (event.currentTarget.className == "asc") {
-        CityListModule.init("cagr_last_5yr", "desc");
-        $('#Citycagr5ySortIcon').removeClass();
-        $('#Citycagr5ySortIcon').addClass("desc");
 
+
+
+}
+function Citycagr5ySortclick(event) {
+
+    $('#overlay').fadeIn();
+    if ($(Citycagr5ySortIcon).hasClass('asc') || $(Citycagr5ySortIcon).hasClass('desc')) {
+        if ($(Citycagr5ySortIcon).hasClass('asc')) {
+            CityListModule.init("cagr_last_5yr", "desc");
+            $('#Citycagr5ySortIcon').removeClass();
+            $('#Citycagr5ySortIcon').addClass("desc");
+
+        }
+        else {
+            CityListModule.init("cagr_last_5yr", "asc");
+            $('#Citycagr5ySortIcon').removeClass();
+            $('#Citycagr5ySortIcon').addClass("asc");
+        }
     }
     else {
+
         CityListModule.init("cagr_last_5yr", "asc");
-        $('#Citycagr5ySortIcon').removeClass();
-        $('#Citycagr5ySortIcon').addClass("asc");
     }
     $('#overlay').fadeOut();
 }
+
+//function CityNamesortIconClick(event) {
+//    $('#overlay').fadeIn();
+//    if (event.currentTarget.className == "asc") {
+//        CityListModule.init("name", "desc");
+//        $('#CityNameSortIcon').removeClass();
+//        $('#CityNameSortIcon').addClass("desc");
+//        //$('#').removeClass();
+//        //$('#CurRateSortIcon').removeClass();
+//        //$('#YoySortIcon').removeClass();
+//        //$('#cagr3ySortIcon').removeClass();
+//    }
+//    else {
+//        CityListModule.init("name", "asc");
+//        $('#CityNameSortIcon').removeClass();
+//        $('#CityNameSortIcon').addClass("asc");
+//    }
+//    $('#overlay').fadeOut();
+//}
+//function CityCurRateIconClick(event) {
+//    $('#overlay').fadeIn();
+//    if (event.currentTarget.className == "asc") {
+//        CityListModule.init("current_rate", "desc");
+//        $('#CityCurRateSortIcon').removeClass();
+//        $('#CityCurRateSortIcon').addClass("desc");
+
+//    }
+//    else {
+//        CityListModule.init("current_rate", "asc");
+//        $('#CityCurRateSortIcon').removeClass();
+//        $('#CityCurRateSortIcon').addClass("asc");
+//    }
+//    $('#overlay').fadeOut();
+//}
+//function CityyoyIconClick(event) {
+//    $('#overlay').fadeIn();
+//    if (event.currentTarget.className == "asc") {
+//        CityListModule.init("cagr_last_1yr", "desc");
+//        $('#CityYoySortIcon').removeClass();
+//        $('#CityYoySortIcon').addClass("desc");
+//    }
+//    else {
+//        CityListModule.init("cagr_last_1yr", "asc");
+//        $('#CityYoySortIcon').removeClass();
+//        $('#CityYoySortIcon').addClass("asc");
+//    }
+//    $('#overlay').fadeOut();
+//}
+//function Citycagr3yIconClick(event) {
+//    $('#overlay').fadeIn();
+//    if (event.currentTarget.className == "asc") {
+//        CityListModule.init("cagr_last_3yr", "desc");
+//        $('#Citycagr3ySortIcon').removeClass();
+//        $('#Citycagr3ySortIcon').addClass("desc");
+
+//    }
+//    else {
+//        CityListModule.init("cagr_last_3yr", "asc");
+//        $('#Citycagr3ySortIcon').removeClass();
+//        $('#Citycagr3ySortIcon').addClass("asc");
+//    }
+//    $('#overlay').fadeOut();
+//}
+//function Citycagr5yIconClick(event) {
+//    $('#overlay').fadeIn();
+//    if (event.currentTarget.className == "asc") {
+//        CityListModule.init("cagr_last_5yr", "desc");
+//        $('#Citycagr5ySortIcon').removeClass();
+//        $('#Citycagr5ySortIcon').addClass("desc");
+
+//    }
+//    else {
+//        CityListModule.init("cagr_last_5yr", "asc");
+//        $('#Citycagr5ySortIcon').removeClass();
+//        $('#Citycagr5ySortIcon').addClass("asc");
+//    }
+//    $('#overlay').fadeOut();
+//}
 
 function ProjectByCity(id) {
     var resultroutingurl = utility.FrontEndAPIURL('list/project/0/0/' + id);
