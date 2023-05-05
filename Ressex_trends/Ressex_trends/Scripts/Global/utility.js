@@ -676,13 +676,14 @@ utility.bindline = function (Controlid, lbl, dt, hovervals, ticks, responsive, c
                /* label: 'data',
                 borderColor: gradient, //'rgba(255,0,0)',
                 backgroundColor: gradient,*/
+                borderColor: colour,
                 data: dt,
                 //fill: true,
             }],
 
         },
         options: {
-            responsive: responsive,
+           /* responsive: responsive,*/
             maintainAspectRatio: false,
             plugins: {
                 legend: false,
@@ -754,6 +755,15 @@ utility.bindline = function (Controlid, lbl, dt, hovervals, ticks, responsive, c
         //}
     };
     lineChart = new Chart(Controlid, config);
+   
+        var divwidth = document.getElementById("price").offsetWidth;
+        var divheight = document.getElementById("price").offsetHeight;
+        ctx.canvas.parentNode.style.height = divheight;
+        ctx.canvas.parentNode.style.width = divwidth;
+    
+    
+       
+   
     return lineChart;
 }
 
@@ -762,6 +772,7 @@ utility.bindmultilinedinamic = function (Controlid, dataCritical, responsive, ax
     var chartOptions =
     {
         responsive: responsive,
+        maintainAspectRatio:false,
         //bezierCurve: true,
         //point: { display: false },
         plugins: {

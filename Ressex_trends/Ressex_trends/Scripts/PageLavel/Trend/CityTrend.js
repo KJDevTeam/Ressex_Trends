@@ -66,7 +66,7 @@ var CityTrendsModule = function () {
                     CountryLine.push(null);
                 }
                 else {
-                    CountryLine.push(item.country_saleable_rate);
+                    CountryLine.push(item.india_saleable_rate);
                 }
 
                 //City Check
@@ -88,7 +88,7 @@ var CityTrendsModule = function () {
                 data: CountryLine,
                 lineTension: 0,
                 fill: false,
-                borderColor: TotalData.data[0].Country_color
+                borderColor: TotalData.data[0].country_color
             };
             var dataFifth = {
                 label: "City",

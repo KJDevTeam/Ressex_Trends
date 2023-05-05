@@ -215,7 +215,7 @@ common.dtpicker_cal = function (Controlid) {
         dateFormat: 'dd/mm/yy',
         changeYear: true,
         changeMonth: true,
-       
+        minDate: new Date(2009, 1 - 1, 1)
 
     });
 

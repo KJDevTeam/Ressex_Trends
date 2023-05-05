@@ -150,6 +150,7 @@ var DashboardModule = function () {
             titletxt = 'Transaction';
             responsive = true;
             var Linedatasource = utility.bindline("priceLinechart", lbl, Linedt, hovervals, ticks, true, colour, axistxt, titletxt)
+            /*$(Linedatasource.canvas).css("width", "100%");*/
             var Linedatasource1 = utility.bindline("indexLinechart", lbl_idnx, Linedt_idnx, hovervals, ticks, true, colour, axistxt_indx, titletxt)
             $("#qtrTxt").text(LineData.data[0].current_qtr_text);
             $("#qtrprice").text(LineData.data[0].current_rate_text);
