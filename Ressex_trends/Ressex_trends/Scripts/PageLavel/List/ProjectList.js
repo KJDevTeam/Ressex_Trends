@@ -112,7 +112,7 @@ var ProjectListModule = function () {
                                     </div>\
                                </div>\
                                <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
-                                  <a href="#">View<br>Trends</a>\
+                                  <a href="javascript:void(0)" onClick="ProjectTrendsRoute('+ items.project_id + ')">View<br>Trends</a>\
                                </div>\
                            </div>';
                 });
@@ -513,6 +513,11 @@ $("input[name=projects-search]").click(function () {
 
     }
 });
+
+function ProjectTrendsRoute(id) {
+    var resultroutingurl = utility.FrontEndAPIURL('trend/project/' + id + '/projectText');
+    window.location.href = resultroutingurl;
+}
 
 
 
