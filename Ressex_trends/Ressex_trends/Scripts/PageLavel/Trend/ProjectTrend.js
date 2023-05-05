@@ -62,7 +62,9 @@ var ProjectTrendsModule = function () {
             var RegionLine = [];
             var CityLine = [];
             var Graphlabels = [];
+            
             TotalData.data.forEach(function (item) {
+                console.log(item.project_price_index_tag);
                 //Project Check
                 if (item.project_saleable_rate == 0) {
                     projectLine.push(null);
