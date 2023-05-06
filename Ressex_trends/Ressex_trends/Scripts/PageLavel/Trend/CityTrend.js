@@ -116,6 +116,79 @@ var CityTrendsModule = function () {
 
 
         },
+        MultilinegraphIndex: function () {
+            /* chartClear();*/
+            var label = [];
+            var axistxt = [];
+            ticks = {
+                min: 0,
+                max: 6,
+                stepSize: 1
+            };
+            responsive = false;
+            var totaldataset = [];
+            var CountryLine = [];
+            var CityLine = [];
+            var Graphlabels = [];
+            TotalData.data.forEach(function (item) {
+
+
+                //Country Check
+                if (item.india_price_index == 0) {
+                    CountryLine.push(null);
+                }
+                else {
+                    CountryLine.push(item.india_price_index);
+                }
+
+                //City Check
+
+                if (item.city_price_index == 0) {
+                    CityLine.push(null);
+                }
+                else {
+                    CityLine.push(item.city_price_index);
+                }
+
+                Graphlabels.push(item.dos_month_year);
+            });
+
+
+
+            var dataFourth = {
+                label: "Country",
+                data: CountryLine,
+                lineTension: 0,
+                fill: false,
+                borderColor: TotalData.data[0].country_color
+            };
+            var dataFifth = {
+                label: "City",
+                data: CityLine,
+                lineTension: 0,
+                fill: false,
+                borderColor: TotalData.data[0].city_color
+            };
+
+            label = Graphlabels;
+
+
+
+
+            var totaldataset = [];
+
+
+            totaldataset.push(dataFourth);
+            totaldataset.push(dataFifth);
+
+            axistxt.push({ "X": 'Time', "Y": 'Price Index' });
+
+            //  label = OsgroupbyDate;
+            var Linedatasource = utility.bindmultilinedinamic("scanlineCity", totaldataset, true, axistxt, label, ticks);
+
+
+
+        },
         getvaluation: function () {
             var jsonstr = {
                 "id": result.Id,
@@ -207,7 +280,22 @@ $('#CAGRListCity a').on('click', function () {
     CityTrendsModule.CAGRCalculation(t);
 });
 
+$("#CityTrendIndex").click(function () {
+
+    $("#CityTrendIndex").addClass('active');
+    $('#CityPriceIndex').removeClass('active');
+    CityTrendsModule.MultilinegraphIndex();
+});
+$("#CityTrendPrice").click(function () {
+
+    $("#CityTrendPrice").addClass('active');
+    $('#CityTrendIndex').removeClass('active');
+    CityTrendsModule.Multilinegraph();
+});
+
+
 function goBackCity() {
     window.history.back()
 }
+
 

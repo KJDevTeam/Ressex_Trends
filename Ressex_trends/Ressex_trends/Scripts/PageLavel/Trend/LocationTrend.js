@@ -130,6 +130,92 @@ var LocationTrendsModule = function () {
 
 
         },
+        MultilinegraphIndex: function () {
+            /* chartClear();*/
+            var label = [];
+            var axistxt = [];
+            ticks = {
+                min: 0,
+                max: 6,
+                stepSize: 1
+            };
+            responsive = false;
+            var totaldataset = [];
+            var LocationLine = [];
+            var RegionLine = [];
+            var CityLine = [];
+            var Graphlabels = [];
+            TotalData.data.forEach(function (item) {
+                //Location Check
+                if (item.location_price_index == 0) {
+                    LocationLine.push(null);
+                }
+                else {
+                    LocationLine.push(item.location_price_index);
+                }
+
+                //Region Check
+                if (item.region_price_index == 0) {
+                    RegionLine.push(null);
+                }
+                else {
+                    RegionLine.push(item.region_price_index);
+                }
+
+
+                //City Check
+                if (item.city_price_index == 0) {
+                    CityLine.push(null);
+                }
+                else {
+                    CityLine.push(item.city_price_index);
+                }
+
+                Graphlabels.push(item.dos_month_year);
+            });
+
+            var dataThird = {
+                label: "Loation",
+                data: LocationLine,
+                lineTension: 0,
+                fill: false,
+                borderColor: TotalData.data[0].location_color
+            };
+
+            var dataFourth = {
+                label: "Region",
+                data: RegionLine,
+                lineTension: 0,
+                fill: false,
+                borderColor: TotalData.data[0].region_color
+            };
+            var dataFifth = {
+                label: "City",
+                data: CityLine,
+                lineTension: 0,
+                fill: false,
+                borderColor: TotalData.data[0].city_color
+            };
+
+            label = Graphlabels;
+
+
+
+
+            var totaldataset = [];
+
+
+            totaldataset.push(dataThird);
+            totaldataset.push(dataFourth);
+            totaldataset.push(dataFifth);
+
+            axistxt.push({ "X": 'Time', "Y": 'Price Index' });
+
+            //  label = OsgroupbyDate;
+            var Linedatasource = utility.bindmultilinedinamic("scanlineLocation", totaldataset, true, axistxt, label, ticks);
+
+
+        },
         getvaluation: function () {
             var jsonstr = {
                 "id": result.Id,
@@ -221,6 +307,19 @@ $('#CAGRListLocation a').on('click', function () {
     var temp_t = value.split('Y')[0];
     var t = Number(temp_t.split(' ')[1]);
     LocationTrendsModule.CAGRCalculation(t);
+});
+
+$("#LocationTrendIndex").click(function () {
+
+    $("#LocationTrendIndex").addClass('active');
+    $('#LocationPriceIndex').removeClass('active');
+    LocationTrendsModule.MultilinegraphIndex();
+});
+$("#LocationTrendPrice").click(function () {
+
+    $("#LocationTrendPrice").addClass('active');
+    $('#LocationTrendIndex').removeClass('active');
+    LocationTrendsModule.Multilinegraph();
 });
 
 function goBackLocation() {

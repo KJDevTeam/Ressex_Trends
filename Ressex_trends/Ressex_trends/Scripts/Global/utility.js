@@ -768,6 +768,19 @@ utility.bindline = function (Controlid, lbl, dt, hovervals, ticks, responsive, c
 }
 
 utility.bindmultilinedinamic = function (Controlid, dataCritical, responsive, axistxt, label, ticks, tooltipTitle) {
+    var ColChart;
+    Chart.helpers.each(Chart.instances, function (instance) {
+        if (instance.canvas.id == Controlid) {
+            ColChart = instance;
+        }
+    })
+
+    var meta = ColChart;
+    if (meta != undefined) {
+        meta.destroy();
+    }
+
+
     tooltipTitle = "Actual";
     var chartOptions =
     {

@@ -145,6 +145,107 @@ var PincodeTrendsModule = function () {
 
 
         },
+        MultilinegraphIndex: function () {
+            /* chartClear();*/
+            var label = [];
+            var axistxt = [];
+            ticks = {
+                min: 0,
+                max: 6,
+                stepSize: 1
+            };
+            responsive = false;
+            var totaldataset = [];
+            var PincodeLine = [];
+            var SubRegionLine = [];
+            var RegionLine = [];
+            var CityLine = [];
+            var Graphlabels = [];
+            TotalData.data.forEach(function (item) {
+                if (item.pincode_price_index == 0) {
+                    PincodeLine.push(null);
+                }
+                else {
+                    PincodeLine.push(item.pincode_price_index);
+                }
+
+                //Sub Region Check
+                if (item.subregion_or_suburb_price_index == 0) {
+                    SubRegionLine.push(null);
+                }
+                else {
+                    SubRegionLine.push(item.subregion_or_suburb_price_index);
+                }
+
+                //Region Check
+                if (item.region_price_index == 0) {
+                    RegionLine.push(null);
+                }
+                else {
+                    RegionLine.push(item.region_price_index);
+                }
+
+                //City Check
+
+                if (item.city_price_index == 0) {
+                    CityLine.push(null);
+                }
+                else {
+                    CityLine.push(item.city_price_index);
+                }
+
+                Graphlabels.push(item.dos_month_year);
+            });
+
+            var dataSecond = {
+                label: "Pincode",
+                data: PincodeLine,
+                lineTension: 0,
+                fill: false,
+                borderColor: TotalData.data[0].pincode_color
+            };
+            var dataThird = {
+                label: "Sub Region",
+                data: SubRegionLine,
+                lineTension: 0,
+                fill: false,
+                borderColor: TotalData.data[0].region_color
+            };
+
+            var dataFourth = {
+                label: "Region",
+                data: RegionLine,
+                lineTension: 0,
+                fill: false,
+                borderColor: TotalData.data[0].suburb_color
+            };
+            var dataFifth = {
+                label: "City",
+                data: CityLine,
+                lineTension: 0,
+                fill: false,
+                borderColor: TotalData.data[0].city_color
+            };
+
+            label = Graphlabels;
+
+
+
+
+            var totaldataset = [];
+
+            totaldataset.push(dataSecond);
+            totaldataset.push(dataThird);
+            totaldataset.push(dataFourth);
+            totaldataset.push(dataFifth);
+
+            axistxt.push({ "X": 'Time', "Y": 'Price Index' });
+
+            //  label = OsgroupbyDate;
+            var Linedatasource = utility.bindmultilinedinamic("scanlinePincode", totaldataset, true, axistxt, label, ticks);
+
+
+        },
         getvaluation: function () {
             var jsonstr = {
                 "id": result.Id,
@@ -240,6 +341,19 @@ $('#CAGRListPincode a').on('click', function () {
     var temp_t = value.split('Y')[0];
     var t = Number(temp_t.split(' ')[1]);
     PincodeTrendsModule.CAGRCalculation(t);
+});
+
+$("#PincodeTrendIndex").click(function () {
+
+    $("#PincodeTrendIndex").addClass('active');
+    $('#PincodePriceIndex').removeClass('active');
+    PincodeTrendsModule.MultilinegraphIndex();
+});
+$("#PincodeTrendPrice").click(function () {
+
+    $("#PincodeTrendPrice").addClass('active');
+    $('#PincodeTrendIndex').removeClass('active');
+    PincodeTrendsModule.Multilinegraph();
 });
 
 function goBack() {

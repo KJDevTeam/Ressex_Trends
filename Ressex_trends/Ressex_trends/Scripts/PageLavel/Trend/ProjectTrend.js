@@ -177,6 +177,139 @@ var ProjectTrendsModule = function () {
            
            
         },
+        MultilinegraphIndex: function () {
+            /* chartClear();*/
+            var label = [];
+            var axistxt = [];
+            ticks = {
+                min: 0,
+                max: 6,
+                stepSize: 1
+            };
+            responsive = false;
+            var totaldataset = [];
+            //data= [0, 59, 75, 20, 20, 55, 40],
+            var projectLine = [];
+            var PincodeLine = [];
+            var SubRegionLine = [];
+            var RegionLine = [];
+            var CityLine = [];
+            var Graphlabels = [];
+
+            TotalData.data.forEach(function (item) {
+                console.log(item.project_price_index_tag);
+                //Project Check
+                if (item.project_price_index == 0) {
+                    projectLine.push(null);
+                }
+                else {
+                    projectLine.push(item.project_price_index);
+                }
+
+                //Pincode Check
+                if (item.pincode_price_index == 0) {
+                    PincodeLine.push(null);
+                }
+                else {
+                    PincodeLine.push(item.pincode_price_index);
+                }
+
+                //SubRegion Check
+                if (item.subregion_or_suburb_price_index == 0) {
+                    SubRegionLine.push(null);
+                }
+                else {
+                    SubRegionLine.push(item.subregion_or_suburb_price_index);
+                }
+
+                //Region Check
+                if (item.region_price_index == 0) {
+                    RegionLine.push(null);
+                }
+                else {
+                    RegionLine.push(item.region_price_index);
+                }
+
+
+                //City Check
+                if (item.city_price_index == 0) {
+                    CityLine.push(null);
+                }
+                else {
+                    CityLine.push(item.city_price_index);
+                }
+
+
+                Graphlabels.push(item.dos_month_year);
+
+            });
+            var dataFirst = {
+                label: "Project",
+                data: projectLine,
+                lineTension: 0,
+                fill: false,
+                borderColor: TotalData.data[0].project_color
+            };
+
+            var dataSecond = {
+                label: "Pincode",
+                data: PincodeLine,
+                lineTension: 0,
+                fill: false,
+                borderColor: TotalData.data[0].pincode_color
+            };
+            var dataThird = {
+                label: "Sub Region",
+                data: SubRegionLine,
+                lineTension: 0,
+                fill: false,
+                borderColor: TotalData.data[0].region_color
+            };
+
+            var dataFourth = {
+                label: "Region",
+                data: RegionLine,
+                lineTension: 0,
+                fill: false,
+                borderColor: TotalData.data[0].suburb_color
+            };
+            var dataFifth = {
+                label: "City",
+                data: CityLine,
+                lineTension: 0,
+                fill: false,
+                borderColor: TotalData.data[0].city_color
+            };
+            // label.push(item.dos_month_year);
+
+            label = Graphlabels;
+
+
+            //    TotalData.data.forEach(function (item) {
+            //    totaldataset.push({
+            //        //"label": "lbl",
+            //        "data": item.project_saleable_rate,  //OsgroupbyDate
+            //        "fill": false,
+            //        "borderColor": item.project_color, //randomcolour(),
+            //        "backgroundColor": item.project_color
+            //    });
+            //        label.push(item.dos_month_year);
+            //});
+
+            var totaldataset = [];
+            totaldataset.push(dataFirst);
+            totaldataset.push(dataSecond);
+            totaldataset.push(dataThird);
+            totaldataset.push(dataFourth);
+            totaldataset.push(dataFifth);
+
+            axistxt.push({ "X": 'Time', "Y": 'Price Index' });
+
+            //  label = OsgroupbyDate;
+            var Linedatasource = utility.bindmultilinedinamic("scanlineProject", totaldataset, true, axistxt, label, ticks);
+
+
+        },
         getvaluation: function (SName) {
             switch (SName) {
                 case "project":
@@ -316,5 +449,17 @@ $('#CAGRListProject a').on('click', function () {
     var temp_t = value.split('Y')[0];
     var t = Number(temp_t.split(' ')[1]);
     ProjectTrendsModule.CAGRCalculation(t);
+});
+$("#ProjectTrendIndex").click(function () {
+
+    $("#ProjectTrendIndex").addClass('active');
+    $('#ProjectPriceIndex').removeClass('active');
+    ProjectTrendsModule.MultilinegraphIndex();
+});
+$("#ProjectTrendPrice").click(function () {
+
+    $("#ProjectTrendPrice").addClass('active');
+    $('#ProjectTrendIndex').removeClass('active');
+    ProjectTrendsModule.Multilinegraph();
 });
 
