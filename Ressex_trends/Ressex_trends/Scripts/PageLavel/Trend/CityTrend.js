@@ -5,10 +5,15 @@ var TotalData1 = '';
 var Bardatasource = '';
 var UserType = '';
 
+
+
 var CityTrendsModule = function () {
     var TotalData;
+    var graphvariable;
+    var CheckboxIDs = [];
     return {
         init: function () {
+            
             $("#valTxtCity").text('Just one step away from getting your current property valuation...');
             var QueryStringARR = common.GetQueryString();
             result = common.GetTrendsTypePayload(QueryStringARR);
@@ -41,11 +46,13 @@ var CityTrendsModule = function () {
 
             common.dtpicker_cal("#fromDateIDCity");
             CityTrendsModule.Multilinegraph();
+            CityTrendsModule.checkboxTrend();
 
 
         },
         Multilinegraph: function () {
-            /* chartClear();*/
+
+           /* chartClear();*/
             var label = [];
             var axistxt = [];
             ticks = {
@@ -112,7 +119,7 @@ var CityTrendsModule = function () {
             axistxt.push({ "X": 'Quater', "Y": 'Saleable Rate in ₹/sqft' });
 
             //  label = OsgroupbyDate;
-            var Linedatasource = utility.bindmultilinedinamic("scanlineCity", totaldataset, true, axistxt, label, ticks);
+            graphvariable = utility.bindmultilinedinamic("scanlineCity", totaldataset, true, axistxt, label, ticks);
 
 
         },
@@ -184,7 +191,7 @@ var CityTrendsModule = function () {
             axistxt.push({ "X": 'Time', "Y": 'Price Index' });
 
             //  label = OsgroupbyDate;
-            var Linedatasource = utility.bindmultilinedinamic("scanlineCity", totaldataset, true, axistxt, label, ticks);
+            graphvariable = utility.bindmultilinedinamic("scanlineCity", totaldataset, true, axistxt, label, ticks);
 
 
 
@@ -260,6 +267,67 @@ var CityTrendsModule = function () {
 
             utility.exportCSVFile(header, itemsFormatted, fileTitle)
         },
+        checkboxTrend: function () {
+            const legend = $("#TrendCheckbox");
+            var st = ''
+            st += '<div class="d-flex justify-content-between checkBtmSpace">\
+                        <div class="custom-control custom-checkbox light-purple">\
+                                <input type="checkbox" class="custom-control-input" onchange="cityALLchnage(event)" id="checkCityALL" checked="true">\
+                                <label class="custom-control-label pointer" for="checkCityALL">ALL</label>\
+                            </div>\
+                            <div class="cityNameCol"></div>\
+                        </div >';
+
+            graphvariable.data.datasets.forEach((dataset, index) => {
+                console.log('dataset' + dataset);
+                CheckboxIDs.push("Dataset"+index);
+               /* onchange = citycheckboxchnage('+ id+')"*/
+                st += '<div class="d-flex justify-content-between checkBtmSpace">\
+                        <div class="custom-control custom-checkbox light-purple">\
+                                <input type="checkbox" class="custom-control-input" onchange="citycheckboxchnage(event)" id="dataset'+ index +'" checked="true">\
+                                <label class="custom-control-label pointer" for="dataset'+ index +'">'+dataset.label+'</label>\
+                            </div>\
+                            <div class="cityNameCol">Rustomjee Crown</div>\
+                        </div >';
+            });
+
+            $("#TrendCheckbox").append(st);
+        },
+        checkboxEffect: function (e,allFlag,allflagValue) {
+
+            if (allFlag && allflagValue) {
+                graphvariable.data.datasets.forEach((dataset, index) => {
+                    graphvariable.hide(index);
+                });
+                CheckboxIDs.forEach((item, index) => {
+                    var controlID = "#"+ item;
+                    $(controlID).prop('checked', false); // unchecks it
+                    
+                });
+
+            }
+            else if (allFlag && !allflagValue) {
+                graphvariable.data.datasets.forEach((dataset, index) => {
+                    graphvariable.show(index);
+                });
+                CheckboxIDs.forEach((item, index) => {
+                    var controlID = '#' + item;
+                    $(controlID).prop('checked', true); // checks it
+                    //$("#dataset0").prop('checked', true); // Unchecks it
+                    //$("#dataset1").prop('checked', true); // Unchecks it
+                });
+            }
+            else {
+
+                if (graphvariable.isDatasetVisible(e)) {
+                    graphvariable.hide(e);
+                }
+                else {
+                    graphvariable.show(e);
+                }
+            }
+            
+        }
 
     }
 }();
@@ -292,6 +360,45 @@ $("#CityTrendPrice").click(function () {
     $('#CityTrendIndex').removeClass('active');
     CityTrendsModule.Multilinegraph();
 });
+
+//$('#dataset0').click(function () {
+//    if ($(this).is(":checked"))
+//        alert("checked Score: " + $(this).data("Score"));
+//    else
+//        alert("not checked Score: " + $(this).data("Score"));
+//});
+
+//$("input[type='checkbox']").change(function () {
+//    alert("Event is bound");
+//});
+
+function citycheckboxchnage(event) {
+
+    $('#checkCityALL').prop('checked', false); // Unchecks it
+    console.log("change" + event.currentTarget.id);
+
+    var value = event.currentTarget.id;
+    var valuetobeSent = value.split('dataset')[1];
+    CityTrendsModule.checkboxEffect(valuetobeSent);
+
+}
+function cityALLchnage(event) {
+
+    //$('#checkCityALL').prop('checked', false); // Unchecks it
+    if (event.target.checked) {
+        CityTrendsModule.checkboxEffect(undefined, true, false);
+    }
+    else {
+        CityTrendsModule.checkboxEffect(undefined,true,true);
+    }
+
+    console.log("All Changechange" + event);
+
+    //var value = event.currentTarget.id;
+    //var valuetobeSent = value.split('dataset')[1];
+    //
+
+}
 
 
 function goBackCity() {

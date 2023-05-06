@@ -800,7 +800,7 @@ utility.bindmultilinedinamic = function (Controlid, dataCritical, responsive, ax
                         
                     },
                     label: function (tooltipItem) {
-                        console.log(tooltipItem);
+                        /*console.log(tooltipItem);*/
                         return tooltipItem.formattedValue;
                     }
                 }
@@ -852,3 +852,4 @@ utility.bindmultilinedinamic = function (Controlid, dataCritical, responsive, ax
 
     return lineChart;
 }
+
