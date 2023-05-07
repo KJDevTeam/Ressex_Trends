@@ -804,20 +804,21 @@ utility.bindmultilinedinamic = function (Controlid, dataCritical, responsive, ax
                         return tooltipItem.formattedValue;
                     }
                 }
-            }
+            },
+            legend: {
+                display: false,
+                position: 'top',
+                labels: {
+                    boxWidth: 100,
+                    fontColor: 'black'
+                }
+            },
         },
         //title: {
         //    display: true,
         //    text:'da' //titletxt
         //},
-        legend: {
-            display: true,
-            position: 'top',
-            labels: {
-                boxWidth: 100,
-                fontColor: 'black'
-            }
-        },
+        
         
         scales: {
             y: {

@@ -91,14 +91,16 @@ var CityTrendsModule = function () {
             
 
             var dataFourth = {
-                label: "Country",
+                label: TotalData.data[0].country_text,
+                labelvalue: TotalData.data[0].country,
                 data: CountryLine,
                 lineTension: 0,
                 fill: false,
                 borderColor: TotalData.data[0].country_color
             };
             var dataFifth = {
-                label: "City",
+                label: TotalData.data[0].city_text,
+                labelvalue: TotalData.data[0].city_name,
                 data: CityLine,
                 lineTension: 0,
                 fill: false,
@@ -164,6 +166,7 @@ var CityTrendsModule = function () {
 
             var dataFourth = {
                 label: "Country",
+                labelvalue: TotalData.data[0].country,
                 data: CountryLine,
                 lineTension: 0,
                 fill: false,
@@ -171,6 +174,7 @@ var CityTrendsModule = function () {
             };
             var dataFifth = {
                 label: "City",
+                labelvalue: TotalData.data[0].city_name,
                 data: CityLine,
                 lineTension: 0,
                 fill: false,
@@ -271,7 +275,7 @@ var CityTrendsModule = function () {
             const legend = $("#TrendCheckbox");
             var st = ''
             st += '<div class="d-flex justify-content-between checkBtmSpace">\
-                        <div class="custom-control custom-checkbox light-purple">\
+                        <div class="custom-control custom-checkbox">\
                                 <input type="checkbox" class="custom-control-input" onchange="cityALLchnage(event)" id="checkCityALL" checked="true">\
                                 <label class="custom-control-label pointer" for="checkCityALL">ALL</label>\
                             </div>\
@@ -280,14 +284,14 @@ var CityTrendsModule = function () {
 
             graphvariable.data.datasets.forEach((dataset, index) => {
                 console.log('dataset' + dataset);
-                CheckboxIDs.push("Dataset"+index);
+                CheckboxIDs.push("dataset"+index);
                /* onchange = citycheckboxchnage('+ id+')"*/
                 st += '<div class="d-flex justify-content-between checkBtmSpace">\
                         <div class="custom-control custom-checkbox light-purple">\
                                 <input type="checkbox" class="custom-control-input" onchange="citycheckboxchnage(event)" id="dataset'+ index +'" checked="true">\
                                 <label class="custom-control-label pointer" for="dataset'+ index +'">'+dataset.label+'</label>\
                             </div>\
-                            <div class="cityNameCol">Rustomjee Crown</div>\
+                            <div class="cityNameCol">'+ dataset.labelvalue+'</div>\
                         </div >';
             });
 
@@ -300,9 +304,10 @@ var CityTrendsModule = function () {
                     graphvariable.hide(index);
                 });
                 CheckboxIDs.forEach((item, index) => {
-                    var controlID = "#"+ item;
+                    var controlID = "#" + item;
+                    //$(controlID).removeAttr('checked'); // checks it
                     $(controlID).prop('checked', false); // unchecks it
-                    
+                    //document.getElementById(controlID).checked = false;
                 });
 
             }
@@ -312,9 +317,11 @@ var CityTrendsModule = function () {
                 });
                 CheckboxIDs.forEach((item, index) => {
                     var controlID = '#' + item;
+                    document.getElementById('dataset0');//.setAttribute('checked', 'checked');
+                    //document.getElementById(controlID).checked = true;
+                    //$(controlID).removeAttr('checked'); // checks it
                     $(controlID).prop('checked', true); // checks it
-                    //$("#dataset0").prop('checked', true); // Unchecks it
-                    //$("#dataset1").prop('checked', true); // Unchecks it
+                    
                 });
             }
             else {
