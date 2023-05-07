@@ -411,9 +411,9 @@ var ProjectTrendsModule = function () {
             var formulaCalulator = common.CAGRFormularCalulation(t, (TotalData.data.length-1), TotalData.data, attributetobeUsed);
             $("#calculatedCAGRProject").text(formulaCalulator);
         },        
-        TransactionDailyCsvExport: function (TotalData) {
+        ProjectCsvExport: function () {
             //////CSV structure//////
-            var arr = TotalData;
+            var arr = TotalData.data;
             var item = arr.length > 0 ? arr : [];
             var itemsFormatted = [];
             var blank = {
@@ -423,24 +423,60 @@ var ProjectTrendsModule = function () {
 
             };
             var header = {
-                col1: "Registration Date",
-                col2: "Transaction Count",
-                col3: "Transacted Value RS"
+                col1: "Quarter",
+                col2: "Project",
+                col3: "Pincode",
+                col4: "Suburb",
+                col5: "region",
+                col6: "city",
+                col7: "project_saleable_rate_psf",
+                col8: "project_price_index",
+                col9: "project_price_index_tag",
+                col10: "pincode_saleable_rate_psf",
+                col11: "pincode_price_index",
+                col12: "pincode_price_index_tag",
+                col13: "suburb_saleable_rate_psf",
+                col14: "suburb_price_index",
+                col15: "suburb_price_index_tag",
+                col16: "region_saleable_rate_psf",
+                col17: "region_price_index",
+                col18: "region_price_index_tag",
+                col19: "city_saleable_rate_psf",
+                col20: "city_price_index",
+                col21: "city_price_index_tag",
 
             };
             var items = arr.length > 0 ? arr : [];
 
             items.forEach((subitem) => {
                 var details = {
-                    col1: subitem.registration_date,     //.replace(/,/g, "|"),
-                    col2: subitem.transaction_count,
-                    col3: subitem.transacted_value_rs,
+                    col1: subitem.dos_month_year,     //.replace(/,/g, "|"),
+                    col2: subitem.project_name,
+                    col3: subitem.pincode,
+                    col4: subitem.subregion_or_suburb,     //.replace(/,/g, "|"),
+                    col5: subitem.region,
+                    col6: subitem.city,
+                    col7: subitem.project_saleable_rate,     //.replace(/,/g, "|"),
+                    col8: subitem.project_price_index,
+                    col9: subitem.project_price_index_tag,
+                    col10: subitem.pincode_saleable_rate,     //.replace(/,/g, "|"),
+                    col11: subitem.pincode_price_index,
+                    col12: subitem.pincode_price_index_tag,
+                    col13: subitem.subregion_or_suburb_saleable_rate,     //.replace(/,/g, "|"),
+                    col14: subitem.subregion_or_suburb_price_index,
+                    col15: subitem.subregion_or_suburb_price_index_tag,
+                    col16: subitem.region_saleable_rate,     //.replace(/,/g, "|"),
+                    col17: subitem.region_price_index,
+                    col18: subitem.region_price_index_tag,
+                    col19: subitem.city_saleable_rate,     //.replace(/,/g, "|"),
+                    col20: subitem.city_price_index,
+                    col21: subitem.city_price_index_tag,
 
                 }
                 itemsFormatted.push(details);
 
             });
-            var fileTitle = "Transaction Trends Daily";
+            var fileTitle = "Project_Trends";
 
             utility.exportCSVFile(header, itemsFormatted, fileTitle)
         },
@@ -530,7 +566,7 @@ $('#CAGRListProject a').on('click', function () {
 $("#ProjectTrendIndex").click(function () {
 
     $("#ProjectTrendIndex").addClass('active');
-    $('#ProjectPriceIndex').removeClass('active');
+    $('#ProjectTrendPrice').removeClass('active');
     ProjectTrendsModule.MultilinegraphIndex();
 });
 $("#ProjectTrendPrice").click(function () {
@@ -538,6 +574,11 @@ $("#ProjectTrendPrice").click(function () {
     $("#ProjectTrendPrice").addClass('active');
     $('#ProjectTrendIndex').removeClass('active');
     ProjectTrendsModule.Multilinegraph();
+});
+
+$("#ProjectCSVDownload").click(function () {
+
+    ProjectTrendsModule.ProjectCsvExport();
 });
 
 function projectcheckboxchnage(event) {
