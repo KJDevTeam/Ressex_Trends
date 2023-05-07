@@ -238,9 +238,9 @@ var CityTrendsModule = function () {
             var formulaCalulator = common.CAGRFormularCalulation(t, (TotalData.data.length - 1), TotalData.data, attributetobeUsed);
             $("#calculatedCAGRCity").text(formulaCalulator);
         },
-        TransactionDailyCsvExport: function (TotalData) {
+        CityCsvExport: function () {
             //////CSV structure//////
-            var arr = TotalData;
+            var arr = TotalData.data;
             var item = arr.length > 0 ? arr : [];
             var itemsFormatted = [];
             var blank = {
@@ -250,24 +250,36 @@ var CityTrendsModule = function () {
 
             };
             var header = {
-                col1: "Registration Date",
-                col2: "Transaction Count",
-                col3: "Transacted Value RS"
+                col1: "Quarter",
+                col2: "city",
+                col3: "state",                             
+                col4: "city_saleable_rate_psf",
+                col5: "city_price_index",
+                col6: "city_price_index_tag",
+                col7: "india_saleable_rate_psf",
+                col8: "india_price_index",
+                col9: "india_price_index_tag",
 
             };
             var items = arr.length > 0 ? arr : [];
 
             items.forEach((subitem) => {
                 var details = {
-                    col1: subitem.registration_date,     //.replace(/,/g, "|"),
-                    col2: subitem.transaction_count,
-                    col3: subitem.transacted_value_rs,
+                    col1: subitem.dos_month_year,     //.replace(/,/g, "|"),
+                    col2: subitem.city,
+                    col3: subitem.state,
+                    col4: subitem.city_saleable_rate,     //.replace(/,/g, "|"),
+                    col5: subitem.city_price_index,
+                    col6: subitem.city_price_index_tag,
+                    col7: subitem.india_saleable_rate,     //.replace(/,/g, "|"),
+                    col8: subitem.india_price_index,
+                    col9: subitem.india_price_index_tag,
 
                 }
                 itemsFormatted.push(details);
 
             });
-            var fileTitle = "Transaction Trends Daily";
+            var fileTitle = "City_Trends";
 
             utility.exportCSVFile(header, itemsFormatted, fileTitle)
         },
@@ -368,7 +380,10 @@ $("#CityTrendPrice").click(function () {
     CityTrendsModule.Multilinegraph();
 });
 
+$("#CityCSVDownload").click(function () {
 
+    CityTrendsModule.CityCsvExport();
+});
 
 function citycheckboxchnage(event) {
 

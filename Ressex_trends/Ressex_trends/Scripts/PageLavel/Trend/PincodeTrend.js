@@ -299,9 +299,9 @@ var PincodeTrendsModule = function () {
             var formulaCalulator = common.CAGRFormularCalulation(t, (TotalData.data.length - 1), TotalData.data, attributetobeUsed);
             $("#calculatedCAGRPincode").text(formulaCalulator);
         },
-        TransactionDailyCsvExport: function (TotalData) {
+        PincodeCsvExport: function () {
             //////CSV structure//////
-            var arr = TotalData;
+            var arr = TotalData.data;
             var item = arr.length > 0 ? arr : [];
             var itemsFormatted = [];
             var blank = {
@@ -311,24 +311,52 @@ var PincodeTrendsModule = function () {
 
             };
             var header = {
-                col1: "Registration Date",
-                col2: "Transaction Count",
-                col3: "Transacted Value RS"
+                col1: "Quarter",
+                col2: "Pincode",
+                col3: "Suburb",
+                col4: "region",
+                col5: "city",
+                col6: "pincode_saleable_rate_psf",
+                col7: "pincode_price_index",
+                col8: "pincode_price_index_tag",
+                col9: "suburb_saleable_rate_psf",
+                col10: "suburb_price_index",
+                col11: "suburb_price_index_tag",
+                col12: "region_saleable_rate_psf",
+                col13: "region_price_index",
+                col14: "region_price_index_tag",
+                col15: "city_saleable_rate_psf",
+                col16: "city_price_index",
+                col17: "city_price_index_tag",
 
             };
             var items = arr.length > 0 ? arr : [];
 
             items.forEach((subitem) => {
                 var details = {
-                    col1: subitem.registration_date,     //.replace(/,/g, "|"),
-                    col2: subitem.transaction_count,
-                    col3: subitem.transacted_value_rs,
+                    col1: subitem.dos_month_year,     //.replace(/,/g, "|"),
+                    col5: subitem.pincode,
+                    col3: subitem.subregion_or_suburb,     //.replace(/,/g, "|"),
+                    col4: subitem.region,
+                    col5: subitem.city,
+                    col6: subitem.pincode_saleable_rate,     //.replace(/,/g, "|"),
+                    col7: subitem.pincode_price_index,
+                    col8: subitem.pincode_price_index_tag,
+                    col9: subitem.subregion_or_suburb_saleable_rate,     //.replace(/,/g, "|"),
+                    col10: subitem.subregion_or_suburb_price_index,
+                    col11: subitem.subregion_or_suburb_price_index_tag,
+                    col12: subitem.region_saleable_rate,     //.replace(/,/g, "|"),
+                    col13: subitem.region_price_index,
+                    col14: subitem.region_price_index_tag,
+                    col15: subitem.city_saleable_rate,     //.replace(/,/g, "|"),
+                    col16: subitem.city_price_index,
+                    col17: subitem.city_price_index_tag,
 
                 }
                 itemsFormatted.push(details);
 
             });
-            var fileTitle = "Transaction Trends Daily";
+            var fileTitle = "Pincode_Trends";
 
             utility.exportCSVFile(header, itemsFormatted, fileTitle)
         },
@@ -427,6 +455,10 @@ $("#PincodeTrendPrice").click(function () {
     $("#PincodeTrendPrice").addClass('active');
     $('#PincodeTrendIndex').removeClass('active');
     PincodeTrendsModule.Multilinegraph();
+});
+$("#PincodeCSVDownload").click(function () {
+
+    PincodeTrendsModule.PincodeCsvExport();
 });
 
 function pincodecheckboxchnage(event) {
