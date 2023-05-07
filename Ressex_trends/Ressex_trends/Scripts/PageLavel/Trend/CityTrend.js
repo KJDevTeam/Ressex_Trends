@@ -165,7 +165,7 @@ var CityTrendsModule = function () {
 
 
             var dataFourth = {
-                label: "Country",
+                label: TotalData.data[0].country_text,
                 labelvalue: TotalData.data[0].country,
                 data: CountryLine,
                 lineTension: 0,
@@ -173,7 +173,7 @@ var CityTrendsModule = function () {
                 borderColor: TotalData.data[0].country_color
             };
             var dataFifth = {
-                label: "City",
+                label: TotalData.data[0].city_text,
                 labelvalue: TotalData.data[0].city_name,
                 data: CityLine,
                 lineTension: 0,
@@ -368,16 +368,7 @@ $("#CityTrendPrice").click(function () {
     CityTrendsModule.Multilinegraph();
 });
 
-//$('#dataset0').click(function () {
-//    if ($(this).is(":checked"))
-//        alert("checked Score: " + $(this).data("Score"));
-//    else
-//        alert("not checked Score: " + $(this).data("Score"));
-//});
 
-//$("input[type='checkbox']").change(function () {
-//    alert("Event is bound");
-//});
 
 function citycheckboxchnage(event) {
 
@@ -391,20 +382,13 @@ function citycheckboxchnage(event) {
 }
 function cityALLchnage(event) {
 
-    //$('#checkCityALL').prop('checked', false); // Unchecks it
+    
     if (event.target.checked) {
         CityTrendsModule.checkboxEffect(undefined, true, false);
     }
     else {
         CityTrendsModule.checkboxEffect(undefined,true,true);
     }
-
-    console.log("All Changechange" + event);
-
-    //var value = event.currentTarget.id;
-    //var valuetobeSent = value.split('dataset')[1];
-    //
-
 }
 
 

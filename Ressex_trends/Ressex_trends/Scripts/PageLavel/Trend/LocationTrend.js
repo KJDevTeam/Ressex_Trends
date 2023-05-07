@@ -7,6 +7,8 @@ var UserType = '';
 
 var LocationTrendsModule = function () {
     var TotalData;
+    var graphvariable;
+    var CheckboxIDs = [];
     return {
         init: function () {
             $("#valTxtLocation").text('Just one step away from getting your current property valuation...');
@@ -41,6 +43,7 @@ var LocationTrendsModule = function () {
 
             common.dtpicker_cal("#fromDateIDLocation");
             LocationTrendsModule.Multilinegraph();
+            LocationTrendsModule.checkboxTrend();
 
 
         },
@@ -89,7 +92,8 @@ var LocationTrendsModule = function () {
             });
 
             var dataThird = {
-                label: "Loation",
+                label: TotalData.data[0].location_text,
+                labelvalue: TotalData.data[0].location_name,
                 data: LocationLine,
                 lineTension: 0,
                 fill: false,
@@ -97,14 +101,16 @@ var LocationTrendsModule = function () {
             };
 
             var dataFourth = {
-                label: "Region",
+                label: TotalData.data[0].region_text,
+                labelvalue: TotalData.data[0].region_name,
                 data: RegionLine,
                 lineTension: 0,
                 fill: false,
                 borderColor: TotalData.data[0].region_color
             };
             var dataFifth = {
-                label: "City",
+                label: TotalData.data[0].city_text,
+                labelvalue: TotalData.data[0].city_name,
                 data: CityLine,
                 lineTension: 0,
                 fill: false,
@@ -126,7 +132,7 @@ var LocationTrendsModule = function () {
             axistxt.push({ "X": 'Quater', "Y": 'Saleable Rate in ₹/sqft' });
 
             //  label = OsgroupbyDate;
-            var Linedatasource = utility.bindmultilinedinamic("scanlineLocation", totaldataset, true, axistxt, label, ticks);
+            graphvariable = utility.bindmultilinedinamic("scanlineLocation", totaldataset, true, axistxt, label, ticks);
 
 
         },
@@ -175,7 +181,8 @@ var LocationTrendsModule = function () {
             });
 
             var dataThird = {
-                label: "Loation",
+                label: TotalData.data[0].location_text,
+                labelvalue: TotalData.data[0].location_name,
                 data: LocationLine,
                 lineTension: 0,
                 fill: false,
@@ -183,14 +190,16 @@ var LocationTrendsModule = function () {
             };
 
             var dataFourth = {
-                label: "Region",
+                label: TotalData.data[0].region_text,
+                labelvalue: TotalData.data[0].region_name,
                 data: RegionLine,
                 lineTension: 0,
                 fill: false,
                 borderColor: TotalData.data[0].region_color
             };
             var dataFifth = {
-                label: "City",
+                label: TotalData.data[0].city_text,
+                labelvalue: TotalData.data[0].city_name,
                 data: CityLine,
                 lineTension: 0,
                 fill: false,
@@ -212,7 +221,7 @@ var LocationTrendsModule = function () {
             axistxt.push({ "X": 'Time', "Y": 'Price Index' });
 
             //  label = OsgroupbyDate;
-            var Linedatasource = utility.bindmultilinedinamic("scanlineLocation", totaldataset, true, axistxt, label, ticks);
+            graphvariable = utility.bindmultilinedinamic("scanlineLocation", totaldataset, true, axistxt, label, ticks);
 
 
         },
@@ -289,6 +298,70 @@ var LocationTrendsModule = function () {
 
             utility.exportCSVFile(header, itemsFormatted, fileTitle)
         },
+        checkboxTrend: function () {
+            const legend = $("#LocationCheckbox");
+            var st = ''
+            st += '<div class="d-flex justify-content-between checkBtmSpace">\
+                        <div class="custom-control custom-checkbox">\
+                                <input type="checkbox" class="custom-control-input" onchange="locationALLchnage(event)" id="checkLocationALL" checked="true">\
+                                <label class="custom-control-label pointer" for="checkLocationALL">ALL</label>\
+                            </div>\
+                            <div class="cityNameCol"></div>\
+                        </div >';
+
+            graphvariable.data.datasets.forEach((dataset, index) => {
+                console.log('dataset' + dataset);
+                CheckboxIDs.push("dataset" + index);
+                /* onchange = citycheckboxchnage('+ id+')"*/
+                st += '<div class="d-flex justify-content-between checkBtmSpace">\
+                        <div class="custom-control custom-checkbox light-purple">\
+                                <input type="checkbox" class="custom-control-input" onchange="locationcheckboxchnage(event)" id="dataset'+ index + '" checked="true">\
+                                <label class="custom-control-label pointer" for="dataset'+ index + '">' + dataset.label + '</label>\
+                            </div>\
+                            <div class="cityNameCol">'+ dataset.labelvalue + '</div>\
+                        </div >';
+            });
+
+            $("#LocationCheckbox").append(st);
+        },
+        checkboxEffect: function (e, allFlag, allflagValue) {
+
+            if (allFlag && allflagValue) {
+                graphvariable.data.datasets.forEach((dataset, index) => {
+                    graphvariable.hide(index);
+                });
+                CheckboxIDs.forEach((item, index) => {
+                    var controlID = "#" + item;
+                    //$(controlID).removeAttr('checked'); // checks it
+                    $(controlID).prop('checked', false); // unchecks it
+                    //document.getElementById(controlID).checked = false;
+                });
+
+            }
+            else if (allFlag && !allflagValue) {
+                graphvariable.data.datasets.forEach((dataset, index) => {
+                    graphvariable.show(index);
+                });
+                CheckboxIDs.forEach((item, index) => {
+                    var controlID = '#' + item;
+                    document.getElementById('dataset0');//.setAttribute('checked', 'checked');
+                    //document.getElementById(controlID).checked = true;
+                    //$(controlID).removeAttr('checked'); // checks it
+                    $(controlID).prop('checked', true); // checks it
+
+                });
+            }
+            else {
+
+                if (graphvariable.isDatasetVisible(e)) {
+                    graphvariable.hide(e);
+                }
+                else {
+                    graphvariable.show(e);
+                }
+            }
+
+        }
 
     }
 }();
@@ -321,6 +394,27 @@ $("#LocationTrendPrice").click(function () {
     $('#LocationTrendIndex').removeClass('active');
     LocationTrendsModule.Multilinegraph();
 });
+
+function locationcheckboxchnage(event) {
+
+    $('#checkLocationALL').prop('checked', false); // Unchecks it
+    console.log("change" + event.currentTarget.id);
+
+    var value = event.currentTarget.id;
+    var valuetobeSent = value.split('dataset')[1];
+    LocationTrendsModule.checkboxEffect(valuetobeSent);
+
+}
+function locationALLchnage(event) {
+
+
+    if (event.target.checked) {
+        LocationTrendsModule.checkboxEffect(undefined, true, false);
+    }
+    else {
+        LocationTrendsModule.checkboxEffect(undefined, true, true);
+    }
+}
 
 function goBackLocation() {
     window.history.back()

@@ -7,6 +7,8 @@ var UserType = '';
 
 var PincodeTrendsModule = function () {
     var TotalData;
+    var graphvariable;
+    var CheckboxIDs = [];
     return {
         init: function () {
             $("#valTxtPincode").text('Just one step away from getting your current property valuation...');
@@ -41,6 +43,7 @@ var PincodeTrendsModule = function () {
 
             common.dtpicker_cal("#fromDateIDPincode");
             PincodeTrendsModule.Multilinegraph();
+            PincodeTrendsModule.checkboxTrend();
 
 
         },
@@ -97,29 +100,32 @@ var PincodeTrendsModule = function () {
             });
 
             var dataSecond = {
-                label: "Pincode",
+                label: TotalData.data[0].pincode_text,
+                labelvalue: TotalData.data[0].pincode_name,
                 data: PincodeLine,
                 lineTension: 0,
                 fill: false,
                 borderColor: TotalData.data[0].pincode_color
             };
             var dataThird = {
-                label: "Sub Region",
+                label: TotalData.data[0].suburb_text,
+                labelvalue: TotalData.data[0].suburb_name,
                 data: SubRegionLine,
-                lineTension: 0,
-                fill: false,
-                borderColor: TotalData.data[0].region_color
-            };
-
-            var dataFourth = {
-                label: "Region",
-                data: RegionLine,
                 lineTension: 0,
                 fill: false,
                 borderColor: TotalData.data[0].suburb_color
             };
+            var dataFourth = {
+                label: TotalData.data[0].region_text,
+                labelvalue: TotalData.data[0].region_name,
+                data: RegionLine,
+                lineTension: 0,
+                fill: false,
+                borderColor: TotalData.data[0].region_color
+            };
             var dataFifth = {
-                label: "City",
+                label: TotalData.data[0].city_text,
+                labelvalue: TotalData.data[0].city_name,
                 data: CityLine,
                 lineTension: 0,
                 fill: false,
@@ -141,7 +147,7 @@ var PincodeTrendsModule = function () {
             axistxt.push({ "X": 'Quater', "Y": 'Saleable Rate in ₹/sqft' });
 
             //  label = OsgroupbyDate;
-            var Linedatasource = utility.bindmultilinedinamic("scanlinePincode", totaldataset, true, axistxt, label, ticks);
+            graphvariable = utility.bindmultilinedinamic("scanlinePincode", totaldataset, true, axistxt, label, ticks);
 
 
         },
@@ -198,29 +204,32 @@ var PincodeTrendsModule = function () {
             });
 
             var dataSecond = {
-                label: "Pincode",
+                label: TotalData.data[0].pincode_text,
+                labelvalue: TotalData.data[0].pincode_name,
                 data: PincodeLine,
                 lineTension: 0,
                 fill: false,
                 borderColor: TotalData.data[0].pincode_color
             };
             var dataThird = {
-                label: "Sub Region",
+                label: TotalData.data[0].suburb_text,
+                labelvalue: TotalData.data[0].suburb_name,
                 data: SubRegionLine,
-                lineTension: 0,
-                fill: false,
-                borderColor: TotalData.data[0].region_color
-            };
-
-            var dataFourth = {
-                label: "Region",
-                data: RegionLine,
                 lineTension: 0,
                 fill: false,
                 borderColor: TotalData.data[0].suburb_color
             };
+            var dataFourth = {
+                label: TotalData.data[0].region_text,
+                labelvalue: TotalData.data[0].region_name,
+                data: RegionLine,
+                lineTension: 0,
+                fill: false,
+                borderColor: TotalData.data[0].region_color
+            };
             var dataFifth = {
-                label: "City",
+                label: TotalData.data[0].city_text,
+                labelvalue: TotalData.data[0].city_name,
                 data: CityLine,
                 lineTension: 0,
                 fill: false,
@@ -242,7 +251,7 @@ var PincodeTrendsModule = function () {
             axistxt.push({ "X": 'Time', "Y": 'Price Index' });
 
             //  label = OsgroupbyDate;
-            var Linedatasource = utility.bindmultilinedinamic("scanlinePincode", totaldataset, true, axistxt, label, ticks);
+            graphvariable = utility.bindmultilinedinamic("scanlinePincode", totaldataset, true, axistxt, label, ticks);
 
 
         },
@@ -323,6 +332,70 @@ var PincodeTrendsModule = function () {
 
             utility.exportCSVFile(header, itemsFormatted, fileTitle)
         },
+        checkboxTrend: function () {
+            const legend = $("#PincodeCheckbox");
+            var st = ''
+            st += '<div class="d-flex justify-content-between checkBtmSpace">\
+                        <div class="custom-control custom-checkbox">\
+                                <input type="checkbox" class="custom-control-input" onchange="pincodeALLchnage(event)" id="checkPincodeALL" checked="true">\
+                                <label class="custom-control-label pointer" for="checkPincodeALL">ALL</label>\
+                            </div>\
+                            <div class="cityNameCol"></div>\
+                        </div >';
+
+            graphvariable.data.datasets.forEach((dataset, index) => {
+                console.log('dataset' + dataset);
+                CheckboxIDs.push("dataset" + index);
+                /* onchange = citycheckboxchnage('+ id+')"*/
+                st += '<div class="d-flex justify-content-between checkBtmSpace">\
+                        <div class="custom-control custom-checkbox light-purple">\
+                                <input type="checkbox" class="custom-control-input" onchange="pincodecheckboxchnage(event)" id="dataset'+ index + '" checked="true">\
+                                <label class="custom-control-label pointer" for="dataset'+ index + '">' + dataset.label + '</label>\
+                            </div>\
+                            <div class="cityNameCol">'+ dataset.labelvalue + '</div>\
+                        </div >';
+            });
+
+            $("#PincodeCheckbox").append(st);
+        },
+        checkboxEffect: function (e, allFlag, allflagValue) {
+
+            if (allFlag && allflagValue) {
+                graphvariable.data.datasets.forEach((dataset, index) => {
+                    graphvariable.hide(index);
+                });
+                CheckboxIDs.forEach((item, index) => {
+                    var controlID = "#" + item;
+                    //$(controlID).removeAttr('checked'); // checks it
+                    $(controlID).prop('checked', false); // unchecks it
+                    //document.getElementById(controlID).checked = false;
+                });
+
+            }
+            else if (allFlag && !allflagValue) {
+                graphvariable.data.datasets.forEach((dataset, index) => {
+                    graphvariable.show(index);
+                });
+                CheckboxIDs.forEach((item, index) => {
+                    var controlID = '#' + item;
+                    document.getElementById('dataset0');//.setAttribute('checked', 'checked');
+                    //document.getElementById(controlID).checked = true;
+                    //$(controlID).removeAttr('checked'); // checks it
+                    $(controlID).prop('checked', true); // checks it
+
+                });
+            }
+            else {
+
+                if (graphvariable.isDatasetVisible(e)) {
+                    graphvariable.hide(e);
+                }
+                else {
+                    graphvariable.show(e);
+                }
+            }
+
+        }
 
     }
 }();
@@ -355,6 +428,27 @@ $("#PincodeTrendPrice").click(function () {
     $('#PincodeTrendIndex').removeClass('active');
     PincodeTrendsModule.Multilinegraph();
 });
+
+function pincodecheckboxchnage(event) {
+
+    $('#checkPincodeALL').prop('checked', false); // Unchecks it
+    console.log("change" + event.currentTarget.id);
+
+    var value = event.currentTarget.id;
+    var valuetobeSent = value.split('dataset')[1];
+    PincodeTrendsModule.checkboxEffect(valuetobeSent);
+
+}
+function pincodeALLchnage(event) {
+
+
+    if (event.target.checked) {
+        PincodeTrendsModule.checkboxEffect(undefined, true, false);
+    }
+    else {
+        PincodeTrendsModule.checkboxEffect(undefined, true, true);
+    }
+}
 
 function goBack() {
     window.history.back()

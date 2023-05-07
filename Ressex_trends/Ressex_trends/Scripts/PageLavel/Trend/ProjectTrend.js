@@ -7,6 +7,8 @@ var UserType = '';
 
 var ProjectTrendsModule = function () {
     var TotalData;
+    var graphvariable;
+    var CheckboxIDs = [];
     return {
         init: function () {
             $("#valTxtProject").text('Just one step away from getting your current property valuation...');
@@ -41,6 +43,7 @@ var ProjectTrendsModule = function () {
             
             common.dtpicker_cal("#fromDateIDProject");
             ProjectTrendsModule.Multilinegraph();
+            ProjectTrendsModule.checkboxTrend();
            
             
         },        
@@ -111,7 +114,8 @@ var ProjectTrendsModule = function () {
                 
             });
             var dataFirst = {
-                label: "Project",
+                label: TotalData.data[0].project_text,
+                labelvalue: TotalData.data[0].project_name,
                 data: projectLine,
                 lineTension: 0,
                 fill: false,
@@ -119,14 +123,16 @@ var ProjectTrendsModule = function () {
             };
 
             var dataSecond = {
-                label: "Pincode",
+                label: TotalData.data[0].pincode_text,
+                labelvalue: TotalData.data[0].pincode_name,
                 data: PincodeLine,
                 lineTension: 0,
                 fill: false,
                 borderColor: TotalData.data[0].pincode_color
             };
             var dataThird = {
-                label: "Sub Region",
+                label: TotalData.data[0].region_text,
+                labelvalue: TotalData.data[0].region_name,
                 data: SubRegionLine,
                 lineTension: 0,
                 fill: false,
@@ -134,14 +140,16 @@ var ProjectTrendsModule = function () {
             };
 
             var dataFourth = {
-                label: "Region",
+                label: TotalData.data[0].suburb_text,
+                labelvalue: TotalData.data[0].suburb_name,
                 data: RegionLine,
                 lineTension: 0,
                 fill: false,
                 borderColor: TotalData.data[0].suburb_color
             };
             var dataFifth = {
-                label: "City",
+                label: TotalData.data[0].city_text,
+                labelvalue: TotalData.data[0].city_name,
                 data: CityLine,
                 lineTension: 0,
                 fill: false,
@@ -173,7 +181,7 @@ var ProjectTrendsModule = function () {
                 axistxt.push({ "X": 'Quater', "Y": 'Saleable Rate in ₹/sqft' });
           
             //  label = OsgroupbyDate;
-            var Linedatasource = utility.bindmultilinedinamic("scanlineProject", totaldataset, true, axistxt, label, ticks);
+            graphvariable = utility.bindmultilinedinamic("scanlineProject", totaldataset, true, axistxt, label, ticks);
            
            
         },
@@ -244,7 +252,8 @@ var ProjectTrendsModule = function () {
 
             });
             var dataFirst = {
-                label: "Project",
+                label: TotalData.data[0].project_text,
+                labelvalue: TotalData.data[0].project_name,
                 data: projectLine,
                 lineTension: 0,
                 fill: false,
@@ -252,14 +261,16 @@ var ProjectTrendsModule = function () {
             };
 
             var dataSecond = {
-                label: "Pincode",
+                label: TotalData.data[0].pincode_text,
+                labelvalue: TotalData.data[0].pincode_name,
                 data: PincodeLine,
                 lineTension: 0,
                 fill: false,
                 borderColor: TotalData.data[0].pincode_color
             };
             var dataThird = {
-                label: "Sub Region",
+                label: TotalData.data[0].region_text,
+                labelvalue: TotalData.data[0].region_name,
                 data: SubRegionLine,
                 lineTension: 0,
                 fill: false,
@@ -267,14 +278,16 @@ var ProjectTrendsModule = function () {
             };
 
             var dataFourth = {
-                label: "Region",
+                label: TotalData.data[0].suburb_text,
+                labelvalue: TotalData.data[0].suburb_name,
                 data: RegionLine,
                 lineTension: 0,
                 fill: false,
                 borderColor: TotalData.data[0].suburb_color
             };
             var dataFifth = {
-                label: "City",
+                label: TotalData.data[0].city_text,
+                labelvalue: TotalData.data[0].city_name,
                 data: CityLine,
                 lineTension: 0,
                 fill: false,
@@ -306,7 +319,7 @@ var ProjectTrendsModule = function () {
             axistxt.push({ "X": 'Time', "Y": 'Price Index' });
 
             //  label = OsgroupbyDate;
-            var Linedatasource = utility.bindmultilinedinamic("scanlineProject", totaldataset, true, axistxt, label, ticks);
+            graphvariable = utility.bindmultilinedinamic("scanlineProject", totaldataset, true, axistxt, label, ticks);
 
 
         },
@@ -431,6 +444,70 @@ var ProjectTrendsModule = function () {
 
             utility.exportCSVFile(header, itemsFormatted, fileTitle)
         },
+        checkboxTrend: function () {
+            const legend = $("#ProjectCheckbox");
+            var st = ''
+            st += '<div class="d-flex justify-content-between checkBtmSpace">\
+                        <div class="custom-control custom-checkbox">\
+                                <input type="checkbox" class="custom-control-input" onchange="projectALLchnage(event)" id="checkProjectALL" checked="true">\
+                                <label class="custom-control-label pointer" for="checkProjectALL">ALL</label>\
+                            </div>\
+                            <div class="cityNameCol"></div>\
+                        </div >';
+
+            graphvariable.data.datasets.forEach((dataset, index) => {
+                console.log('dataset' + dataset);
+                CheckboxIDs.push("dataset" + index);
+                /* onchange = citycheckboxchnage('+ id+')"*/
+                st += '<div class="d-flex justify-content-between checkBtmSpace">\
+                        <div class="custom-control custom-checkbox light-purple">\
+                                <input type="checkbox" class="custom-control-input" onchange="projectcheckboxchnage(event)" id="dataset'+ index + '" checked="true">\
+                                <label class="custom-control-label pointer" for="dataset'+ index + '">' + dataset.label + '</label>\
+                            </div>\
+                            <div class="cityNameCol">'+ dataset.labelvalue + '</div>\
+                        </div >';
+            });
+
+            $("#ProjectCheckbox").append(st);
+        },
+        checkboxEffect: function (e, allFlag, allflagValue) {
+
+            if (allFlag && allflagValue) {
+                graphvariable.data.datasets.forEach((dataset, index) => {
+                    graphvariable.hide(index);
+                });
+                CheckboxIDs.forEach((item, index) => {
+                    var controlID = "#" + item;
+                    //$(controlID).removeAttr('checked'); // checks it
+                    $(controlID).prop('checked', false); // unchecks it
+                    //document.getElementById(controlID).checked = false;
+                });
+
+            }
+            else if (allFlag && !allflagValue) {
+                graphvariable.data.datasets.forEach((dataset, index) => {
+                    graphvariable.show(index);
+                });
+                CheckboxIDs.forEach((item, index) => {
+                    var controlID = '#' + item;
+                    document.getElementById('dataset0');//.setAttribute('checked', 'checked');
+                    //document.getElementById(controlID).checked = true;
+                    //$(controlID).removeAttr('checked'); // checks it
+                    $(controlID).prop('checked', true); // checks it
+
+                });
+            }
+            else {
+
+                if (graphvariable.isDatasetVisible(e)) {
+                    graphvariable.hide(e);
+                }
+                else {
+                    graphvariable.show(e);
+                }
+            }
+
+        }
      
     }
 }();
@@ -463,3 +540,23 @@ $("#ProjectTrendPrice").click(function () {
     ProjectTrendsModule.Multilinegraph();
 });
 
+function projectcheckboxchnage(event) {
+
+    $('#checkProjectALL').prop('checked', false); // Unchecks it
+    console.log("change" + event.currentTarget.id);
+
+    var value = event.currentTarget.id;
+    var valuetobeSent = value.split('dataset')[1];
+    ProjectTrendsModule.checkboxEffect(valuetobeSent);
+
+}
+function projectALLchnage(event) {
+
+
+    if (event.target.checked) {
+        ProjectTrendsModule.checkboxEffect(undefined, true, false);
+    }
+    else {
+        ProjectTrendsModule.checkboxEffect(undefined, true, true);
+    }
+}
