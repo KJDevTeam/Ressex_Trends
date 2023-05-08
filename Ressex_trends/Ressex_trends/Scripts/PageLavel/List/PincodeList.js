@@ -350,7 +350,7 @@ function PincodeCurRateSortclick(event) {
     }
     else {
 
-        PincodeListModule.init("current_rate", "asc");
+        PincodeListModule.init("current_rate", "desc");
     }
     $('#overlay').fadeOut();
 }
@@ -373,7 +373,7 @@ function PincodeYoySortclick(event) {
     }
     else {
 
-        PincodeListModule.init("cagr_last_1yr", "asc");
+        PincodeListModule.init("cagr_last_1yr", "desc");
     }
     $('#overlay').fadeOut();
 
@@ -397,7 +397,7 @@ function Pincodecagr3ySortclick(event) {
     }
     else {
 
-        PincodeListModule.init("cagr_last_3yr", "asc");
+        PincodeListModule.init("cagr_last_3yr", "desc");
     }
     $('#overlay').fadeOut();
 
@@ -422,7 +422,7 @@ function Pincodecagr5ySortclick(event) {
     }
     else {
 
-        PincodeListModule.init("cagr_last_5yr", "asc");
+        PincodeListModule.init("cagr_last_5yr", "desc");
     }
     $('#overlay').fadeOut();
 }

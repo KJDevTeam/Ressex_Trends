@@ -348,7 +348,7 @@ function ProjectCurRateSortclick(event) {
     }
     else {
       
-        ProjectListModule.init("current_rate", "asc");       
+        ProjectListModule.init("current_rate", "desc");
     }
     $('#overlay').fadeOut();
 }    
@@ -371,7 +371,7 @@ function ProjectYoySortclick(event) {
     }
     else {
 
-        ProjectListModule.init("cagr_last_1yr", "asc");
+        ProjectListModule.init("cagr_last_1yr", "desc");
     }
     $('#overlay').fadeOut();
 
@@ -395,7 +395,7 @@ function Projectcagr3ySortclick(event) {
     }
     else {
 
-        ProjectListModule.init("cagr_last_3yr", "asc");
+        ProjectListModule.init("cagr_last_3yr", "desc");
     }
     $('#overlay').fadeOut();
 
@@ -420,7 +420,7 @@ function Projectcagr5ySortclick(event) {
     }
     else {
 
-        ProjectListModule.init("cagr_last_5yr", "asc");
+        ProjectListModule.init("cagr_last_5yr", "desc");
     }
     $('#overlay').fadeOut();    
 }

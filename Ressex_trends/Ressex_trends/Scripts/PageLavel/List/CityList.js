@@ -324,7 +324,7 @@ function CityCurRateSortclick(event) {
     }
     else {
 
-        CityListModule.init("current_rate", "asc");
+        CityListModule.init("current_rate", "desc");
     }
     $('#overlay').fadeOut();
 }
@@ -347,7 +347,7 @@ function CityYoySortclick(event) {
     }
     else {
 
-        CityListModule.init("cagr_last_1yr", "asc");
+        CityListModule.init("cagr_last_1yr", "desc");
     }
     $('#overlay').fadeOut();
 
@@ -371,7 +371,7 @@ function Citycagr3ySortclick(event) {
     }
     else {
 
-        CityListModule.init("cagr_last_3yr", "asc");
+        CityListModule.init("cagr_last_3yr", "desc");
     }
     $('#overlay').fadeOut();
 
@@ -396,7 +396,7 @@ function Citycagr5ySortclick(event) {
     }
     else {
 
-        CityListModule.init("cagr_last_5yr", "asc");
+        CityListModule.init("cagr_last_5yr", "desc");
     }
     $('#overlay').fadeOut();
 }

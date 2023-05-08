@@ -129,7 +129,7 @@ var LocationTrendsModule = function () {
             totaldataset.push(dataFourth);
             totaldataset.push(dataFifth);
 
-            axistxt.push({ "X": 'Quater', "Y": 'Saleable Rate in ₹/sqft' });
+            axistxt.push({ "X": 'Quarter', "Y": 'Saleable Rate in ₹/sqft' });
 
             //  label = OsgroupbyDate;
             graphvariable = utility.bindmultilinedinamic("scanlineLocation", totaldataset, true, axistxt, label, ticks);

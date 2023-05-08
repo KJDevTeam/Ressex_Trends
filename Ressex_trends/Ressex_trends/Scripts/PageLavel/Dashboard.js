@@ -9,8 +9,9 @@ var DashboardModule = function () {
    
     
     var projectType = "Residential";
-    
+    var keepCityList;
     return {
+        
         init: function () {
             
             var APIkey = utility.ServiceAPIURL("Dashboard/PriceIndexList");
@@ -50,6 +51,7 @@ var DashboardModule = function () {
           //     /* document.getElementById("projecType").value = value;*/
           //  });   
           //  DashboardModule.AutocompleteSearch(projectType);
+           
         },
         AutocompleteSearch: function (projectTypetoLoad) {
            $("#SelectedProject").autocomplete({
@@ -145,8 +147,8 @@ var DashboardModule = function () {
                 stepSize: 1
             };
             colour = LineData.data[0].country_color;
-            axistxt.push({ "X": 'Quater', "Y": 'Saleable Rate in ₹/sfqt' });
-            axistxt_indx.push({ "X": 'Quater', "Y": 'Price Index' });
+            axistxt.push({ "X": 'Quarter', "Y": 'Saleable Rate in ₹/sfqt', "color":'#E31E24' });
+            axistxt_indx.push({ "X": 'Quarter', "Y": 'Price Index', "color": '#E31E24'  });
             titletxt = 'Transaction';
             responsive = true;
             var Linedatasource = utility.bindline("priceLinechart", lbl, Linedt, hovervals, ticks, true, colour, axistxt, titletxt)
@@ -155,6 +157,8 @@ var DashboardModule = function () {
             $("#qtrTxt").text(LineData.data[0].current_qtr_text);
             $("#qtrprice").text(LineData.data[0].current_rate_text);
             $("#Yoy").text(LineData.data[0].cagr_last_1yr_pct);
+            $("#CAGRDropDownTextDashboard").text("CAGR 3Y");
+            $("#calculatedCAGRDashboard").text(LineData.data[0].cagr_last_3yr_pct);
          
         },
         TransactionDailyCsvExport: function (TotalData) {
@@ -190,10 +194,25 @@ var DashboardModule = function () {
 
             utility.exportCSVFile(header, itemsFormatted, fileTitle)
         },
+        CAGRCalculation: function (t) {
+            var attributetobeUsed ="saleable_rate_psf";            
+
+            var formulaCalulator = common.CAGRFormularCalulation(t, (LineData.data.length - 1), LineData.data, attributetobeUsed);
+            $("#calculatedCAGRDashboard").text(formulaCalulator);
+        },
     }
 }();
 $("#TrendsDownload").click(function () {
     DashboardModule.TransactionDailyCsvExport(LineData.data);
+});
+
+$('#CAGRListDashboard a').on('click', function () {
+    var value = $(this).html();
+    $("#CAGRDropDownTextDashboard").text(value);
+
+    var temp_t = value.split('Y')[0];
+    var t = Number(temp_t.split(' ')[1]);
+    DashboardModule.CAGRCalculation(t);
 });
 function viewmoreClick() {
     cityindex++;

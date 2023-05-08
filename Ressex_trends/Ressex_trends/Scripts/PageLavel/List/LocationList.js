@@ -348,7 +348,7 @@ function LocationCurRateSortclick(event) {
     }
     else {
 
-        LocationListModule.init("current_rate", "asc");
+        LocationListModule.init("current_rate", "desc");
     }
     $('#overlay').fadeOut();
 }
@@ -371,7 +371,7 @@ function LocationYoySortclick(event) {
     }
     else {
 
-        LocationListModule.init("cagr_last_1yr", "asc");
+        LocationListModule.init("cagr_last_1yr", "desc");
     }
     $('#overlay').fadeOut();
 
@@ -395,7 +395,7 @@ function Locationcagr3ySortclick(event) {
     }
     else {
 
-        LocationListModule.init("cagr_last_3yr", "asc");
+        LocationListModule.init("cagr_last_3yr", "desc");
     }
     $('#overlay').fadeOut();
 
@@ -420,7 +420,7 @@ function Locationcagr5ySortclick(event) {
     }
     else {
 
-        LocationListModule.init("cagr_last_5yr", "asc");
+        LocationListModule.init("cagr_last_5yr", "desc");
     }
     $('#overlay').fadeOut();
 }
