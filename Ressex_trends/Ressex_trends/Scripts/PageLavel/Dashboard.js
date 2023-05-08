@@ -9,7 +9,7 @@ var DashboardModule = function () {
    
     
     var projectType = "Residential";
-    var keepCityList;
+    
     return {
         
         init: function () {
