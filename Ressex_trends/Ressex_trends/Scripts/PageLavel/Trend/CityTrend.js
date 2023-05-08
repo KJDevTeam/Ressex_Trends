@@ -21,9 +21,13 @@ var CityTrendsModule = function () {
             var userdetails = common.CheckIsPaid();
             UserType = userdetails.UserType;
             if (UserType != "Paid") {
-
+                $("#CityTrendGraphChanger").remove();
+                $('#CityCheckbox').remove();
+                $('#CityTrendGraph').hide();
             }
             else {
+                $('#CityNologinmask').hide();
+                $("#CityCheckboxNoLoginMask").remove();
             }
             var jsonstr = {
                 "id": result.Id,
@@ -284,7 +288,7 @@ var CityTrendsModule = function () {
             utility.exportCSVFile(header, itemsFormatted, fileTitle)
         },
         checkboxTrend: function () {
-            const legend = $("#TrendCheckbox");
+            const legend = $("#CityCheckbox");
             var st = ''
             st += '<div class="d-flex justify-content-between checkBtmSpace">\
                         <div class="custom-control custom-checkbox">\
@@ -307,7 +311,7 @@ var CityTrendsModule = function () {
                         </div >';
             });
 
-            $("#TrendCheckbox").append(st);
+            $("#CityCheckbox").append(st);
         },
         checkboxEffect: function (e,allFlag,allflagValue) {
 

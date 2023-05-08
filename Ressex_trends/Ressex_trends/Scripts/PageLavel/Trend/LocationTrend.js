@@ -18,9 +18,16 @@ var LocationTrendsModule = function () {
             var userdetails = common.CheckIsPaid();
             UserType = userdetails.UserType;
             if (UserType != "Paid") {
-
+               // $('#LocationTrendGraphChanger').fadeOut();
+                $("#LocationTrendGraphChanger").remove();
+                $('#LocationCheckbox').remove();
+                $('#LocationTrendGraph').hide();
+                
             }
             else {
+                $('#LocationNologinmask').hide();
+                $("#LocationCheckboxNoLoginMask").remove();
+                
             }
             var jsonstr = {
                 "id": result.Id,

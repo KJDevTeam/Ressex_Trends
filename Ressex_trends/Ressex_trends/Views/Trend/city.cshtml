@@ -94,18 +94,21 @@
             <div class="row justify-content-center">
                 <div class="chartLeft flex-1">
                     <div class="chartInnerWrap h-100">
-                        <div class="d-flex justify-content-end">
+                        <div class="d-flex justify-content-end" id="CityTrendGraphChanger">
                             <button type="button" class="btn btn-outline-primary active" id="CityTrendPrice">Price</button>
                             <button type="button" class="btn btn-outline-primary ml-2" id="CityTrendIndex">Index</button>
                             <button type="button" class="btn btn-outline-primary ml-2" id="CityCSVDownload">Download</button>
                         </div>
-                        <div>
+                        <div id="CityTrendGraph">
                             <canvas id="scanlineCity" height="500"></canvas>
+                        </div>
+                        <div class="text-center" id="CityNologinmask">
+                            <span class="btn btn-secondary noDataBtn mt-4">Login to View</span>
                         </div>
                     </div>
                 </div>
                 <div class="chartRight" >
-                    <div class="chartInnerWrap chartRightInner h-100 d-flex flex-column justify-content-center" id="TrendCheckbox">
+                    <div class="chartInnerWrap chartRightInner h-100 d-flex flex-column justify-content-center" id="CityCheckbox">
                         @*<div class="d-flex justify-content-between checkBtmSpace">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="customCheck1">
@@ -150,6 +153,9 @@
                         </div>*@
 
                     </div>
+                    <div class="chartInnerWrap chartRightInner h-100 d-flex flex-column justify-content-center" id="CityCheckboxNoLoginMask">
+                    </div>
+                
                 </div>
             </div>
         </section>

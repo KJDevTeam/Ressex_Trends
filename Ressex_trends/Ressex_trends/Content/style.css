@@ -244,6 +244,13 @@ a.text-primary:hover, a.text-primary:focus {
   min-height: auto;
   border-color: #E31E24;
 }
+.btn.noDataBtn {
+    min-height: auto;
+}
+
+.btn .btn-h-30 {
+    min-height: 30px;
+}
 
 /* Dropdown */
 .dropdown-menu {

@@ -18,9 +18,13 @@ var PincodeTrendsModule = function () {
             var userdetails = common.CheckIsPaid();
             UserType = userdetails.UserType;
             if (UserType != "Paid") {
-
+                $("#PincodeTrendGraphChanger").remove();
+                $('#PincodeCheckbox').remove();
+                $('#PincodeTrendGraph').hide();
             }
             else {
+                $('#PincodeNologinmask').hide();
+                $("#PincodeCheckboxNoLoginMask").remove();
             }
             var jsonstr = {
                 "id": result.Id,

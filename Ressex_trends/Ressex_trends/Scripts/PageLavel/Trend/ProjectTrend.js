@@ -18,9 +18,13 @@ var ProjectTrendsModule = function () {
             var userdetails = common.CheckIsPaid();
             UserType = userdetails.UserType;
             if (UserType != "Paid") {
-
+                $("#ProjectTrendGraphChanger").remove();
+                $('#ProjectCheckbox').remove();
+                $('#ProjectTrendGraph').hide();
             }
             else {
+                $('#ProjectNologinmask').hide();
+                $("#ProjectCheckboxNoLoginMask").remove();
             }
             var jsonstr = {
                 "id": result.Id,

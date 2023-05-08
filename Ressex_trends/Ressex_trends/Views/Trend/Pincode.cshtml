@@ -94,17 +94,20 @@
             <div class="row justify-content-center">
                 <div class="chartLeft flex-1">
                     <div class="chartInnerWrap h-100">
-                        <div class="d-flex justify-content-end">
+                        <div class="d-flex justify-content-end" id="PincodeTrendGraphChanger">
                             <button type="button" class="btn btn-outline-primary active" id="PincodeTrendPrice">Price</button>
                             <button type="button" class="btn btn-outline-primary ml-2" id="PincodeTrendIndex">Index</button>
                             <button type="button" class="btn btn-outline-primary ml-2" id="PincodeCSVDownload">Download</button>
                         </div>
-                        <div>
+                        <div id="PincodeTrendGraph">
                             <canvas id="scanlinePincode" height="500"></canvas>
+                        </div>
+                        <div class="text-center" id="PincodeNologinmask">
+                            <span class="btn btn-secondary noDataBtn mt-4">Login to View</span>
                         </div>
                     </div>
                 </div>
-                <div class="chartRight">
+                <div class="chartRight" >
                     <div class="chartInnerWrap chartRightInner h-100 d-flex flex-column justify-content-center" id="PincodeCheckbox">
                         @*<div class="d-flex justify-content-between checkBtmSpace">
                             <div class="custom-control custom-checkbox">
@@ -149,6 +152,8 @@
                             <div class="cityNameCol">Island City</div>
                         </div>*@
 
+                    </div>
+                    <div class="chartInnerWrap chartRightInner h-100 d-flex flex-column justify-content-center" id="PincodeCheckboxNoLoginMask">
                     </div>
                 </div>
             </div>

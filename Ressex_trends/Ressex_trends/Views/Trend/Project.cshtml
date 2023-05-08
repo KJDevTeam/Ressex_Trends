@@ -94,13 +94,16 @@
             <div class="row justify-content-center">
                 <div class="chartLeft flex-1">
                     <div class="chartInnerWrap h-100">
-                        <div class="d-flex justify-content-end">
+                        <div class="d-flex justify-content-end" id="ProjectTrendGraphChanger">
                             <button type="button" class="btn btn-outline-primary active" id="ProjectTrendPrice">Price</button>
                             <button type="button" class="btn btn-outline-primary ml-2" id="ProjectTrendIndex">Index</button>
                             <button type="button" class="btn btn-outline-primary ml-2" id="ProjectCSVDownload">Download</button>
                         </div>
-                        <div>
+                        <div id="ProjectTrendGraph">
                             <canvas id="scanlineProject" height="500"></canvas>
+                        </div>
+                        <div class="text-center" id="ProjectNologinmask">
+                            <span class="btn btn-secondary noDataBtn mt-4">Login to View</span>
                         </div>
                     </div>
                 </div>
@@ -149,6 +152,8 @@
                             <div class="cityNameCol">Island City</div>
                         </div>*@
 
+                    </div>
+                    <div class="chartInnerWrap chartRightInner h-100 d-flex flex-column justify-content-center" id="ProjectCheckboxNoLoginMask">
                     </div>
                 </div>
             </div>
