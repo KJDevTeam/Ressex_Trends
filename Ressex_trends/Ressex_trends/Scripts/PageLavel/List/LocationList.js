@@ -86,8 +86,49 @@ var LocationListModule = function () {
                 var img = utility.FrontEndAPIURL("images");
                 var st = ''
                 $("#LocationList").empty();
-                $.each(arr_toload, function (index, items) {
-                    st += '<div class="searchResultCard d-flex align-items-center">\
+                var userdetails = common.CheckIsPaid();
+                UserType = userdetails.UserType;
+                if (UserType != "Paid") {
+                    $.each(arr_toload, function (index, items) {
+
+
+                        st += '<div class="searchResultCard d-flex align-items-center">\
+                        <div class="mediaBlk rounded-circle mr-5"><img src="'+ img + '/search-img-1.png" alt="" class="rounded-circle"></div>\
+                            <div class="d-flex justify-content-between flex-1">\
+                                    <div class="searchCol">\
+                                        <label class="name">'+ items.location + '</label>\
+                                        <div class="location">'+ items.region_city + '</div>\
+                                    </div>\
+                                    <div class="searchCol">\
+                                        <label>'+ items.current_qtr + '</label>\
+                                        <div>Rs xxxx<i class="fa fa-lock text-danger ml-2"></i></div>\
+                                    </div>\
+                                    <div class="searchCol">\
+                                        <label>YoY Change (%)</label>\
+                                        <div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div>\
+                                    </div>\
+                                    <div class="searchCol">\
+                                        <label>CAGR (3Y)</label>\
+                                        <div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div>\
+                                    </div>\
+                                    <div class="searchCol">\
+                                            <label>CAGR (5Y)</label>\
+                                            <div>x %<i class="fa fa-lock text-danger ml-2"></i></div>\
+                                    </div>\
+                               </div>\
+                               <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
+                                  <a href="javascript:void(0)" onClick="ProjectBylocation('+ items.locationid + ')">View<br>Projects</a>\
+                               </div>\
+                               <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
+                                <a href="javascript:void(0)" onClick="LocationTrendsRoute('+ items.locationid + ')">View<br>Trends</a>\
+                               </div>\
+                           </div>';
+                    });
+                }
+                else {
+
+                    $.each(arr_toload, function (index, items) {
+                        st += '<div class="searchResultCard d-flex align-items-center">\
                         <div class="mediaBlk rounded-circle mr-5"><img src="'+ img + '/search-img-1.png" alt="" class="rounded-circle"></div>\
                             <div class="d-flex justify-content-between flex-1">\
                                     <div class="searchCol">\
@@ -118,8 +159,9 @@ var LocationListModule = function () {
                                 <a href="javascript:void(0)" onClick="LocationTrendsRoute('+ items.locationid + ')">View<br>Trends</a>\
                                </div>\
                            </div>';
+                    });
                    
-                });
+                }
                 var paginateText = 'Showing <b>' + arr_toload.length + '</b> locations out of <b>' + TotalData.length + '</b>';
                 $('#LocationPaginationText').empty();
                 $('#LocationPaginationText').append(paginateText);

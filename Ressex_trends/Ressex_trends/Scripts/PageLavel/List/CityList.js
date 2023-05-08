@@ -80,9 +80,48 @@ var CityListModule = function () {
                 var img = utility.FrontEndAPIURL("images");
                 var st = ''
                 $("#CityList").empty();
-                $.each(arr_toload, function (index, items) {
+                var userdetails = common.CheckIsPaid();
+                UserType = userdetails.UserType;
+                if (UserType != "Paid") {
+                    $.each(arr_toload, function (index, items) {
 
-                    st += '<div class="searchResultCard d-flex align-items-center">\
+                        st += '<div class="searchResultCard d-flex align-items-center">\
+                        <div class="mediaBlk rounded-circle mr-5"><img src="'+ img + '/search-img-1.png" alt="" class="rounded-circle"></div>\
+                            <div class="d-flex justify-content-between flex-1">\
+                                    <div class="searchCol">\
+                                        <label class="name">'+ items.city_search + '</label>\
+                                        <div class="location">'+ items.state + '</div>\
+                                    </div>\
+                                    <div class="searchCol">\
+                                        <label>'+ items.current_qtr + '</label>\
+                                        <div>Rs xxxx %<i class="fa fa-lock text-danger ml-2"></i></div>\
+                                    </div>\
+                                    <div class="searchCol">\
+                                        <label>YoY Change (%)</label>\
+                                        <div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div>\
+                                    </div>\
+                                    <div class="searchCol">\
+                                        <label>CAGR (3Y)</label>\
+                                        <div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div>\
+                                    </div>\
+                                    <div class="searchCol">\
+                                            <label>CAGR (5Y)</label>\
+                                            <div>x %<i class="fa fa-lock text-danger ml-2"></i></div>\
+                                    </div>\
+                               </div>\
+                               <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
+                                  <a href="javascript:void(0)" onClick="ProjectByCity('+ items.region_or_city_id + ')">View<br>Projects</a>\
+                               </div>\
+                               <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
+                                  <a href="javascript:void(0)" onClick="CityTrendsRoute('+ items.region_or_city_id + ')">View<br>Trends</a>\
+                               </div>\
+                           </div>';
+                    });
+                }
+                else {
+                    $.each(arr_toload, function (index, items) {
+
+                        st += '<div class="searchResultCard d-flex align-items-center">\
                         <div class="mediaBlk rounded-circle mr-5"><img src="'+ img + '/search-img-1.png" alt="" class="rounded-circle"></div>\
                             <div class="d-flex justify-content-between flex-1">\
                                     <div class="searchCol">\
@@ -113,7 +152,8 @@ var CityListModule = function () {
                                   <a href="javascript:void(0)" onClick="CityTrendsRoute('+ items.region_or_city_id + ')">View<br>Trends</a>\
                                </div>\
                            </div>';
-                });
+                    });
+                }
                 var paginateText = 'Showing <b>' + arr_toload.length + '</b> cities out of <b>' + keepCityListData.length + '</b>';
                 $('#CityPaginationText').empty();
                 $('#CityPaginationText').append(paginateText);
