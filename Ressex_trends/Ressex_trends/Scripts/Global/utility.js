@@ -714,13 +714,24 @@ utility.bindline = function (Controlid, lbl, dt, hovervals, ticks, responsive, c
                 y: {
                     title: {
                         display: true,
-                        text: axistxt[0].Y
+                        text: axistxt[0].Y,
+                        color: axistxt[0].color,
+                        font: {
+                            size: 16,                            
+                            
+                        }
+
                     }
                 },
                 x: {
                     title: {
                         display: true,
-                        text: axistxt[0].X
+                        text: axistxt[0].X,
+                        color: axistxt[0].color,
+                        font: {
+                            size: 16,
+
+                        }
                     }
                 }
             },
@@ -767,8 +778,21 @@ utility.bindline = function (Controlid, lbl, dt, hovervals, ticks, responsive, c
     return lineChart;
 }
 
-utility.bindmultilinedinamic = function (Controlid, dataCritical, responsive, axistxt, label, ticks) {
+utility.bindmultilinedinamic = function (Controlid, dataCritical, responsive, axistxt, label, ticks, tooltipTitle) {
+    var ColChart;
+    Chart.helpers.each(Chart.instances, function (instance) {
+        if (instance.canvas.id == Controlid) {
+            ColChart = instance;
+        }
+    })
 
+    var meta = ColChart;
+    if (meta != undefined) {
+        meta.destroy();
+    }
+
+
+    tooltipTitle = "Actual";
     var chartOptions =
     {
         responsive: responsive,
@@ -779,57 +803,34 @@ utility.bindmultilinedinamic = function (Controlid, dataCritical, responsive, ax
             datalabels: {
                 display: false,
             },
+            tooltip: {
+                usePointStyle: true,
+                callbacks: {
+                    title: function (tooltipItem) {
+                        return tooltipTitle;                   
+                        
+                    },
+                    label: function (tooltipItem) {
+                        /*console.log(tooltipItem);*/
+                        return tooltipItem.formattedValue;
+                    }
+                }
+            },
+            legend: {
+                display: false,
+                position: 'top',
+                labels: {
+                    boxWidth: 100,
+                    fontColor: 'black'
+                }
+            },
         },
         //title: {
         //    display: true,
         //    text:'da' //titletxt
         //},
-        legend: {
-            display: true,
-            position: 'top',
-            labels: {
-                boxWidth: 100,
-                fontColor: 'black'
-            }
-        },
-        //tooltips: {
-        //        mode: 'nearest',
-        //        intersect: false,
-        //        callbacks: {
-        //            label: function (tooltipItems, data) {
-        //                if (data.datasets[tooltipItems.datasetIndex].y != undefined) {
-        //                    return 'Grade: ' + data.datasets[tooltipItems.datasetIndex].y[tooltipItems.index];
-        //                }
-        //                else {
-        //                    return data[tooltipItems.index]
-        //                }
-
-        //            }
-        //        }
-        //    },
-        hover: {
-            mode: 'nearest',
-            intersect: true
-
-        },
-        //scales: {
-        //    xAxes: [{
-        //        display: true,
-        //        scaleLabel: {
-        //            display: true,
-        //            labelString: axistxt[0].X
-        //        }
-        //    }],
-        //    yAxes: [{
-        //        ticks: ticks,
-        //        display: true,
-        //        scaleLabel: {
-        //            display: true,
-        //            labelString: axistxt[0].Y
-        //        },
-        //    }]
-        //},
-        //events: ['click']
+        
+        
         scales: {
             y: {
                 title: {
@@ -844,6 +845,7 @@ utility.bindmultilinedinamic = function (Controlid, dataCritical, responsive, ax
                 }
             }
         },
+        
     }
 
 
@@ -857,25 +859,9 @@ utility.bindmultilinedinamic = function (Controlid, dataCritical, responsive, ax
         type: 'line',
         data: MultilineData,
         options: chartOptions,
-        plugins: {
-            afterDraw: function (chart) {
-                if (chart.data.labels.length === 0) {
-                    // No data is present
-                    var ctx = chart.chart.ctx;
-                    var width = chart.chart.width;
-                    var height = chart.chart.height
-                    chart.clear();
-
-                    ctx.save();
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.font = "30px normal 'Helvetica Nueue'";
-                    ctx.fillText('No data to display', width / 2, height / 2);
-                    ctx.restore();
-                }
-            }
-        }
+       
     });
 
     return lineChart;
 }
+

@@ -9,18 +9,9 @@ var ProjectListModule = function () {
             localStorage.removeItem('ShortcutFilter');
 
             var QueryStringARR = common.GetQueryString();
-            var result = common.GetTrendsTypePayload(QueryStringARR);
+            //var result = common.GetTrendsTypePayload(QueryStringARR);
 
-            var userdetails = common.CheckIsPaid();
-            UserType = userdetails.UserType;
-            if (UserType != "Paid") {
-
-            }
-            else {
-
-
-
-            }
+            
             ProjectListModule.sortingDecider(sortBy, OrderBy);
             var result = ProjectListModule.ProjectPayload("project", QueryStringARR,sortBy, OrderBy);
 
@@ -82,9 +73,51 @@ var ProjectListModule = function () {
                 var img = utility.FrontEndAPIURL("images");
                 var st = ''
                 $("#ProjectList").empty();
-                $.each(arr_toload, function (index, items) {
-                   st+='<div class="searchResultCard d-flex align-items-center">\
+
+                var userdetails = common.CheckIsPaid();
+                UserType = userdetails.UserType;
+                if (UserType != "Paid") {
+                    $.each(arr_toload, function (index, items) {
+
+                        st += '<div class="searchResultCard d-flex align-items-center">\
                         <div class="mediaBlk rounded-circle"><img src="'+ img + '/search-img-1.png" alt="" class="rounded-circle"></div>\
+                            <div class="d-flex justify-content-between flex-1">\
+                                    <div class="searchCol">\
+                                        <label class="name">'+ items.name + '</label>\
+                                        <div class="location">'+ items.region_city + '</div>\
+                                    </div>\
+                                    <div class="searchCol">\
+                                        <label>'+ items.current_qtr + '</label>\
+                                        <div>Rs xxxx<i class="fa fa-lock text-danger ml-2"></i></div>\
+                                    </div>\
+                                    <div class="searchCol">\
+                                        <label>YoY Change (%)</label>\
+                                        <div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div>\
+                                    </div>\
+                                    <div class="searchCol">\
+                                        <label>CAGR (3Y)</label>\
+                                        <div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div>\
+                                    </div>\
+                                    <div class="searchCol">\
+                                            <label>CAGR (5Y)</label>\
+                                            <div>x %<i class="fa fa-lock text-danger ml-2"></i></div>\
+                                    </div>\
+                                    <div class="searchCol">\
+                                            <label>Project Status</label>\
+                                            <div>xxxx<i class="fa fa-lock text-danger ml-2"></i></div>\
+                                    </div>\
+                               </div>\
+                               <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
+                                  <a href="javascript:void(0)" onClick="ProjectTrendsRoute('+ items.project_id + ')">View<br>Trends</a>\
+                               </div>\
+                           </div>';
+                    });
+
+                }
+                else {
+                    $.each(arr_toload, function (index, items) {
+                        st += '<div class="searchResultCard d-flex align-items-center">\
+                        <div class="mediaBlk rounded-circle mr-5"><img src="'+ img + '/search-img-1.png" alt="" class="rounded-circle"></div>\
                             <div class="d-flex justify-content-between flex-1">\
                                     <div class="searchCol">\
                                         <label class="name">'+ items.name + '</label>\
@@ -115,7 +148,15 @@ var ProjectListModule = function () {
                                   <a href="javascript:void(0)" onClick="ProjectTrendsRoute('+ items.project_id + ')">View<br>Trends</a>\
                                </div>\
                            </div>';
-                });
+                    });
+
+                }
+
+
+
+
+                   
+                
                 var paginateText = 'Showing <b>' + arr_toload.length + '</b> projects out of <b>' + keepProjectListData.length + '</b>';
                 $('#ProjectPaginationText').empty();
                 $('#ProjectPaginationText').append(paginateText);
@@ -348,7 +389,7 @@ function ProjectCurRateSortclick(event) {
     }
     else {
       
-        ProjectListModule.init("current_rate", "asc");       
+        ProjectListModule.init("current_rate", "desc");
     }
     $('#overlay').fadeOut();
 }    
@@ -371,7 +412,7 @@ function ProjectYoySortclick(event) {
     }
     else {
 
-        ProjectListModule.init("cagr_last_1yr", "asc");
+        ProjectListModule.init("cagr_last_1yr", "desc");
     }
     $('#overlay').fadeOut();
 
@@ -395,7 +436,7 @@ function Projectcagr3ySortclick(event) {
     }
     else {
 
-        ProjectListModule.init("cagr_last_3yr", "asc");
+        ProjectListModule.init("cagr_last_3yr", "desc");
     }
     $('#overlay').fadeOut();
 
@@ -420,7 +461,7 @@ function Projectcagr5ySortclick(event) {
     }
     else {
 
-        ProjectListModule.init("cagr_last_5yr", "asc");
+        ProjectListModule.init("cagr_last_5yr", "desc");
     }
     $('#overlay').fadeOut();    
 }

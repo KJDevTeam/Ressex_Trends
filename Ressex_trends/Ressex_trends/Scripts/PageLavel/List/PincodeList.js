@@ -89,9 +89,47 @@ var PincodeListModule = function () {
                 var img = utility.FrontEndAPIURL("images");
                 var st = ''
                 $("#PincodeList").empty();
-                $.each(arr_toload, function (index, items) {
-                    st += '<div class="searchResultCard d-flex align-items-center">\
+                var userdetails = common.CheckIsPaid();
+                UserType = userdetails.UserType;
+                if (UserType != "Paid") {
+                    $.each(arr_toload, function (index, items) {
+                        st += '<div class="searchResultCard d-flex align-items-center">\
                         <div class="mediaBlk rounded-circle"><img src="'+ img + '/search-img-1.png" alt="" class="rounded-circle"></div>\
+                            <div class="d-flex justify-content-between flex-1">\
+                                    <div class="searchCol">\
+                                        <label class="name">'+ items.pincode + '</label>\
+                                        <div class="location">'+ items.region_city + '</div>\
+                                    </div>\
+                                    <div class="searchCol">\
+                                        <label>'+ items.current_qtr + '</label>\
+                                        <div>Rs xxxx<i class="fa fa-lock text-danger ml-2"></i></div>\
+                                    </div>\
+                                    <div class="searchCol">\
+                                        <label>YoY Change (%)</label>\
+                                        <div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div>\
+                                    </div>\
+                                    <div class="searchCol">\
+                                        <label>CAGR (3Y)</label>\
+                                        <div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div>\
+                                    </div>\
+                                    <div class="searchCol">\
+                                            <label>CAGR (5Y)</label>\
+                                            <div>x %<i class="fa fa-lock text-danger ml-2"></i></div>\
+                                    </div>\
+                               </div>\
+                               <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
+                                  <a href="javascript:void(0)" onClick="ProjectByPincode('+ items.pincode + ')">View<br>Projects</a>\
+                               </div>\
+                               <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
+                                  <a href="javascript:void(0)" onClick="PincodeTrendsRoute('+ items.pincode + ')">View<br>Trends</a>\
+                               </div>\
+                           </div>';
+                    });
+                }
+                else {
+                    $.each(arr_toload, function (index, items) {
+                        st += '<div class="searchResultCard d-flex align-items-center">\
+                        <div class="mediaBlk rounded-circle mr-5"><img src="'+ img + '/search-img-1.png" alt="" class="rounded-circle"></div>\
                             <div class="d-flex justify-content-between flex-1">\
                                     <div class="searchCol">\
                                         <label class="name">'+ items.pincode + '</label>\
@@ -121,7 +159,8 @@ var PincodeListModule = function () {
                                   <a href="javascript:void(0)" onClick="PincodeTrendsRoute('+ items.pincode + ')">View<br>Trends</a>\
                                </div>\
                            </div>';
-                });
+                    });
+                }
                 var paginateText = 'Showing <b>' + arr_toload.length + '</b> pincodes out of <b>' + keepPincodeListData.length + '</b>';
                 $('#PincodePaginationText').empty();
                 $('#PincodePaginationText').append(paginateText);
@@ -350,7 +389,7 @@ function PincodeCurRateSortclick(event) {
     }
     else {
 
-        PincodeListModule.init("current_rate", "asc");
+        PincodeListModule.init("current_rate", "desc");
     }
     $('#overlay').fadeOut();
 }
@@ -373,7 +412,7 @@ function PincodeYoySortclick(event) {
     }
     else {
 
-        PincodeListModule.init("cagr_last_1yr", "asc");
+        PincodeListModule.init("cagr_last_1yr", "desc");
     }
     $('#overlay').fadeOut();
 
@@ -397,7 +436,7 @@ function Pincodecagr3ySortclick(event) {
     }
     else {
 
-        PincodeListModule.init("cagr_last_3yr", "asc");
+        PincodeListModule.init("cagr_last_3yr", "desc");
     }
     $('#overlay').fadeOut();
 
@@ -422,7 +461,7 @@ function Pincodecagr5ySortclick(event) {
     }
     else {
 
-        PincodeListModule.init("cagr_last_5yr", "asc");
+        PincodeListModule.init("cagr_last_5yr", "desc");
     }
     $('#overlay').fadeOut();
 }

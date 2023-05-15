@@ -94,61 +94,27 @@
             <div class="row justify-content-center">
                 <div class="chartLeft flex-1">
                     <div class="chartInnerWrap h-100">
-                        <div class="d-flex justify-content-end">
-                            <button type="button" class="btn btn-outline-primary active">Price</button>
-                            <button type="button" class="btn btn-outline-primary ml-2">Index</button>
-                            <button type="button" class="btn btn-outline-primary ml-2">Download</button>
+                        <div class="d-flex justify-content-end" id="LocationTrendGraphChanger">
+                            <button type="button" class="btn btn-outline-primary active" id="LocationTrendPrice">Price</button>
+                            <button type="button" class="btn btn-outline-primary ml-2" id="LocationTrendIndex">Index</button>
+                            <button type="button" class="btn btn-outline-primary ml-2" id="LocationCSVDownload">Download</button>
                         </div>
-                        <div>
-                            <canvas id="scanlineLocation" height="600"></canvas>
+                        <div id="LocationTrendGraph">
+                            <canvas id="scanlineLocation" height="500"></canvas>
                         </div>
-                    </div>
-                </div>
-                <div class="chartRight">
-                    <div class="chartInnerWrap chartRightInner h-100 d-flex flex-column justify-content-center">
-                        <div class="d-flex justify-content-between checkBtmSpace">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                <label class="custom-control-label pointer" for="customCheck1">All</label>
-                            </div>
-                            <div class="cityNameCol"></div>
-                        </div>
-                        <div class="d-flex justify-content-between checkBtmSpace">
-                            <div class="custom-control custom-checkbox light-purple">
-                                <input type="checkbox" class="custom-control-input" id="checkProject">
-                                <label class="custom-control-label pointer" for="checkProject">Project</label>
-                            </div>
-                            <div class="cityNameCol">Rustomjee Crown</div>
-                        </div>
-                        <div class="d-flex justify-content-between checkBtmSpace">
-                            <div class="custom-control custom-checkbox light-green">
-                                <input type="checkbox" class="custom-control-input" id="checkLocation">
-                                <label class="custom-control-label pointer" for="checkLocation">Location</label>
-                            </div>
-                            <div class="cityNameCol">Prabhadevi</div>
-                        </div>
-                        <div class="d-flex justify-content-between checkBtmSpace">
-                            <div class="custom-control custom-checkbox light-red">
-                                <input type="checkbox" class="custom-control-input" id="checkPincode">
-                                <label class="custom-control-label pointer" for="checkPincode">Pincode</label>
-                            </div>
-                            <div class="cityNameCol">400025</div>
-                        </div>
-                        <div class="d-flex justify-content-between checkBtmSpace">
-                            <div class="custom-control custom-checkbox light-yellow">
-                                <input type="checkbox" class="custom-control-input" id="checkCity">
-                                <label class="custom-control-label pointer" for="checkCity">City</label>
-                            </div>
-                            <div class="cityNameCol">Mumbai</div>
-                        </div>
-                        <div class="d-flex justify-content-between checkBtmSpace">
-                            <div class="custom-control custom-checkbox light-blue">
-                                <input type="checkbox" class="custom-control-input" id="checkSuburb">
-                                <label class="custom-control-label pointer" for="checkSuburb">Suburb</label>
-                            </div>
-                            <div class="cityNameCol">Island City</div>
+                        <div class="text-center" id="LocationNologinmask">
+                            <span class="btn btn-secondary noDataBtn mt-4">Login to View</span>
                         </div>
 
+
+                    </div>
+
+
+                </div>
+                <div class="chartRight">
+                    <div class="chartInnerWrap chartRightInner h-100 d-flex flex-column justify-content-center" id="LocationCheckbox">
+                    </div>
+                    <div class="chartInnerWrap chartRightInner h-100 d-flex flex-column justify-content-center" id="LocationCheckboxNoLoginMask">
                     </div>
                 </div>
             </div>
