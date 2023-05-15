@@ -3,21 +3,39 @@
 }
 
 @Html.Action("_Searchview", "Home")
-<div class="mainbodyWrap d-flex flex-column flex-1">
-
+<div class="mainbodyWrap topProjects d-flex flex-column flex-1">
+    <div class="container">
+        <div class="logo-blocks">
+            <div class="logo-block">
+                <div>
+                </div>
+            </div>
+            <div class="logo-block">
+                <div>
+                </div>
+            </div>
+            <div class="logo-block">
+                <div>
+                </div>
+            </div>
+            <div class="logo-block">
+                <div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container flex-1">
-        <section class="pt90">
+        <section class="topspace">
             <div class="body-wrapper">
-                <div class="max-w-heading m-auto">
+                <div class="topProjectsHeader m-auto">
                     <p class="text-center">
                         The primary objective of the Ressex Trends is to present House Price Trends &amp; Index using the
-                        Repeat
-                        Sales methodology and to calculate current valuation of the property.
+                        Repeat Sales methodology and to calculate current valuation of the property.
                     </p>
                 </div>
 
-                <div class="row">
-                    <div class="col-sm-3">
+                <div class="topProjColWrap">
+                    <div class="topProjCol">
                         <a onclick="ShortcutRouting('top10Projects')" href="javascript:void(0)">
                             <div class="img-card card1">
                                 <img src="images/image1.png" alt="">
@@ -29,7 +47,7 @@
                         </a>
 
                     </div>
-                    <div class="col-sm-3">
+                    <div class="topProjCol">
                         <a onclick="ShortcutRouting('top10Pincodes')" href="javascript:void(0)">
                             <div class="img-card card2">
                                 <img src="images/image3.png" alt="">
@@ -40,7 +58,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="topProjCol">
                         <a onclick="ShortcutRouting('top10Locations')" href="javascript:void(0)">
                             <div class="img-card card2">
                                 <img src="images/image2.png" alt="">
@@ -51,7 +69,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="topProjCol">
                         <a onclick="ShortcutRouting('top10Cities')" href="javascript:void(0)">
                             <div class="img-card card1">
                                 <img src="images/image4.png" alt="">
@@ -80,10 +98,10 @@
                         </div>
                         <div class="d-flex">
                             <div class="dropdown ml-0">
-                                <a type="button" class="dropdown-toggle uppercase" data-toggle="dropdown">
+                                <a class="dropdown-toggle uppercase" data-toggle="dropdown">
                                     CAGR 3Y
                                 </a>
-                                <div class="dropdown-menu">
+                                <div class="dropdown-menu dd-h">
                                     <a class="dropdown-item" href="#">CAGR 1Y</a>
                                     <a class="dropdown-item" href="#">CAGR 2Y</a>
                                     <a class="dropdown-item" href="#">CAGR 3Y</a>
@@ -101,7 +119,7 @@
                     </div>
                 </div>
 
-                <div class="d-flex justify-content-center p-1 mb-4">
+                <div class="d-flex justify-content-center p-1 chartTabs">
                     <ul class="nav nav-pills tabsCustom">
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" href="#price" role="tab">Price</a>
@@ -110,7 +128,7 @@
                             <a class="nav-link" data-toggle="tab" href="#index" role="tab">Index</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0)" id="TrendsDownload">Download</a>
+                            <a class="nav-link download" href="javascript:void(0)" id="TrendsDownload">Download</a>
                         </li>
                     </ul>
                 </div>
@@ -119,7 +137,7 @@
                         <canvas id="priceLinechart" height="300"></canvas>
                     </div>
                     <div class="tab-pane" id="index" role="tabpanel" style="height:300px;">
-                        <canvas id="indexLinechart"  height="300"></canvas>
+                        <canvas id="indexLinechart" height="300"></canvas>
                     </div>
                 </div>
 
@@ -137,7 +155,7 @@
             <div class="header text-center">
                 <h3>Pick a City</h3>
             </div>
-            <div class="row justify-content-center" id="CityList">
+            <div class="citysColWrap" id="CityList">
                 @*<div class="col-custom-5">
                         <a href="#" class="cityCard">
                             <div class="cityCardBody">
@@ -254,18 +272,23 @@
                     your property which is primarily based on the price indexation of that project or locality.
                 </p>
                 <p class="text-center">
-                    @*<a href="Methodology#flowChart" >Documentation</a>*@
-                    <img src="images/diagram.svg" class="diagramImg" alt="">
-                </p>
-                <p class="text-center">
-                    <div class="d-flex align-items-center">
-                        <ul class="linkTabs">
-                            <li><a href="Documentation#methodology">Methodology</a></li>
-                            <li><a href="Documentation#flowChart">Flow Chart</a></li>
-                            <li><a href="Documentation#processFlow">Process Flow</a></li>
-                        </ul>
+                    <div class="diagramImgWrap realtive">
+                        <a href="Documentation#methodology" class="tntro" title="Introduction">Introduction</a>
+                        <a href="Documentation#flowChart" class="metho" title="Methodology">Methodology</a>
+                        <a href="Documentation#processFlow" class="pTrends" title="Price Trends">Price Trends</a>
+                        @*<a href="Methodology#flowChart" >Documentation</a>*@
+                        <img src="images/diagram.svg" class="diagramImg" alt="">
                     </div>
                 </p>
+                @*<p class="text-center">
+                        <div class="d-flex align-items-center">
+                            <ul class="linkTabs">
+                                <li><a href="Documentation#methodology">Methodology</a></li>
+                                <li><a href="Documentation#flowChart">Flow Chart</a></li>
+                                <li><a href="Documentation#processFlow">Process Flow</a></li>
+                            </ul>
+                        </div>
+                    </p>*@
 
 
             </div>

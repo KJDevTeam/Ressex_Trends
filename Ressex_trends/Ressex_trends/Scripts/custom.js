@@ -1,4 +1,4 @@
-$(document).on('click', 'a[href^="#"]', function (event) {
+$(document).on('click', '.linkTabs a[href^="#"]', function (event) {
     event.preventDefault();
 
     $('html, body').animate({

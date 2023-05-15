@@ -109,17 +109,7 @@ p:last-child{
   font-size: 1.25rem;
 }
 
-// Bootstrap override
-@media (min-width: 1360px){
-  .mainbodyWrap .container{
-      max-width: 1280px;
-  }
-}
-@media (min-width: 1500px){
-    .mainbodyWrap .container{
-        max-width: 1469px;
-    }
-}
+
 .btn{
     min-height: 40px;
   }
@@ -337,9 +327,9 @@ p:last-child{
 }
 .headerSearch{
   width: 100%;
-  max-width: 994px;
+  max-width: calc(100% - 57rem);
   position: relative;
-  margin-top: -30px;
+  margin-top: -32px;
   .btn-red{
     height: 64px;
     width: 112px;
@@ -364,6 +354,8 @@ p:last-child{
 }
 .projectsSearchBox .inputWithIcon .form-control::placeholder{
     color: #A3ACCC;
+    font-size: 1rem;
+    font-weight: 400;
 }
 .btn-white{
     border-radius: 0 10px 10px 0;
@@ -396,11 +388,15 @@ p:last-child{
     right: 20px;
 }
 .filterDropdown .dropdown-menu{
-  border-radius: 10px;
+  border-radius: 0px 0px 10px 10px;
+  min-width: 100%;
+  margin-top: -2px;
 }
 .filterDropdown .dropdown-item {
   padding: 0.5rem 1rem;
-  font-size: inherit;
+  color: #192447;
+  font-size: 1rem;
+  font-weight: 500;
 }
 .haveIcon{
     background-image: url(../images/chevron-left.svg);
@@ -438,6 +434,22 @@ p:last-child{
 .projectsSearchBox .form-control:focus{
   box-shadow: none;
 }
+.ui-widget.ui-widget-content{
+  border-radius: 0px 0px 10px 10px;
+  border: 0 !important;
+  // width: calc(100% - 656px) !important;
+  padding: 20px;
+}
+.ui-menu .ui-menu-item-wrapper, .ui-widget-content .ui-state-active{
+  font-weight: 500!important;
+  font-size: 14px !important;
+  line-height: 21px;
+  color: #000000 !important;
+}
+.ui-widget-content .ui-state-active {
+  background-color: rgba(232, 89, 91, 0.05) !important;
+  border-color: transparent !important;
+}
 // Body
 section{
     padding-bottom: 70px;
@@ -449,13 +461,16 @@ section:last-child{
   position: relative;
 }
 section .header{
-  padding-bottom: 32px;
+  padding-bottom: 30px;
 }
 section .header h3{
   margin-bottom: 0;
 }
 .pt90{
   padding-top: 90px;
+}
+.topspace{
+  padding-top: 70px;
 }
 .body-wrapper{
     .row{
@@ -467,9 +482,11 @@ section .header h3{
         padding-right: 25px;
     }
 }
-.max-w-heading{
+.topProjectsHeader{
     max-width: 911px;
-    padding-bottom: 40px;
+    padding-bottom: 62px;
+    font-size: 1rem;
+    line-height: 24px;
     p{
         margin-bottom: 0;
     }
@@ -478,6 +495,7 @@ section .header h3{
 .img-card{   
     position: relative;
     overflow: hidden;
+    border-radius: 10px;
     img{
         object-fit: cover;
         width: 100%;
@@ -486,7 +504,7 @@ section .header h3{
     div{
         position: absolute;
         left: 0;
-        bottom: 0;
+        bottom: -1px;
         width: 100%;
         padding: 16px;
         // background: linear-gradient(243.78deg, rgba(25, 37, 51, 0.29) 0%, rgba(255, 255, 255, 0.5) 67%);
@@ -496,12 +514,11 @@ section .header h3{
         color: $text-color-5;
         h4{
             font-weight: 700;
-            font-size: 1.125rem;
+            font-size: 1.05469vw;
         }
         p{
-            font-size: .74rem;
-            line-height: 18px;
-            margin-bottom: 0;
+          font-size: 0.625vw;
+          line-height: .9375vw;
         }
     }    
 }
@@ -515,8 +532,10 @@ section .header h3{
     // background: $bg-gradient2;
     padding: 32px 32px 0 32px; 
     border-radius: 10px;
+    
     .header{
         font-size: 1.25rem;
+        padding-bottom: 28px;
         h3{
         font-weight: $font-weight-500;
         margin-bottom: 16px;
@@ -529,7 +548,7 @@ section .header h3{
         label{
             margin-bottom: 0;
             margin-right: 18px;
-        }
+        }        
         .dropdown-toggle{
             color: $text-color-5;  
         }
@@ -538,7 +557,7 @@ section .header h3{
         }
         .dropdown-toggle::after{
             margin-left: 0;
-        }
+        }        
     }
     .dropdown-menu {
         border-radius: 10px;
@@ -546,6 +565,9 @@ section .header h3{
     .dropdown-item {
         padding: 0.5rem 1rem;
         font-size: 0.875rem;
+    }
+    .chartTabs{
+      margin-bottom: 50px;
     }
 }
 .tabsCustom a{
@@ -556,13 +578,13 @@ section .header h3{
     border-radius: 5px;
     color: $color-white;
 }
-.tabsCustom a.nav-link.active{
+.tabsCustom a.nav-link.active, .tabsCustom a.nav-link.download:focus{
     background: rgba(174, 183, 216, 0.5);
     border-radius: 5px;
     color: $text-color-2;
 }
 .chartDesc{
-  max-width: 1354px;
+  max-width: 1250px;
   font-weight: 500;
   font-size: 1.125rem;
   line-height: 27px;
@@ -581,9 +603,8 @@ section .header h3{
   padding-right: 15px;
 }
 .cityCard{
-  max-width: 240px;
   margin: 0 auto;
-  margin-bottom: 30px;
+  // margin-bottom: 30px;
   display: block;
   color: $text-color-5;
 }
@@ -606,16 +627,19 @@ section .header h3{
   img{
     background: $text-color-9;
     border: 0px solid $color-black;
-    width: 120px;
-    height: 120px;
+    width: 100%;
+    max-width: 120px;
+    height: auto;
     border-radius: 120px;
     margin-bottom: 26px;
   }
+  h5{
+    font-size: 1rem;
+  }
   p{
     margin-bottom: 0;
-    font-weight: $font-weight-400;
     font-size: .75rem;
-    line-height: 18px;
+    line-height: 19.68px;
     color: $text-color-8;
   }
 }
@@ -633,10 +657,8 @@ section .header h3{
   .btn-red{
     width: 160px;
   }
-  .cityCard{
-    margin-bottom: 60px;
-  }
 }
+
 
 .bodyContainer{
   // background: $bg-gradient2;
@@ -668,12 +690,42 @@ section .header h3{
     margin-bottom: 32px;
   }
 }
+.diagramImgWrap{
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.tntro, .metho, .pTrends {
+  position: absolute;
+  width: 254px;
+  height: 254px;
+  display: inline-block;
+  border-radius: 50%;
+  font-size: 0px;
+  z-index: 1;
+}
+.tntro {
+  width: 272px;
+  height: 272px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-44%);
+}
+.metho{
+  bottom: 0;
+  left: 0;
+}
+.pTrends{
+  bottom: 0;
+  right: 0;
+}
+
 .diagramImg{
   width: 100%;
   max-width: 1000px;
 }
 .explore-sec{
-  padding-bottom: 70px !important;
+  padding-bottom: 109px !important;
   .header{
     margin-bottom: 20px;
     h3{
@@ -1024,21 +1076,26 @@ section .header h3{
     margin-bottom: 0;
   }
   .mediaBlk{
-    flex: 0 0 128px;
+    flex: 0 0 6.67vw;
+    margin-right: 2vw;
     background: $text-color-9;
     img{
-      width: 128px;
-      height: 128px;
+      width: 100%;
+      height: 100%;
     }
   }
   .searchCol{
     color: $text-color-5;
     font-weight: 500;
-    font-size: 1rem;
+    // font-size: .9375vw;
+    font-size: 1.25rem;
+    padding-right: 2.71vw;
     label{
       color: $text-color-8;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       display: block;
+      // font-size: .833331vw;
+      font-size: 1rem;
       font-weight: 400;
     }
     label.name{
@@ -1048,14 +1105,23 @@ section .header h3{
     .location{
       color: $text-color-8;
       font-weight: 400;
+      // font-size: .833331vw;
+      font-size: 1rem;
     }
   }
   a{
     color: $color-blue;
     font-weight: 400;
+    // font-size: .833331vw;
     font-size: 1rem;
     line-height: 25px;
   }
+}
+.searchCol:last-child{
+  padding-right: 0;
+}
+.moreCol{
+  margin-left: 3.75vw;
 }
 .viewMoreBtn{
   height: 48px;
@@ -1145,11 +1211,11 @@ section.searchResultSec{
 .footer-top {
   border-top: 9px solid $text-color-2;
   color: #7D7E80;
-  padding-top: 4.5rem;
+  padding-top: 74px;
 }
 .footerTopSpace {
-  top: 74px;
-  padding-bottom: 60px;
+  padding-top: 74px;
+  padding-bottom: 62px;
 }
 .footerLogo {
   max-height: 68px;
@@ -1205,6 +1271,154 @@ li a:hover {
   }
 }
 
+.colWrap{
+  display: flex;
+  flex-direction: row;
+}
+.dd-h{
+  max-height: 370px;
+  overflow-y: auto;
+}
+.realtive{
+  position: relative;
+}
 
-  
-  
+.topProjColWrap {
+  flex-wrap: wrap;
+  display: flex;
+  margin-left: -1.7965%;
+  margin-right: -1.7965%;
+}
+
+.topProjCol {
+  width: 25%;
+  padding-left: 1.7965%;
+  padding-right: 1.7965%;
+}
+.citysColWrap {
+  flex-wrap: wrap;
+  display: flex;
+  margin-left: -2.251%;
+  margin-right: -2.251%;
+}
+.citysCol {
+  width: 20%;
+  padding-left: 2.251%;
+  padding-right: 2.251%;
+  padding-bottom: 4.402%;
+}
+
+// Bootstrap override Responsive
+
+
+@media (min-width: 1200px){
+  .container{
+    max-width: 1140px;
+  }
+    .headerSearch{
+      max-width: calc(100% - 30rem);
+    }
+    .city-sec .row{
+      margin-right: -15px;
+      margin-left: -15px;
+    }
+    .city-sec .row [class^=col]{
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    .cityCard {
+      // width: 195px;
+      // height: 195px;
+      margin: 0 auto;
+      // margin-bottom: 30px;
+      display: block;
+      color: #192447;
+  }
+    .cityCardBody{
+      padding: 15px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      img{        
+        width: 100%;
+        max-width: 92px;
+        height: auto;        
+        margin-bottom: 10px;
+      }
+      .cardDesc{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+    }
+    .tntro, .metho, .pTrends {
+      width: 230px;
+      height: 230px;
+    } 
+}
+@media (min-width: 1360px){  
+  .container{
+    max-width: 1140px;
+    padding: 0;
+  }
+  .cityCardBody{
+    img{        
+      max-width: 97px;
+    }
+  }
+  // .tntro, .metho, .pTrends {
+  //   width: 250px;
+  //   height: 250px;
+  // } 
+}
+@media (min-width: 1536px){
+  .container {
+    max-width: calc(100% - 28.125rem);
+    padding: 0;
+  }
+  .headerSearch{
+    max-width: 1002px;
+  }
+  .cityCardBody img {
+    max-width: 88px;
+  }
+ 
+}
+@media (min-width: 1900px){
+    
+    .city-sec .row{
+      margin-right: -30px;
+      margin-left: -30px;
+    }
+    .city-sec .row [class^=col] {
+      padding-left: 30px;
+      padding-right: 30px;
+  }
+  .cityCardBody{
+    padding: 15px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img{        
+      width: 100%;
+      max-width: 134px;
+      height: auto;        
+      margin-bottom: 30px;
+    }
+  }
+  .tntro {
+    width: 270px;
+    height: 270px;
+  }
+  .diagramImgWrap {
+    max-width: 1130px;
+  }
+  .diagramImg {
+    max-width: 1130px;
+}
+
+}
+

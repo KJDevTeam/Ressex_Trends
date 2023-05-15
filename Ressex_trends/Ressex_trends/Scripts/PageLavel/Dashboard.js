@@ -104,13 +104,13 @@ var DashboardModule = function () {
                     
                 var st = ''
                 $.each(arr_toload, function (index, items) {
-                    st += '<div class="col-custom-5">\
+                    st += '<div class="citysCol">\
         <a onclick="CityCLick('+ items.region_or_city_id+')" href="javascript:void(0)" class="cityCard">\
             <div class="cityCardBody">\
                 <img src="images/Chennai.png" alt="">\
-                    <h5>'+ items.region_or_city + '</h5>\
+                    <div class="cardDesc"><h5>'+ items.region_or_city + '</h5>\
                     <p>'+ items.state + '</p>\
-                    </div>\
+                    </div></div>\
                 </a>\
             </div>';
                 });

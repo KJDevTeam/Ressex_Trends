@@ -88,7 +88,7 @@ var LocationListModule = function () {
                 $("#LocationList").empty();
                 $.each(arr_toload, function (index, items) {
                     st += '<div class="searchResultCard d-flex align-items-center">\
-                        <div class="mediaBlk rounded-circle mr-5"><img src="'+ img + '/search-img-1.png" alt="" class="rounded-circle"></div>\
+                        <div class="mediaBlk rounded-circle"><img src="'+ img + '/search-img-1.png" alt="" class="rounded-circle"></div>\
                             <div class="d-flex justify-content-between flex-1">\
                                     <div class="searchCol">\
                                         <label class="name">'+ items.location + '</label>\
@@ -111,10 +111,10 @@ var LocationListModule = function () {
                                             <div>'+ items.cagr_last_5yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div>\
                                     </div>\
                                </div>\
-                               <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
+                               <div class="d-flex align-items-center justify-content-end moreCol">\
                                   <a href="javascript:void(0)" onClick="ProjectBylocation('+ items.locationid + ')">View<br>Projects</a>\
                                </div>\
-                               <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
+                               <div class="d-flex align-items-center justify-content-end moreCol">\
                                 <a href="javascript:void(0)" onClick="LocationTrendsRoute('+ items.locationid + ')">View<br>Trends</a>\
                                </div>\
                            </div>';
