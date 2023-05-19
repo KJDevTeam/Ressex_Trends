@@ -327,7 +327,8 @@ p:last-child{
 }
 .headerSearch{
   width: 100%;
-  max-width: calc(100% - 57rem);
+  // max-width: calc(100% - 57rem);
+  max-width: 1002px;
   position: relative;
   margin-top: -32px;
   .btn-red{
@@ -397,6 +398,9 @@ p:last-child{
   color: #192447;
   font-size: 1rem;
   font-weight: 500;
+}
+.filterDropdown .dropdown-item img{
+  width: 21px;
 }
 .haveIcon{
     background-image: url(../images/chevron-left.svg);
@@ -574,14 +578,14 @@ section .header h3{
     margin: 0 4px;
 }
 .tabsCustom a.nav-link{
+  background: rgba(174, 183, 216, 0.5);
+    border-radius: 5px;    
+    color: $text-color-2;
+}
+.tabsCustom a.nav-link:hover, .tabsCustom a.nav-link.active, .tabsCustom a.nav-link.download:focus{    
     background: $text-color-5;
     border-radius: 5px;
     color: $color-white;
-}
-.tabsCustom a.nav-link.active, .tabsCustom a.nav-link.download:focus{
-    background: rgba(174, 183, 216, 0.5);
-    border-radius: 5px;
-    color: $text-color-2;
 }
 .chartDesc{
   max-width: 1250px;
@@ -1070,7 +1074,7 @@ section .header h3{
   background: #FFFFFF;
   border: 1px solid #C4C1C1;
   border-radius: 10px;
-  padding: 10px 20px 10px 40px;
+  padding: 10px 40px 10px 40px;
   margin-bottom: 45px;
   &:last-child{
     margin-bottom: 0;
@@ -1088,14 +1092,12 @@ section .header h3{
     color: $text-color-5;
     font-weight: 500;
     // font-size: .9375vw;
-    font-size: 1.25rem;
-    padding-right: 2.71vw;
+    padding-right: 2.5vw;
     label{
       color: $text-color-8;
       margin-bottom: 12px;
       display: block;
       // font-size: .833331vw;
-      font-size: 1rem;
       font-weight: 400;
     }
     label.name{
@@ -1106,23 +1108,21 @@ section .header h3{
       color: $text-color-8;
       font-weight: 400;
       // font-size: .833331vw;
-      font-size: 1rem;
+      font-size: .937vw;
     }
   }
   a{
     color: $color-blue;
     font-weight: 400;
     // font-size: .833331vw;
-    font-size: 1rem;
-    line-height: 25px;
+    font-size: .833331vw;
+    line-height: normal;
   }
 }
 .searchCol:last-child{
   padding-right: 0;
 }
-.moreCol{
-  margin-left: 3.75vw;
-}
+
 .viewMoreBtn{
   height: 48px;
 }
@@ -1216,6 +1216,9 @@ section.searchResultSec{
 .footerTopSpace {
   padding-top: 74px;
   padding-bottom: 62px;
+}
+.footerColSpace{
+  padding-right: 4.17vw !important;
 }
 .footerLogo {
   max-height: 68px;
@@ -1315,9 +1318,9 @@ li a:hover {
   .container{
     max-width: 1140px;
   }
-    .headerSearch{
-      max-width: calc(100% - 30rem);
-    }
+    // .headerSearch{
+    //   max-width: calc(100% - 30rem);
+    // }
     .city-sec .row{
       margin-right: -15px;
       margin-left: -15px;
@@ -1357,6 +1360,18 @@ li a:hover {
       width: 230px;
       height: 230px;
     } 
+    .chartDesc{
+      padding: 0 70px;
+    }
+    .searchCol{
+      font-size: .937vw;
+      label{    
+        font-size: .75rem;
+      }
+    }
+    .moreCol{
+      margin-left: 3.5vw;
+    }
 }
 @media (min-width: 1360px){  
   .container{
@@ -1378,9 +1393,7 @@ li a:hover {
     max-width: calc(100% - 28.125rem);
     padding: 0;
   }
-  .headerSearch{
-    max-width: 1002px;
-  }
+  
   .cityCardBody img {
     max-width: 88px;
   }
@@ -1418,7 +1431,21 @@ li a:hover {
   }
   .diagramImg {
     max-width: 1130px;
-}
-
+  }
+  .chartDesc{
+    padding: 0 ;
+  }
+  .searchCol{
+    
+    label{    
+      font-size: 1rem;
+    }
+    a{
+      line-height: 25px;
+    }
+  }
+  .moreCol{
+    margin-left: 3.75vw;
+  }
 }
 

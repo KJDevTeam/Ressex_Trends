@@ -129,7 +129,7 @@ var LocationListModule = function () {
 
                     $.each(arr_toload, function (index, items) {
                         st += '<div class="searchResultCard d-flex align-items-center">\
-                        <div class="mediaBlk rounded-circle mr-5"><img src="'+ items.location_image_path +'" alt="" class="rounded-circle"></div>\
+                        <div class="mediaBlk rounded-circle"><img src="'+ items.location_image_path +'" alt="" class="rounded-circle"></div>\
                             <div class="d-flex justify-content-between flex-1">\
                                     <div class="searchCol">\
                                         <label class="name">'+ items.location + '</label>\
