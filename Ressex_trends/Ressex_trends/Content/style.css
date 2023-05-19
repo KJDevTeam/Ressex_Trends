@@ -234,13 +234,6 @@ a.text-primary:hover, a.text-primary:focus {
   min-height: auto;
   border-color: #E31E24;
 }
-.btn.noDataBtn {
-    min-height: auto;
-}
-
-.btn .btn-h-30 {
-    min-height: 30px;
-}
 
 /* Dropdown */
 .dropdown-menu {
@@ -371,7 +364,7 @@ a.text-primary:hover, a.text-primary:focus {
 
 .headerSearch {
   width: 100%;
-  max-width: calc(100% - 57rem);
+  max-width: 1002px;
   position: relative;
   margin-top: -32px;
 }
@@ -659,7 +652,7 @@ section .header h3 {
   color: #fff;
 }
 
-.tabsCustom a.nav-link.active, .tabsCustom a.nav-link.download:focus {
+.tabsCustom a.nav-link:hover, .tabsCustom a.nav-link.active, .tabsCustom a.nav-link.download:focus {
   background: rgba(174, 183, 216, 0.5);
   border-radius: 5px;
   color: #E8595B;
@@ -1176,7 +1169,7 @@ section .header h3 {
   background: #FFFFFF;
   border: 1px solid #C4C1C1;
   border-radius: 10px;
-  padding: 10px 20px 10px 40px;
+  padding: 10px 40px 10px 40px;
   margin-bottom: 45px;
 }
 .searchResultCard:last-child {
@@ -1194,14 +1187,12 @@ section .header h3 {
 .searchResultCard .searchCol {
   color: #192447;
   font-weight: 500;
-  font-size: 1.25rem;
-  padding-right: 2.71vw;
+  padding-right: 2.5vw;
 }
 .searchResultCard .searchCol label {
   color: #6B6F81;
   margin-bottom: 12px;
   display: block;
-  font-size: 1rem;
   font-weight: 400;
 }
 .searchResultCard .searchCol label.name {
@@ -1211,21 +1202,17 @@ section .header h3 {
 .searchResultCard .searchCol .location {
   color: #6B6F81;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 0.937vw;
 }
 .searchResultCard a {
   color: #2B00AE;
   font-weight: 400;
-  font-size: 1rem;
-  line-height: 25px;
+  font-size: 0.833331vw;
+  line-height: normal;
 }
 
 .searchCol:last-child {
   padding-right: 0;
-}
-
-.moreCol {
-  margin-left: 3.75vw;
 }
 
 .viewMoreBtn {
@@ -1339,6 +1326,10 @@ footer {
   padding-bottom: 62px;
 }
 
+.footerColSpace {
+  padding-right: 4.17vw !important;
+}
+
 .footerLogo {
   max-height: 68px;
 }
@@ -1439,9 +1430,6 @@ footer ul li a:hover {
   .container {
     max-width: 1140px;
   }
-  .headerSearch {
-    max-width: calc(100% - 30rem);
-  }
   .city-sec .row {
     margin-right: -15px;
     margin-left: -15px;
@@ -1478,6 +1466,18 @@ footer ul li a:hover {
     width: 230px;
     height: 230px;
   }
+  .chartDesc {
+    padding: 0 70px;
+  }
+  .searchCol {
+    font-size: 0.937vw;
+  }
+  .searchCol label {
+    font-size: 0.75rem;
+  }
+  .moreCol {
+    margin-left: 3.5vw;
+  }
 }
 @media (min-width: 1360px) {
   .container {
@@ -1492,9 +1492,6 @@ footer ul li a:hover {
   .container {
     max-width: calc(100% - 28.125rem);
     padding: 0;
-  }
-  .headerSearch {
-    max-width: 1002px;
   }
   .cityCardBody img {
     max-width: 88px;
@@ -1531,5 +1528,17 @@ footer ul li a:hover {
   }
   .diagramImg {
     max-width: 1130px;
+  }
+  .chartDesc {
+    padding: 0;
+  }
+  .searchCol label {
+    font-size: 1rem;
+  }
+  .searchCol a {
+    line-height: 25px;
+  }
+  .moreCol {
+    margin-left: 3.75vw;
   }
 }/*# sourceMappingURL=style.css.map */
