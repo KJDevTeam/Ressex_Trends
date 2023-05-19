@@ -109,7 +109,7 @@ var DashboardModule = function () {
                     st += '<div class="citysCol">\
         <a onclick="CityCLick('+ items.region_or_city_id+')" href="javascript:void(0)" class="cityCard">\
             <div class="cityCardBody">\
-                <img src="images/Chennai.png" alt="">\
+                <img src="'+ items.city_image_path+'" alt="">\
                     <div class="cardDesc"><h5>'+ items.region_or_city + '</h5>\
                     <p>'+ items.state + '</p>\
                     </div></div>\
