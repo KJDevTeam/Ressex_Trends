@@ -399,6 +399,9 @@ p:last-child{
   font-size: 1rem;
   font-weight: 500;
 }
+.filterDropdown .dropdown-item img{
+  width: 21px;
+}
 .haveIcon{
     background-image: url(../images/chevron-left.svg);
     background-repeat: no-repeat;
@@ -575,14 +578,14 @@ section .header h3{
     margin: 0 4px;
 }
 .tabsCustom a.nav-link{
+  background: rgba(174, 183, 216, 0.5);
+    border-radius: 5px;    
+    color: $text-color-2;
+}
+.tabsCustom a.nav-link:hover, .tabsCustom a.nav-link.active, .tabsCustom a.nav-link.download:focus{    
     background: $text-color-5;
     border-radius: 5px;
     color: $color-white;
-}
-.tabsCustom a.nav-link:hover, .tabsCustom a.nav-link.active, .tabsCustom a.nav-link.download:focus{
-    background: rgba(174, 183, 216, 0.5);
-    border-radius: 5px;
-    color: $text-color-2;
 }
 .chartDesc{
   max-width: 1250px;
