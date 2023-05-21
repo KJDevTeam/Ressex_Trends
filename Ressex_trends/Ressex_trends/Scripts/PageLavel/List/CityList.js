@@ -85,73 +85,77 @@ var CityListModule = function () {
                 if (UserType != "Paid") {
                     $.each(arr_toload, function (index, items) {
 
-                        st += '<div class="searchResultCard d-flex align-items-center">\
+                        st += '<div class="searchResultCard d-flex align-items-center 1">\
                         <div class="mediaBlk rounded-circle"><img src="'+ items.city_image_path +'" alt="" class="rounded-circle"></div>\
-                            <div class="d-flex justify-content-between flex-1">\
-                                    <div class="searchCol">\
-                                        <label class="name">'+ items.city_search + '</label>\
-                                        <div class="location">'+ items.state + '</div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                        <label>'+ items.current_qtr + '</label>\
-                                        <div>Rs xxxx %<i class="fa fa-lock text-danger ml-2"></i></div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                        <label>YoY Change (%)</label>\
-                                        <div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                        <label>CAGR (3Y)</label>\
-                                        <div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                            <label>CAGR (5Y)</label>\
-                                            <div>x %<i class="fa fa-lock text-danger ml-2"></i></div>\
-                                    </div>\
-                               </div>\
-                               <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
-                                  <a href="javascript:void(0)" onClick="ProjectByCity('+ items.region_or_city_id + ')">View<br>Projects</a>\
-                               </div>\
-                               <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
-                                  <a href="javascript:void(0)" onClick="CityTrendsRoute('+ items.region_or_city_id + ')">View<br>Trends</a>\
-                               </div>\
-                           </div>';
+                            <div class="flex-1">\
+		                        <table class="table searchResultTbl">\
+			                        <thead>\
+				                        <tr>\
+                                            <th class="name">'+ items.city_search + '</th>\
+                                            <th>'+ items.current_qtr + '</th>\
+                                            <th>YoY Change (%)</th>\
+                                            <th>CAGR (3Y)</th>\
+                                            <th>CAGR (5Y)</th>\
+                                        </tr>\
+				                        </thead>\
+				                        <tbody>\
+                                            <tr>\
+                                                <td class="location">'+ items.region_city + '</td>\
+                                                <td><div>Rs xxxx %<i class="fa fa-lock text-danger ml-2"></i></div></td>\
+                                                <td><div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div></td>\
+                                                <td><div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div></td>\
+                                                <td><div>x %<i class="fa fa-lock text-danger ml-2"></i></div></td>\
+                                            </tr>\
+			                        </tbody>\
+		                        </table>\
+	                        </div>\
+	                        <div class="d-flex align-items-center justify-content-end">\
+	                        <div class="d-flex align-items-center moreCol">\
+		                        <a href="javascript:void(0)" onClick="ProjectByCity('+ items.region_or_city_id + ')">View<br>Projects</a>\
+	                        </div>\
+                            <div class="d-flex align-items-center moreCol">\
+		                        <a href="javascript:void(0)" onClick="CityTrendsRoute('+ items.region_or_city_id + ')">View<br>Trends</a>\
+	                        </div>\
+                        </div>\
+                        </div>';
                     });
                 }
                 else {
                     $.each(arr_toload, function (index, items) {
 
-                    st += '<div class="searchResultCard d-flex align-items-center">\
+                    st += '<div class="searchResultCard d-flex align-items-center 1">\
                         <div class="mediaBlk rounded-circle"><img src="'+ items.city_image_path +'" alt="" class="rounded-circle"></div>\
-                            <div class="d-flex justify-content-between flex-1">\
-                                    <div class="searchCol">\
-                                        <label class="name">'+ items.city_search + '</label>\
-                                        <div class="location">'+ items.state + '</div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                        <label>'+ items.current_qtr + '</label>\
-                                        <div>'+ items.saleable_rate_psf + '</div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                        <label>YoY Change (%)</label>\
-                                        <div class="d-flex align-items-center">'+ items.cagr_last_1yr_pct + '<img src="' + items.cagr_1yr_image_path +'" alt="" class="ml-2"></div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                        <label>CAGR (3Y)</label>\
-                                        <div class="d-flex align-items-center">'+ items.cagr_last_3yr_pct + '<img src="' + items.cagr_3yr_image_path + '" alt="" class="ml-2"></div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                            <label>CAGR (5Y)</label>\
-                                            <div>'+ items.cagr_last_5yr_pct + '<img src="' + items.cagr_5yr_image_path+'" alt="" class="ml-2"></div>\
-                                    </div>\
-                               </div>\
-                               <div class="d-flex align-items-center justify-content-end moreCol">\
-                                  <a href="javascript:void(0)" onClick="ProjectByCity('+ items.region_or_city_id + ')">View<br>Projects</a>\
-                               </div>\
-                               <div class="d-flex align-items-center justify-content-end moreCol">\
-                                  <a href="javascript:void(0)" onClick="CityTrendsRoute('+ items.region_or_city_id + ')">View<br>Trends</a>\
-                               </div>\
-                           </div>';
+                            <div class="flex-1">\
+		                        <table class="table searchResultTbl">\
+			                        <thead>\
+				                        <tr>\
+                                            <th class="name">'+ items.city_search + '</th>\
+                                            <th>'+ items.current_qtr + '</th>\
+                                            <th>YoY Change (%)</th>\
+                                            <th>CAGR (3Y)</th>\
+                                            <th>CAGR (5Y)</th>\
+                                        </tr>\
+				                        </thead>\
+				                        <tbody>\
+                                            <tr>\
+                                                <td class="location">'+ items.state + '</td>\
+                                                <td>'+ items.saleable_rate_psf + '</td>\
+                                                <td><div class="d-flex align-items-center">'+ items.cagr_last_1yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div></td>\
+                                                <td><div class="d-flex align-items-center">'+ items.cagr_last_3yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div></td>\
+                                                <td><div>'+ items.cagr_last_5yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div></td>\
+                                            </tr>\
+			                        </tbody>\
+		                        </table>\
+	                        </div>\
+	                        <div class="d-flex align-items-center justify-content-end">\
+	                        <div class="d-flex align-items-center moreCol">\
+		                        <a href="javascript:void(0)" onClick="ProjectByCity('+ items.region_or_city_id + ')">View<br>Projects</a>\
+	                        </div>\
+                            <div class="d-flex align-items-center moreCol">\
+		                        <a href="javascript:void(0)" onClick="CityTrendsRoute('+ items.region_or_city_id + ')">View<br>Trends</a>\
+	                        </div>\
+                        </div>\
+                        </div>';
                     });
                 }
                 var paginateText = 'Showing <b>' + arr_toload.length + '</b> cities out of <b>' + keepCityListData.length + '</b>';

@@ -669,6 +669,7 @@ section .header h3 {
   line-height: 27px;
   color: #636774;
   margin-top: 35px;
+  text-align: center;
 }
 .chartDesc b {
   font-weight: 700;
@@ -1181,17 +1182,20 @@ section .header h3 {
 }
 .searchResultCard .mediaBlk {
   flex: 0 0 6.67vw;
+  width: 6.67vw;
+  height: 6.67vw;
   margin-right: 2vw;
   background: #D9D9D9;
 }
 .searchResultCard .mediaBlk img {
   width: 100%;
   height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .searchResultCard .searchCol {
   color: #192447;
   font-weight: 500;
-  padding-right: 2.5vw;
 }
 .searchResultCard .searchCol label {
   color: #6B6F81;
@@ -1206,7 +1210,7 @@ section .header h3 {
 .searchResultCard .searchCol .location {
   color: #6B6F81;
   font-weight: 400;
-  font-size: 0.937vw;
+  font-size: 0.9375vw;
 }
 .searchResultCard a {
   color: #2B00AE;
@@ -1215,8 +1219,50 @@ section .header h3 {
   line-height: normal;
 }
 
-.searchCol:last-child {
-  padding-right: 0;
+.searchCol {
+  width: 20%;
+  margin-right: 20px;
+}
+
+.table.searchResultTbl thead th, .table.searchResultTbl tbody td {
+  padding: 0 20px 0 0;
+  border-top: 0;
+  vertical-align: top;
+  word-break: break-word;
+}
+
+.table.searchResultTbl thead th {
+  padding-bottom: 12px;
+  color: #6B6F81;
+  font-weight: 400;
+  font-size: 0.833331vw;
+  border-bottom: 0;
+  width: 20%;
+}
+
+.table.searchResultTbl.tblProjects thead th {
+  width: 16.666%;
+}
+
+.table.searchResultTbl thead th.name {
+  color: #192447;
+  font-weight: 500;
+}
+
+.table.searchResultTbl .location {
+  color: #6B6F81;
+  font-weight: 400;
+  font-size: 0.9375vw;
+}
+
+.table.searchResultTbl tbody td {
+  color: #192447;
+  font-weight: 500;
+  font-size: 0.9375vw;
+}
+
+.moreCol:not(:last-child) {
+  margin-right: 3.75vw;
 }
 
 .viewMoreBtn {
@@ -1326,12 +1372,12 @@ footer {
 }
 
 .footerTopSpace {
-  padding-top: 74px;
-  padding-bottom: 62px;
+  padding-top: 54px;
+  padding-bottom: 54px;
 }
 
 .footerColSpace {
-  padding-right: 4.17vw !important;
+  padding-right: 4.636vw !important;
 }
 
 .footerLogo {
@@ -1474,13 +1520,10 @@ footer ul li a:hover {
     padding: 0 70px;
   }
   .searchCol {
-    font-size: 0.937vw;
+    font-size: 0.9375vw;
   }
   .searchCol label {
     font-size: 0.75rem;
-  }
-  .moreCol {
-    margin-left: 3.5vw;
   }
 }
 @media (min-width: 1360px) {
@@ -1541,8 +1584,5 @@ footer ul li a:hover {
   }
   .searchCol a {
     line-height: 25px;
-  }
-  .moreCol {
-    margin-left: 3.75vw;
   }
 }/*# sourceMappingURL=style.css.map */
