@@ -35,10 +35,9 @@ var PincodeListModule = function () {
                 keepPincodeListData = Data.data;
 
                 //Hiding Radio Button
-                if (keepPincodeListData.length == 1)
-                {
+                if (keepPincodeListData.length == 1) {
                     $('#PincodeRadiobuttons').remove();
-                    
+
 
                 }
 
@@ -68,9 +67,9 @@ var PincodeListModule = function () {
 
 
             }
-        
 
-    },
+
+        },
         ListLoad: function (List_arr) {
             var Listlength = List_arr.length / 10;
             var ListCounter = Math.ceil(Listlength);
@@ -95,69 +94,73 @@ var PincodeListModule = function () {
                     $.each(arr_toload, function (index, items) {
                         st += '<div class="searchResultCard d-flex align-items-center">\
                         <div class="mediaBlk rounded-circle"><img src="'+ img + '/search-img-1.png" alt="" class="rounded-circle"></div>\
-                            <div class="d-flex justify-content-between flex-1">\
-                                    <div class="searchCol">\
-                                        <label class="name">'+ items.pincode + '</label>\
-                                        <div class="location">'+ items.region_city + '</div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                        <label>'+ items.current_qtr + '</label>\
-                                        <div>Rs xxxx<i class="fa fa-lock text-danger ml-2"></i></div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                        <label>YoY Change (%)</label>\
-                                        <div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                        <label>CAGR (3Y)</label>\
-                                        <div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                            <label>CAGR (5Y)</label>\
-                                            <div>x %<i class="fa fa-lock text-danger ml-2"></i></div>\
-                                    </div>\
-                               </div>\
-                               <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
-                                  <a href="javascript:void(0)" onClick="ProjectByPincode('+ items.pincode + ')">View<br>Projects</a>\
-                               </div>\
-                               <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
-                                  <a href="javascript:void(0)" onClick="PincodeTrendsRoute('+ items.pincode + ')">View<br>Trends</a>\
-                               </div>\
-                           </div>';
+                        <div class="flex-1">\
+		                        <table class="table searchResultTbl">\
+			                        <thead>\
+				                        <tr>\
+					                        <th class="name">'+ items.pincode + '</th>\
+					                        <th>'+ items.current_qtr + '</th>\
+					                        <th>YoY Change (%)</th>\
+					                        <th>CAGR (3Y)</th>\
+					                        <th>CAGR (5Y)</th>\
+				                        </tr>\
+				                        </thead>\
+				                        <tbody>\
+				                        <tr>\
+					                        <td class="location">'+ items.region_city + '</td>\
+					                        <td>Rs xxxx<i class="fa fa-lock text-danger ml-2"></i></td>\
+					                        <td><div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div></td>\
+					                        <td><div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div></td>\
+					                        <td>x %<i class="fa fa-lock text-danger ml-2"></i></td>\
+				                        </tr>\
+			                        </tbody>\
+		                        </table>\
+	                        </div>\
+	                        <div class="d-flex align-items-center justify-content-end">\
+		                        <div class="d-flex align-items-center moreCol">\
+			                        <a href="javascript:void(0)" onClick="ProjectByPincode('+ items.pincode + ')">View<br>Projects</a>\
+		                        </div>\
+		                        <div class="d-flex align-items-center moreCol">\
+			                        <a href="javascript:void(0)" onClick="PincodeTrendsRoute('+ items.pincode + ')">View<br>Trends</a>\
+		                        </div>\
+	                        </div>\
+                        </div>';
                     });
                 }
                 else {
                     $.each(arr_toload, function (index, items) {
                         st += '<div class="searchResultCard d-flex align-items-center">\
                         <div class="mediaBlk rounded-circle"><img src="'+ img + '/search-img-1.png" alt="" class="rounded-circle"></div>\
-                            <div class="d-flex justify-content-between flex-1">\
-                                    <div class="searchCol">\
-                                        <label class="name">'+ items.pincode + '</label>\
-                                        <div class="location">'+ items.region_city + '</div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                        <label>'+ items.current_qtr + '</label>\
-                                        <div>'+ items.saleable_rate_psf + '</div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                        <label>YoY Change (%)</label>\
-                                        <div class="d-flex align-items-center">'+ items.cagr_last_1yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                        <label>CAGR (3Y)</label>\
-                                        <div class="d-flex align-items-center">'+ items.cagr_last_3yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                            <label>CAGR (5Y)</label>\
-                                            <div>'+ items.cagr_last_5yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div>\
-                                    </div>\
+                            <div class="flex-1">\
+                                    <table class="table searchResultTbl">\
+	                                    <thead>\
+		                                    <tr>\
+			                                    <th class="name">'+ items.pincode + '</th>\
+			                                    <th>'+ items.current_qtr + '</th>\
+			                                    <th>YoY Change (%)</th>\
+			                                    <th>CAGR (3Y)</th>\
+			                                    <th>CAGR (5Y)</th>\
+                                            </tr>\
+                                            </thead>\
+                                            <tbody>\
+		                                    <tr>\
+			                                    <td class="location">'+ items.region_city + '</td>\
+			                                    <td>'+ items.saleable_rate_psf + '</td>\
+			                                    <td><div class="d-flex align-items-center">'+ items.cagr_last_1yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div></td>\
+			                                    <td><div class="d-flex align-items-center">'+ items.cagr_last_3yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div></td>\
+			                                    <td><div>'+ items.cagr_last_5yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div></td>\
+		                                    </tr>\
+	                                    </tbody>\
+                                    </table>\
                                </div>\
-                               <div class="d-flex align-items-center justify-content-end moreCol">\
-                                  <a href="javascript:void(0)" onClick="ProjectByPincode('+ items.pincode + ')">View<br>Projects</a>\
-                               </div>\
-                               <div class="d-flex align-items-center justify-content-end moreCol">\
-                                  <a href="javascript:void(0)" onClick="PincodeTrendsRoute('+ items.pincode + ')">View<br>Trends</a>\
-                               </div>\
+                                <div class="d-flex align-items-center justify-content-end">\
+                                <div class="d-flex align-items-center moreCol">\
+                                    <a href="javascript:void(0)" onClick="ProjectByPincode('+ items.pincode + ')">View<br>Projects</a>\
+                                </div>\
+                                <div class="d-flex align-items-center moreCol">\
+                                    <a href="javascript:void(0)" onClick="PincodeTrendsRoute('+ items.pincode + ')">View<br>Trends</a>\
+                                </div>\
+                            </div>\
                            </div>';
                     });
                 }
@@ -168,177 +171,177 @@ var PincodeListModule = function () {
             }
 
         },
-    sortingDecider: function (sortby, orderby) {
+        sortingDecider: function (sortby, orderby) {
 
-        //SortBy
-        if (sortby == "name") {
-            var Text = PincodeListModule.orderbyDecider("#PincodeNameSortIcon", orderby);
-           
-            $('#PincodenameSortID').addClass('sortBy');
+            //SortBy
+            if (sortby == "name") {
+                var Text = PincodeListModule.orderbyDecider("#PincodeNameSortIcon", orderby);
 
-
-            //Remove Red From Text
-            $('#PincodeCurrRateSortID').removeClass('sortBy');
-            $('#PincodeyoySortID').removeClass('sortBy');
-            $('#PincodeCAGR3YSortID').removeClass('sortBy');
-            $('#PincodeCAGR5YSortID').removeClass('sortBy');
-
-            //Remove Icon
-            $('#PincodeCurRateSortIcon').removeClass();
-            $('#PincodeYoySortIcon').removeClass();
-            $('#Pincodecagr3ySortIcon').removeClass();
-            $('#Pincodecagr5ySortIcon').removeClass();
+                $('#PincodenameSortID').addClass('sortBy');
 
 
+                //Remove Red From Text
+                $('#PincodeCurrRateSortID').removeClass('sortBy');
+                $('#PincodeyoySortID').removeClass('sortBy');
+                $('#PincodeCAGR3YSortID').removeClass('sortBy');
+                $('#PincodeCAGR5YSortID').removeClass('sortBy');
+
+                //Remove Icon
+                $('#PincodeCurRateSortIcon').removeClass();
+                $('#PincodeYoySortIcon').removeClass();
+                $('#Pincodecagr3ySortIcon').removeClass();
+                $('#Pincodecagr5ySortIcon').removeClass();
 
 
 
-        }
-        else if (sortby == "current_rate") {
-
-            var Text = PincodeListModule.orderbyDecider("#PincodeCurRateSortIcon", orderby);
-           
-            $('#PincodeCurrRateSortID').addClass('sortBy');
-
-            $('#PincodenameSortID').removeClass('sortBy');
-            $('#PincodeyoySortID').removeClass('sortBy');
-            $('#PincodeCAGR3YSortID').removeClass('sortBy');
-            $('#PincodeCAGR5YSortID').removeClass('sortBy');
-
-            //Remove Icon
-            $('#PincodeNameSortIcon').removeClass();
-            $('#PincodeYoySortIcon').removeClass();
-            $('#Pincodecagr3ySortIcon').removeClass();
-            $('#Pincodecagr5ySortIcon').removeClass();
-        }
-        else if (sortby == "cagr_last_1yr") {
-
-            var Text = PincodeListModule.orderbyDecider("#PincodeYoySortIcon", orderby);
-           
-            $('#PincodeyoySortID').addClass('sortBy');
-
-            //Remove Red from Text
-            $('#PincodenameSortID').removeClass('sortBy');
-            $('#PincodeCurrRateSortID').removeClass('sortBy');
-            $('#PincodeCAGR3YSortID').removeClass('sortBy');
-            $('#PincodeCAGR5YSortID').removeClass('sortBy');
-
-            //Remove Icon from Text
-            $('#PincodeNameSortIcon').removeClass();
-            $('#PincodeCurRateSortIcon').removeClass();
-            $('#Pincodecagr3ySortIcon').removeClass();
-            $('#Pincodecagr5ySortIcon').removeClass();
-
-        }
-        else if (sortby == "cagr_last_3yr") {
-
-            var Text = PincodeListModule.orderbyDecider("#Pincodecagr3ySortIcon", orderby);
-          
-            $('#PincodeCAGR3YSortID').addClass('sortBy');
-
-            $('#PincodenameSortID').removeClass('sortBy');
-            $('#PincodeCurrRateSortID').removeClass('sortBy');
-            $('#PincodeyoySortID').removeClass('sortBy');
-            $('#PincodeCAGR5YSortID').removeClass('sortBy');
 
 
-            //Remove Icon from Text
-            $('#PincodeNameSortIcon').removeClass();
-            $('#PincodeCurRateSortIcon').removeClass();
-            $('#PincodeYoySortIcon').removeClass();
-            $('#Pincodecagr5ySortIcon').removeClass();
-        }
-        else if (sortby == "cagr_last_5yr") {
+            }
+            else if (sortby == "current_rate") {
 
-            var Text = PincodeListModule.orderbyDecider("#Pincodecagr5ySortIcon", orderby);
-            
-            $('#PincodeCAGR5YSortID').addClass('sortBy');
+                var Text = PincodeListModule.orderbyDecider("#PincodeCurRateSortIcon", orderby);
 
-            $('#PincodenameSortID').removeClass('sortBy');
-            $('#PincodeCurrRateSortID').removeClass('sortBy');
-            $('#PincodeyoySortID').removeClass('sortBy');
-            $('#PincodeCAGR3YSortID').removeClass('sortBy');
+                $('#PincodeCurrRateSortID').addClass('sortBy');
+
+                $('#PincodenameSortID').removeClass('sortBy');
+                $('#PincodeyoySortID').removeClass('sortBy');
+                $('#PincodeCAGR3YSortID').removeClass('sortBy');
+                $('#PincodeCAGR5YSortID').removeClass('sortBy');
+
+                //Remove Icon
+                $('#PincodeNameSortIcon').removeClass();
+                $('#PincodeYoySortIcon').removeClass();
+                $('#Pincodecagr3ySortIcon').removeClass();
+                $('#Pincodecagr5ySortIcon').removeClass();
+            }
+            else if (sortby == "cagr_last_1yr") {
+
+                var Text = PincodeListModule.orderbyDecider("#PincodeYoySortIcon", orderby);
+
+                $('#PincodeyoySortID').addClass('sortBy');
+
+                //Remove Red from Text
+                $('#PincodenameSortID').removeClass('sortBy');
+                $('#PincodeCurrRateSortID').removeClass('sortBy');
+                $('#PincodeCAGR3YSortID').removeClass('sortBy');
+                $('#PincodeCAGR5YSortID').removeClass('sortBy');
+
+                //Remove Icon from Text
+                $('#PincodeNameSortIcon').removeClass();
+                $('#PincodeCurRateSortIcon').removeClass();
+                $('#Pincodecagr3ySortIcon').removeClass();
+                $('#Pincodecagr5ySortIcon').removeClass();
+
+            }
+            else if (sortby == "cagr_last_3yr") {
+
+                var Text = PincodeListModule.orderbyDecider("#Pincodecagr3ySortIcon", orderby);
+
+                $('#PincodeCAGR3YSortID').addClass('sortBy');
+
+                $('#PincodenameSortID').removeClass('sortBy');
+                $('#PincodeCurrRateSortID').removeClass('sortBy');
+                $('#PincodeyoySortID').removeClass('sortBy');
+                $('#PincodeCAGR5YSortID').removeClass('sortBy');
 
 
-            //Remove Icon from Text
-            $('#PincodeNameSortIcon').removeClass();
-            $('#PincodeCurRateSortIcon').removeClass();
-            $('#PincodeYoySortIcon').removeClass();
-            $('#Pincodecagr3ySortIcon').removeClass();
-        }
+                //Remove Icon from Text
+                $('#PincodeNameSortIcon').removeClass();
+                $('#PincodeCurRateSortIcon').removeClass();
+                $('#PincodeYoySortIcon').removeClass();
+                $('#Pincodecagr5ySortIcon').removeClass();
+            }
+            else if (sortby == "cagr_last_5yr") {
+
+                var Text = PincodeListModule.orderbyDecider("#Pincodecagr5ySortIcon", orderby);
+
+                $('#PincodeCAGR5YSortID').addClass('sortBy');
+
+                $('#PincodenameSortID').removeClass('sortBy');
+                $('#PincodeCurrRateSortID').removeClass('sortBy');
+                $('#PincodeyoySortID').removeClass('sortBy');
+                $('#PincodeCAGR3YSortID').removeClass('sortBy');
 
 
-
-    },
-    orderbyDecider: function (IconID, orderby) {
-
-        //OrderBy
+                //Remove Icon from Text
+                $('#PincodeNameSortIcon').removeClass();
+                $('#PincodeCurRateSortIcon').removeClass();
+                $('#PincodeYoySortIcon').removeClass();
+                $('#Pincodecagr3ySortIcon').removeClass();
+            }
 
 
 
-        if (orderby == "desc") {
-            $(IconID).addClass("desc");
+        },
+        orderbyDecider: function (IconID, orderby) {
+
+            //OrderBy
 
 
-        }
-        else {
-            $(IconID).addClass("asc");
 
-        }
+            if (orderby == "desc") {
+                $(IconID).addClass("desc");
 
 
-    },
-    PincodePayload: function (lookup, QueryStringarr, sortBy, OrderBy) {
-        var jsonstr = {};
-        var Category;
-        if (QueryStringarr[3] == 0 && QueryStringarr[4] == 0 && QueryStringarr[5] == 0) {
-            Category = "AllPincodes";
-            jsonstr = {
-                "sort_by": sortBy,
-                "order_by": OrderBy
+            }
+            else {
+                $(IconID).addClass("asc");
+
+            }
+
+
+        },
+        PincodePayload: function (lookup, QueryStringarr, sortBy, OrderBy) {
+            var jsonstr = {};
+            var Category;
+            if (QueryStringarr[3] == 0 && QueryStringarr[4] == 0 && QueryStringarr[5] == 0) {
+                Category = "AllPincodes";
+                jsonstr = {
+                    "sort_by": sortBy,
+                    "order_by": OrderBy
+                };
+
+            }
+            else if (QueryStringarr[3] != 0 && QueryStringarr[4] == 0 && QueryStringarr[5] == 0) {
+                Category = "PincodeinPincode";
+                jsonstr = {
+                    "pincode": "" + QueryStringarr[3] + "",
+                    "sort_by": sortBy,
+                    "order_by": OrderBy
+                }
+            }
+
+            else if (QueryStringarr[3] == 0 && QueryStringarr[4] == 0 && QueryStringarr[5] != 0) {
+                Category = "PincodesinCity";
+                jsonstr = {
+                    "city_id": "" + QueryStringarr[5] + "",
+                    "sort_by": sortBy,
+                    "order_by": OrderBy
+                }
+            }
+            else {
+                Category = "AllPincodes";
+                jsonstr = {
+                    "sort_by": sortBy,
+                    "order_by": OrderBy
+                }
+            }
+
+
+
+
+            APIPayload = {
+                "lookup": "" + lookup + "",
+                "json_str": JSON.stringify(jsonstr)
             };
 
-        }
-        else if (QueryStringarr[3] != 0 && QueryStringarr[4] == 0 && QueryStringarr[5] == 0) {
-            Category = "PincodeinPincode";
-            jsonstr = {
-                "pincode": "" + QueryStringarr[3] + "",
-                "sort_by": sortBy,
-                "order_by": OrderBy
+            return Results = {
+                "Category": "" + Category + "",
+                "payload": APIPayload,
             }
+
         }
-
-        else if (QueryStringarr[3] == 0 && QueryStringarr[4] == 0 && QueryStringarr[5] != 0) {
-            Category = "PincodesinCity";
-            jsonstr = {
-                "city_id": "" + QueryStringarr[5] + "",
-                "sort_by": sortBy,
-                "order_by": OrderBy
-            }
-        }
-        else {
-            Category = "AllPincodes";
-            jsonstr = {
-                "sort_by": sortBy,
-                "order_by": OrderBy
-            }
-        }
-
-
-
-
-        APIPayload = {
-            "lookup": "" + lookup + "",
-            "json_str": JSON.stringify(jsonstr)
-        };
-
-        return Results = {
-            "Category": "" + Category + "",
-            "payload": APIPayload,
-        }
-
     }
-}
 }();
 
 function PincodeViewmoreListClick() {

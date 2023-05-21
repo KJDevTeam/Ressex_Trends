@@ -11,9 +11,9 @@ var ProjectListModule = function () {
             var QueryStringARR = common.GetQueryString();
             //var result = common.GetTrendsTypePayload(QueryStringARR);
 
-            
+
             ProjectListModule.sortingDecider(sortBy, OrderBy);
-            var result = ProjectListModule.ProjectPayload("project", QueryStringARR,sortBy, OrderBy);
+            var result = ProjectListModule.ProjectPayload("project", QueryStringARR, sortBy, OrderBy);
 
             var APIkey = utility.ServiceAPIURL("Dashboard/PriceIndexList");
             var Data = utility.ajaxselect(APIkey, result.payload, "Post", false);
@@ -48,8 +48,8 @@ var ProjectListModule = function () {
                 $('#ProjectviewmoreList').hide();
                 $("#ProjectList").empty();
                 $("#ProjectList").append('<div class="d-flex align-items-center justify-content-center" style="height: 250px;"><h5>No Data found</h5></div>');
-                
-                   
+
+
             }
 
 
@@ -79,38 +79,38 @@ var ProjectListModule = function () {
                 if (UserType != "Paid") {
                     $.each(arr_toload, function (index, items) {
 
-                        st += '<div class="searchResultCard d-flex align-items-center">\
+                        st += '<div class="searchResultCard d-flex align-items-center 4">\
                         <div class="mediaBlk rounded-circle"><img src="'+ img + '/search-img-1.png" alt="" class="rounded-circle"></div>\
-                            <div class="d-flex justify-content-between flex-1">\
-                                    <div class="searchCol">\
-                                        <label class="name">'+ items.name + '</label>\
-                                        <div class="location">'+ items.region_city + '</div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                        <label>'+ items.current_qtr + '</label>\
-                                        <div>Rs xxxx<i class="fa fa-lock text-danger ml-2"></i></div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                        <label>YoY Change (%)</label>\
-                                        <div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                        <label>CAGR (3Y)</label>\
-                                        <div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                            <label>CAGR (5Y)</label>\
-                                            <div>x %<i class="fa fa-lock text-danger ml-2"></i></div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                            <label>Project Status</label>\
-                                            <div>xxxx<i class="fa fa-lock text-danger ml-2"></i></div>\
-                                    </div>\
-                               </div>\
-                               <div class="d-flex align-items-center justify-content-end ml-5 pl-5">\
-                                  <a href="javascript:void(0)" onClick="ProjectTrendsRoute('+ items.project_id + ')">View<br>Trends</a>\
-                               </div>\
-                           </div>';
+                            <div class="flex-1">\
+		                        <table class="table searchResultTbl tblProjects">\
+			                        <thead>\
+				                        <tr>\
+                                            <th class="name">'+ items.name + '</th>\
+                                            <th>'+ items.current_qtr + '</th>\
+                                            <th>YoY Change (%)</th>\
+                                            <th>CAGR (3Y)</th>\
+                                            <th>CAGR (5Y)</th>\
+                                            <th>Project Status</th>\
+                                        </tr >\
+				                        </thead >\
+                        <tbody>\
+                            <tr>\
+                                <td class="location">'+ items.region_city + '</td>\
+                                <td><div>Rs xxxx<i class="fa fa-lock text-danger ml-2"></i></div></td>\
+                                <td><div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div></td>\
+                                <td><div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div></td>\
+                                <td><div>x %<i class="fa fa-lock text-danger ml-2"></i></div></td>\
+                                <td><div>xxxx<i class="fa fa-lock text-danger ml-2"></i></div></td>\
+                            </tr>\
+                        </tbody>\
+		                        </table >\
+	                        </div >\
+                        <div class="d-flex align-items-center justify-content-end">\
+                            <div class="d-flex align-items-center moreCol">\
+                                <a href="javascript:void(0)" onClick="ProjectTrendsRoute('+ items.project_id + ')">View<br>Trends</a>\
+                            </div>\
+                        </div>\
+                        </div > ';
                     });
 
                 }
@@ -118,36 +118,36 @@ var ProjectListModule = function () {
                     $.each(arr_toload, function (index, items) {
                         st += '<div class="searchResultCard d-flex align-items-center">\
                         <div class="mediaBlk rounded-circle"><img src="'+ img + '/search-img-1.png" alt="" class="rounded-circle"></div>\
-                            <div class="d-flex justify-content-between flex-1">\
-                                    <div class="searchCol">\
-                                        <label class="name">'+ items.name + '</label>\
-                                        <div class="location">'+ items.region_city + '</div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                        <label>'+ items.current_qtr + '</label>\
-                                        <div>'+ items.saleable_rate_psf + '</div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                        <label>YoY Change (%)</label>\
-                                        <div class="d-flex align-items-center">'+ items.cagr_last_1yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                        <label>CAGR (3Y)</label>\
-                                        <div class="d-flex align-items-center">'+ items.cagr_last_3yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                            <label>CAGR (5Y)</label>\
-                                            <div>'+ items.cagr_last_5yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div>\
-                                    </div>\
-                                    <div class="searchCol">\
-                                            <label>Project Status</label>\
-                                            <div>'+ items.project_status + '</div>\
-                                    </div>\
-                               </div>\
-                               <div class="d-flex align-items-center justify-content-end moreCol">\
-                                  <a href="javascript:void(0)" onClick="ProjectTrendsRoute('+ items.project_id + ')">View<br>Trends</a>\
-                               </div>\
-                           </div>';
+                            <div class="flex-1">\
+		                        <table class="table searchResultTbl tblProjects">\
+			                        <thead>\
+				                        <tr>\
+                                            <th class="name">'+ items.name + '</th>\
+                                            <th>'+ items.current_qtr + '</th>\
+                                            <th>YoY Change (%)</th>\
+                                            <th>CAGR (3Y)</th>\
+                                            <th>CAGR (5Y)</th>\
+                                            <th>Project Status</th>\
+                                        </tr >\
+				                        </thead >\
+                                        <tbody>\
+                                            <tr>\
+                                                <td class="location">'+ items.region_city + '</td>\
+                                                <td>'+ items.saleable_rate_psf + '</td>\
+                                                <td><div class="d-flex align-items-center">'+ items.cagr_last_1yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div></td>\
+                                                <td><div class="d-flex align-items-center">'+ items.cagr_last_3yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div></td>\
+                                                <td><div>'+ items.cagr_last_5yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div></td>\
+                                                <td>'+ items.project_status + '</td>\
+                                            </tr>\
+                                        </tbody>\
+		                                        </table >\
+	                                        </div >\
+                                        <div class="d-flex align-items-center justify-content-end">\
+                                            <div class="d-flex align-items-center moreCol">\
+                                                <a href="javascript:void(0)" onClick="ProjectTrendsRoute('+ items.project_id + ')">View<br>Trends</a>\
+                                            </div>\
+                                        </div>\
+                                        </div > ';
                     });
 
                 }
@@ -155,8 +155,8 @@ var ProjectListModule = function () {
 
 
 
-                   
-                
+
+
                 var paginateText = 'Showing <b>' + arr_toload.length + '</b> projects out of <b>' + keepProjectListData.length + '</b>';
                 $('#ProjectPaginationText').empty();
                 $('#ProjectPaginationText').append(paginateText);
@@ -193,7 +193,7 @@ var ProjectListModule = function () {
             else if (sortby == "current_rate") {
 
                 var Text = ProjectListModule.orderbyDecider("#ProjectCurRateSortIcon", orderby);
-               /* $('#ProjectCurrRateSortID').text(Text);*/
+                /* $('#ProjectCurrRateSortID').text(Text);*/
                 $('#ProjectCurrRateSortID').addClass('sortBy');
 
                 $('#ProjectnameSortID').removeClass('sortBy');
@@ -333,7 +333,7 @@ var ProjectListModule = function () {
             };
 
             return Results = {
-                "Category": "" + Category+"",
+                "Category": "" + Category + "",
                 "payload": APIPayload,
             }
 
@@ -374,7 +374,7 @@ function ProjectNameSortclick(event) {
 function ProjectCurRateSortclick(event) {
     $('#overlay').fadeIn();
     if ($(ProjectCurRateSortIcon).hasClass('asc') || $(ProjectCurRateSortIcon).hasClass('desc')) {
-      
+
         if ($(ProjectCurRateSortIcon).hasClass('asc')) {
             ProjectListModule.init("current_rate", "desc");
             $('#ProjectCurRateSortIcon').removeClass();
@@ -388,16 +388,16 @@ function ProjectCurRateSortclick(event) {
         }
     }
     else {
-      
+
         ProjectListModule.init("current_rate", "desc");
     }
     $('#overlay').fadeOut();
-}    
+}
 function ProjectYoySortclick(event) {
 
     $('#overlay').fadeIn();
     if ($(ProjectYoySortIcon).hasClass('asc') || $(ProjectYoySortIcon).hasClass('desc')) {
-       
+
         if ($(ProjectYoySortIcon).hasClass('asc')) {
             ProjectListModule.init("cagr_last_1yr", "desc");
             $('#ProjectYoySortIcon').removeClass();
@@ -416,12 +416,12 @@ function ProjectYoySortclick(event) {
     }
     $('#overlay').fadeOut();
 
-  
+
 }
 function Projectcagr3ySortclick(event) {
     $('#overlay').fadeIn();
     if ($(Projectcagr3ySortIcon).hasClass('asc') || $(Projectcagr3ySortIcon).hasClass('desc')) {
-      
+
         if ($(Projectcagr3ySortIcon).hasClass('asc')) {
             ProjectListModule.init("cagr_last_3yr", "desc");
             $('#Projectcagr3ySortIcon').removeClass();
@@ -441,13 +441,13 @@ function Projectcagr3ySortclick(event) {
     $('#overlay').fadeOut();
 
 
-    
+
 }
 function Projectcagr5ySortclick(event) {
 
     $('#overlay').fadeIn();
     if ($(Projectcagr5ySortIcon).hasClass('asc') || $(Projectcagr5ySortIcon).hasClass('desc')) {
-         if ($(Projectcagr5ySortIcon).hasClass('asc')) {
+        if ($(Projectcagr5ySortIcon).hasClass('asc')) {
             ProjectListModule.init("cagr_last_5yr", "desc");
             $('#Projectcagr5ySortIcon').removeClass();
             $('#Projectcagr5ySortIcon').addClass("desc");
@@ -463,7 +463,7 @@ function Projectcagr5ySortclick(event) {
 
         ProjectListModule.init("cagr_last_5yr", "desc");
     }
-    $('#overlay').fadeOut();    
+    $('#overlay').fadeOut();
 }
 
 //function ProjectNamesortIconClick(event) {
@@ -472,7 +472,7 @@ function Projectcagr5ySortclick(event) {
 //        ProjectListModule.init("name", "desc");
 //        $('#ProjectNameSortIcon').removeClass();
 //        $('#ProjectNameSortIcon').addClass("desc");
-        
+
 //    }
 //    else {
 //        ProjectListModule.init("name", "asc");
