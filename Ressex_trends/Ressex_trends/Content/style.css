@@ -1138,6 +1138,9 @@ section .header h3 {
 .searchPageHeader {
   font-size: 1rem;
 }
+.searchPageHeader a {
+  color: #192447;
+}
 .searchPageHeader .sortBy label {
   color: #6B6F81;
   font-size: 1rem;
@@ -1174,7 +1177,7 @@ section .header h3 {
   background: #FFFFFF;
   border: 1px solid #C4C1C1;
   border-radius: 10px;
-  padding: 10px 40px 10px 40px;
+  padding: 10px 0 10px 42px;
   margin-bottom: 45px;
 }
 .searchResultCard:last-child {
@@ -1224,27 +1227,33 @@ section .header h3 {
   margin-right: 20px;
 }
 
-.table.searchResultTbl thead th, .table.searchResultTbl tbody td {
-  padding: 0 20px 0 0;
+.table.searchResultTbl {
+  margin-bottom: 0;
+}
+
+.table.searchResultTbl th,
+.table.searchResultTbl td {
+  padding: 0 1.354165vw 0 1.354165vw;
   border-top: 0;
   vertical-align: top;
   word-break: break-word;
+  border-right: 1px solid #D9D9D9;
 }
 
-.table.searchResultTbl thead th {
-  padding-bottom: 12px;
+.table.searchResultTbl th {
+  padding-bottom: 8px;
   color: #6B6F81;
   font-weight: 400;
   font-size: 0.833331vw;
   border-bottom: 0;
-  width: 20%;
+  width: 16.6666%;
 }
 
-.table.searchResultTbl.tblProjects thead th {
+.table.searchResultTbl.tblProjects th {
   width: 16.666%;
 }
 
-.table.searchResultTbl thead th.name {
+.table.searchResultTbl th.name {
   color: #192447;
   font-weight: 500;
 }
@@ -1255,14 +1264,20 @@ section .header h3 {
   font-size: 0.9375vw;
 }
 
-.table.searchResultTbl tbody td {
+.table.searchResultTbl td {
   color: #192447;
   font-weight: 500;
   font-size: 0.9375vw;
 }
 
-.moreCol:not(:last-child) {
-  margin-right: 3.75vw;
+.table.searchResultTbl td.viewProjCol {
+  vertical-align: middle;
+  padding-bottom: 0;
+}
+
+.moreCol {
+  width: 122px;
+  padding-left: 26px;
 }
 
 .viewMoreBtn {
@@ -1363,6 +1378,11 @@ section.searchResultSec {
 /* Footer */
 footer {
   font-family: "Inter", sans-serif;
+}
+
+footer .container {
+  padding-left: 7.03123vw;
+  padding-right: 7.03123vw;
 }
 
 .footer-top {
@@ -1476,6 +1496,11 @@ footer ul li a:hover {
   padding-bottom: 4.402%;
 }
 
+.container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 @media (min-width: 1200px) {
   .container {
     max-width: 1140px;
@@ -1494,7 +1519,7 @@ footer ul li a:hover {
     color: #192447;
   }
   .cityCardBody {
-    padding: 15px;
+    padding: 18px 15px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -1503,7 +1528,7 @@ footer ul li a:hover {
   .cityCardBody img {
     width: 100%;
     max-width: 92px;
-    height: auto;
+    height: 92px;
     margin-bottom: 10px;
   }
   .cityCardBody .cardDesc {
@@ -1531,17 +1556,27 @@ footer ul li a:hover {
     max-width: 1140px;
     padding: 0;
   }
+  .cityCardBody {
+    padding: 18px 15px;
+  }
   .cityCardBody img {
     max-width: 97px;
   }
 }
 @media (min-width: 1536px) {
   .container {
-    max-width: calc(100% - 28.125rem);
+    max-width: 76.563vw;
     padding: 0;
   }
+  .cityCardBody {
+    padding: 22px 15px;
+  }
   .cityCardBody img {
-    max-width: 88px;
+    width: 88px;
+    height: 88px;
+  }
+  .table.searchResultTbl th {
+    font-size: 0.8vw;
   }
 }
 @media (min-width: 1900px) {
@@ -1554,17 +1589,17 @@ footer ul li a:hover {
     padding-right: 30px;
   }
   .cityCardBody {
-    padding: 15px;
+    padding: 20px 15px;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
   .cityCardBody img {
-    width: 100%;
-    max-width: 134px;
-    height: auto;
-    margin-bottom: 30px;
+    width: 6.25vw;
+    max-width: 100%;
+    height: 6.25vw;
+    margin-bottom: 3.5vh;
   }
   .tntro {
     width: 270px;
@@ -1584,5 +1619,8 @@ footer ul li a:hover {
   }
   .searchCol a {
     line-height: 25px;
+  }
+  .table.searchResultTbl th {
+    font-size: 0.833331vw;
   }
 }/*# sourceMappingURL=style.css.map */

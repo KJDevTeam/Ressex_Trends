@@ -89,30 +89,24 @@ var CityListModule = function () {
                         <div class="mediaBlk rounded-circle"><img src="'+ items.city_image_path +'" alt="" class="rounded-circle"></div>\
                             <div class="flex-1">\
 		                        <table class="table searchResultTbl">\
-			                        <thead>\
 				                        <tr>\
                                             <th class="name">'+ items.city_search + '</th>\
                                             <th>'+ items.current_qtr + '</th>\
                                             <th>YoY Change (%)</th>\
                                             <th>CAGR (3Y)</th>\
                                             <th>CAGR (5Y)</th>\
+                                            <td rowspan="2" class="viewProjCol"><a href="javascript:void(0)" onClick="ProjectByCity('+ items.region_or_city_id + ')">View<br>Projects</a></td>\
                                         </tr>\
-				                        </thead>\
-				                        <tbody>\
-                                            <tr>\
-                                                <td class="location">'+ items.region_city + '</td>\
-                                                <td><div>Rs xxxx %<i class="fa fa-lock text-danger ml-2"></i></div></td>\
-                                                <td><div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div></td>\
-                                                <td><div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div></td>\
-                                                <td><div>x %<i class="fa fa-lock text-danger ml-2"></i></div></td>\
-                                            </tr>\
-			                        </tbody>\
+                                        <tr>\
+                                            <td class="location">'+ items.region_city + '</td>\
+                                            <td><div>Rs xxxx %<i class="fa fa-lock text-danger ml-2"></i></div></td>\
+                                            <td><div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div></td>\
+                                            <td><div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div></td>\
+                                            <td><div>x %<i class="fa fa-lock text-danger ml-2"></i></div></td>\
+                                        </tr>\
 		                        </table>\
 	                        </div>\
 	                        <div class="d-flex align-items-center justify-content-end">\
-	                        <div class="d-flex align-items-center moreCol">\
-		                        <a href="javascript:void(0)" onClick="ProjectByCity('+ items.region_or_city_id + ')">View<br>Projects</a>\
-	                        </div>\
                             <div class="d-flex align-items-center moreCol">\
 		                        <a href="javascript:void(0)" onClick="CityTrendsRoute('+ items.region_or_city_id + ')">View<br>Trends</a>\
 	                        </div>\
@@ -127,30 +121,24 @@ var CityListModule = function () {
                         <div class="mediaBlk rounded-circle"><img src="'+ items.city_image_path +'" alt="" class="rounded-circle"></div>\
                             <div class="flex-1">\
 		                        <table class="table searchResultTbl">\
-			                        <thead>\
 				                        <tr>\
                                             <th class="name">'+ items.city_search + '</th>\
                                             <th>'+ items.current_qtr + '</th>\
                                             <th>YoY Change (%)</th>\
                                             <th>CAGR (3Y)</th>\
                                             <th>CAGR (5Y)</th>\
+                                            <td rowspan="2" class="viewProjCol"><a href="javascript:void(0)" onClick="ProjectByCity('+ items.region_or_city_id + ')">View<br>Projects</a></td>\
                                         </tr>\
-				                        </thead>\
-				                        <tbody>\
-                                            <tr>\
-                                                <td class="location">'+ items.state + '</td>\
-                                                <td>'+ items.saleable_rate_psf + '</td>\
-                                                <td><div class="d-flex align-items-center">'+ items.cagr_last_1yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div></td>\
-                                                <td><div class="d-flex align-items-center">'+ items.cagr_last_3yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div></td>\
-                                                <td><div>'+ items.cagr_last_5yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div></td>\
-                                            </tr>\
-			                        </tbody>\
+                                        <tr>\
+                                            <td class="location">'+ items.state + '</td>\
+                                            <td>'+ items.saleable_rate_psf + '</td>\
+                                            <td><div class="d-flex align-items-center">'+ items.cagr_last_1yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div></td>\
+                                            <td><div class="d-flex align-items-center">'+ items.cagr_last_3yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div></td>\
+                                            <td><div>'+ items.cagr_last_5yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div></td>\
+                                        </tr>\
 		                        </table>\
 	                        </div>\
 	                        <div class="d-flex align-items-center justify-content-end">\
-	                        <div class="d-flex align-items-center moreCol">\
-		                        <a href="javascript:void(0)" onClick="ProjectByCity('+ items.region_or_city_id + ')">View<br>Projects</a>\
-	                        </div>\
                             <div class="d-flex align-items-center moreCol">\
 		                        <a href="javascript:void(0)" onClick="CityTrendsRoute('+ items.region_or_city_id + ')">View<br>Trends</a>\
 	                        </div>\

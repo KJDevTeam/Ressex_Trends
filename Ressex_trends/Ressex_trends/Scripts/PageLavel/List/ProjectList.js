@@ -91,8 +91,8 @@ var ProjectListModule = function () {
                                             <th>CAGR (3Y)</th>\
                                             <th>CAGR (5Y)</th>\
                                             <th>Project Status</th>\
-                                        </tr >\
-				                        </thead >\
+                                        </tr>\
+				                        </thead>\
                         <tbody>\
                             <tr>\
                                 <td class="location">'+ items.region_city + '</td>\
@@ -103,7 +103,7 @@ var ProjectListModule = function () {
                                 <td><div>xxxx<i class="fa fa-lock text-danger ml-2"></i></div></td>\
                             </tr>\
                         </tbody>\
-		                        </table >\
+		                        </table>\
 	                        </div >\
                         <div class="d-flex align-items-center justify-content-end">\
                             <div class="d-flex align-items-center moreCol">\

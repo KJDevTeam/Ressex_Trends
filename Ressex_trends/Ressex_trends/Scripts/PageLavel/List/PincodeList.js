@@ -96,30 +96,24 @@ var PincodeListModule = function () {
                         <div class="mediaBlk rounded-circle"><img src="'+ items.pincode_image_path +'" alt="" class="rounded-circle"></div>\
                         <div class="flex-1">\
 		                        <table class="table searchResultTbl">\
-			                        <thead>\
-				                        <tr>\
+                                        <tr>\
 					                        <th class="name">'+ items.pincode + '</th>\
 					                        <th>'+ items.current_qtr + '</th>\
 					                        <th>YoY Change (%)</th>\
 					                        <th>CAGR (3Y)</th>\
 					                        <th>CAGR (5Y)</th>\
+                                            <td rowspan="2" class="viewProjCol"><a href="javascript:void(0)" onClick="ProjectByPincode('+ items.pincode + ')">View<br>Projects</a></td>\
 				                        </tr>\
-				                        </thead>\
-				                        <tbody>\
-				                        <tr>\
+                                        <tr>\
 					                        <td class="location">'+ items.region_city + '</td>\
 					                        <td>Rs xxxx<i class="fa fa-lock text-danger ml-2"></i></td>\
 					                        <td><div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div></td>\
 					                        <td><div class="d-flex align-items-center">x %<i class="fa fa-lock text-danger ml-2"></i></div></td>\
 					                        <td>x %<i class="fa fa-lock text-danger ml-2"></i></td>\
 				                        </tr>\
-			                        </tbody>\
 		                        </table>\
 	                        </div>\
 	                        <div class="d-flex align-items-center justify-content-end">\
-		                        <div class="d-flex align-items-center moreCol">\
-			                        <a href="javascript:void(0)" onClick="ProjectByPincode('+ items.pincode + ')">View<br>Projects</a>\
-		                        </div>\
 		                        <div class="d-flex align-items-center moreCol">\
 			                        <a href="javascript:void(0)" onClick="PincodeTrendsRoute('+ items.pincode + ')">View<br>Trends</a>\
 		                        </div>\
@@ -133,30 +127,24 @@ var PincodeListModule = function () {
                         <div class="mediaBlk rounded-circle"><img src="'+ items.pincode_image_path +'" alt="" class="rounded-circle"></div>\
                             <div class="flex-1">\
                                     <table class="table searchResultTbl">\
-	                                    <thead>\
-		                                    <tr>\
+                                            <tr>\
 			                                    <th class="name">'+ items.pincode + '</th>\
 			                                    <th>'+ items.current_qtr + '</th>\
 			                                    <th>YoY Change (%)</th>\
 			                                    <th>CAGR (3Y)</th>\
 			                                    <th>CAGR (5Y)</th>\
+                                                <td rowspan="2" class="viewProjCol"><a href="javascript:void(0)" onClick="ProjectByPincode('+ items.pincode + ')">View<br>Projects</a></td>\
                                             </tr>\
-                                            </thead>\
-                                            <tbody>\
-		                                    <tr>\
+                                            <tr>\
 			                                    <td class="location">'+ items.region_city + '</td>\
 			                                    <td>'+ items.saleable_rate_psf + '</td>\
 			                                    <td><div class="d-flex align-items-center">'+ items.cagr_last_1yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div></td>\
 			                                    <td><div class="d-flex align-items-center">'+ items.cagr_last_3yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div></td>\
 			                                    <td><div>'+ items.cagr_last_5yr_pct + '<img src="' + img + '/polygon-up.svg" alt="" class="ml-2"></div></td>\
 		                                    </tr>\
-	                                    </tbody>\
                                     </table>\
                                </div>\
                                 <div class="d-flex align-items-center justify-content-end">\
-                                <div class="d-flex align-items-center moreCol">\
-                                    <a href="javascript:void(0)" onClick="ProjectByPincode('+ items.pincode + ')">View<br>Projects</a>\
-                                </div>\
                                 <div class="d-flex align-items-center moreCol">\
                                     <a href="javascript:void(0)" onClick="PincodeTrendsRoute('+ items.pincode + ')">View<br>Trends</a>\
                                 </div>\
