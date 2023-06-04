@@ -182,7 +182,7 @@ var ProjectTrendsModule = function () {
             totaldataset.push(dataFourth);
             totaldataset.push(dataFifth);
 
-                axistxt.push({ "X": 'Quarter', "Y": 'Saleable Rate in ₹/sqft' });
+            axistxt.push({ "X": 'Quarter', "Y": 'Saleable Rate in ₹/sqft', "color": '#192447' });
           
             //  label = OsgroupbyDate;
             graphvariable = utility.bindmultilinedinamic("scanlineProject", totaldataset, true, axistxt, label, ticks);
@@ -320,7 +320,7 @@ var ProjectTrendsModule = function () {
             totaldataset.push(dataFourth);
             totaldataset.push(dataFifth);
 
-            axistxt.push({ "X": 'Time', "Y": 'Price Index' });
+            axistxt.push({ "X": 'Time', "Y": 'Price Index', "color": '#192447' });
 
             //  label = OsgroupbyDate;
             graphvariable = utility.bindmultilinedinamic("scanlineProject", totaldataset, true, axistxt, label, ticks);

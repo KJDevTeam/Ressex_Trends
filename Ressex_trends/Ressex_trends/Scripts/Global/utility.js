@@ -835,13 +835,23 @@ utility.bindmultilinedinamic = function (Controlid, dataCritical, responsive, ax
             y: {
                 title: {
                     display: true,
-                    text: axistxt[0].Y
+                    text: axistxt[0].Y,
+                    color: axistxt[0].color,
+                    font: {
+                        size: 16,
+
+                    }
                 }
             },
             x: {
                 title: {
                     display: true,
-                    text: axistxt[0].X
+                    text: axistxt[0].X,
+                    color: axistxt[0].color,
+                    font: {
+                        size: 16,
+
+                    }
                 }
             }
         },
