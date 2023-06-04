@@ -1161,12 +1161,12 @@ section .header h3{
 .table.searchResultTbl .location{
   color: $text-color-8;
   font-weight: 400;
-  font-size: 0.9375vw;
+  font-size: 0.833331vw;
 }
 .table.searchResultTbl td{
   color: $text-color-5;
   font-weight: 500;
-  font-size: 0.9375vw;
+  font-size: 0.833331vw;
 }
 .table.searchResultTbl td.viewProjCol{
   vertical-align: middle;
@@ -1265,9 +1265,15 @@ section.searchResultSec{
   font-family: $font-inter;
 }
 footer .container {
-// max-width: 62.5vw;
-  padding-left: 7.03123vw;
-  padding-right: 7.03123vw;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  // max-width: 62.5vw;  
+  // padding-left: 7.03123vw;
+  // padding-right: 7.03123vw;
+}
+footer .footer-copyright .container{
+  max-width: 65.4vw;
 }
 .footer-top {
   border-top: 9px solid $text-color-2;
@@ -1278,8 +1284,20 @@ footer .container {
   padding-top: 54px;
   padding-bottom: 54px;
 }
+.footer1stCol{
+  flex: 1;
+  max-width: 27.24vw;
+}
+.footer2ndCol{
+  flex: 1;
+  max-width: 22.448vw;
+}
+.footerLastCol{
+  max-width: 125px;
+}
 .footerColSpace{
-  padding-right: 4.636vw !important;
+  margin-right: 4.636vw !important;
+  // padding-right: 4.636vw !important;
 }
 .footerLogo {
   max-height: 68px;
@@ -1322,7 +1340,11 @@ li a:hover {
   color: $text-color-2;
 }
 }
-
+// .footer-copyright .container {
+//   max-width: 1076px;
+//   margin-left: auto;
+//   margin-right: auto;
+// }
 .footer-copyright {
   background: rgb(76,110,217);
   background: linear-gradient(90deg, #4c6ed9 -27.05%, #e8595b 124.92%);
@@ -1378,6 +1400,8 @@ li a:hover {
   padding-left: 0;
   padding-right: 0;
 }
+
+
 @media (min-width: 1200px){
   .container{
     max-width: 1140px;
@@ -1436,6 +1460,9 @@ li a:hover {
     .moreCol{
       // margin-left: 3.5vw;
     }
+    footer .footer-copyright .container {
+      max-width: calc(65.4vw + 40px);
+  }
 }
 @media (min-width: 1360px){  
   .container{
@@ -1451,7 +1478,10 @@ li a:hover {
   // .tntro, .metho, .pTrends {
   //   width: 250px;
   //   height: 250px;
-  // } 
+  // }
+  footer .footer-copyright .container {
+    max-width: calc(65.4vw + 30px);
+  }
 }
 @media (min-width: 1536px){
   .container {
@@ -1468,6 +1498,9 @@ li a:hover {
   }
   .table.searchResultTbl th {
     font-size: 0.8vw;
+  }
+  footer .footer-copyright .container {
+    max-width: calc(65.4vw + 20px);
   }
 }
 @media (min-width: 1900px){
@@ -1517,5 +1550,8 @@ li a:hover {
   }
   .table.searchResultTbl th {
     font-size: 0.833331vw;
+  }
+  footer .footer-copyright .container {
+    max-width: 65.4vw;
   }
 }

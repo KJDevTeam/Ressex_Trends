@@ -1261,13 +1261,13 @@ section .header h3 {
 .table.searchResultTbl .location {
   color: #6B6F81;
   font-weight: 400;
-  font-size: 0.9375vw;
+  font-size: 0.833331vw;
 }
 
 .table.searchResultTbl td {
   color: #192447;
   font-weight: 500;
-  font-size: 0.9375vw;
+  font-size: 0.833331vw;
 }
 
 .table.searchResultTbl td.viewProjCol {
@@ -1381,8 +1381,13 @@ footer {
 }
 
 footer .container {
-  padding-left: 7.03123vw;
-  padding-right: 7.03123vw;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer .footer-copyright .container {
+  max-width: 65.4vw;
 }
 
 .footer-top {
@@ -1396,8 +1401,22 @@ footer .container {
   padding-bottom: 54px;
 }
 
+.footer1stCol {
+  flex: 1;
+  max-width: 27.24vw;
+}
+
+.footer2ndCol {
+  flex: 1;
+  max-width: 22.448vw;
+}
+
+.footerLastCol {
+  max-width: 125px;
+}
+
 .footerColSpace {
-  padding-right: 4.636vw !important;
+  margin-right: 4.636vw !important;
 }
 
 .footerLogo {
@@ -1550,6 +1569,9 @@ footer ul li a:hover {
   .searchCol label {
     font-size: 0.75rem;
   }
+  footer .footer-copyright .container {
+    max-width: calc(65.4vw + 40px);
+  }
 }
 @media (min-width: 1360px) {
   .container {
@@ -1561,6 +1583,9 @@ footer ul li a:hover {
   }
   .cityCardBody img {
     max-width: 97px;
+  }
+  footer .footer-copyright .container {
+    max-width: calc(65.4vw + 30px);
   }
 }
 @media (min-width: 1536px) {
@@ -1577,6 +1602,9 @@ footer ul li a:hover {
   }
   .table.searchResultTbl th {
     font-size: 0.8vw;
+  }
+  footer .footer-copyright .container {
+    max-width: calc(65.4vw + 20px);
   }
 }
 @media (min-width: 1900px) {
@@ -1622,5 +1650,8 @@ footer ul li a:hover {
   }
   .table.searchResultTbl th {
     font-size: 0.833331vw;
+  }
+  footer .footer-copyright .container {
+    max-width: 65.4vw;
   }
 }/*# sourceMappingURL=style.css.map */
