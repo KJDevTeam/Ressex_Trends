@@ -8,7 +8,7 @@
     <div class="container flex-1">
 
         <div class="innerSectionHeader d-flex">
-            <a href="javascript:void(0)" onclick="goBack()" class="mr-2 pt-2"><img src="~/images/chevron-left.svg" alt=""></a>
+            <a href="javascript: history.go(-1)" @*onclick="goBack()"*@ class="mr-2 pt-2"><img src="~/images/chevron-left.svg" alt=""></a>
             <div class="header flex-1">
                 <h3 id="screenNamePincode"></h3>
                 <div class="border-h"></div>

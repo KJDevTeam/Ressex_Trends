@@ -19,8 +19,8 @@ namespace Ressex_trends.Controllers
         public ActionResult Login()
         {
             var _loginModel = new LoginModel();
-            _loginModel.email_id = "demo@demo.com";
-            _loginModel.password = "demo";
+            _loginModel.email_id = "kartik.jana.kp2@gmail.com";
+            _loginModel.password = "@demo1";
             return View(_loginModel);
         }
 
