@@ -502,12 +502,12 @@ var ProjectTrendsModule = function () {
                 st += '<div class="d-flex justify-content-between checkBtmSpace">\
                         <div class="custom-control custom-checkbox light-purple" id="divid'+index+'">\
                                 <input type="checkbox" class="custom-control-input" onchange="projectcheckboxchnage(event)" id="dataset'+ index + '" checked="true">\
-                                <label class="custom-control-label pointer" for="dataset'+ index + '">' + dataset.label + '</label>\
+                                <label class="custom-control-label pointer" style="--checkboxshadow:'+ dataset.borderColor +'" for="dataset'+ index + '">' + dataset.label + '</label>\
                             </div>\
                             <div class="cityNameCol">'+ dataset.labelvalue + '</div>\
                         </div >';
 
-                $('#divid'+index).css("border-color", dataset.borderColor);
+               // $('#divid'+index).css("border-color", dataset.borderColor);
             });
            
             $("#ProjectCheckbox").append(st);
