@@ -488,7 +488,7 @@ var ProjectTrendsModule = function () {
             const legend = $("#ProjectCheckbox");
             var st = ''
             st += '<div class="d-flex justify-content-between checkBtmSpace">\
-                        <div class="custom-control custom-checkbox">\
+                        <div class="custom-control custom-checkbox all">\
                                 <input type="checkbox" class="custom-control-input" onchange="projectALLchnage(event)" id="checkProjectALL" checked="true">\
                                 <label class="custom-control-label pointer" for="checkProjectALL">ALL</label>\
                             </div>\
@@ -500,9 +500,9 @@ var ProjectTrendsModule = function () {
                 CheckboxIDs.push("dataset" + index);
                 /* onchange = citycheckboxchnage('+ id+')"*/
                 st += '<div class="d-flex justify-content-between checkBtmSpace">\
-                        <div class="custom-control custom-checkbox light-purple" id="divid'+index+'">\
+                        <div class="custom-control custom-checkbox"  style="boxshadow:0 0 0 #000"  id="divid'+index+'">\
                                 <input type="checkbox" class="custom-control-input" onchange="projectcheckboxchnage(event)" id="dataset'+ index + '" checked="true">\
-                                <label class="custom-control-label pointer" style="--checkboxshadow:'+ dataset.borderColor +'" for="dataset'+ index + '">' + dataset.label + '</label>\
+                                <label class="custom-control-label pointer"  style="--checkboxshadow:'+ dataset.borderColor + '; --checkboxBorder:' + dataset.borderColor + '; --checkboxFocus:' + dataset.borderColor +'"  for="dataset'+ index + '">' + dataset.label + '</label>\
                             </div>\
                             <div class="cityNameCol">'+ dataset.labelvalue + '</div>\
                         </div >';

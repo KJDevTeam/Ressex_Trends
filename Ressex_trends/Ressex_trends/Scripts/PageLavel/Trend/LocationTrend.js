@@ -329,7 +329,7 @@ var LocationTrendsModule = function () {
             const legend = $("#LocationCheckbox");
             var st = ''
             st += '<div class="d-flex justify-content-between checkBtmSpace">\
-                        <div class="custom-control custom-checkbox">\
+                        <div class="custom-control custom-checkbox all">\
                                 <input type="checkbox" class="custom-control-input" onchange="locationALLchnage(event)" id="checkLocationALL" checked="true">\
                                 <label class="custom-control-label pointer" for="checkLocationALL">ALL</label>\
                             </div>\
@@ -341,9 +341,9 @@ var LocationTrendsModule = function () {
                 CheckboxIDs.push("dataset" + index);
                 /* onchange = citycheckboxchnage('+ id+')"*/
                 st += '<div class="d-flex justify-content-between checkBtmSpace">\
-                        <div class="custom-control custom-checkbox light-purple">\
+                        <div class="custom-control custom-checkbox">\
                                 <input type="checkbox" class="custom-control-input" onchange="locationcheckboxchnage(event)" id="dataset'+ index + '" checked="true">\
-                                <label class="custom-control-label pointer" for="dataset'+ index + '">' + dataset.label + '</label>\
+                                <label class="custom-control-label pointer"  style="--checkboxshadow:'+ dataset.borderColor + '; --checkboxBorder:' + dataset.borderColor + '; --checkboxFocus:' + dataset.borderColor +'"  for="dataset'+ index + '">' + dataset.label + '</label>\
                             </div>\
                             <div class="cityNameCol">'+ dataset.labelvalue + '</div>\
                         </div >';

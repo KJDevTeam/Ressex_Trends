@@ -907,10 +907,14 @@ section .header h3{
   background: #FFFFFF;
   box-shadow: 0px 4px 4px $text-color-8;
 }
-.custom-checkbox .custom-control-input:checked~.custom-control-label::before{
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before,
+.custom-checkbox.all .custom-control-input:checked~.custom-control-label::before{
   color: #000;
   border-color: $text-color-9;
   background-color: #FFFFFF;
+}
+.custom-checkbox.all .custom-control-input:checked~.custom-control-label::before{
+  box-shadow: 0px 4px 4px #D9D9D9;
 }
 .custom-checkbox .custom-control-input:checked~.custom-control-label::after {
   background-image: url(../images/tick-icon.svg);
@@ -920,69 +924,22 @@ section .header h3{
   border-color: $text-color-9;
 }
 .custom-checkbox .custom-control-input:focus:not(:checked)~.custom-control-label::before{
-  border-color: $text-color-9;
+  border-color: var(--checkboxFocus);
 }
 
-.light-purple .custom-control-label::before, 
-.light-purple .custom-control-input:focus~.custom-control-label::before,
-.light-purple .custom-control-input:checked ~ .custom-control-label::before,
-.light-purple .custom-control-input:not(:disabled):active~.custom-control-label::before {
-  background-color: #fff;
-  box-shadow: 0px 4px 4px var(--checkboxshadow);
-  //border-color: #B771EE;
+.custom-checkbox .custom-control-label::before,
+.custom-checkbox .custom-control-input:focus ~ .custom-control-label::before,
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before,
+.custom-checkbox .custom-control-input:not(:disabled):active ~ .custom-control-label::before {
+    box-shadow: 0px 4px 4px var(--checkboxshadow);
+    border-color: var(--checkboxBorder);
 }
-.light-purple .custom-control-input:focus:not(:checked)~.custom-control-label::before{
-  //border-color: #24DEC3;
+.custom-checkbox.all .custom-control-label::before,
+.custom-checkbox.all .custom-control-input:checked ~ .custom-control-label::before,
+.custom-checkbox.all .custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
+  box-shadow: 0px 4px 4px #D9D9D9;
+  border-color: #D9D9D9; 
 }
-
-.light-green .custom-control-label::before, 
-.light-green .custom-control-input:focus~.custom-control-label::before,
-.light-green .custom-control-input:checked ~ .custom-control-label::before,
-.light-green .custom-control-input:not(:disabled):active~.custom-control-label::before {
-  background-color: #fff;
-  box-shadow: 0px 4px 4px #57F4DD;
-  border-color: #24DEC3;
-}
-.light-green .custom-control-input:focus:not(:checked)~.custom-control-label::before{
-  border-color: #24DEC3;
-}
-
-.light-red .custom-control-label::before, 
-.light-red .custom-control-input:focus~.custom-control-label::before,
-.light-red .custom-control-input:checked ~ .custom-control-label::before,
-.light-red .custom-control-input:not(:disabled):active~.custom-control-label::before {
-  background-color: #fff;
-  box-shadow: 0px 4px 4px #F17579;
-  border-color: #E6676C;
-}
-.light-red .custom-control-input:focus:not(:checked)~.custom-control-label::before{
-  border-color: #E6676C;
-}
-
-.light-yellow .custom-control-label::before, 
-.light-yellow .custom-control-input:focus~.custom-control-label::before,
-.light-yellow .custom-control-input:checked ~ .custom-control-label::before,
-.light-yellow .custom-control-input:not(:disabled):active~.custom-control-label::before {
-  background-color: #fff;
-  box-shadow: 0px 4px 4px #FBD13C;
-  border-color: #FFD233;
-}
-.light-yellow .custom-control-input:focus:not(:checked)~.custom-control-label::before{
-  border-color: #FFD233;
-}
-
-.light-blue .custom-control-label::before, 
-.light-blue .custom-control-input:focus~.custom-control-label::before,
-.light-blue .custom-control-input:checked ~ .custom-control-label::before,
-.light-blue .custom-control-input:not(:disabled):active~.custom-control-label::before {
-  background-color: #fff;
-  box-shadow: 0px 4px 4px #899CE2;
-  border-color: #778DDE;
-}
-.light-blue .custom-control-input:focus:not(:checked)~.custom-control-label::before{
-  border-color: #778DDE;
-}
-
 /* Checkbox and Radio*/
 
 .custom-radio{
