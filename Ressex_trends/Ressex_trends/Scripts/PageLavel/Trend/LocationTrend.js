@@ -412,7 +412,7 @@ $('#CAGRListLocation a').on('click', function () {
 $("#LocationTrendIndex").click(function () {
 
     $("#LocationTrendIndex").addClass('active');
-    $('#LocationPriceIndex').removeClass('active');
+    $('#LocationTrendPrice').removeClass('active');
     LocationTrendsModule.MultilinegraphIndex();
 });
 $("#LocationTrendPrice").click(function () {

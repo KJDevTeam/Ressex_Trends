@@ -134,7 +134,7 @@ var CityTrendsModule = function () {
             var label = [];
             var axistxt = [];
             ticks = {
-                min: 0,
+                min: 0, 
                 max: 6,
                 stepSize: 1
             };
@@ -374,7 +374,7 @@ $('#CAGRListCity a').on('click', function () {
 $("#CityTrendIndex").click(function () {
 
     $("#CityTrendIndex").addClass('active');
-    $('#CityPriceIndex').removeClass('active');
+    $('#CityTrendPrice').removeClass('active');
     CityTrendsModule.MultilinegraphIndex();
 });
 $("#CityTrendPrice").click(function () {

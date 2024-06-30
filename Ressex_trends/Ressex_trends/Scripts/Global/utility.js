@@ -128,12 +128,14 @@ utility.ajaxselect = function (urlToHandler, jsonData, requestType, async) {
                     var refresh_token = JSON.parse(user_details).token.refresh_token;
                 }
                 else {
-                    window.location.replace(window.location.origin);
+                    /*window.location.replace(window.location.origin);*/
+                    window.location.href = "https://dashboard.liasesforas.com/login";
                 }
                 var APIkey = utility.ServiceAPIURL("Dashboard/token?refresh_token=" + refresh_token);
                 var rsp = utility.ajaxselectforRefreshToken(APIkey, "", "Get", false);
                 if (rsp.status != "OK") {
-                    window.location.replace(window.location.origin);
+                    /*window.location.replace(window.location.origin);*/
+                    window.location.href = "https://dashboard.liasesforas.com/login";
                 }
                 console.log(rsp);
                 utility.setCookie("access_token", rsp.access_token, rsp.expires_in);

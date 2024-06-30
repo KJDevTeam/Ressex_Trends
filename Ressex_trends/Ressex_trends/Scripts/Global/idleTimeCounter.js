@@ -249,8 +249,10 @@
             });
             //Local Storage Clear
             localStorage.clear();
-            var loginurl = utility.FrontEndAPIURL('');
-            window.location.href = loginurl;
+            //var loginurl = utility.FrontEndAPIURL('');
+            //window.location.href = loginurl;
+
+            window.location.href = "https://dashboard.liasesforas.com/login";
           /*  window.location.href = window.location.origin;*/
 
             ////MasterPage.logoffuserLogin();
