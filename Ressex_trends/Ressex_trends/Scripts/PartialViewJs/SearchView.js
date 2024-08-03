@@ -4,7 +4,26 @@ var SearchModule = function () {
    
     return {
         init: function () {
-            $('#selectedSearchType').text('Projects');
+            searchType = window.location.pathname.split("/");
+            for (i = 0; i < searchType.length; i++) {
+                if (searchType[i] == "Dashboard") {
+                    searchTypeTx = "project";
+                }
+                if (searchType[i] == "city") {
+                    searchTypeTx = "city";
+                }
+                if (searchType[i] == "pincode") {
+                    searchTypeTx = "pincode";
+                }
+                if (searchType[i] == "location") {
+                    searchTypeTx = "location";
+                }
+                if (searchType[i] == "project") {
+                    searchTypeTx = "project";
+                }
+            }
+            
+            $('#selectedSearchType').text(searchTypeTx);
             SearchModule.AutocompleteSearch(searchType);
 
         },
