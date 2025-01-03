@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="topProjColWrap">
-                    <div class="topProjCol">
+                    @*<div class="topProjCol">
                         <a onclick="ShortcutRouting('top10Projects')" href="javascript:void(0)">
                             <div class="img-card card1">
                                 <img src="images/image1.png" alt="">
@@ -46,6 +46,8 @@
                             </div>
                         </a>
 
+                    </div>*@
+                    <div class="topProjColdummy">
                     </div>
                     <div class="topProjCol">
                         <a onclick="ShortcutRouting('top10Pincodes')" href="javascript:void(0)">
@@ -79,6 +81,8 @@
                                 </div>
                             </div>
                         </a>
+                    </div>
+                    <div class="topProjColdummy">
                     </div>
                 </div>
             </div>
@@ -119,11 +123,11 @@
 
                 <div class="d-flex justify-content-center p-1 chartTabs">
                     <ul class="nav nav-pills tabsCustom">
+                        @*<li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#price" role="tab">Price</a>
+                            </li>*@
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#price" role="tab">Price</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#index" role="tab">Index</a>
+                            <a class="nav-link active" data-toggle="tab" href="#index" role="tab">Index</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link download" href="javascript:void(0)" id="TrendsDownload">Download</a>
@@ -131,10 +135,10 @@
                     </ul>
                 </div>
                 <div class="tab-content p-0">
-                    <div class="tab-pane active" id="price" role="tabpanel" style="height:300px;">
-                        <canvas id="priceLinechart" height="300"></canvas>
-                    </div>
-                    <div class="tab-pane" id="index" role="tabpanel" style="height:300px;">
+                    @*<div class="tab-pane" id="price" role="tabpanel" style="height:300px;">
+                            <canvas id="priceLinechart" height="300"></canvas>
+                        </div>*@
+                    <div class="tab-pane active" id="index" role="tabpanel" style="height:300px;">
                         <canvas id="indexLinechart" height="300"></canvas>
                     </div>
                 </div>

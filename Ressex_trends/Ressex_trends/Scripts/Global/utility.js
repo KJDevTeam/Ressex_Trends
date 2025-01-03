@@ -12,7 +12,7 @@ utility.ServiceAPIURL = function (url) {
 
     var GetUrl = window.location.href.split(':');
     if (GetUrl[1] == "//localhost") {
-       // return window.location.origin + '/' + url;
+        // return window.location.origin + '/' + url;
         return serverstr + url;
     }
     else {
@@ -27,11 +27,11 @@ utility.FrontEndAPIURL = function (url) {
     var GetUrl = window.location.href.split(':');
     if (GetUrl[1] == "//localhost") {
         return window.location.origin + '/' + url;
-        
+
     }
     else {
-        return window.location.origin + '/' + window.location.pathname.split('/')[1] + '/' +  url;
-        
+        return window.location.origin + '/' + window.location.pathname.split('/')[1] + '/' + url;
+
     }
 };
 
@@ -84,16 +84,16 @@ utility.getCookie = function (cname) {
     }
     return "";
 }
-utility.checkCookie =function (name) {
+utility.checkCookie = function (name) {
     let userdetails = utility.getCookie(name);
     if (userdetails != "") {
         return true;
         /*alert("Welcome again " + username);*/
     } else {
-       /* alert("call RFT");*/
+        /* alert("call RFT");*/
         return false;
     }
-    
+
 }
 utility.setCookie_old = function setCookie(cname, cvalue) {
     var d = new Date();
@@ -101,9 +101,9 @@ utility.setCookie_old = function setCookie(cname, cvalue) {
     var expires = "expires=" + d.toUTCString();
     document.cookie = cname + "=" + cvalue + "; " + expires;
 };
-utility.setCookie = function setCookie(cname, cvalue,expTime) {
+utility.setCookie = function setCookie(cname, cvalue, expTime) {
     var d = new Date();
-    d.setTime(d.getTime() + (expTime* 1000));
+    d.setTime(d.getTime() + (expTime * 1000));
     var expires = "expires=" + d.toUTCString();
     document.cookie = cname + "=" + cvalue + "; " + expires;
 };
@@ -140,7 +140,7 @@ utility.ajaxselect = function (urlToHandler, jsonData, requestType, async) {
                 console.log(rsp);
                 utility.setCookie("access_token", rsp.access_token, rsp.expires_in);
             }
-            xhr.setRequestHeader('Authorization', 'bearer ' +utility.getCookie("access_token"));
+            xhr.setRequestHeader('Authorization', 'bearer ' + utility.getCookie("access_token"));
         },
         success: function (allData) {
             FinalData = allData;
@@ -152,7 +152,7 @@ utility.ajaxselect = function (urlToHandler, jsonData, requestType, async) {
 
 
     });
-   return FinalData;
+    return FinalData;
 
 };
 
@@ -182,22 +182,21 @@ utility.ajaxselectforRefreshToken = function (urlToHandler, jsonData, requestTyp
 };
 
 
-utility.callajax = function (urlToHandler, jsonData, requestType, async)
-{
+utility.callajax = function (urlToHandler, jsonData, requestType, async) {
     var FinalData;
-        $.ajax({
-            type: "post",
-            url: "/Home/GetDistrict",
-            data: { stateId: $('#ddlState').val() },
-            datatype: "json",
-            traditional: true,
-            success: function (data) {
-                FinalData = data;
-            },
-             error: function (data, status, jqXHR) {
+    $.ajax({
+        type: "post",
+        url: "/Home/GetDistrict",
+        data: { stateId: $('#ddlState').val() },
+        datatype: "json",
+        traditional: true,
+        success: function (data) {
+            FinalData = data;
+        },
+        error: function (data, status, jqXHR) {
 
-            }
-        });
+        }
+    });
     return FinalData;
 }
 
@@ -285,7 +284,7 @@ utility.ajaxput = function (urlToHandler, jsonData, requestType, async, modal, s
 //    else {
 //        var arr = [{ "id": "0", "text": "--Select--" }];
 //    }
-    
+
 
 
 //    data.forEach(function (value) {
@@ -317,7 +316,7 @@ utility.ajaxput = function (urlToHandler, jsonData, requestType, async, modal, s
 //                if (value.id == Selecteddata[i])
 //                    value.selected = true;
 //            }
-           
+
 //        })
 //    }
 //    else {
@@ -326,13 +325,13 @@ utility.ajaxput = function (urlToHandler, jsonData, requestType, async, modal, s
 //                value.selected = true;
 //        })
 //    }
-    
+
 
 
 //    return arr;
 //};
 
-utility.logoffuserLogin= function () {
+utility.logoffuserLogin = function () {
     var urlToHandler = utility.ServiceAPIURL("");
     var jsonData;
     jsonData = 'iTOKEN=';
@@ -388,7 +387,7 @@ utility.exportCSVFile = function (headers, items, fileTitle) {
         }
     }
 }
-utility.buildColoumnchart_attr = function (data, valf, Controlid,attr) {
+utility.buildColoumnchart_attr = function (data, valf, Controlid, attr) {
     var arr = [];
     valf.forEach(function (v) {
         data.forEach(function (value) {
@@ -418,7 +417,7 @@ utility.buildColoumnchart_attr = function (data, valf, Controlid,attr) {
                                 textfield = value.fy_year;
                                 break;
                         }
-                        
+
                     }
                     arr.push({
                         "valuefield": valuefield, "textfield": textfield,
@@ -450,7 +449,7 @@ utility.buildColoumnchartdata = function (data, valf, Controlid) {
                         textfield = value.flatgroup_name;
                         gradcolor = value.srcolor;
                     } else if (Controlid == "Flatbarchart" || Controlid == "PropertyColoumn") {
-                        textfield = value.carpet_area_range; 
+                        textfield = value.carpet_area_range;
                         gradcolor = value.srcolor;
                     }
                     else if (Controlid == "Agreementbarchart") {
@@ -476,10 +475,10 @@ utility.buildColoumnchartdata = function (data, valf, Controlid) {
                         gradcolor = value.rrcolor;
                         valuefield = value.transaction_count;
                     }
-                    
+
                     arr.push({
                         "valuefield": valuefield, "textfield": textfield,
-                        "gradientcolor": gradcolor,"idfield": value.id != null ? value.id : ''
+                        "gradientcolor": gradcolor, "idfield": value.id != null ? value.id : ''
                     });
                 }
             });
@@ -497,23 +496,23 @@ utility.bindColoumnchart = function (Controlid, arrParam = ["Type", "Value"], da
     })
     var ctx = document.getElementById(Controlid).getContext("2d");
 
-   /* var Gradient = ctx.createLinearGradient(0, 0, 1, 500);*/
+    /* var Gradient = ctx.createLinearGradient(0, 0, 1, 500);*/
     var Gradient = ctx.createLinearGradient(1, 1, 1, 300);
     Gradient.addColorStop(0, datalst[0].top_color);
     Gradient.addColorStop(1, datalst[0].bottom_color);
-    
-   
+
+
     //Gradient.addColorStop(0, 'rgb(120, 117, 192)');
     //Gradient.addColorStop(1, 'rgb(242, 139, 139)');
     if (Controlid == "TranBarColoumn") {
-       
+
         var encapsulatedata = utility.buildColoumnchart_attr(datalst, arrParam, Controlid, attr);
 
     } else {
         var encapsulatedata = utility.buildColoumnchartdata(datalst, arrParam, Controlid);
 
     }
-   // var encapsulatedata = utility.buildColoumnchartdata(datalst, arrParam, Controlid);
+    // var encapsulatedata = utility.buildColoumnchartdata(datalst, arrParam, Controlid);
 
     ////////////////COL CHART/////////////////////
     var Coloumnlabels = [];
@@ -548,18 +547,18 @@ utility.bindColoumnchart = function (Controlid, arrParam = ["Type", "Value"], da
             ]
         },
         options: {
-             responsive: true,
+            responsive: true,
             maintainAspectRatio: false,
             aspectRatio: 1,
             title: {
                 display: false,
                 fontSize: 10
             },
-            
+
             plugins: {
                 legend: {
-                display: false
-            },
+                    display: false
+                },
                 //datalabels: {
                 //    //formatter: function (value, ctx) {
                 //    //    var sum = 0;
@@ -588,7 +587,7 @@ utility.bindColoumnchart = function (Controlid, arrParam = ["Type", "Value"], da
                 x: {
                     title: {
                         display: true,
-                        text: Xtext 
+                        text: Xtext
                     }
                 }
             },
@@ -641,7 +640,7 @@ utility.bindColoumnchart = function (Controlid, arrParam = ["Type", "Value"], da
                         /*alert(chart.data.labels[i] + ': ' + chart.data.datasets[0].data[i]);*/
                         RegistrationSummaryModule.PropertyColumnClick(chart.data.labels[i]);
                     }
-                   
+
                 }
             }
         }
@@ -664,7 +663,7 @@ utility.bindline = function (Controlid, lbl, dt, hovervals, ticks, responsive, c
     if (meta != undefined) {
         meta.destroy();
     }
-     var ctx = document.getElementById(Controlid).getContext("2d");
+    var ctx = document.getElementById(Controlid).getContext("2d");
     //var gradient = ctx.createLinearGradient(0, 0, 1, 500);
     //gradient.addColorStop(0,'rgb(120, 117, 192)');
     //gradient.addColorStop(1,'rgb(242, 139, 139)');
@@ -675,9 +674,9 @@ utility.bindline = function (Controlid, lbl, dt, hovervals, ticks, responsive, c
             // dataPoints: hovervals,
             //tooltipItems: hovervals,
             datasets: [{
-               /* label: 'data',
-                borderColor: gradient, //'rgba(255,0,0)',
-                backgroundColor: gradient,*/
+                /* label: 'data',
+                 borderColor: gradient, //'rgba(255,0,0)',
+                 backgroundColor: gradient,*/
                 borderColor: colour,
                 data: dt,
                 //fill: true,
@@ -685,7 +684,7 @@ utility.bindline = function (Controlid, lbl, dt, hovervals, ticks, responsive, c
 
         },
         options: {
-           /* responsive: responsive,*/
+            /* responsive: responsive,*/
             maintainAspectRatio: false,
             plugins: {
                 legend: false,
@@ -719,8 +718,8 @@ utility.bindline = function (Controlid, lbl, dt, hovervals, ticks, responsive, c
                         text: axistxt[0].Y,
                         color: axistxt[0].color,
                         font: {
-                            size: 16,                            
-                            
+                            size: 16,
+
                         }
 
                     }
@@ -737,17 +736,17 @@ utility.bindline = function (Controlid, lbl, dt, hovervals, ticks, responsive, c
                     }
                 }
             },
-           
+
         },
-       
+
         //plugins: {
         //    legend: {
         //        display: false
-               
+
         //    },
         //    //title: {
         //    //    display: false,
-                
+
         //    //},
         //    //afterDraw: function (chart) {
         //    //    if (chart.data.labels.length === 0) {
@@ -768,15 +767,14 @@ utility.bindline = function (Controlid, lbl, dt, hovervals, ticks, responsive, c
         //}
     };
     lineChart = new Chart(Controlid, config);
-   
-        var divwidth = document.getElementById("price").offsetWidth;
-        var divheight = document.getElementById("price").offsetHeight;
-        ctx.canvas.parentNode.style.height = divheight;
-        ctx.canvas.parentNode.style.width = divwidth;
-    
-    
-       
-   
+
+    //var divwidth = document.getElementById("price").offsetWidth;
+    //var divheight = document.getElementById("price").offsetHeight;
+    var divwidth = document.getElementById("index").offsetWidth;
+    var divheight = document.getElementById("index").offsetHeight;
+    ctx.canvas.parentNode.style.height = divheight;
+    ctx.canvas.parentNode.style.width = divwidth;
+
     return lineChart;
 }
 
@@ -798,7 +796,7 @@ utility.bindmultilinedinamic = function (Controlid, dataCritical, responsive, ax
     var chartOptions =
     {
         responsive: responsive,
-        maintainAspectRatio:false,
+        maintainAspectRatio: false,
         //bezierCurve: true,
         //point: { display: false },
         plugins: {
@@ -809,8 +807,8 @@ utility.bindmultilinedinamic = function (Controlid, dataCritical, responsive, ax
                 usePointStyle: true,
                 callbacks: {
                     title: function (tooltipItem) {
-                        return tooltipTitle;                   
-                        
+                        return tooltipTitle;
+
                     },
                     label: function (tooltipItem) {
                         /*console.log(tooltipItem);*/
@@ -831,8 +829,8 @@ utility.bindmultilinedinamic = function (Controlid, dataCritical, responsive, ax
         //    display: true,
         //    text:'da' //titletxt
         //},
-        
-        
+
+
         scales: {
             y: {
                 title: {
@@ -857,7 +855,7 @@ utility.bindmultilinedinamic = function (Controlid, dataCritical, responsive, ax
                 }
             }
         },
-        
+
     }
 
 
@@ -871,7 +869,7 @@ utility.bindmultilinedinamic = function (Controlid, dataCritical, responsive, ax
         type: 'line',
         data: MultilineData,
         options: chartOptions,
-       
+
     });
 
     return lineChart;

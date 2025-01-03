@@ -92,6 +92,8 @@ var PincodeListModule = function () {
                 UserType = userdetails.UserType;
                 if (UserType != "Paid") {
                     $.each(arr_toload, function (index, items) {
+                        //<td rowspan="2" class="viewProjCol"><a href="javascript:void(0)" onClick="ProjectByPincode('+ items.pincode + ')">View<br>Projects</a></td>\
+
                         st += '<div class="searchResultCard d-flex align-items-center">\
                         <div class="mediaBlk rounded-circle"><img src="'+ items.pincode_image_path +'" alt="" class="rounded-circle"></div>\
                         <div class="flex-1">\
@@ -102,7 +104,6 @@ var PincodeListModule = function () {
 					                        <th>YoY Change (%)</th>\
 					                        <th>CAGR (3Y)</th>\
 					                        <th>CAGR (5Y)</th>\
-                                            <td rowspan="2" class="viewProjCol"><a href="javascript:void(0)" onClick="ProjectByPincode('+ items.pincode + ')">View<br>Projects</a></td>\
 				                        </tr>\
                                         <tr>\
 					                        <td class="location">'+ items.region_city + '</td>\
@@ -123,6 +124,8 @@ var PincodeListModule = function () {
                 }
                 else {
                     $.each(arr_toload, function (index, items) {
+                        //<td rowspan="2" class="viewProjCol"><a href="javascript:void(0)" onClick="ProjectByPincode('+ items.pincode + ')">View<br>Projects</a></td>\
+
                         st += '<div class="searchResultCard d-flex align-items-center">\
                         <div class="mediaBlk rounded-circle"><img src="'+ items.pincode_image_path +'" alt="" class="rounded-circle"></div>\
                             <div class="flex-1">\
@@ -133,7 +136,6 @@ var PincodeListModule = function () {
 			                                    <th>YoY Change (%)</th>\
 			                                    <th>CAGR (3Y)</th>\
 			                                    <th>CAGR (5Y)</th>\
-                                                <td rowspan="2" class="viewProjCol"><a href="javascript:void(0)" onClick="ProjectByPincode('+ items.pincode + ')">View<br>Projects</a></td>\
                                             </tr>\
                                             <tr>\
 			                                    <td class="location">'+ items.region_city + '</td>\
@@ -535,10 +537,10 @@ function Pincodecagr5ySortclick(event) {
 //    $('#overlay').fadeOut();
 //}
 
-function ProjectByPincode(id) {
-    var resultroutingurl = utility.FrontEndAPIURL('list/project/' + id + '/0/0');
-    window.location.href = resultroutingurl;
-}
+//function ProjectByPincode(id) {
+//    var resultroutingurl = utility.FrontEndAPIURL('list/project/' + id + '/0/0');
+//    window.location.href = resultroutingurl;
+//}
 
 function PincodeTrendsRoute(id) {
     var resultroutingurl = utility.FrontEndAPIURL('trend/pincode/' + id + '/PincodeText');

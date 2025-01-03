@@ -49,7 +49,8 @@ var CityTrendsModule = function () {
             $("#calculatedCAGRCity").text(RspData.data[0].cagr_last_3yr_pct);
 
             common.dtpicker_cal("#fromDateIDCity");
-            CityTrendsModule.Multilinegraph();
+            //CityTrendsModule.Multilinegraph();
+            CityTrendsModule.MultilinegraphIndex();
             CityTrendsModule.checkboxTrend();
 
 
@@ -70,8 +71,6 @@ var CityTrendsModule = function () {
             var CityLine = [];
             var Graphlabels = [];
             TotalData.data.forEach(function (item) {
-                
-
                 //Country Check
                 if (item.country_saleable_rate == 0) {
                     CountryLine.push(null);
@@ -92,8 +91,6 @@ var CityTrendsModule = function () {
                 Graphlabels.push(item.dos_month_year);
             });
 
-            
-
             var dataFourth = {
                 label: TotalData.data[0].country_text,
                 labelvalue: TotalData.data[0].country,
@@ -110,15 +107,8 @@ var CityTrendsModule = function () {
                 fill: false,
                 borderColor: TotalData.data[0].city_color
             };
-
             label = Graphlabels;
-
-
-
-
             var totaldataset = [];
-
-           
             totaldataset.push(dataFourth);
             totaldataset.push(dataFifth);
 
@@ -377,12 +367,12 @@ $("#CityTrendIndex").click(function () {
     $('#CityTrendPrice').removeClass('active');
     CityTrendsModule.MultilinegraphIndex();
 });
-$("#CityTrendPrice").click(function () {
+//$("#CityTrendPrice").click(function () {
 
-    $("#CityTrendPrice").addClass('active');
-    $('#CityTrendIndex').removeClass('active');
-    CityTrendsModule.Multilinegraph();
-});
+//    $("#CityTrendPrice").addClass('active');
+//    $('#CityTrendIndex').removeClass('active');
+//    CityTrendsModule.Multilinegraph();
+//});
 
 $("#CityCSVDownload").click(function () {
 

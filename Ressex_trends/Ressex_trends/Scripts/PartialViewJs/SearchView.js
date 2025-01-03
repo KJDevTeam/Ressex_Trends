@@ -1,4 +1,5 @@
-﻿var searchType = "project";
+﻿//var searchType = "project";
+var searchType = "pincode";
 var tempSearchType;
 var SearchModule = function () {
    
@@ -7,7 +8,8 @@ var SearchModule = function () {
             searchType = window.location.pathname.split("/");
             for (i = 0; i < searchType.length; i++) {
                 if (searchType[i] == "Dashboard") {
-                    searchTypeTx = "project";
+                    /*searchTypeTx = "project";*/
+                    searchTypeTx = "pincode";
                 }
                 if (searchType[i] == "city") {
                     searchTypeTx = "city";
@@ -19,7 +21,8 @@ var SearchModule = function () {
                     searchTypeTx = "location";
                 }
                 if (searchType[i] == "project") {
-                    searchTypeTx = "project";
+                    //searchTypeTx = "project";
+                    searchTypeTx = "pincode";
                 }
             }
             
@@ -138,10 +141,10 @@ $(".dropdown-menu li a").click(function () {
        // tempSearchType = "city";
         searchType = "city";
     }
-    else {
-       // tempSearchType = "project";
-        searchType = "project";
-    }
+    //else {
+    //    searchType = "project";
+        
+    //}
 
     SearchModule.AutocompleteSearch(searchType);
    
@@ -162,7 +165,8 @@ $('#Search').click(function () {
         window.location.href = routingurl;
     }
     else {
-        var routingurl = utility.FrontEndAPIURL('list/project/0/0/0');
+        //var routingurl = utility.FrontEndAPIURL('list/project/0/0/0');
+        var routingurl = utility.FrontEndAPIURL('list/pincode/0/0/0')
         window.location.href = routingurl;
     }
 

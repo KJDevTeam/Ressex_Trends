@@ -46,7 +46,8 @@ var PincodeTrendsModule = function () {
             $("#calculatedCAGRPincode").text(RspData.data[0].cagr_last_3yr_pct);
 
             common.dtpicker_cal("#fromDateIDPincode");
-            PincodeTrendsModule.Multilinegraph();
+            //PincodeTrendsModule.Multilinegraph();
+            PincodeTrendsModule.MultilinegraphIndex();
             PincodeTrendsModule.checkboxTrend();
 
 
@@ -137,12 +138,7 @@ var PincodeTrendsModule = function () {
             };           
 
             label = Graphlabels;
-
-
-           
-
             var totaldataset = [];
-
             totaldataset.push(dataSecond);
             totaldataset.push(dataThird);
             totaldataset.push(dataFourth);
@@ -454,12 +450,12 @@ $("#PincodeTrendIndex").click(function () {
     $('#PincodePriceIndex').removeClass('active');
     PincodeTrendsModule.MultilinegraphIndex();
 });
-$("#PincodeTrendPrice").click(function () {
+//$("#PincodeTrendPrice").click(function () {
 
-    $("#PincodeTrendPrice").addClass('active');
-    $('#PincodeTrendIndex').removeClass('active');
-    PincodeTrendsModule.Multilinegraph();
-});
+//    $("#PincodeTrendPrice").addClass('active');
+//    $('#PincodeTrendIndex').removeClass('active');
+//    PincodeTrendsModule.Multilinegraph();
+//});
 $("#PincodeCSVDownload").click(function () {
 
     PincodeTrendsModule.PincodeCsvExport();

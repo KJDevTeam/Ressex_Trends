@@ -19,7 +19,8 @@ var DashboardModule = function () {
             var rsp = utility.ajaxselect(APIkey, payload, "Post", false);
             console.log(rsp);
             keepCityList = rsp.data;
-            var projectTitle = rsp.data[0].h1;
+            //var projectTitle = rsp.data[0].h1;
+            var projectTitle = 'Ressex HPI & Indexation';
             localStorage.setItem('ProjectTitle', projectTitle);
            /* layoutModule.init(projectTitle);*/
             DashboardModule.cityload(rsp.data);
@@ -151,9 +152,9 @@ var DashboardModule = function () {
             axistxt_indx.push({ "X": 'Quarter', "Y": 'Price Index', "color": '#E31E24'  });
             titletxt = 'Transaction';
             responsive = true;
-            var Linedatasource = utility.bindline("priceLinechart", lbl, Linedt, hovervals, ticks, true, colour, axistxt, titletxt)
             /*$(Linedatasource.canvas).css("width", "100%");*/
             var Linedatasource1 = utility.bindline("indexLinechart", lbl_idnx, Linedt_idnx, hovervals, ticks, true, colour, axistxt_indx, titletxt)
+            //var Linedatasource = utility.bindline("priceLinechart", lbl, Linedt, hovervals, ticks, true, colour, axistxt, titletxt)
             $("#qtrTxt").text(LineData.data[0].current_qtr_text);
             $("#qtrprice").text(LineData.data[0].current_rate_text);
             $("#Yoy").text(LineData.data[0].cagr_last_1yr_pct);

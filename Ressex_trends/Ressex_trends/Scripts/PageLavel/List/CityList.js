@@ -84,6 +84,7 @@ var CityListModule = function () {
                 UserType = userdetails.UserType;
                 if (UserType != "Paid") {
                     $.each(arr_toload, function (index, items) {
+                        //<td rowspan="2" class="viewProjCol"><a href="javascript:void(0)" onClick="ProjectByCity('+ items.region_or_city_id + ')">View<br>Projects</a></td>\
 
                         st += '<div class="searchResultCard d-flex align-items-center 1">\
                         <div class="mediaBlk rounded-circle"><img src="'+ items.city_image_path +'" alt="" class="rounded-circle"></div>\
@@ -95,7 +96,6 @@ var CityListModule = function () {
                                             <th>YoY Change (%)</th>\
                                             <th>CAGR (3Y)</th>\
                                             <th>CAGR (5Y)</th>\
-                                            <td rowspan="2" class="viewProjCol"><a href="javascript:void(0)" onClick="ProjectByCity('+ items.region_or_city_id + ')">View<br>Projects</a></td>\
                                         </tr>\
                                         <tr>\
                                             <td class="location">'+ items.region_city + '</td>\
@@ -116,6 +116,7 @@ var CityListModule = function () {
                 }
                 else {
                     $.each(arr_toload, function (index, items) {
+                        //<td rowspan="2" class="viewProjCol"><a href="javascript:void(0)" onClick="ProjectByCity('+ items.region_or_city_id + ')">View<br>Projects</a></td>\
 
                     st += '<div class="searchResultCard d-flex align-items-center 1">\
                         <div class="mediaBlk rounded-circle"><img src="'+ items.city_image_path +'" alt="" class="rounded-circle"></div>\
@@ -127,7 +128,6 @@ var CityListModule = function () {
                                             <th>YoY Change (%)</th>\
                                             <th>CAGR (3Y)</th>\
                                             <th>CAGR (5Y)</th>\
-                                            <td rowspan="2" class="viewProjCol"><a href="javascript:void(0)" onClick="ProjectByCity('+ items.region_or_city_id + ')">View<br>Projects</a></td>\
                                         </tr>\
                                         <tr>\
                                             <td class="location">'+ items.state + '</td>\

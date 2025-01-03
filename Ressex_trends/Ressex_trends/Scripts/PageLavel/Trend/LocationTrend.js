@@ -49,7 +49,8 @@ var LocationTrendsModule = function () {
             $("#calculatedCAGRLocation").text(RspData.data[0].cagr_last_3yr_pct);
 
             common.dtpicker_cal("#fromDateIDLocation");
-            LocationTrendsModule.Multilinegraph();
+            /*LocationTrendsModule.Multilinegraph();*/
+            LocationTrendsModule.MultilinegraphIndex();
             LocationTrendsModule.checkboxTrend();
 
 
@@ -85,7 +86,6 @@ var LocationTrendsModule = function () {
                 else {
                     RegionLine.push(item.region_saleable_rate);
                 }
-
 
                 //City Check
                 if (item.city_saleable_rate== 0) {
@@ -125,13 +125,7 @@ var LocationTrendsModule = function () {
             };
 
             label = Graphlabels;
-
-
-
-
             var totaldataset = [];
-
-           
             totaldataset.push(dataThird);
             totaldataset.push(dataFourth);
             totaldataset.push(dataFifth);
@@ -214,13 +208,7 @@ var LocationTrendsModule = function () {
             };
 
             label = Graphlabels;
-
-
-
-
             var totaldataset = [];
-
-
             totaldataset.push(dataThird);
             totaldataset.push(dataFourth);
             totaldataset.push(dataFifth);
@@ -229,8 +217,6 @@ var LocationTrendsModule = function () {
 
             //  label = OsgroupbyDate;
             graphvariable = utility.bindmultilinedinamic("scanlineLocation", totaldataset, true, axistxt, label, ticks);
-
-
         },
         getvaluation: function () {
             var jsonstr = {
@@ -415,12 +401,12 @@ $("#LocationTrendIndex").click(function () {
     $('#LocationTrendPrice').removeClass('active');
     LocationTrendsModule.MultilinegraphIndex();
 });
-$("#LocationTrendPrice").click(function () {
+//$("#LocationTrendPrice").click(function () {
 
-    $("#LocationTrendPrice").addClass('active');
-    $('#LocationTrendIndex').removeClass('active');
-    LocationTrendsModule.Multilinegraph();
-});
+//    $("#LocationTrendPrice").addClass('active');
+//    $('#LocationTrendIndex').removeClass('active');
+//    LocationTrendsModule.Multilinegraph();
+//});
 $("#LocationCSVDownload").click(function () {
 
     LocationTrendsModule.LocationCsvExport();

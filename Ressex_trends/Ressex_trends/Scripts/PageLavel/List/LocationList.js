@@ -91,7 +91,7 @@ var LocationListModule = function () {
                 if (UserType != "Paid") {
                     $.each(arr_toload, function (index, items) {
 
-
+                        //     <td rowspan="2" class="viewProjCol"><a href="javascript:void(0)" onClick="ProjectBylocation('+ items.locationid + ')">View<br>Projects</a></td>\
                         st += '<div class="searchResultCard d-flex align-items-center">\
                         <div class="mediaBlk rounded-circle"><img src="'+ items.location_image_path+'" alt="" class="rounded-circle"></div>\
                             <div class="flex-1">\
@@ -102,7 +102,6 @@ var LocationListModule = function () {
                                             <th>YoY Change (%)</th>\
                                             <th>CAGR (3Y)</th>\
                                             <th>CAGR (5Y)</th>\
-                                             <td rowspan="2" class="viewProjCol"><a href="javascript:void(0)" onClick="ProjectBylocation('+ items.locationid + ')">View<br>Projects</a></td>\
                                         </tr>\
                                         <tr>\
                                             <td class="location">'+ items.region_city + '</td>\
@@ -124,6 +123,8 @@ var LocationListModule = function () {
                 else {
 
                     $.each(arr_toload, function (index, items) {
+                        //<td rowspan="2" class="viewProjCol"><a href="javascript:void(0)" onClick="ProjectBylocation('+ items.locationid + ')">View<br>Projects</a></td>\
+
                         st += '<div class="searchResultCard d-flex align-items-center">\
                         <div class="mediaBlk rounded-circle"><img src="'+ items.location_image_path+'" alt="" class="rounded-circle"></div>\
                             <div class="flex-1">\
@@ -134,7 +135,6 @@ var LocationListModule = function () {
                                             <th>YoY Change (%)</th>\
                                             <th>CAGR (3Y)</th>\
                                             <th>CAGR (5Y)</th>\
-                                            <td rowspan="2" class="viewProjCol"><a href="javascript:void(0)" onClick="ProjectBylocation('+ items.locationid + ')">View<br>Projects</a></td>\
                                         </tr>\
                                         <tr>\
                                             <td class="location">'+ items.region_city + '</td>\
@@ -535,10 +535,10 @@ function Locationcagr5ySortclick(event) {
 //    $('#overlay').fadeOut();
 //}
 
-function ProjectBylocation(id) {
-    var resultroutingurl = utility.FrontEndAPIURL('list/project/0/' + id + '/0');
-    window.location.href = resultroutingurl;
-}
+//function ProjectBylocation(id) {
+//    var resultroutingurl = utility.FrontEndAPIURL('list/project/0/' + id + '/0');
+//    window.location.href = resultroutingurl;
+//}
 
 function LocationTrendsRoute(id) {
     var resultroutingurl = utility.FrontEndAPIURL('trend/location/' + id + '/LocationText');
@@ -550,10 +550,10 @@ $("input[name=locations-search]").click(function () {
         var resultroutingurl = utility.FrontEndAPIURL('list/pincode/0/0/' + keeplocationListData[0].region_or_city_id_pi_input);
         window.location.href = resultroutingurl;
     }
-    else if (this.value == "projects") {
-        var resultroutingurl = utility.FrontEndAPIURL('list/project/0/0/' + keeplocationListData[0].region_or_city_id_pi_input);
-        window.location.href = resultroutingurl;
-    }
+    //else if (this.value == "projects") {
+    //    var resultroutingurl = utility.FrontEndAPIURL('list/project/0/0/' + keeplocationListData[0].region_or_city_id_pi_input);
+    //    window.location.href = resultroutingurl;
+    //}
     else {
 
     }
