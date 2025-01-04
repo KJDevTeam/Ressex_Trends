@@ -96,6 +96,7 @@ var CityListModule = function () {
                                             <th>YoY Change (%)</th>\
                                             <th>CAGR (3Y)</th>\
                                             <th>CAGR (5Y)</th>\
+                                            <td rowspan="2" class="viewProjCol"><a href="javascript:void(0)" onClick="ProjectByCity('+ items.region_or_city_id + ')">View<br>Pincodes</a></td>\
                                         </tr>\
                                         <tr>\
                                             <td class="location">'+ items.region_city + '</td>\
@@ -128,6 +129,7 @@ var CityListModule = function () {
                                             <th>YoY Change (%)</th>\
                                             <th>CAGR (3Y)</th>\
                                             <th>CAGR (5Y)</th>\
+                                            <td rowspan="2" class="viewProjCol"><a href="javascript:void(0)" onClick="ProjectByCity('+ items.region_or_city_id + ')">View<br>Pincodes</a></td>\
                                         </tr>\
                                         <tr>\
                                             <td class="location">'+ items.state + '</td>\
@@ -512,7 +514,7 @@ function Citycagr5ySortclick(event) {
 //}
 
 function ProjectByCity(id) {
-    var resultroutingurl = utility.FrontEndAPIURL('list/project/0/0/' + id);
+    var resultroutingurl = utility.FrontEndAPIURL('list/pincode/0/0/' + id);
     window.location.href = resultroutingurl;
 }
 

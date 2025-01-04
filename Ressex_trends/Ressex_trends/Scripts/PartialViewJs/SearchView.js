@@ -25,8 +25,8 @@ var SearchModule = function () {
                     searchTypeTx = "pincode";
                 }
             }
-            
-            $('#selectedSearchType').text(searchTypeTx);
+            searchType = searchTypeTx
+            $('#selectedSearchType').text(searchType);
             SearchModule.AutocompleteSearch(searchType);
 
         },

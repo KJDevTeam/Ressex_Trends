@@ -283,7 +283,7 @@ function ShortcutRouting(id) {
 
 function CityCLick(cityID) {
 
-    var resultroutingurl = utility.FrontEndAPIURL('list/project/0/0/'+ cityID);
+    var resultroutingurl = utility.FrontEndAPIURL('list/pincode/0/0/'+ cityID);
     window.location.href = resultroutingurl;
 }
 
